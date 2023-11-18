@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="md__mnt_c_Users_scott_OneDrive_-_University_of_Warwick_Work_Computing_Year4_4th_year_project_cs407_README" kind="page">
+    <compoundname>md__mnt_c_Users_scott_OneDrive_-_University_of_Warwick_Work_Computing_Year4_4th_year_project_cs407_README</compoundname>
+    <title>cs407</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>WaSH - **__Wa__** rwick **__S__** mooth **__H__** ydro</para>
+<para>WaSH is a Domain Specific Language on top of C++ for Smooth Particle Hydrodynamics simulations to help developers and researchers best utilise all their available hardware, using combinations of CUDA, OpenMP, and MPI. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
