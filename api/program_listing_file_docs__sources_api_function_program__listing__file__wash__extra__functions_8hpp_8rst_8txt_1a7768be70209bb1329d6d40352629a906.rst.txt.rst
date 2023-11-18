@@ -1,0 +1,26 @@
+
+.. _program_listing_file_docs__sources_api_function_program__listing__file__wash__extra__functions_8hpp_8rst_8txt_1a7768be70209bb1329d6d40352629a906.rst.txt:
+
+Program Listing for File function_program__listing__file__wash__extra__functions_8hpp_8rst_8txt_1a7768be70209bb1329d6d40352629a906.rst.txt
+==========================================================================================================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_docs__sources_api_function_program__listing__file__wash__extra__functions_8hpp_8rst_8txt_1a7768be70209bb1329d6d40352629a906.rst.txt>` (``docs/_sources/api/function_program__listing__file__wash__extra__functions_8hpp_8rst_8txt_1a7768be70209bb1329d6d40352629a906.rst.txt``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   .. _exhale_function_program__listing__file__wash__extra__functions_8hpp_8rst_8txt_1a7768be70209bb1329d6d40352629a906:
+   
+   Function buf
+   ============
+   
+   - Defined in :ref:`file_docs_doc_out_sphinx__sources_api_program_listing_file_wash_extra_functions.hpp.rst.txt`
+   
+   
+   Function Documentation
+   ----------------------
+   
+   
+   .. doxygenfunction:: buf(new char)
+      :project: my_project
