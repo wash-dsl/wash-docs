@@ -1,0 +1,489 @@
+This page lists the facilities provided by Google\+Test for creating and working with mock objects. To use them, add {\ttfamily \#include $<$\mbox{\hyperlink{gmock_8h_source}{gmock/gmock.\+h}}$>$}.
+
+Google\+Test defines the following macros for working with mocks.
+
+{\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD(}$\ast${\ttfamily return\+\_\+type}$\ast${\ttfamily ,}$\ast${\ttfamily method\+\_\+name}$\ast${\ttfamily , (}$\ast${\ttfamily args...}$\ast${\ttfamily ));} \textbackslash{} {\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD(}$\ast${\ttfamily return\+\_\+type}$\ast${\ttfamily ,}$\ast${\ttfamily method\+\_\+name}$\ast${\ttfamily , (}$\ast${\ttfamily args...}$\ast${\ttfamily ), (}$\ast${\ttfamily specs...}$\ast${\ttfamily ));}
+
+Defines a mock method $\ast${\ttfamily method\+\_\+name}$\ast$ with arguments {\ttfamily (}$\ast${\ttfamily args...}$\ast${\ttfamily )} and return type $\ast${\ttfamily return\+\_\+type}$\ast$ within a mock class.
+
+The parameters of {\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD} mirror the method declaration. The optional fourth parameter $\ast${\ttfamily specs...}$\ast$ is a comma-\/separated list of qualifiers. The following qualifiers are accepted\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Qualifier  }&\textbf{ Meaning   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Qualifier  }&\textbf{ Meaning   }\\\cline{1-2}
+\endhead
+{\ttfamily const}  &Makes the mocked method a {\ttfamily const} method. Required if overriding a {\ttfamily const} method.   \\\cline{1-2}
+{\ttfamily override}  &Marks the method with {\ttfamily override}. Recommended if overriding a {\ttfamily virtual} method.   \\\cline{1-2}
+{\ttfamily noexcept}  &Marks the method with {\ttfamily noexcept}. Required if overriding a {\ttfamily noexcept} method.   \\\cline{1-2}
+{\ttfamily Calltype(}$\ast${\ttfamily calltype}$\ast${\ttfamily )}  &Sets the call type for the method, for example {\ttfamily Calltype(\+S\+T\+D\+M\+E\+T\+H\+O\+D\+C\+A\+L\+L\+T\+Y\+P\+E)}. Useful on Windows.   \\\cline{1-2}
+{\ttfamily ref(}$\ast${\ttfamily qualifier}$\ast${\ttfamily )}  &Marks the method with the given reference qualifier, for example {\ttfamily ref(\&)} or {\ttfamily ref(\&\&)}. Required if overriding a method that has a reference qualifier.   \\\cline{1-2}
+\end{longtabu}
+
+
+Note that commas in arguments prevent {\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD} from parsing the arguments correctly if they are not appropriately surrounded by parentheses. See the following example\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{class }MyMock \{
+ \textcolor{keyword}{public}:
+  \textcolor{comment}{// The following 2 lines will not compile due to commas in the arguments:}
+  MOCK\_METHOD(std::pair<bool, int>, GetPair, ());              \textcolor{comment}{// Error!}
+  MOCK\_METHOD(\textcolor{keywordtype}{bool}, CheckMap, (std::map<int, double>, \textcolor{keywordtype}{bool}));  \textcolor{comment}{// Error!}
+
+  \textcolor{comment}{// One solution - wrap arguments that contain commas in parentheses:}
+  MOCK\_METHOD((std::pair<bool, int>), GetPair, ());
+  MOCK\_METHOD(\textcolor{keywordtype}{bool}, CheckMap, ((std::map<int, double>), \textcolor{keywordtype}{bool}));
+
+  \textcolor{comment}{// Another solution - use type aliases:}
+  \textcolor{keyword}{using} BoolAndInt = std::pair<bool, int>;
+  MOCK\_METHOD(BoolAndInt, GetPair, ());
+  \textcolor{keyword}{using} MapIntDouble = std::map<int, double>;
+  MOCK\_METHOD(\textcolor{keywordtype}{bool}, CheckMap, (MapIntDouble, \textcolor{keywordtype}{bool}));
+\};
+\end{DoxyCode}
+
+
+{\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD} must be used in the {\ttfamily public\+:} section of a mock class definition, regardless of whether the method being mocked is {\ttfamily public}, {\ttfamily protected}, or {\ttfamily private} in the base class.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL(}$\ast${\ttfamily mock\+\_\+object}$\ast${\ttfamily ,}$\ast${\ttfamily method\+\_\+name}$\ast${\ttfamily (}$\ast${\ttfamily matchers...}$\ast${\ttfamily ))}
+
+Creates an \href{../gmock_for_dummies.md#setting-expectations}{\tt expectation} that the method $\ast${\ttfamily method\+\_\+name}$\ast$ of the object $\ast${\ttfamily mock\+\_\+object}$\ast$ is called with arguments that match the given matchers $\ast${\ttfamily matchers...}$\ast$. {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL} must precede any code that exercises the mock object.
+
+The parameter $\ast${\ttfamily matchers...}$\ast$ is a comma-\/separated list of \href{../gmock_for_dummies.md#matchers-what-arguments-do-we-expect}{\tt matchers} that correspond to each argument of the method $\ast${\ttfamily method\+\_\+name}$\ast$. The expectation will apply only to calls of $\ast${\ttfamily method\+\_\+name}$\ast$ whose arguments match all of the matchers. If {\ttfamily (}$\ast${\ttfamily matchers...}$\ast${\ttfamily )} is omitted, the expectation behaves as if each argument\textquotesingle{}s matcher were a \href{matchers.md#wildcard}{\tt wildcard matcher ({\ttfamily \+\_\+})}. See the Matchers Reference for a list of all built-\/in matchers.
+
+The following chainable clauses can be used to modify the expectation, and they must be used in the following order\+:
+
+
+\begin{DoxyCode}
+EXPECT\_CALL(mock\_object, method\_name(matchers...))
+    .With(multi\_argument\_matcher)  \textcolor{comment}{// Can be used at most once}
+    .Times(cardinality)            \textcolor{comment}{// Can be used at most once}
+    .InSequence(sequences...)      \textcolor{comment}{// Can be used any number of times}
+    .After(expectations...)        \textcolor{comment}{// Can be used any number of times}
+    .WillOnce(action)              \textcolor{comment}{// Can be used any number of times}
+    .WillRepeatedly(action)        \textcolor{comment}{// Can be used at most once}
+    .RetiresOnSaturation();        \textcolor{comment}{// Can be used at most once}
+\end{DoxyCode}
+
+
+See details for each modifier clause below.
+
+\paragraph*{With \{\#\+E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+L\+L.\+With\}}
+
+{\ttfamily .With(}$\ast${\ttfamily multi\+\_\+argument\+\_\+matcher}$\ast${\ttfamily )}
+
+Restricts the expectation to apply only to mock function calls whose arguments as a whole match the multi-\/argument matcher $\ast${\ttfamily multi\+\_\+argument\+\_\+matcher}$\ast$.
+
+Google\+Test passes all of the arguments as one tuple into the matcher. The parameter $\ast${\ttfamily multi\+\_\+argument\+\_\+matcher}$\ast$ must thus be a matcher of type {\ttfamily Matcher$<$std\+::tuple$<$A1, ..., An$>$$>$}, where {\ttfamily A1, ..., An} are the types of the function arguments.
+
+For example, the following code sets the expectation that {\ttfamily my\+\_\+mock.\+Set\+Position()} is called with any two arguments, the first argument being less than the second\+:
+
+
+\begin{DoxyCode}
+using ::testing::\_;
+using ::testing::Lt;
+...
+EXPECT\_CALL(my\_mock, SetPosition(\_, \_))
+    .With(Lt());
+\end{DoxyCode}
+
+
+Google\+Test provides some built-\/in matchers for 2-\/tuples, including the {\ttfamily Lt()} matcher above. See \href{matchers.md#MultiArgMatchers}{\tt Multi-\/argument Matchers}.
+
+The {\ttfamily With} clause can be used at most once on an expectation and must be the first clause.
+
+\paragraph*{Times \{\#\+E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+L\+L.\+Times\}}
+
+{\ttfamily .Times(}$\ast${\ttfamily cardinality}$\ast${\ttfamily )}
+
+Specifies how many times the mock function call is expected.
+
+The parameter $\ast${\ttfamily cardinality}$\ast$ represents the number of expected calls and can be one of the following, all defined in the {\ttfamily \+::testing} namespace\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Cardinality  }&\textbf{ Meaning   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Cardinality  }&\textbf{ Meaning   }\\\cline{1-2}
+\endhead
+{\ttfamily Any\+Number()}  &The function can be called any number of times.   \\\cline{1-2}
+{\ttfamily At\+Least(n)}  &The function call is expected at least {\itshape n} times.   \\\cline{1-2}
+{\ttfamily At\+Most(n)}  &The function call is expected at most {\itshape n} times.   \\\cline{1-2}
+{\ttfamily Between(m, n)}  &The function call is expected between {\itshape m} and {\itshape n} times, inclusive.   \\\cline{1-2}
+{\ttfamily Exactly(n)} or {\ttfamily n}  &The function call is expected exactly {\itshape n} times. If {\itshape n} is 0, the call should never happen.   \\\cline{1-2}
+\end{longtabu}
+
+
+If the {\ttfamily Times} clause is omitted, Google\+Test infers the cardinality as follows\+:
+
+
+\begin{DoxyItemize}
+\item If neither \href{#EXPECT_CALL.WillOnce}{\tt {\ttfamily Will\+Once}} nor \href{#EXPECT_CALL.WillRepeatedly}{\tt {\ttfamily Will\+Repeatedly}} are specified, the inferred cardinality is {\ttfamily Times(1)}.
+\item If there are {\itshape n} {\ttfamily Will\+Once} clauses and no {\ttfamily Will\+Repeatedly} clause, where {\itshape n} $>$= 1, the inferred cardinality is {\ttfamily Times(n)}.
+\item If there are {\itshape n} {\ttfamily Will\+Once} clauses and one {\ttfamily Will\+Repeatedly} clause, where {\itshape n} $>$= 0, the inferred cardinality is {\ttfamily Times(\+At\+Least(n))}.
+\end{DoxyItemize}
+
+The {\ttfamily Times} clause can be used at most once on an expectation.
+
+\paragraph*{In\+Sequence \{\#\+E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+L\+L.\+In\+Sequence\}}
+
+{\ttfamily .In\+Sequence(}$\ast${\ttfamily sequences...}$\ast${\ttfamily )}
+
+Specifies that the mock function call is expected in a certain sequence.
+
+The parameter $\ast${\ttfamily sequences...}$\ast$ is any number of \href{#Sequence}{\tt {\ttfamily Sequence}} objects. Expected calls assigned to the same sequence are expected to occur in the order the expectations are declared.
+
+For example, the following code sets the expectation that the {\ttfamily Reset()} method of {\ttfamily my\+\_\+mock} is called before both {\ttfamily Get\+Size()} and {\ttfamily Describe()}, and {\ttfamily Get\+Size()} and {\ttfamily Describe()} can occur in any order relative to each other\+:
+
+
+\begin{DoxyCode}
+using ::testing::Sequence;
+Sequence s1, s2;
+...
+EXPECT\_CALL(my\_mock, Reset())
+    .InSequence(s1, s2);
+EXPECT\_CALL(my\_mock, GetSize())
+    .InSequence(s1);
+EXPECT\_CALL(my\_mock, Describe())
+    .InSequence(s2);
+\end{DoxyCode}
+
+
+The {\ttfamily In\+Sequence} clause can be used any number of times on an expectation.
+
+See also the \href{#InSequence}{\tt {\ttfamily In\+Sequence} class}.
+
+\paragraph*{After \{\#\+E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+L\+L.\+After\}}
+
+{\ttfamily .After(}$\ast${\ttfamily expectations...}$\ast${\ttfamily )}
+
+Specifies that the mock function call is expected to occur after one or more other calls.
+
+The parameter $\ast${\ttfamily expectations...}$\ast$ can be up to five \href{#Expectation}{\tt {\ttfamily Expectation}} or \href{#ExpectationSet}{\tt {\ttfamily Expectation\+Set}} objects. The mock function call is expected to occur after all of the given expectations.
+
+For example, the following code sets the expectation that the {\ttfamily Describe()} method of {\ttfamily my\+\_\+mock} is called only after both {\ttfamily Init\+X()} and {\ttfamily Init\+Y()} have been called.
+
+
+\begin{DoxyCode}
+using ::testing::Expectation;
+...
+Expectation init\_x = EXPECT\_CALL(my\_mock, InitX());
+Expectation init\_y = EXPECT\_CALL(my\_mock, InitY());
+EXPECT\_CALL(my\_mock, Describe())
+    .After(init\_x, init\_y);
+\end{DoxyCode}
+
+
+The {\ttfamily Expectation\+Set} object is helpful when the number of prerequisites for an expectation is large or variable, for example\+:
+
+
+\begin{DoxyCode}
+using ::testing::ExpectationSet;
+...
+ExpectationSet all\_inits;
+\textcolor{comment}{// Collect all expectations of InitElement() calls}
+\textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < element\_count; i++) \{
+  all\_inits += EXPECT\_CALL(my\_mock, InitElement(i));
+\}
+EXPECT\_CALL(my\_mock, Describe())
+    .After(all\_inits);  \textcolor{comment}{// Expect Describe() call after all InitElement() calls}
+\end{DoxyCode}
+
+
+The {\ttfamily After} clause can be used any number of times on an expectation.
+
+\paragraph*{Will\+Once \{\#\+E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+L\+L.\+Will\+Once\}}
+
+{\ttfamily .Will\+Once(}$\ast${\ttfamily action}$\ast${\ttfamily )}
+
+Specifies the mock function\textquotesingle{}s actual behavior when invoked, for a single matching function call.
+
+The parameter $\ast${\ttfamily action}$\ast$ represents the \href{../gmock_for_dummies.md#actions-what-should-it-do}{\tt action} that the function call will perform. See the Actions Reference for a list of built-\/in actions.
+
+The use of {\ttfamily Will\+Once} implicitly sets a cardinality on the expectation when {\ttfamily Times} is not specified. See \href{#EXPECT_CALL.Times}{\tt {\ttfamily Times}}.
+
+Each matching function call will perform the next action in the order declared. For example, the following code specifies that {\ttfamily my\+\_\+mock.\+Get\+Number()} is expected to be called exactly 3 times and will return {\ttfamily 1}, {\ttfamily 2}, and {\ttfamily 3} respectively on the first, second, and third calls\+:
+
+
+\begin{DoxyCode}
+using ::testing::Return;
+...
+EXPECT\_CALL(my\_mock, GetNumber())
+    .WillOnce(Return(1))
+    .WillOnce(Return(2))
+    .WillOnce(Return(3));
+\end{DoxyCode}
+
+
+The {\ttfamily Will\+Once} clause can be used any number of times on an expectation. Unlike {\ttfamily Will\+Repeatedly}, the action fed to each {\ttfamily Will\+Once} call will be called at most once, so may be a move-\/only type and/or have an {\ttfamily \&\&}-\/qualified call operator.
+
+\paragraph*{Will\+Repeatedly \{\#\+E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+L\+L.\+Will\+Repeatedly\}}
+
+{\ttfamily .Will\+Repeatedly(}$\ast${\ttfamily action}$\ast${\ttfamily )}
+
+Specifies the mock function\textquotesingle{}s actual behavior when invoked, for all subsequent matching function calls. Takes effect after the actions specified in the \href{#EXPECT_CALL.WillOnce}{\tt {\ttfamily Will\+Once}} clauses, if any, have been performed.
+
+The parameter $\ast${\ttfamily action}$\ast$ represents the \href{../gmock_for_dummies.md#actions-what-should-it-do}{\tt action} that the function call will perform. See the Actions Reference for a list of built-\/in actions.
+
+The use of {\ttfamily Will\+Repeatedly} implicitly sets a cardinality on the expectation when {\ttfamily Times} is not specified. See \href{#EXPECT_CALL.Times}{\tt {\ttfamily Times}}.
+
+If any {\ttfamily Will\+Once} clauses have been specified, matching function calls will perform those actions before the action specified by {\ttfamily Will\+Repeatedly}. See the following example\+:
+
+
+\begin{DoxyCode}
+using ::testing::Return;
+...
+EXPECT\_CALL(my\_mock, GetName())
+    .WillRepeatedly(Return(\textcolor{stringliteral}{"John Doe"}));  \textcolor{comment}{// Return "John Doe" on all calls}
+
+EXPECT\_CALL(my\_mock, GetNumber())
+    .WillOnce(Return(42))        \textcolor{comment}{// Return 42 on the first call}
+    .WillRepeatedly(Return(7));  \textcolor{comment}{// Return 7 on all subsequent calls}
+\end{DoxyCode}
+
+
+The {\ttfamily Will\+Repeatedly} clause can be used at most once on an expectation.
+
+\paragraph*{Retires\+On\+Saturation \{\#\+E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+L\+L.\+Retires\+On\+Saturation\}}
+
+{\ttfamily .Retires\+On\+Saturation()}
+
+Indicates that the expectation will no longer be active after the expected number of matching function calls has been reached.
+
+The {\ttfamily Retires\+On\+Saturation} clause is only meaningful for expectations with an upper-\/bounded cardinality. The expectation will {\itshape retire} (no longer match any function calls) after it has been {\itshape saturated} (the upper bound has been reached). See the following example\+:
+
+
+\begin{DoxyCode}
+using ::testing::\_;
+using ::testing::AnyNumber;
+...
+EXPECT\_CALL(my\_mock, SetNumber(\_))  \textcolor{comment}{// Expectation 1}
+    .Times(AnyNumber());
+EXPECT\_CALL(my\_mock, SetNumber(7))  \textcolor{comment}{// Expectation 2}
+    .Times(2)
+    .RetiresOnSaturation();
+\end{DoxyCode}
+
+
+In the above example, the first two calls to {\ttfamily my\+\_\+mock.\+Set\+Number(7)} match expectation 2, which then becomes inactive and no longer matches any calls. A third call to {\ttfamily my\+\_\+mock.\+Set\+Number(7)} would then match expectation 1. Without {\ttfamily Retires\+On\+Saturation()} on expectation 2, a third call to {\ttfamily my\+\_\+mock.\+Set\+Number(7)} would match expectation 2 again, producing a failure since the limit of 2 calls was exceeded.
+
+The {\ttfamily Retires\+On\+Saturation} clause can be used at most once on an expectation and must be the last clause.
+
+{\ttfamily O\+N\+\_\+\+C\+A\+LL(}$\ast${\ttfamily mock\+\_\+object}$\ast${\ttfamily ,}$\ast${\ttfamily method\+\_\+name}$\ast${\ttfamily (}$\ast${\ttfamily matchers...}$\ast${\ttfamily ))}
+
+Defines what happens when the method $\ast${\ttfamily method\+\_\+name}$\ast$ of the object $\ast${\ttfamily mock\+\_\+object}$\ast$ is called with arguments that match the given matchers $\ast${\ttfamily matchers...}$\ast$. Requires a modifier clause to specify the method\textquotesingle{}s behavior. {\itshape Does not} set any expectations that the method will be called.
+
+The parameter $\ast${\ttfamily matchers...}$\ast$ is a comma-\/separated list of \href{../gmock_for_dummies.md#matchers-what-arguments-do-we-expect}{\tt matchers} that correspond to each argument of the method $\ast${\ttfamily method\+\_\+name}$\ast$. The {\ttfamily O\+N\+\_\+\+C\+A\+LL} specification will apply only to calls of $\ast${\ttfamily method\+\_\+name}$\ast$ whose arguments match all of the matchers. If {\ttfamily (}$\ast${\ttfamily matchers...}$\ast${\ttfamily )} is omitted, the behavior is as if each argument\textquotesingle{}s matcher were a \href{matchers.md#wildcard}{\tt wildcard matcher ({\ttfamily \+\_\+})}. See the Matchers Reference for a list of all built-\/in matchers.
+
+The following chainable clauses can be used to set the method\textquotesingle{}s behavior, and they must be used in the following order\+:
+
+
+\begin{DoxyCode}
+ON\_CALL(mock\_object, method\_name(matchers...))
+    .With(multi\_argument\_matcher)  \textcolor{comment}{// Can be used at most once}
+    .WillByDefault(action);        \textcolor{comment}{// Required}
+\end{DoxyCode}
+
+
+See details for each modifier clause below.
+
+\paragraph*{With \{\#\+O\+N\+\_\+\+C\+A\+L\+L.\+With\}}
+
+{\ttfamily .With(}$\ast${\ttfamily multi\+\_\+argument\+\_\+matcher}$\ast${\ttfamily )}
+
+Restricts the specification to only mock function calls whose arguments as a whole match the multi-\/argument matcher $\ast${\ttfamily multi\+\_\+argument\+\_\+matcher}$\ast$.
+
+Google\+Test passes all of the arguments as one tuple into the matcher. The parameter $\ast${\ttfamily multi\+\_\+argument\+\_\+matcher}$\ast$ must thus be a matcher of type {\ttfamily Matcher$<$std\+::tuple$<$A1, ..., An$>$$>$}, where {\ttfamily A1, ..., An} are the types of the function arguments.
+
+For example, the following code sets the default behavior when {\ttfamily my\+\_\+mock.\+Set\+Position()} is called with any two arguments, the first argument being less than the second\+:
+
+
+\begin{DoxyCode}
+using ::testing::\_;
+using ::testing::Lt;
+using ::testing::Return;
+...
+ON\_CALL(my\_mock, SetPosition(\_, \_))
+    .With(Lt())
+    .WillByDefault(Return(\textcolor{keyword}{true}));
+\end{DoxyCode}
+
+
+Google\+Test provides some built-\/in matchers for 2-\/tuples, including the {\ttfamily Lt()} matcher above. See \href{matchers.md#MultiArgMatchers}{\tt Multi-\/argument Matchers}.
+
+The {\ttfamily With} clause can be used at most once with each {\ttfamily O\+N\+\_\+\+C\+A\+LL} statement.
+
+\paragraph*{Will\+By\+Default \{\#\+O\+N\+\_\+\+C\+A\+L\+L.\+Will\+By\+Default\}}
+
+{\ttfamily .Will\+By\+Default(}$\ast${\ttfamily action}$\ast${\ttfamily )}
+
+Specifies the default behavior of a matching mock function call.
+
+The parameter $\ast${\ttfamily action}$\ast$ represents the \href{../gmock_for_dummies.md#actions-what-should-it-do}{\tt action} that the function call will perform. See the Actions Reference for a list of built-\/in actions.
+
+For example, the following code specifies that by default, a call to {\ttfamily my\+\_\+mock.\+Greet()} will return {\ttfamily \char`\"{}hello\char`\"{}}\+:
+
+
+\begin{DoxyCode}
+using ::testing::Return;
+...
+ON\_CALL(my\_mock, Greet())
+    .WillByDefault(Return(\textcolor{stringliteral}{"hello"}));
+\end{DoxyCode}
+
+
+The action specified by {\ttfamily Will\+By\+Default} is superseded by the actions specified on a matching {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL} statement, if any. See the \href{#EXPECT_CALL.WillOnce}{\tt {\ttfamily Will\+Once}} and \href{#EXPECT_CALL.WillRepeatedly}{\tt {\ttfamily Will\+Repeatedly}} clauses of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL}.
+
+The {\ttfamily Will\+By\+Default} clause must be used exactly once with each {\ttfamily O\+N\+\_\+\+C\+A\+LL} statement.
+
+Google\+Test defines the following classes for working with mocks.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1DefaultValue}{testing\+::\+Default\+Value}}$<$T$>$}
+
+Allows a user to specify the default value for a type {\ttfamily T} that is both copyable and publicly destructible (i.\+e. anything that can be used as a function return type). For mock functions with a return type of {\ttfamily T}, this default value is returned from function calls that do not specify an action.
+
+Provides the static methods {\ttfamily Set()}, {\ttfamily Set\+Factory()}, and {\ttfamily Clear()} to manage the default value\+:
+
+
+\begin{DoxyCode}
+\textcolor{comment}{// Sets the default value to be returned. T must be copy constructible.}
+DefaultValue<T>::Set(value);
+
+\textcolor{comment}{// Sets a factory. Will be invoked on demand. T must be move constructible.}
+T MakeT();
+DefaultValue<T>::SetFactory(&MakeT);
+
+\textcolor{comment}{// Unsets the default value.}
+DefaultValue<T>::Clear();
+\end{DoxyCode}
+
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1NiceMock}{testing\+::\+Nice\+Mock}}$<$T$>$}
+
+Represents a mock object that suppresses warnings on \href{../gmock_cook_book.md#uninteresting-vs-unexpected}{\tt uninteresting calls}. The template parameter {\ttfamily T} is any mock class, except for another {\ttfamily Nice\+Mock}, {\ttfamily Naggy\+Mock}, or {\ttfamily Strict\+Mock}.
+
+Usage of {\ttfamily Nice\+Mock$<$T$>$} is analogous to usage of {\ttfamily T}. {\ttfamily Nice\+Mock$<$T$>$} is a subclass of {\ttfamily T}, so it can be used wherever an object of type {\ttfamily T} is accepted. In addition, {\ttfamily Nice\+Mock$<$T$>$} can be constructed with any arguments that a constructor of {\ttfamily T} accepts.
+
+For example, the following code suppresses warnings on the mock {\ttfamily my\+\_\+mock} of type {\ttfamily Mock\+Class} if a method other than {\ttfamily Do\+Something()} is called\+:
+
+
+\begin{DoxyCode}
+using ::testing::NiceMock;
+...
+NiceMock<MockClass> my\_mock(\textcolor{stringliteral}{"some"}, \textcolor{stringliteral}{"args"});
+EXPECT\_CALL(my\_mock, DoSomething());
+... code that uses my\_mock ...
+\end{DoxyCode}
+
+
+{\ttfamily Nice\+Mock$<$T$>$} only works for mock methods defined using the {\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD} macro directly in the definition of class {\ttfamily T}. If a mock method is defined in a base class of {\ttfamily T}, a warning might still be generated.
+
+{\ttfamily Nice\+Mock$<$T$>$} might not work correctly if the destructor of {\ttfamily T} is not virtual.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1NaggyMock}{testing\+::\+Naggy\+Mock}}$<$T$>$}
+
+Represents a mock object that generates warnings on \href{../gmock_cook_book.md#uninteresting-vs-unexpected}{\tt uninteresting calls}. The template parameter {\ttfamily T} is any mock class, except for another {\ttfamily Nice\+Mock}, {\ttfamily Naggy\+Mock}, or {\ttfamily Strict\+Mock}.
+
+Usage of {\ttfamily Naggy\+Mock$<$T$>$} is analogous to usage of {\ttfamily T}. {\ttfamily Naggy\+Mock$<$T$>$} is a subclass of {\ttfamily T}, so it can be used wherever an object of type {\ttfamily T} is accepted. In addition, {\ttfamily Naggy\+Mock$<$T$>$} can be constructed with any arguments that a constructor of {\ttfamily T} accepts.
+
+For example, the following code generates warnings on the mock {\ttfamily my\+\_\+mock} of type {\ttfamily Mock\+Class} if a method other than {\ttfamily Do\+Something()} is called\+:
+
+
+\begin{DoxyCode}
+using ::testing::NaggyMock;
+...
+NaggyMock<MockClass> my\_mock(\textcolor{stringliteral}{"some"}, \textcolor{stringliteral}{"args"});
+EXPECT\_CALL(my\_mock, DoSomething());
+... code that uses my\_mock ...
+\end{DoxyCode}
+
+
+\mbox{\hyperlink{classMock}{Mock}} objects of type {\ttfamily T} by default behave the same way as {\ttfamily Naggy\+Mock$<$T$>$}.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1StrictMock}{testing\+::\+Strict\+Mock}}$<$T$>$}
+
+Represents a mock object that generates test failures on \href{../gmock_cook_book.md#uninteresting-vs-unexpected}{\tt uninteresting calls}. The template parameter {\ttfamily T} is any mock class, except for another {\ttfamily Nice\+Mock}, {\ttfamily Naggy\+Mock}, or {\ttfamily Strict\+Mock}.
+
+Usage of {\ttfamily Strict\+Mock$<$T$>$} is analogous to usage of {\ttfamily T}. {\ttfamily Strict\+Mock$<$T$>$} is a subclass of {\ttfamily T}, so it can be used wherever an object of type {\ttfamily T} is accepted. In addition, {\ttfamily Strict\+Mock$<$T$>$} can be constructed with any arguments that a constructor of {\ttfamily T} accepts.
+
+For example, the following code generates a test failure on the mock {\ttfamily my\+\_\+mock} of type {\ttfamily Mock\+Class} if a method other than {\ttfamily Do\+Something()} is called\+:
+
+
+\begin{DoxyCode}
+using ::testing::StrictMock;
+...
+StrictMock<MockClass> my\_mock(\textcolor{stringliteral}{"some"}, \textcolor{stringliteral}{"args"});
+EXPECT\_CALL(my\_mock, DoSomething());
+... code that uses my\_mock ...
+\end{DoxyCode}
+
+
+{\ttfamily Strict\+Mock$<$T$>$} only works for mock methods defined using the {\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD} macro directly in the definition of class {\ttfamily T}. If a mock method is defined in a base class of {\ttfamily T}, a failure might not be generated.
+
+{\ttfamily Strict\+Mock$<$T$>$} might not work correctly if the destructor of {\ttfamily T} is not virtual.
+
+{\ttfamily \+::testing\+::\+Sequence}
+
+Represents a chronological sequence of expectations. See the \href{#EXPECT_CALL.InSequence}{\tt {\ttfamily In\+Sequence}} clause of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL} for usage.
+
+{\ttfamily \+::testing\+::\+In\+Sequence}
+
+An object of this type causes all expectations encountered in its scope to be put in an anonymous sequence.
+
+This allows more convenient expression of multiple expectations in a single sequence\+:
+
+
+\begin{DoxyCode}
+using ::testing::InSequence;
+\{
+  InSequence seq;
+
+  \textcolor{comment}{// The following are expected to occur in the order declared.}
+  EXPECT\_CALL(...);
+  EXPECT\_CALL(...);
+  ...
+  EXPECT\_CALL(...);
+\}
+\end{DoxyCode}
+
+
+The name of the {\ttfamily In\+Sequence} object does not matter.
+
+{\ttfamily \+::testing\+::\+Expectation}
+
+Represents a mock function call expectation as created by \href{#EXPECT_CALL}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL}}\+:
+
+
+\begin{DoxyCode}
+using ::testing::Expectation;
+Expectation my\_expectation = EXPECT\_CALL(...);
+\end{DoxyCode}
+
+
+Useful for specifying sequences of expectations; see the \href{#EXPECT_CALL.After}{\tt {\ttfamily After}} clause of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL}.
+
+{\ttfamily \+::testing\+::\+Expectation\+Set}
+
+Represents a set of mock function call expectations.
+
+Use the {\ttfamily +=} operator to add \href{#Expectation}{\tt {\ttfamily Expectation}} objects to the set\+:
+
+
+\begin{DoxyCode}
+using ::testing::ExpectationSet;
+ExpectationSet my\_expectations;
+my\_expectations += EXPECT\_CALL(...);
+\end{DoxyCode}
+
+
+Useful for specifying sequences of expectations; see the \href{#EXPECT_CALL.After}{\tt {\ttfamily After}} clause of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL}. 

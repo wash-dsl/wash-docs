@@ -1,0 +1,227 @@
+\subsection*{Defining a \mbox{\hyperlink{classMock}{Mock}} Class}
+
+Given
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{class }Foo \{
+ \textcolor{keyword}{public}:
+  \textcolor{keyword}{virtual} ~Foo();
+  \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} GetSize() \textcolor{keyword}{const} = 0;
+  \textcolor{keyword}{virtual} \textcolor{keywordtype}{string} Describe(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name) = 0;
+  \textcolor{keyword}{virtual} \textcolor{keywordtype}{string} Describe(\textcolor{keywordtype}{int} type) = 0;
+  \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Process(Bar elem, \textcolor{keywordtype}{int} count) = 0;
+\};
+\end{DoxyCode}
+
+
+(note that {\ttfamily $\sim$\+Foo()} {\bfseries must} be virtual) we can define its mock as
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <gmock/gmock.h>}
+
+\textcolor{keyword}{class }MockFoo : \textcolor{keyword}{public} Foo \{
+ \textcolor{keyword}{public}:
+  MOCK\_METHOD(\textcolor{keywordtype}{int}, GetSize, (), (\textcolor{keyword}{const}, \textcolor{keyword}{override}));
+  MOCK\_METHOD(\textcolor{keywordtype}{string}, Describe, (\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name), (\textcolor{keyword}{override}));
+  MOCK\_METHOD(\textcolor{keywordtype}{string}, Describe, (\textcolor{keywordtype}{int} type), (\textcolor{keyword}{override}));
+  MOCK\_METHOD(\textcolor{keywordtype}{bool}, Process, (Bar elem, \textcolor{keywordtype}{int} count), (\textcolor{keyword}{override}));
+\};
+\end{DoxyCode}
+
+
+To create a \char`\"{}nice\char`\"{} mock, which ignores all uninteresting calls, a \char`\"{}naggy\char`\"{} mock, which warns on all uninteresting calls, or a \char`\"{}strict\char`\"{} mock, which treats them as failures\+:
+
+
+\begin{DoxyCode}
+using ::testing::NiceMock;
+using ::testing::NaggyMock;
+using ::testing::StrictMock;
+
+NiceMock<MockFoo> nice\_foo;      \textcolor{comment}{// The type is a subclass of MockFoo.}
+NaggyMock<MockFoo> naggy\_foo;    \textcolor{comment}{// The type is a subclass of MockFoo.}
+StrictMock<MockFoo> strict\_foo;  \textcolor{comment}{// The type is a subclass of MockFoo.}
+\end{DoxyCode}
+
+
+\{\+: .callout .note\} {\bfseries Note\+:} A mock object is currently naggy by default. We may make it nice by default in the future.
+
+Class templates can be mocked just like any class.
+
+To mock
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{template} <\textcolor{keyword}{typename} Elem>
+\textcolor{keyword}{class }StackInterface \{
+ \textcolor{keyword}{public}:
+  \textcolor{keyword}{virtual} ~StackInterface();
+  \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} GetSize() \textcolor{keyword}{const} = 0;
+  \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Push(\textcolor{keyword}{const} Elem& x) = 0;
+\};
+\end{DoxyCode}
+
+
+(note that all member functions that are mocked, including {\ttfamily $\sim$\+Stack\+Interface()} {\bfseries must} be virtual).
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{template} <\textcolor{keyword}{typename} Elem>
+\textcolor{keyword}{class }MockStack : \textcolor{keyword}{public} StackInterface<Elem> \{
+ \textcolor{keyword}{public}:
+  MOCK\_METHOD(\textcolor{keywordtype}{int}, GetSize, (), (\textcolor{keyword}{const}, \textcolor{keyword}{override}));
+  MOCK\_METHOD(\textcolor{keywordtype}{void}, Push, (\textcolor{keyword}{const} Elem& x), (\textcolor{keyword}{override}));
+\};
+\end{DoxyCode}
+
+
+\subsubsection*{Specifying Calling Conventions for \mbox{\hyperlink{classMock}{Mock}} Functions}
+
+If your mock function doesn\textquotesingle{}t use the default calling convention, you can specify it by adding {\ttfamily Calltype(convention)} to {\ttfamily M\+O\+C\+K\+\_\+\+M\+E\+T\+H\+OD}\textquotesingle{}s 4th parameter. For example,
+
+
+\begin{DoxyCode}
+MOCK\_METHOD(\textcolor{keywordtype}{bool}, Foo, (\textcolor{keywordtype}{int} n), (Calltype(STDMETHODCALLTYPE)));
+MOCK\_METHOD(\textcolor{keywordtype}{int}, Bar, (\textcolor{keywordtype}{double} x, \textcolor{keywordtype}{double} y),
+            (\textcolor{keyword}{const}, Calltype(STDMETHODCALLTYPE)));
+\end{DoxyCode}
+
+
+where {\ttfamily S\+T\+D\+M\+E\+T\+H\+O\+D\+C\+A\+L\+L\+T\+Y\+PE} is defined by {\ttfamily $<$objbase.\+h$>$} on Windows.
+
+The typical work flow is\+:
+
+
+\begin{DoxyEnumerate}
+\item Import the g\+Mock names you need to use. All g\+Mock symbols are in the {\ttfamily testing} namespace unless they are macros or otherwise noted.
+\item Create the mock objects.
+\item Optionally, set the default actions of the mock objects.
+\item Set your expectations on the mock objects (How will they be called? What will they do?).
+\item Exercise code that uses the mock objects; if necessary, check the result using googletest assertions.
+\item When a mock object is destructed, g\+Mock automatically verifies that all expectations on it have been satisfied.
+\end{DoxyEnumerate}
+
+Here\textquotesingle{}s an example\+:
+
+
+\begin{DoxyCode}
+using ::testing::Return;                          \textcolor{comment}{// #1}
+
+TEST(BarTest, DoesThis) \{
+  MockFoo \mbox{\hyperlink{namespacefoo}{foo}};                                    \textcolor{comment}{// #2}
+
+  ON\_CALL(\mbox{\hyperlink{namespacefoo}{foo}}, GetSize())                         \textcolor{comment}{// #3}
+      .WillByDefault(Return(1));
+  \textcolor{comment}{// ... other default actions ...}
+
+  EXPECT\_CALL(\mbox{\hyperlink{namespacefoo}{foo}}, Describe(5))                   \textcolor{comment}{// #4}
+      .Times(3)
+      .WillRepeatedly(Return(\textcolor{stringliteral}{"Category 5"}));
+  \textcolor{comment}{// ... other expectations ...}
+
+  EXPECT\_EQ(MyProductionFunction(&\mbox{\hyperlink{namespacefoo}{foo}}), \textcolor{stringliteral}{"good"});  \textcolor{comment}{// #5}
+\}                                                 \textcolor{comment}{// #6}
+\end{DoxyCode}
+
+
+g\+Mock has a {\bfseries built-\/in default action} for any function that returns {\ttfamily void}, {\ttfamily bool}, a numeric value, or a pointer. In C++11, it will additionally returns the default-\/constructed value, if one exists for the given type.
+
+To customize the default action for functions with return type {\ttfamily T}, use \href{reference/mocking.md#DefaultValue}{\tt {\ttfamily Default\+Value$<$T$>$}}. For example\+:
+
+
+\begin{DoxyCode}
+\textcolor{comment}{// Sets the default action for return type std::unique\_ptr<Buzz> to}
+\textcolor{comment}{// creating a new Buzz every time.}
+DefaultValue<std::unique\_ptr<Buzz>>::SetFactory(
+    [] \{ \textcolor{keywordflow}{return} std::make\_unique<Buzz>(AccessLevel::kInternal); \});
+
+\textcolor{comment}{// When this fires, the default action of MakeBuzz() will run, which}
+\textcolor{comment}{// will return a new Buzz object.}
+EXPECT\_CALL(mock\_buzzer\_, MakeBuzz(\textcolor{stringliteral}{"hello"})).Times(AnyNumber());
+
+\textcolor{keyword}{auto} buzz1 = mock\_buzzer\_.MakeBuzz(\textcolor{stringliteral}{"hello"});
+\textcolor{keyword}{auto} buzz2 = mock\_buzzer\_.MakeBuzz(\textcolor{stringliteral}{"hello"});
+EXPECT\_NE(buzz1, \textcolor{keyword}{nullptr});
+EXPECT\_NE(buzz2, \textcolor{keyword}{nullptr});
+EXPECT\_NE(buzz1, buzz2);
+
+\textcolor{comment}{// Resets the default action for return type std::unique\_ptr<Buzz>,}
+\textcolor{comment}{// to avoid interfere with other tests.}
+DefaultValue<std::unique\_ptr<Buzz>>::Clear();
+\end{DoxyCode}
+
+
+To customize the default action for a particular method of a specific mock object, use \href{reference/mocking.md#ON_CALL}{\tt {\ttfamily O\+N\+\_\+\+C\+A\+LL}}. {\ttfamily O\+N\+\_\+\+C\+A\+LL} has a similar syntax to {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL}, but it is used for setting default behaviors when you do not require that the mock method is called. See \href{gmock_cook_book.md#UseOnCall}{\tt Knowing When to Expect} for a more detailed discussion.
+
+See \href{reference/mocking.md#EXPECT_CALL}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL}} in the Mocking Reference.
+
+See the Matchers Reference.
+
+See the Actions Reference.
+
+See the \href{reference/mocking.md#EXPECT_CALL.Times}{\tt {\ttfamily Times} clause} of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL} in the Mocking Reference.
+
+\subsection*{Expectation Order}
+
+By default, expectations can be matched in {\itshape any} order. If some or all expectations must be matched in a given order, you can use the \href{reference/mocking.md#EXPECT_CALL.After}{\tt {\ttfamily After} clause} or \href{reference/mocking.md#EXPECT_CALL.InSequence}{\tt {\ttfamily In\+Sequence} clause} of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+C\+A\+LL}, or use an \href{reference/mocking.md#InSequence}{\tt {\ttfamily In\+Sequence} object}.
+
+\subsection*{Verifying and Resetting a \mbox{\hyperlink{classMock}{Mock}}}
+
+g\+Mock will verify the expectations on a mock object when it is destructed, or you can do it earlier\+:
+
+
+\begin{DoxyCode}
+using ::testing::Mock;
+...
+\textcolor{comment}{// Verifies and removes the expectations on mock\_obj;}
+\textcolor{comment}{// returns true if and only if successful.}
+Mock::VerifyAndClearExpectations(&mock\_obj);
+...
+\textcolor{comment}{// Verifies and removes the expectations on mock\_obj;}
+\textcolor{comment}{// also removes the default actions set by ON\_CALL();}
+\textcolor{comment}{// returns true if and only if successful.}
+Mock::VerifyAndClear(&mock\_obj);
+\end{DoxyCode}
+
+
+Do not set new expectations after verifying and clearing a mock after its use. Setting expectations after code that exercises the mock has undefined behavior. See \href{gmock_for_dummies.md#using-mocks-in-tests}{\tt Using Mocks in Tests} for more information.
+
+You can also tell g\+Mock that a mock object can be leaked and doesn\textquotesingle{}t need to be verified\+:
+
+
+\begin{DoxyCode}
+Mock::AllowLeak(&mock\_obj);
+\end{DoxyCode}
+
+
+\subsection*{\mbox{\hyperlink{classMock}{Mock}} Classes}
+
+g\+Mock defines a convenient mock class template
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{class }MockFunction<R(A1, ..., An)> \{
+ \textcolor{keyword}{public}:
+  MOCK\_METHOD(R, Call, (A1, ..., An));
+\};
+\end{DoxyCode}
+
+
+See this \href{gmock_cook_book.md#UsingCheckPoints}{\tt recipe} for one application of it.
+
+\subsection*{Flags}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Flag  }&\textbf{ Description   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Flag  }&\textbf{ Description   }\\\cline{1-2}
+\endhead
+{\ttfamily -\/-\/gmock\+\_\+catch\+\_\+leaked\+\_\+mocks=0}  &Don\textquotesingle{}t report leaked mock objects as failures.   \\\cline{1-2}
+{\ttfamily -\/-\/gmock\+\_\+verbose=L\+E\+V\+EL}  &Sets the default verbosity level ({\ttfamily info}, {\ttfamily warning}, or {\ttfamily error}) of Google \mbox{\hyperlink{classMock}{Mock}} messages.   \\\cline{1-2}
+\end{longtabu}

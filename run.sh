@@ -1,3 +1,3 @@
 ./clean.sh
 doxygen Doxyfile
-cp doc_out/html/* .
+cp -r docs/html/* docs/

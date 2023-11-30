@@ -1,0 +1,1164 @@
+This page lists the facilities provided by Google\+Test for writing test programs. To use them, add {\ttfamily \#include $<$\mbox{\hyperlink{gtest_8h_source}{gtest/gtest.\+h}}$>$}.
+
+\subsection*{Macros}
+
+Google\+Test defines the following macros for writing tests.
+
+
+\begin{DoxyPre}
+TEST({\itshape TestSuiteName}, {\itshape TestName}) \{
+  ... {\itshape statements} ...
+\}
+\end{DoxyPre}
+
+
+Defines an individual test named $\ast${\ttfamily Test\+Name}$\ast$ in the test suite $\ast${\ttfamily Test\+Suite\+Name}$\ast$, consisting of the given statements.
+
+Both arguments $\ast${\ttfamily Test\+Suite\+Name}$\ast$ and $\ast${\ttfamily Test\+Name}$\ast$ must be valid C++ identifiers and must not contain underscores ({\ttfamily \+\_\+}). Tests in different test suites can have the same individual name.
+
+The statements within the test body can be any code under test. Assertions used within the test body determine the outcome of the test.
+
+
+\begin{DoxyPre}
+TEST\_F({\itshape TestFixtureName}, {\itshape TestName}) \{
+  ... {\itshape statements} ...
+\}
+\end{DoxyPre}
+
+
+Defines an individual test named $\ast${\ttfamily Test\+Name}$\ast$ that uses the test fixture class $\ast${\ttfamily Test\+Fixture\+Name}$\ast$. The test suite name is $\ast${\ttfamily Test\+Fixture\+Name}$\ast$.
+
+Both arguments $\ast${\ttfamily Test\+Fixture\+Name}$\ast$ and $\ast${\ttfamily Test\+Name}$\ast$ must be valid C++ identifiers and must not contain underscores ({\ttfamily \+\_\+}). $\ast${\ttfamily Test\+Fixture\+Name}$\ast$ must be the name of a test fixture class—see \href{../primer.md#same-data-multiple-tests}{\tt Test Fixtures}.
+
+The statements within the test body can be any code under test. Assertions used within the test body determine the outcome of the test.
+
+
+\begin{DoxyPre}
+TEST\_P({\itshape TestFixtureName}, {\itshape TestName}) \{
+  ... {\itshape statements} ...
+\}
+\end{DoxyPre}
+
+
+Defines an individual value-\/parameterized test named $\ast${\ttfamily Test\+Name}$\ast$ that uses the test fixture class $\ast${\ttfamily Test\+Fixture\+Name}$\ast$. The test suite name is $\ast${\ttfamily Test\+Fixture\+Name}$\ast$.
+
+Both arguments $\ast${\ttfamily Test\+Fixture\+Name}$\ast$ and $\ast${\ttfamily Test\+Name}$\ast$ must be valid C++ identifiers and must not contain underscores ({\ttfamily \+\_\+}). $\ast${\ttfamily Test\+Fixture\+Name}$\ast$ must be the name of a value-\/parameterized test fixture class—see \href{../advanced.md#value-parameterized-tests}{\tt Value-\/\+Parameterized Tests}.
+
+The statements within the test body can be any code under test. Within the test body, the test parameter can be accessed with the {\ttfamily Get\+Param()} function (see \href{#WithParamInterface}{\tt {\ttfamily With\+Param\+Interface}}). For example\+:
+
+
+\begin{DoxyCode}
+TEST\_P(MyTestSuite, DoesSomething) \{
+  ...
+  EXPECT\_TRUE(DoSomething(GetParam()));
+  ...
+\}
+\end{DoxyCode}
+
+
+Assertions used within the test body determine the outcome of the test.
+
+See also \href{#INSTANTIATE_TEST_SUITE_P}{\tt {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}}.
+
+{\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P(}$\ast${\ttfamily Instantiation\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily Test\+Suite\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily param\+\_\+generator}$\ast${\ttfamily )} \textbackslash{} {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P(}$\ast${\ttfamily Instantiation\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily Test\+Suite\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily param\+\_\+generator}$\ast${\ttfamily ,}$\ast${\ttfamily name\+\_\+generator}$\ast${\ttfamily )}
+
+Instantiates the value-\/parameterized test suite $\ast${\ttfamily Test\+Suite\+Name}$\ast$ (defined with \href{#TEST_P}{\tt {\ttfamily T\+E\+S\+T\+\_\+P}}).
+
+The argument $\ast${\ttfamily Instantiation\+Name}$\ast$ is a unique name for the instantiation of the test suite, to distinguish between multiple instantiations. In test output, the instantiation name is added as a prefix to the test suite name $\ast${\ttfamily Test\+Suite\+Name}$\ast$.
+
+The argument $\ast${\ttfamily param\+\_\+generator}$\ast$ is one of the following Google\+Test-\/provided functions that generate the test parameters, all defined in the {\ttfamily \+::testing} namespace\+:
+
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Parameter Generator  }&\textbf{ Behavior   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Parameter Generator  }&\textbf{ Behavior   }\\\cline{1-2}
+\endhead
+{\ttfamily Range(begin, end \mbox{[}, step\mbox{]})}  &Yields values {\ttfamily \{begin, begin+step, begin+step+step, ...\}}. The values do not include {\ttfamily end}. {\ttfamily step} defaults to 1.   \\\cline{1-2}
+{\ttfamily Values(v1, v2, ..., vN)}  &Yields values {\ttfamily \{v1, v2, ..., vN\}}.   \\\cline{1-2}
+{\ttfamily Values\+In(container)} or {\ttfamily Values\+In(begin,end)}  &Yields values from a C-\/style array, an S\+T\+L-\/style container, or an iterator range {\ttfamily \mbox{[}begin, end)}.   \\\cline{1-2}
+{\ttfamily \mbox{\hyperlink{structBool}{Bool()}}}  &Yields sequence {\ttfamily \{false, true\}}.   \\\cline{1-2}
+{\ttfamily Combine(g1, g2, ..., gN)}  &Yields as {\ttfamily std\+::tuple} {\itshape n}-\/tuples all combinations (Cartesian product) of the values generated by the given {\itshape n} generators {\ttfamily g1}, {\ttfamily g2}, ..., {\ttfamily gN}.   \\\cline{1-2}
+{\ttfamily Convert\+Generator$<$T$>$(g)}  &Yields values generated by generator {\ttfamily g}, {\ttfamily static\+\_\+cast} to {\ttfamily T}.   \\\cline{1-2}
+\end{longtabu}
+
+
+The optional last argument $\ast${\ttfamily name\+\_\+generator}$\ast$ is a function or functor that generates custom test name suffixes based on the test parameters. The function must accept an argument of type \href{#TestParamInfo}{\tt {\ttfamily Test\+Param\+Info$<$class Param\+Type$>$}} and return a {\ttfamily std\+::string}. The test name suffix can only contain alphanumeric characters and underscores. Google\+Test provides \href{#PrintToStringParamName}{\tt {\ttfamily Print\+To\+String\+Param\+Name}}, or a custom function can be used for more control\+:
+
+
+\begin{DoxyCode}
+INSTANTIATE\_TEST\_SUITE\_P(
+    MyInstantiation, MyTestSuite,
+    testing::Values(...),
+    [](\textcolor{keyword}{const} \mbox{\hyperlink{structtesting_1_1TestParamInfo}{testing::TestParamInfo<MyTestSuite::ParamType>}}& 
+      info) \{
+      \textcolor{comment}{// Can use info.param here to generate the test suffix}
+      std::string name = ...
+      \textcolor{keywordflow}{return} name;
+    \});
+\end{DoxyCode}
+
+
+For more information, see \href{../advanced.md#value-parameterized-tests}{\tt Value-\/\+Parameterized Tests}.
+
+See also \href{#GTEST_ALLOW_UNINSTANTIATED_PARAMETERIZED_TEST}{\tt {\ttfamily G\+T\+E\+S\+T\+\_\+\+A\+L\+L\+O\+W\+\_\+\+U\+N\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+I\+Z\+E\+D\+\_\+\+T\+E\+ST}}.
+
+{\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE(}$\ast${\ttfamily Test\+Fixture\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily Types}$\ast${\ttfamily )}
+
+Defines a typed test suite based on the test fixture $\ast${\ttfamily Test\+Fixture\+Name}$\ast$. The test suite name is $\ast${\ttfamily Test\+Fixture\+Name}$\ast$.
+
+The argument $\ast${\ttfamily Test\+Fixture\+Name}$\ast$ is a fixture class template, parameterized by a type, for example\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{template} <\textcolor{keyword}{typename} T>
+\textcolor{keyword}{class }MyFixture : \textcolor{keyword}{public} \mbox{\hyperlink{classtesting_1_1Test}{testing::Test}} \{
+ \textcolor{keyword}{public}:
+  ...
+  \textcolor{keyword}{using} List = std::list<T>;
+  \textcolor{keyword}{static} T shared\_;
+  T value\_;
+\};
+\end{DoxyCode}
+
+
+The argument $\ast${\ttfamily Types}$\ast$ is a \href{#Types}{\tt {\ttfamily Types}} object representing the list of types to run the tests on, for example\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{using} \mbox{\hyperlink{structtesting_1_1internal_1_1ProxyTypeList}{MyTypes}} = \mbox{\hyperlink{structtesting_1_1internal_1_1ProxyTypeList}{::testing::Types<char, int, unsigned int>}};
+TYPED\_TEST\_SUITE(MyFixture, \mbox{\hyperlink{structtesting_1_1internal_1_1ProxyTypeList}{MyTypes}});
+\end{DoxyCode}
+
+
+The type alias ({\ttfamily using} or {\ttfamily typedef}) is necessary for the {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE} macro to parse correctly.
+
+See also \href{#TYPED_TEST}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+ST}} and \href{../advanced.md#typed-tests}{\tt Typed Tests} for more information.
+
+
+\begin{DoxyPre}
+TYPED\_TEST({\itshape TestSuiteName}, {\itshape TestName}) \{
+  ... {\itshape statements} ...
+\}
+\end{DoxyPre}
+
+
+Defines an individual typed test named $\ast${\ttfamily Test\+Name}$\ast$ in the typed test suite $\ast${\ttfamily Test\+Suite\+Name}$\ast$. The test suite must be defined with \href{#TYPED_TEST_SUITE}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE}}.
+
+Within the test body, the special name {\ttfamily Type\+Param} refers to the type parameter, and {\ttfamily Test\+Fixture} refers to the fixture class. See the following example\+:
+
+
+\begin{DoxyCode}
+TYPED\_TEST(MyFixture, Example) \{
+  \textcolor{comment}{// Inside a test, refer to the special name TypeParam to get the type}
+  \textcolor{comment}{// parameter.  Since we are inside a derived class template, C++ requires}
+  \textcolor{comment}{// us to visit the members of MyFixture via 'this'.}
+  TypeParam n = this->value\_;
+
+  \textcolor{comment}{// To visit static members of the fixture, add the 'TestFixture::'}
+  \textcolor{comment}{// prefix.}
+  n += TestFixture::shared\_;
+
+  \textcolor{comment}{// To refer to typedefs in the fixture, add the 'typename TestFixture::'}
+  \textcolor{comment}{// prefix. The 'typename' is required to satisfy the compiler.}
+  \textcolor{keyword}{typename} TestFixture::List values;
+
+  values.push\_back(n);
+  ...
+\}
+\end{DoxyCode}
+
+
+For more information, see \href{../advanced.md#typed-tests}{\tt Typed Tests}.
+
+{\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P(}$\ast${\ttfamily Test\+Fixture\+Name}$\ast${\ttfamily )}
+
+Defines a type-\/parameterized test suite based on the test fixture $\ast${\ttfamily Test\+Fixture\+Name}$\ast$. The test suite name is $\ast${\ttfamily Test\+Fixture\+Name}$\ast$.
+
+The argument $\ast${\ttfamily Test\+Fixture\+Name}$\ast$ is a fixture class template, parameterized by a type. See \href{#TYPED_TEST_SUITE}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE}} for an example.
+
+See also \href{#TYPED_TEST_P}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+P}} and \href{../advanced.md#type-parameterized-tests}{\tt Type-\/\+Parameterized Tests} for more information.
+
+
+\begin{DoxyPre}
+TYPED\_TEST\_P({\itshape TestSuiteName}, {\itshape TestName}) \{
+  ... {\itshape statements} ...
+\}
+\end{DoxyPre}
+
+
+Defines an individual type-\/parameterized test named $\ast${\ttfamily Test\+Name}$\ast$ in the type-\/parameterized test suite $\ast${\ttfamily Test\+Suite\+Name}$\ast$. The test suite must be defined with \href{#TYPED_TEST_SUITE_P}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}}.
+
+Within the test body, the special name {\ttfamily Type\+Param} refers to the type parameter, and {\ttfamily Test\+Fixture} refers to the fixture class. See \href{#TYPED_TEST}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+ST}} for an example.
+
+See also \href{#REGISTER_TYPED_TEST_SUITE_P}{\tt {\ttfamily R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}} and \href{../advanced.md#type-parameterized-tests}{\tt Type-\/\+Parameterized Tests} for more information.
+
+{\ttfamily R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P(}$\ast${\ttfamily Test\+Suite\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily Test\+Names...}$\ast${\ttfamily )}
+
+Registers the type-\/parameterized tests $\ast${\ttfamily Test\+Names...}$\ast$ of the test suite $\ast${\ttfamily Test\+Suite\+Name}$\ast$. The test suite and tests must be defined with \href{#TYPED_TEST_SUITE_P}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}} and \href{#TYPED_TEST_P}{\tt {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+P}}.
+
+For example\+:
+
+
+\begin{DoxyCode}
+\textcolor{comment}{// Define the test suite and tests.}
+TYPED\_TEST\_SUITE\_P(MyFixture);
+TYPED\_TEST\_P(MyFixture, HasPropertyA) \{ ... \}
+TYPED\_TEST\_P(MyFixture, HasPropertyB) \{ ... \}
+
+\textcolor{comment}{// Register the tests in the test suite.}
+REGISTER\_TYPED\_TEST\_SUITE\_P(MyFixture, HasPropertyA, HasPropertyB);
+\end{DoxyCode}
+
+
+See also \href{#INSTANTIATE_TYPED_TEST_SUITE_P}{\tt {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}} and \href{../advanced.md#type-parameterized-tests}{\tt Type-\/\+Parameterized Tests} for more information.
+
+{\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P(}$\ast${\ttfamily Instantiation\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily Test\+Suite\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily Types}$\ast${\ttfamily )}
+
+Instantiates the type-\/parameterized test suite $\ast${\ttfamily Test\+Suite\+Name}$\ast$. The test suite must be registered with \href{#REGISTER_TYPED_TEST_SUITE_P}{\tt {\ttfamily R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}}.
+
+The argument $\ast${\ttfamily Instantiation\+Name}$\ast$ is a unique name for the instantiation of the test suite, to distinguish between multiple instantiations. In test output, the instantiation name is added as a prefix to the test suite name $\ast${\ttfamily Test\+Suite\+Name}$\ast$.
+
+The argument $\ast${\ttfamily Types}$\ast$ is a \href{#Types}{\tt {\ttfamily Types}} object representing the list of types to run the tests on, for example\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{using} \mbox{\hyperlink{structtesting_1_1internal_1_1ProxyTypeList}{MyTypes}} = \mbox{\hyperlink{structtesting_1_1internal_1_1ProxyTypeList}{::testing::Types<char, int, unsigned int>}};
+INSTANTIATE\_TYPED\_TEST\_SUITE\_P(MyInstantiation, MyFixture, \mbox{\hyperlink{structtesting_1_1internal_1_1ProxyTypeList}{MyTypes}});
+\end{DoxyCode}
+
+
+The type alias ({\ttfamily using} or {\ttfamily typedef}) is necessary for the {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} macro to parse correctly.
+
+For more information, see \href{../advanced.md#type-parameterized-tests}{\tt Type-\/\+Parameterized Tests}.
+
+{\ttfamily F\+R\+I\+E\+N\+D\+\_\+\+T\+E\+ST(}$\ast${\ttfamily Test\+Suite\+Name}$\ast${\ttfamily ,}$\ast${\ttfamily Test\+Name}$\ast${\ttfamily )}
+
+Within a class body, declares an individual test as a friend of the class, enabling the test to access private class members.
+
+If the class is defined in a namespace, then in order to be friends of the class, test fixtures and tests must be defined in the exact same namespace, without inline or anonymous namespaces.
+
+For example, if the class definition looks like the following\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{namespace }\mbox{\hyperlink{namespacemy__namespace}{my\_namespace}} \{
+
+\textcolor{keyword}{class }MyClass \{
+  \textcolor{keyword}{friend} \textcolor{keyword}{class }MyClassTest;
+  FRIEND\_TEST(MyClassTest, HasPropertyA);
+  FRIEND\_TEST(MyClassTest, HasPropertyB);
+  ... definition of \textcolor{keyword}{class }MyClass ...
+\};
+
+\}  \textcolor{comment}{// namespace my\_namespace}
+\end{DoxyCode}
+
+
+Then the test code should look like\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{namespace }\mbox{\hyperlink{namespacemy__namespace}{my\_namespace}} \{
+
+\textcolor{keyword}{class }MyClassTest : \textcolor{keyword}{public} \mbox{\hyperlink{classtesting_1_1Test}{testing::Test}} \{
+  ...
+\};
+
+TEST\_F(MyClassTest, HasPropertyA) \{ ... \}
+TEST\_F(MyClassTest, HasPropertyB) \{ ... \}
+
+\}  \textcolor{comment}{// namespace my\_namespace}
+\end{DoxyCode}
+
+
+See \href{../advanced.md#testing-private-code}{\tt Testing Private Code} for more information.
+
+{\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE(}$\ast${\ttfamily message}$\ast${\ttfamily )}
+
+Causes the current file name, line number, and the given message $\ast${\ttfamily message}$\ast$ to be added to the failure message for each assertion failure that occurs in the scope.
+
+For more information, see \href{../advanced.md#adding-traces-to-assertions}{\tt Adding Traces to Assertions}.
+
+See also the \href{#ScopedTrace}{\tt {\ttfamily Scoped\+Trace} class}.
+
+{\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+K\+I\+P()}
+
+Prevents further test execution at runtime.
+
+Can be used in individual test cases or in the {\ttfamily Set\+Up()} methods of test environments or test fixtures (classes derived from the \href{#Environment}{\tt {\ttfamily Environment}} or \href{#Test}{\tt {\ttfamily Test}} classes). If used in a global test environment {\ttfamily Set\+Up()} method, it skips all tests in the test program. If used in a test fixture {\ttfamily Set\+Up()} method, it skips all tests in the corresponding test suite.
+
+Similar to assertions, {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+K\+IP} allows streaming a custom message into it.
+
+See \href{../advanced.md#skipping-test-execution}{\tt Skipping Test Execution} for more information.
+
+{\ttfamily G\+T\+E\+S\+T\+\_\+\+A\+L\+L\+O\+W\+\_\+\+U\+N\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+I\+Z\+E\+D\+\_\+\+T\+E\+ST(}$\ast${\ttfamily Test\+Suite\+Name}$\ast${\ttfamily )}
+
+Allows the value-\/parameterized test suite $\ast${\ttfamily Test\+Suite\+Name}$\ast$ to be uninstantiated.
+
+By default, every \href{#TEST_P}{\tt {\ttfamily T\+E\+S\+T\+\_\+P}} call without a corresponding \href{#INSTANTIATE_TEST_SUITE_P}{\tt {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}} call causes a failing test in the test suite {\ttfamily Google\+Test\+Verification}. {\ttfamily G\+T\+E\+S\+T\+\_\+\+A\+L\+L\+O\+W\+\_\+\+U\+N\+I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+D\+\_\+\+P\+A\+R\+A\+M\+E\+T\+E\+R\+I\+Z\+E\+D\+\_\+\+T\+E\+ST} suppresses this failure for the given test suite.
+
+\subsection*{Classes and types}
+
+Google\+Test defines the following classes and types to help with writing tests.
+
+{\ttfamily testing\+::\+Assertion\+Result}
+
+A class for indicating whether an assertion was successful.
+
+When the assertion wasn\textquotesingle{}t successful, the {\ttfamily Assertion\+Result} object stores a non-\/empty failure message that can be retrieved with the object\textquotesingle{}s {\ttfamily message()} method.
+
+To create an instance of this class, use one of the factory functions \href{#AssertionSuccess}{\tt {\ttfamily Assertion\+Success()}} or \href{#AssertionFailure}{\tt {\ttfamily Assertion\+Failure()}}.
+
+{\ttfamily testing\+::\+Assertion\+Exception}
+
+Exception which can be thrown from \href{#TestEventListener::OnTestPartResult}{\tt {\ttfamily Test\+Event\+Listener\+::\+On\+Test\+Part\+Result}}.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1EmptyTestEventListener}{testing\+::\+Empty\+Test\+Event\+Listener}}}
+
+Provides an empty implementation of all methods in the \href{#TestEventListener}{\tt {\ttfamily Test\+Event\+Listener}} interface, such that a subclass only needs to override the methods it cares about.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1Environment}{testing\+::\+Environment}}}
+
+Represents a global test environment. See \href{../advanced.md#global-set-up-and-tear-down}{\tt Global Set-\/\+Up and Tear-\/\+Down}.
+
+\subparagraph*{Set\+Up \{\#\+Environment\+::\+Set\+Up\}}
+
+{\ttfamily virtual void Environment\+::\+Set\+Up()}
+
+Override this to define how to set up the environment.
+
+\subparagraph*{Tear\+Down \{\#\+Environment\+::\+Tear\+Down\}}
+
+{\ttfamily virtual void Environment\+::\+Tear\+Down()}
+
+Override this to define how to tear down the environment.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1ScopedTrace}{testing\+::\+Scoped\+Trace}}}
+
+An instance of this class causes a trace to be included in every test failure message generated by code in the scope of the lifetime of the {\ttfamily Scoped\+Trace} instance. The effect is undone with the destruction of the instance.
+
+The {\ttfamily Scoped\+Trace} constructor has the following form\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{template} <\textcolor{keyword}{typename} T>
+ScopedTrace(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* file, \textcolor{keywordtype}{int} line, \textcolor{keyword}{const} T& message)
+\end{DoxyCode}
+
+
+Example usage\+:
+
+
+\begin{DoxyCode}
+\mbox{\hyperlink{classtesting_1_1ScopedTrace}{testing::ScopedTrace}} trace(\textcolor{stringliteral}{"file.cc"}, 123, \textcolor{stringliteral}{"message"});
+\end{DoxyCode}
+
+
+The resulting trace includes the given source file path and line number, and the given message. The {\ttfamily message} argument can be anything streamable to {\ttfamily std\+::ostream}.
+
+See also \href{#SCOPED_TRACE}{\tt {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE}}.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}}
+
+The abstract class that all tests inherit from. {\ttfamily Test} is not copyable.
+
+\subparagraph*{Set\+Up\+Test\+Suite \{\#\+Test\+::\+Set\+Up\+Test\+Suite\}}
+
+{\ttfamily static void Test\+::\+Set\+Up\+Test\+Suite()}
+
+Performs shared setup for all tests in the test suite. Google\+Test calls {\ttfamily Set\+Up\+Test\+Suite()} before running the first test in the test suite.
+
+\subparagraph*{Tear\+Down\+Test\+Suite \{\#\+Test\+::\+Tear\+Down\+Test\+Suite\}}
+
+{\ttfamily static void Test\+::\+Tear\+Down\+Test\+Suite()}
+
+Performs shared teardown for all tests in the test suite. Google\+Test calls {\ttfamily Tear\+Down\+Test\+Suite()} after running the last test in the test suite.
+
+\subparagraph*{Has\+Fatal\+Failure \{\#\+Test\+::\+Has\+Fatal\+Failure\}}
+
+{\ttfamily static bool Test\+::\+Has\+Fatal\+Failure()}
+
+Returns true if and only if the current test has a fatal failure.
+
+\subparagraph*{Has\+Nonfatal\+Failure \{\#\+Test\+::\+Has\+Nonfatal\+Failure\}}
+
+{\ttfamily static bool Test\+::\+Has\+Nonfatal\+Failure()}
+
+Returns true if and only if the current test has a nonfatal failure.
+
+\subparagraph*{Has\+Failure \{\#\+Test\+::\+Has\+Failure\}}
+
+{\ttfamily static bool Test\+::\+Has\+Failure()}
+
+Returns true if and only if the current test has any failure, either fatal or nonfatal.
+
+\subparagraph*{Is\+Skipped \{\#\+Test\+::\+Is\+Skipped\}}
+
+{\ttfamily static bool Test\+::\+Is\+Skipped()}
+
+Returns true if and only if the current test was skipped.
+
+\subparagraph*{Record\+Property \{\#\+Test\+::\+Record\+Property\}}
+
+{\ttfamily static void Test\+::\+Record\+Property(const std\+::string\& key, const std\+::string\& value)} \textbackslash{} {\ttfamily static void Test\+::\+Record\+Property(const std\+::string\& key, int value)}
+
+Logs a property for the current test, test suite, or entire invocation of the test program. Only the last value for a given key is logged.
+
+The key must be a valid X\+ML attribute name, and cannot conflict with the ones already used by Google\+Test ({\ttfamily name}, {\ttfamily file}, {\ttfamily line}, {\ttfamily status}, {\ttfamily time}, {\ttfamily classname}, {\ttfamily type\+\_\+param}, and {\ttfamily value\+\_\+param}).
+
+{\ttfamily Record\+Property} is {\ttfamily public static} so it can be called from utility functions that are not members of the test fixture.
+
+Calls to {\ttfamily Record\+Property} made during the lifespan of the test (from the moment its constructor starts to the moment its destructor finishes) are output in X\+ML as attributes of the {\ttfamily $<$testcase$>$} element. Properties recorded from a fixture\textquotesingle{}s {\ttfamily Set\+Up\+Test\+Suite} or {\ttfamily Tear\+Down\+Test\+Suite} methods are logged as attributes of the corresponding {\ttfamily $<$testsuite$>$} element. Calls to {\ttfamily Record\+Property} made in the global context (before or after invocation of {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+TS} or from the {\ttfamily Set\+Up}/{\ttfamily Tear\+Down} methods of registered {\ttfamily Environment} objects) are output as attributes of the {\ttfamily $<$testsuites$>$} element.
+
+\subparagraph*{Set\+Up \{\#\+Test\+::\+Set\+Up\}}
+
+{\ttfamily virtual void Test\+::\+Set\+Up()}
+
+Override this to perform test fixture setup. Google\+Test calls {\ttfamily Set\+Up()} before running each individual test.
+
+\subparagraph*{Tear\+Down \{\#\+Test\+::\+Tear\+Down\}}
+
+{\ttfamily virtual void Test\+::\+Tear\+Down()}
+
+Override this to perform test fixture teardown. Google\+Test calls {\ttfamily Tear\+Down()} after running each individual test.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1TestWithParam}{testing\+::\+Test\+With\+Param}}$<$T$>$}
+
+A convenience class which inherits from both \href{#Test}{\tt {\ttfamily Test}} and \href{#WithParamInterface}{\tt {\ttfamily With\+Param\+Interface$<$T$>$}}.
+
+Represents a test suite. {\ttfamily Test\+Suite} is not copyable.
+
+\subparagraph*{name \{\#\+Test\+Suite\+::name\}}
+
+{\ttfamily const char$\ast$ Test\+Suite\+::name() const}
+
+Gets the name of the test suite.
+
+\subparagraph*{type\+\_\+param \{\#\+Test\+Suite\+::type\+\_\+param\}}
+
+{\ttfamily const char$\ast$ Test\+Suite\+::type\+\_\+param() const}
+
+Returns the name of the parameter type, or {\ttfamily N\+U\+LL} if this is not a typed or type-\/parameterized test suite. See \href{../advanced.md#typed-tests}{\tt Typed Tests} and \href{../advanced.md#type-parameterized-tests}{\tt Type-\/\+Parameterized Tests}.
+
+\subparagraph*{should\+\_\+run \{\#\+Test\+Suite\+::should\+\_\+run\}}
+
+{\ttfamily bool Test\+Suite\+::should\+\_\+run() const}
+
+Returns true if any test in this test suite should run.
+
+\subparagraph*{successful\+\_\+test\+\_\+count \{\#\+Test\+Suite\+::successful\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::successful\+\_\+test\+\_\+count() const}
+
+Gets the number of successful tests in this test suite.
+
+\subparagraph*{skipped\+\_\+test\+\_\+count \{\#\+Test\+Suite\+::skipped\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::skipped\+\_\+test\+\_\+count() const}
+
+Gets the number of skipped tests in this test suite.
+
+\subparagraph*{failed\+\_\+test\+\_\+count \{\#\+Test\+Suite\+::failed\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::failed\+\_\+test\+\_\+count() const}
+
+Gets the number of failed tests in this test suite.
+
+\subparagraph*{reportable\+\_\+disabled\+\_\+test\+\_\+count \{\#\+Test\+Suite\+::reportable\+\_\+disabled\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::reportable\+\_\+disabled\+\_\+test\+\_\+count() const}
+
+Gets the number of disabled tests that will be reported in the X\+ML report.
+
+\subparagraph*{disabled\+\_\+test\+\_\+count \{\#\+Test\+Suite\+::disabled\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::disabled\+\_\+test\+\_\+count() const}
+
+Gets the number of disabled tests in this test suite.
+
+\subparagraph*{reportable\+\_\+test\+\_\+count \{\#\+Test\+Suite\+::reportable\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::reportable\+\_\+test\+\_\+count() const}
+
+Gets the number of tests to be printed in the X\+ML report.
+
+\subparagraph*{test\+\_\+to\+\_\+run\+\_\+count \{\#\+Test\+Suite\+::test\+\_\+to\+\_\+run\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::test\+\_\+to\+\_\+run\+\_\+count() const}
+
+Get the number of tests in this test suite that should run.
+
+\subparagraph*{total\+\_\+test\+\_\+count \{\#\+Test\+Suite\+::total\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Test\+Suite\+::total\+\_\+test\+\_\+count() const}
+
+Gets the number of all tests in this test suite.
+
+\subparagraph*{Passed \{\#\+Test\+Suite\+::\+Passed\}}
+
+{\ttfamily bool Test\+Suite\+::\+Passed() const}
+
+Returns true if and only if the test suite passed.
+
+\subparagraph*{Failed \{\#\+Test\+Suite\+::\+Failed\}}
+
+{\ttfamily bool Test\+Suite\+::\+Failed() const}
+
+Returns true if and only if the test suite failed.
+
+\subparagraph*{elapsed\+\_\+time \{\#\+Test\+Suite\+::elapsed\+\_\+time\}}
+
+{\ttfamily Time\+In\+Millis Test\+Suite\+::elapsed\+\_\+time() const}
+
+Returns the elapsed time, in milliseconds.
+
+\subparagraph*{start\+\_\+timestamp \{\#\+Test\+Suite\+::start\+\_\+timestamp\}}
+
+{\ttfamily Time\+In\+Millis Test\+Suite\+::start\+\_\+timestamp() const}
+
+Gets the time of the test suite start, in ms from the start of the U\+N\+IX epoch.
+
+\subparagraph*{Get\+Test\+Info \{\#\+Test\+Suite\+::\+Get\+Test\+Info\}}
+
+{\ttfamily const Test\+Info$\ast$ Test\+Suite\+::\+Get\+Test\+Info(int i) const}
+
+Returns the \href{#TestInfo}{\tt {\ttfamily Test\+Info}} for the {\ttfamily i}-\/th test among all the tests. {\ttfamily i} can range from 0 to {\ttfamily total\+\_\+test\+\_\+count() -\/ 1}. If {\ttfamily i} is not in that range, returns {\ttfamily N\+U\+LL}.
+
+\subparagraph*{ad\+\_\+hoc\+\_\+test\+\_\+result \{\#\+Test\+Suite\+::ad\+\_\+hoc\+\_\+test\+\_\+result\}}
+
+{\ttfamily const Test\+Result\& Test\+Suite\+::ad\+\_\+hoc\+\_\+test\+\_\+result() const}
+
+Returns the \href{#TestResult}{\tt {\ttfamily Test\+Result}} that holds test properties recorded during execution of {\ttfamily Set\+Up\+Test\+Suite} and {\ttfamily Tear\+Down\+Test\+Suite}.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1TestInfo}{testing\+::\+Test\+Info}}}
+
+Stores information about a test.
+
+\subparagraph*{test\+\_\+suite\+\_\+name \{\#\+Test\+Info\+::test\+\_\+suite\+\_\+name\}}
+
+{\ttfamily const char$\ast$ Test\+Info\+::test\+\_\+suite\+\_\+name() const}
+
+Returns the test suite name.
+
+\subparagraph*{name \{\#\+Test\+Info\+::name\}}
+
+{\ttfamily const char$\ast$ Test\+Info\+::name() const}
+
+Returns the test name.
+
+\subparagraph*{type\+\_\+param \{\#\+Test\+Info\+::type\+\_\+param\}}
+
+{\ttfamily const char$\ast$ Test\+Info\+::type\+\_\+param() const}
+
+Returns the name of the parameter type, or {\ttfamily N\+U\+LL} if this is not a typed or type-\/parameterized test. See \href{../advanced.md#typed-tests}{\tt Typed Tests} and \href{../advanced.md#type-parameterized-tests}{\tt Type-\/\+Parameterized Tests}.
+
+\subparagraph*{value\+\_\+param \{\#\+Test\+Info\+::value\+\_\+param\}}
+
+{\ttfamily const char$\ast$ Test\+Info\+::value\+\_\+param() const}
+
+Returns the text representation of the value parameter, or {\ttfamily N\+U\+LL} if this is not a value-\/parameterized test. See \href{../advanced.md#value-parameterized-tests}{\tt Value-\/\+Parameterized Tests}.
+
+\subparagraph*{file \{\#\+Test\+Info\+::file\}}
+
+{\ttfamily const char$\ast$ Test\+Info\+::file() const}
+
+Returns the file name where this test is defined.
+
+\subparagraph*{line \{\#\+Test\+Info\+::line\}}
+
+{\ttfamily int Test\+Info\+::line() const}
+
+Returns the line where this test is defined.
+
+\subparagraph*{is\+\_\+in\+\_\+another\+\_\+shard \{\#\+Test\+Info\+::is\+\_\+in\+\_\+another\+\_\+shard\}}
+
+{\ttfamily bool Test\+Info\+::is\+\_\+in\+\_\+another\+\_\+shard() const}
+
+Returns true if this test should not be run because it\textquotesingle{}s in another shard.
+
+\subparagraph*{should\+\_\+run \{\#\+Test\+Info\+::should\+\_\+run\}}
+
+{\ttfamily bool Test\+Info\+::should\+\_\+run() const}
+
+Returns true if this test should run, that is if the test is not disabled (or it is disabled but the {\ttfamily also\+\_\+run\+\_\+disabled\+\_\+tests} flag has been specified) and its full name matches the user-\/specified filter.
+
+Google\+Test allows the user to filter the tests by their full names. Only the tests that match the filter will run. See \href{../advanced.md#running-a-subset-of-the-tests}{\tt Running a Subset of the Tests} for more information.
+
+\subparagraph*{is\+\_\+reportable \{\#\+Test\+Info\+::is\+\_\+reportable\}}
+
+{\ttfamily bool Test\+Info\+::is\+\_\+reportable() const}
+
+Returns true if and only if this test will appear in the X\+ML report.
+
+\subparagraph*{result \{\#\+Test\+Info\+::result\}}
+
+{\ttfamily const Test\+Result$\ast$ Test\+Info\+::result() const}
+
+Returns the result of the test. See \href{#TestResult}{\tt {\ttfamily Test\+Result}}.
+
+{\ttfamily \mbox{\hyperlink{structtesting_1_1TestParamInfo}{testing\+::\+Test\+Param\+Info}}$<$T$>$}
+
+Describes a parameter to a value-\/parameterized test. The type {\ttfamily T} is the type of the parameter.
+
+Contains the fields {\ttfamily param} and {\ttfamily index} which hold the value of the parameter and its integer index respectively.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1UnitTest}{testing\+::\+Unit\+Test}}}
+
+This class contains information about the test program.
+
+{\ttfamily Unit\+Test} is a singleton class. The only instance is created when {\ttfamily Unit\+Test\+::\+Get\+Instance()} is first called. This instance is never deleted.
+
+{\ttfamily Unit\+Test} is not copyable.
+
+\subparagraph*{Get\+Instance \{\#\+Unit\+Test\+::\+Get\+Instance\}}
+
+{\ttfamily static Unit\+Test$\ast$ Unit\+Test\+::\+Get\+Instance()}
+
+Gets the singleton {\ttfamily Unit\+Test} object. The first time this method is called, a {\ttfamily Unit\+Test} object is constructed and returned. Consecutive calls will return the same object.
+
+\subparagraph*{original\+\_\+working\+\_\+dir \{\#\+Unit\+Test\+::original\+\_\+working\+\_\+dir\}}
+
+{\ttfamily const char$\ast$ Unit\+Test\+::original\+\_\+working\+\_\+dir() const}
+
+Returns the working directory when the first \href{#TEST}{\tt {\ttfamily T\+E\+S\+T()}} or \href{#TEST_F}{\tt {\ttfamily T\+E\+S\+T\+\_\+\+F()}} was executed. The {\ttfamily Unit\+Test} object owns the string.
+
+\subparagraph*{current\+\_\+test\+\_\+suite \{\#\+Unit\+Test\+::current\+\_\+test\+\_\+suite\}}
+
+{\ttfamily const Test\+Suite$\ast$ Unit\+Test\+::current\+\_\+test\+\_\+suite() const}
+
+Returns the \href{#TestSuite}{\tt {\ttfamily Test\+Suite}} object for the test that\textquotesingle{}s currently running, or {\ttfamily N\+U\+LL} if no test is running.
+
+\subparagraph*{current\+\_\+test\+\_\+info \{\#\+Unit\+Test\+::current\+\_\+test\+\_\+info\}}
+
+{\ttfamily const Test\+Info$\ast$ Unit\+Test\+::current\+\_\+test\+\_\+info() const}
+
+Returns the \href{#TestInfo}{\tt {\ttfamily Test\+Info}} object for the test that\textquotesingle{}s currently running, or {\ttfamily N\+U\+LL} if no test is running.
+
+\subparagraph*{random\+\_\+seed \{\#\+Unit\+Test\+::random\+\_\+seed\}}
+
+{\ttfamily int Unit\+Test\+::random\+\_\+seed() const}
+
+Returns the random seed used at the start of the current test run.
+
+\subparagraph*{successful\+\_\+test\+\_\+suite\+\_\+count \{\#\+Unit\+Test\+::successful\+\_\+test\+\_\+suite\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::successful\+\_\+test\+\_\+suite\+\_\+count() const}
+
+Gets the number of successful test suites.
+
+\subparagraph*{failed\+\_\+test\+\_\+suite\+\_\+count \{\#\+Unit\+Test\+::failed\+\_\+test\+\_\+suite\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::failed\+\_\+test\+\_\+suite\+\_\+count() const}
+
+Gets the number of failed test suites.
+
+\subparagraph*{total\+\_\+test\+\_\+suite\+\_\+count \{\#\+Unit\+Test\+::total\+\_\+test\+\_\+suite\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::total\+\_\+test\+\_\+suite\+\_\+count() const}
+
+Gets the number of all test suites.
+
+\subparagraph*{test\+\_\+suite\+\_\+to\+\_\+run\+\_\+count \{\#\+Unit\+Test\+::test\+\_\+suite\+\_\+to\+\_\+run\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::test\+\_\+suite\+\_\+to\+\_\+run\+\_\+count() const}
+
+Gets the number of all test suites that contain at least one test that should run.
+
+\subparagraph*{successful\+\_\+test\+\_\+count \{\#\+Unit\+Test\+::successful\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::successful\+\_\+test\+\_\+count() const}
+
+Gets the number of successful tests.
+
+\subparagraph*{skipped\+\_\+test\+\_\+count \{\#\+Unit\+Test\+::skipped\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::skipped\+\_\+test\+\_\+count() const}
+
+Gets the number of skipped tests.
+
+\subparagraph*{failed\+\_\+test\+\_\+count \{\#\+Unit\+Test\+::failed\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::failed\+\_\+test\+\_\+count() const}
+
+Gets the number of failed tests.
+
+\subparagraph*{reportable\+\_\+disabled\+\_\+test\+\_\+count \{\#\+Unit\+Test\+::reportable\+\_\+disabled\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::reportable\+\_\+disabled\+\_\+test\+\_\+count() const}
+
+Gets the number of disabled tests that will be reported in the X\+ML report.
+
+\subparagraph*{disabled\+\_\+test\+\_\+count \{\#\+Unit\+Test\+::disabled\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::disabled\+\_\+test\+\_\+count() const}
+
+Gets the number of disabled tests.
+
+\subparagraph*{reportable\+\_\+test\+\_\+count \{\#\+Unit\+Test\+::reportable\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::reportable\+\_\+test\+\_\+count() const}
+
+Gets the number of tests to be printed in the X\+ML report.
+
+\subparagraph*{total\+\_\+test\+\_\+count \{\#\+Unit\+Test\+::total\+\_\+test\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::total\+\_\+test\+\_\+count() const}
+
+Gets the number of all tests.
+
+\subparagraph*{test\+\_\+to\+\_\+run\+\_\+count \{\#\+Unit\+Test\+::test\+\_\+to\+\_\+run\+\_\+count\}}
+
+{\ttfamily int Unit\+Test\+::test\+\_\+to\+\_\+run\+\_\+count() const}
+
+Gets the number of tests that should run.
+
+\subparagraph*{start\+\_\+timestamp \{\#\+Unit\+Test\+::start\+\_\+timestamp\}}
+
+{\ttfamily Time\+In\+Millis Unit\+Test\+::start\+\_\+timestamp() const}
+
+Gets the time of the test program start, in ms from the start of the U\+N\+IX epoch.
+
+\subparagraph*{elapsed\+\_\+time \{\#\+Unit\+Test\+::elapsed\+\_\+time\}}
+
+{\ttfamily Time\+In\+Millis Unit\+Test\+::elapsed\+\_\+time() const}
+
+Gets the elapsed time, in milliseconds.
+
+\subparagraph*{Passed \{\#\+Unit\+Test\+::\+Passed\}}
+
+{\ttfamily bool Unit\+Test\+::\+Passed() const}
+
+Returns true if and only if the unit test passed (i.\+e. all test suites passed).
+
+\subparagraph*{Failed \{\#\+Unit\+Test\+::\+Failed\}}
+
+{\ttfamily bool Unit\+Test\+::\+Failed() const}
+
+Returns true if and only if the unit test failed (i.\+e. some test suite failed or something outside of all tests failed).
+
+\subparagraph*{Get\+Test\+Suite \{\#\+Unit\+Test\+::\+Get\+Test\+Suite\}}
+
+{\ttfamily const Test\+Suite$\ast$ Unit\+Test\+::\+Get\+Test\+Suite(int i) const}
+
+Gets the \href{#TestSuite}{\tt {\ttfamily Test\+Suite}} object for the {\ttfamily i}-\/th test suite among all the test suites. {\ttfamily i} can range from 0 to {\ttfamily total\+\_\+test\+\_\+suite\+\_\+count() -\/ 1}. If {\ttfamily i} is not in that range, returns {\ttfamily N\+U\+LL}.
+
+\subparagraph*{ad\+\_\+hoc\+\_\+test\+\_\+result \{\#\+Unit\+Test\+::ad\+\_\+hoc\+\_\+test\+\_\+result\}}
+
+{\ttfamily const Test\+Result\& Unit\+Test\+::ad\+\_\+hoc\+\_\+test\+\_\+result() const}
+
+Returns the \href{#TestResult}{\tt {\ttfamily Test\+Result}} containing information on test failures and properties logged outside of individual test suites.
+
+\subparagraph*{listeners \{\#\+Unit\+Test\+::listeners\}}
+
+{\ttfamily Test\+Event\+Listeners\& Unit\+Test\+::listeners()}
+
+Returns the list of event listeners that can be used to track events inside Google\+Test. See \href{#TestEventListeners}{\tt {\ttfamily Test\+Event\+Listeners}}.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1TestEventListener}{testing\+::\+Test\+Event\+Listener}}}
+
+The interface for tracing execution of tests. The methods below are listed in the order the corresponding events are fired.
+
+\subparagraph*{On\+Test\+Program\+Start \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Program\+Start\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Program\+Start(const Unit\+Test\& unit\+\_\+test)}
+
+Fired before any test activity starts.
+
+\subparagraph*{On\+Test\+Iteration\+Start \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Iteration\+Start\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Iteration\+Start(const Unit\+Test\& unit\+\_\+test, int iteration)}
+
+Fired before each iteration of tests starts. There may be more than one iteration if {\ttfamily G\+T\+E\+S\+T\+\_\+\+F\+L\+A\+G(repeat)} is set. {\ttfamily iteration} is the iteration index, starting from 0.
+
+\subparagraph*{On\+Environments\+Set\+Up\+Start \{\#\+Test\+Event\+Listener\+::\+On\+Environments\+Set\+Up\+Start\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Environments\+Set\+Up\+Start(const Unit\+Test\& unit\+\_\+test)}
+
+Fired before environment set-\/up for each iteration of tests starts.
+
+\subparagraph*{On\+Environments\+Set\+Up\+End \{\#\+Test\+Event\+Listener\+::\+On\+Environments\+Set\+Up\+End\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Environments\+Set\+Up\+End(const Unit\+Test\& unit\+\_\+test)}
+
+Fired after environment set-\/up for each iteration of tests ends.
+
+\subparagraph*{On\+Test\+Suite\+Start \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Suite\+Start\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Suite\+Start(const Test\+Suite\& test\+\_\+suite)}
+
+Fired before the test suite starts.
+
+\subparagraph*{On\+Test\+Start \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Start\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Start(const Test\+Info\& test\+\_\+info)}
+
+Fired before the test starts.
+
+\subparagraph*{On\+Test\+Part\+Result \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Part\+Result\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Part\+Result(const Test\+Part\+Result\& test\+\_\+part\+\_\+result)}
+
+Fired after a failed assertion or a {\ttfamily S\+U\+C\+C\+E\+E\+D()} invocation. If you want to throw an exception from this function to skip to the next test, it must be an \href{#AssertionException}{\tt {\ttfamily Assertion\+Exception}} or inherited from it.
+
+\subparagraph*{On\+Test\+End \{\#\+Test\+Event\+Listener\+::\+On\+Test\+End\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+End(const Test\+Info\& test\+\_\+info)}
+
+Fired after the test ends.
+
+\subparagraph*{On\+Test\+Suite\+End \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Suite\+End\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Suite\+End(const Test\+Suite\& test\+\_\+suite)}
+
+Fired after the test suite ends.
+
+\subparagraph*{On\+Environments\+Tear\+Down\+Start \{\#\+Test\+Event\+Listener\+::\+On\+Environments\+Tear\+Down\+Start\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Environments\+Tear\+Down\+Start(const Unit\+Test\& unit\+\_\+test)}
+
+Fired before environment tear-\/down for each iteration of tests starts.
+
+\subparagraph*{On\+Environments\+Tear\+Down\+End \{\#\+Test\+Event\+Listener\+::\+On\+Environments\+Tear\+Down\+End\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Environments\+Tear\+Down\+End(const Unit\+Test\& unit\+\_\+test)}
+
+Fired after environment tear-\/down for each iteration of tests ends.
+
+\subparagraph*{On\+Test\+Iteration\+End \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Iteration\+End\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Iteration\+End(const Unit\+Test\& unit\+\_\+test, int iteration)}
+
+Fired after each iteration of tests finishes.
+
+\subparagraph*{On\+Test\+Program\+End \{\#\+Test\+Event\+Listener\+::\+On\+Test\+Program\+End\}}
+
+{\ttfamily virtual void Test\+Event\+Listener\+::\+On\+Test\+Program\+End(const Unit\+Test\& unit\+\_\+test)}
+
+Fired after all test activities have ended.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1TestEventListeners}{testing\+::\+Test\+Event\+Listeners}}}
+
+Lets users add listeners to track events in Google\+Test.
+
+\subparagraph*{Append \{\#\+Test\+Event\+Listeners\+::\+Append\}}
+
+{\ttfamily void Test\+Event\+Listeners\+::\+Append(\+Test\+Event\+Listener$\ast$ listener)}
+
+Appends an event listener to the end of the list. Google\+Test assumes ownership of the listener (i.\+e. it will delete the listener when the test program finishes).
+
+\subparagraph*{Release \{\#\+Test\+Event\+Listeners\+::\+Release\}}
+
+{\ttfamily Test\+Event\+Listener$\ast$ Test\+Event\+Listeners\+::\+Release(\+Test\+Event\+Listener$\ast$ listener)}
+
+Removes the given event listener from the list and returns it. It then becomes the caller\textquotesingle{}s responsibility to delete the listener. Returns {\ttfamily N\+U\+LL} if the listener is not found in the list.
+
+\subparagraph*{default\+\_\+result\+\_\+printer \{\#\+Test\+Event\+Listeners\+::default\+\_\+result\+\_\+printer\}}
+
+{\ttfamily Test\+Event\+Listener$\ast$ Test\+Event\+Listeners\+::default\+\_\+result\+\_\+printer() const}
+
+Returns the standard listener responsible for the default console output. Can be removed from the listeners list to shut down default console output. Note that removing this object from the listener list with \href{#TestEventListeners::Release}{\tt {\ttfamily Release()}} transfers its ownership to the caller and makes this function return {\ttfamily N\+U\+LL} the next time.
+
+\subparagraph*{default\+\_\+xml\+\_\+generator \{\#\+Test\+Event\+Listeners\+::default\+\_\+xml\+\_\+generator\}}
+
+{\ttfamily Test\+Event\+Listener$\ast$ Test\+Event\+Listeners\+::default\+\_\+xml\+\_\+generator() const}
+
+Returns the standard listener responsible for the default X\+ML output controlled by the {\ttfamily -\/-\/gtest\+\_\+output=xml} flag. Can be removed from the listeners list by users who want to shut down the default X\+ML output controlled by this flag and substitute it with custom one. Note that removing this object from the listener list with \href{#TestEventListeners::Release}{\tt {\ttfamily Release()}} transfers its ownership to the caller and makes this function return {\ttfamily N\+U\+LL} the next time.
+
+{\ttfamily testing\+::\+Test\+Part\+Result}
+
+A copyable object representing the result of a test part (i.\+e. an assertion or an explicit {\ttfamily F\+A\+I\+L()}, {\ttfamily A\+D\+D\+\_\+\+F\+A\+I\+L\+U\+R\+E()}, or {\ttfamily S\+U\+C\+C\+E\+S\+S()}).
+
+\subparagraph*{type \{\#\+Test\+Part\+Result\+::type\}}
+
+{\ttfamily Type Test\+Part\+Result\+::type() const}
+
+Gets the outcome of the test part.
+
+The return type {\ttfamily Type} is an enum defined as follows\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{enum} Type \{
+  kSuccess,          \textcolor{comment}{// Succeeded.}
+  kNonFatalFailure,  \textcolor{comment}{// Failed but the test can continue.}
+  kFatalFailure,     \textcolor{comment}{// Failed and the test should be terminated.}
+  kSkip              \textcolor{comment}{// Skipped.}
+\};
+\end{DoxyCode}
+
+
+\subparagraph*{file\+\_\+name \{\#\+Test\+Part\+Result\+::file\+\_\+name\}}
+
+{\ttfamily const char$\ast$ Test\+Part\+Result\+::file\+\_\+name() const}
+
+Gets the name of the source file where the test part took place, or {\ttfamily N\+U\+LL} if it\textquotesingle{}s unknown.
+
+\subparagraph*{line\+\_\+number \{\#\+Test\+Part\+Result\+::line\+\_\+number\}}
+
+{\ttfamily int Test\+Part\+Result\+::line\+\_\+number() const}
+
+Gets the line in the source file where the test part took place, or {\ttfamily -\/1} if it\textquotesingle{}s unknown.
+
+\subparagraph*{summary \{\#\+Test\+Part\+Result\+::summary\}}
+
+{\ttfamily const char$\ast$ Test\+Part\+Result\+::summary() const}
+
+Gets the summary of the failure message.
+
+\subparagraph*{message \{\#\+Test\+Part\+Result\+::message\}}
+
+{\ttfamily const char$\ast$ Test\+Part\+Result\+::message() const}
+
+Gets the message associated with the test part.
+
+\subparagraph*{skipped \{\#\+Test\+Part\+Result\+::skipped\}}
+
+{\ttfamily bool Test\+Part\+Result\+::skipped() const}
+
+Returns true if and only if the test part was skipped.
+
+\subparagraph*{passed \{\#\+Test\+Part\+Result\+::passed\}}
+
+{\ttfamily bool Test\+Part\+Result\+::passed() const}
+
+Returns true if and only if the test part passed.
+
+\subparagraph*{nonfatally\+\_\+failed \{\#\+Test\+Part\+Result\+::nonfatally\+\_\+failed\}}
+
+{\ttfamily bool Test\+Part\+Result\+::nonfatally\+\_\+failed() const}
+
+Returns true if and only if the test part non-\/fatally failed.
+
+\subparagraph*{fatally\+\_\+failed \{\#\+Test\+Part\+Result\+::fatally\+\_\+failed\}}
+
+{\ttfamily bool Test\+Part\+Result\+::fatally\+\_\+failed() const}
+
+Returns true if and only if the test part fatally failed.
+
+\subparagraph*{failed \{\#\+Test\+Part\+Result\+::failed\}}
+
+{\ttfamily bool Test\+Part\+Result\+::failed() const}
+
+Returns true if and only if the test part failed.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1TestProperty}{testing\+::\+Test\+Property}}}
+
+A copyable object representing a user-\/specified test property which can be output as a key/value string pair.
+
+\label{invalid_invalid}%
+\Hypertarget{invalid_invalid}%
+\subparagraph*{key}
+
+{\ttfamily const char$\ast$ key() const}
+
+Gets the user-\/supplied key.
+
+\label{invalid_invalid}%
+\Hypertarget{invalid_invalid}%
+\subparagraph*{value}
+
+{\ttfamily const char$\ast$ value() const}
+
+Gets the user-\/supplied value.
+
+\label{invalid_invalid}%
+\Hypertarget{invalid_invalid}%
+\subparagraph*{Set\+Value}
+
+{\ttfamily void Set\+Value(const std\+::string\& new\+\_\+value)}
+
+Sets a new value, overriding the previous one.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1TestResult}{testing\+::\+Test\+Result}}}
+
+Contains information about the result of a single test.
+
+{\ttfamily Test\+Result} is not copyable.
+
+\subparagraph*{total\+\_\+part\+\_\+count \{\#\+Test\+Result\+::total\+\_\+part\+\_\+count\}}
+
+{\ttfamily int Test\+Result\+::total\+\_\+part\+\_\+count() const}
+
+Gets the number of all test parts. This is the sum of the number of successful test parts and the number of failed test parts.
+
+\subparagraph*{test\+\_\+property\+\_\+count \{\#\+Test\+Result\+::test\+\_\+property\+\_\+count\}}
+
+{\ttfamily int Test\+Result\+::test\+\_\+property\+\_\+count() const}
+
+Returns the number of test properties.
+
+\subparagraph*{Passed \{\#\+Test\+Result\+::\+Passed\}}
+
+{\ttfamily bool Test\+Result\+::\+Passed() const}
+
+Returns true if and only if the test passed (i.\+e. no test part failed).
+
+\subparagraph*{Skipped \{\#\+Test\+Result\+::\+Skipped\}}
+
+{\ttfamily bool Test\+Result\+::\+Skipped() const}
+
+Returns true if and only if the test was skipped.
+
+\subparagraph*{Failed \{\#\+Test\+Result\+::\+Failed\}}
+
+{\ttfamily bool Test\+Result\+::\+Failed() const}
+
+Returns true if and only if the test failed.
+
+\subparagraph*{Has\+Fatal\+Failure \{\#\+Test\+Result\+::\+Has\+Fatal\+Failure\}}
+
+{\ttfamily bool Test\+Result\+::\+Has\+Fatal\+Failure() const}
+
+Returns true if and only if the test fatally failed.
+
+\subparagraph*{Has\+Nonfatal\+Failure \{\#\+Test\+Result\+::\+Has\+Nonfatal\+Failure\}}
+
+{\ttfamily bool Test\+Result\+::\+Has\+Nonfatal\+Failure() const}
+
+Returns true if and only if the test has a non-\/fatal failure.
+
+\subparagraph*{elapsed\+\_\+time \{\#\+Test\+Result\+::elapsed\+\_\+time\}}
+
+{\ttfamily Time\+In\+Millis Test\+Result\+::elapsed\+\_\+time() const}
+
+Returns the elapsed time, in milliseconds.
+
+\subparagraph*{start\+\_\+timestamp \{\#\+Test\+Result\+::start\+\_\+timestamp\}}
+
+{\ttfamily Time\+In\+Millis Test\+Result\+::start\+\_\+timestamp() const}
+
+Gets the time of the test case start, in ms from the start of the U\+N\+IX epoch.
+
+\subparagraph*{Get\+Test\+Part\+Result \{\#\+Test\+Result\+::\+Get\+Test\+Part\+Result\}}
+
+{\ttfamily const Test\+Part\+Result\& Test\+Result\+::\+Get\+Test\+Part\+Result(int i) const}
+
+Returns the \href{#TestPartResult}{\tt {\ttfamily Test\+Part\+Result}} for the {\ttfamily i}-\/th test part result among all the results. {\ttfamily i} can range from 0 to {\ttfamily total\+\_\+part\+\_\+count() -\/ 1}. If {\ttfamily i} is not in that range, aborts the program.
+
+\subparagraph*{Get\+Test\+Property \{\#\+Test\+Result\+::\+Get\+Test\+Property\}}
+
+{\ttfamily const Test\+Property\& Test\+Result\+::\+Get\+Test\+Property(int i) const}
+
+Returns the \href{#TestProperty}{\tt {\ttfamily Test\+Property}} object for the {\ttfamily i}-\/th test property. {\ttfamily i} can range from 0 to {\ttfamily test\+\_\+property\+\_\+count() -\/ 1}. If {\ttfamily i} is not in that range, aborts the program.
+
+{\ttfamily testing\+::\+Time\+In\+Millis}
+
+An integer type representing time in milliseconds.
+
+{\ttfamily testing\+::\+Types$<$T...$>$}
+
+Represents a list of types for use in typed tests and type-\/parameterized tests.
+
+The template argument {\ttfamily T...} can be any number of types, for example\+:
+
+
+\begin{DoxyCode}
+testing::Types<char, int, unsigned int>
+\end{DoxyCode}
+
+
+See \href{../advanced.md#typed-tests}{\tt Typed Tests} and \href{../advanced.md#type-parameterized-tests}{\tt Type-\/\+Parameterized Tests} for more information.
+
+{\ttfamily \mbox{\hyperlink{classtesting_1_1WithParamInterface}{testing\+::\+With\+Param\+Interface}}$<$T$>$}
+
+The pure interface class that all value-\/parameterized tests inherit from.
+
+A value-\/parameterized test fixture class must inherit from both \href{#Test}{\tt {\ttfamily Test}} and {\ttfamily With\+Param\+Interface}. In most cases that just means inheriting from \href{#TestWithParam}{\tt {\ttfamily Test\+With\+Param}}, but more complicated test hierarchies may need to inherit from {\ttfamily Test} and {\ttfamily With\+Param\+Interface} at different levels.
+
+This interface defines the type alias {\ttfamily Param\+Type} for the parameter type {\ttfamily T} and has support for accessing the test parameter value via the {\ttfamily Get\+Param()} method\+:
+
+
+\begin{DoxyCode}
+static const ParamType& GetParam()
+\end{DoxyCode}
+
+
+For more information, see \href{../advanced.md#value-parameterized-tests}{\tt Value-\/\+Parameterized Tests}.
+
+\subsection*{Functions}
+
+Google\+Test defines the following functions to help with writing and running tests.
+
+{\ttfamily void testing\+::\+Init\+Google\+Test(int$\ast$ argc, char$\ast$$\ast$ argv)} \textbackslash{} {\ttfamily void testing\+::\+Init\+Google\+Test(int$\ast$ argc, wchar\+\_\+t$\ast$$\ast$ argv)} \textbackslash{} {\ttfamily void testing\+::\+Init\+Google\+Test()}
+
+Initializes Google\+Test. This must be called before calling \href{#RUN_ALL_TESTS}{\tt {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}}. In particular, it parses the command line for the flags that Google\+Test recognizes. Whenever a Google\+Test flag is seen, it is removed from {\ttfamily argv}, and {\ttfamily $\ast$argc} is decremented.
+
+No value is returned. Instead, the Google\+Test flag variables are updated.
+
+The {\ttfamily Init\+Google\+Test(int$\ast$ argc, wchar\+\_\+t$\ast$$\ast$ argv)} overload can be used in Windows programs compiled in {\ttfamily U\+N\+I\+C\+O\+DE} mode.
+
+The argument-\/less {\ttfamily Init\+Google\+Test()} overload can be used on Arduino/embedded platforms where there is no {\ttfamily argc}/{\ttfamily argv}.
+
+{\ttfamily Environment$\ast$ testing\+::\+Add\+Global\+Test\+Environment(\+Environment$\ast$ env)}
+
+Adds a test environment to the test program. Must be called before \href{#RUN_ALL_TESTS}{\tt {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}} is called. See \href{../advanced.md#global-set-up-and-tear-down}{\tt Global Set-\/\+Up and Tear-\/\+Down} for more information.
+
+See also \href{#Environment}{\tt {\ttfamily Environment}}.
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{template} <\textcolor{keyword}{typename} Factory>
+TestInfo* testing::RegisterTest(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* test\_suite\_name, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* test\_name,
+                                  \textcolor{keyword}{const} \textcolor{keywordtype}{char}* type\_param, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value\_param,
+                                  \textcolor{keyword}{const} \textcolor{keywordtype}{char}* file, \textcolor{keywordtype}{int} line, Factory factory)
+\end{DoxyCode}
+
+
+Dynamically registers a test with the framework.
+
+The {\ttfamily factory} argument is a factory callable (move-\/constructible) object or function pointer that creates a new instance of the {\ttfamily Test} object. It handles ownership to the caller. The signature of the callable is {\ttfamily Fixture$\ast$()}, where {\ttfamily \mbox{\hyperlink{classFixture}{Fixture}}} is the test fixture class for the test. All tests registered with the same {\ttfamily test\+\_\+suite\+\_\+name} must return the same fixture type. This is checked at runtime.
+
+The framework will infer the fixture class from the factory and will call the {\ttfamily Set\+Up\+Test\+Suite} and {\ttfamily Tear\+Down\+Test\+Suite} methods for it.
+
+Must be called before \href{#RUN_ALL_TESTS}{\tt {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}} is invoked, otherwise behavior is undefined.
+
+See \href{../advanced.md#registering-tests-programmatically}{\tt Registering tests programmatically} for more information.
+
+{\ttfamily int R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}
+
+Use this function in {\ttfamily main()} to run all tests. It returns {\ttfamily 0} if all tests are successful, or {\ttfamily 1} otherwise.
+
+{\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()} should be invoked after the command line has been parsed by \href{#InitGoogleTest}{\tt {\ttfamily Init\+Google\+Test()}}.
+
+This function was formerly a macro; thus, it is in the global namespace and has an all-\/caps name.
+
+{\ttfamily Assertion\+Result testing\+::\+Assertion\+Success()}
+
+Creates a successful assertion result. See \href{#AssertionResult}{\tt {\ttfamily Assertion\+Result}}.
+
+{\ttfamily Assertion\+Result testing\+::\+Assertion\+Failure()}
+
+Creates a failed assertion result. Use the {\ttfamily $<$$<$} operator to store a failure message\+:
+
+
+\begin{DoxyCode}
+testing::AssertionFailure() << \textcolor{stringliteral}{"My failure message"};
+\end{DoxyCode}
+
+
+See \href{#AssertionResult}{\tt {\ttfamily Assertion\+Result}}.
+
+{\ttfamily testing\+::\+Static\+Assert\+Type\+Eq$<$T1, T2$>$()}
+
+Compile-\/time assertion for type equality. Compiles if and only if {\ttfamily T1} and {\ttfamily T2} are the same type. The value it returns is irrelevant.
+
+See \href{../advanced.md#type-assertions}{\tt Type Assertions} for more information.
+
+{\ttfamily std\+::string testing\+::\+Print\+To\+String(x)}
+
+Prints any value {\ttfamily x} using Google\+Test\textquotesingle{}s value printer.
+
+See \href{../advanced.md#teaching-googletest-how-to-print-your-values}{\tt Teaching Google\+Test How to Print Your Values} for more information.
+
+{\ttfamily std\+::string \mbox{\hyperlink{structtesting_1_1PrintToStringParamName}{testing\+::\+Print\+To\+String\+Param\+Name}}(Test\+Param\+Info$<$T$>$\& info)}
+
+A built-\/in parameterized test name generator which returns the result of \href{#PrintToString}{\tt {\ttfamily Print\+To\+String}} called on {\ttfamily info.\+param}. Does not work when the test parameter is a {\ttfamily std\+::string} or C string. See \href{../advanced.md#specifying-names-for-value-parameterized-test-parameters}{\tt Specifying Names for Value-\/\+Parameterized Test Parameters} for more information.
+
+See also \href{#TestParamInfo}{\tt {\ttfamily Test\+Param\+Info}} and \href{#INSTANTIATE_TEST_SUITE_P}{\tt {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}}. 

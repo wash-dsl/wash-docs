@@ -1,0 +1,90 @@
+\subsubsection*{Announcements}
+
+\paragraph*{Live at Head}
+
+Google\+Test now follows the \href{https://abseil.io/about/philosophy#upgrade-support}{\tt Abseil Live at Head philosophy}. We recommend \href{https://github.com/abseil/abseil-cpp/blob/master/FAQ.md#what-is-live-at-head-and-how-do-i-do-it}{\tt updating to the latest commit in the {\ttfamily main} branch as often as possible}. We do publish occasional semantic versions, tagged with {\ttfamily v\$\{major\}.\$\{minor\}.\$\{patch\}} (e.\+g. {\ttfamily v1.\+14.\+0}).
+
+\paragraph*{Documentation Updates}
+
+Our documentation is now live on Git\+Hub Pages at \href{https://google.github.io/googletest/}{\tt https\+://google.\+github.\+io/googletest/}. We recommend browsing the documentation on Git\+Hub Pages rather than directly in the repository.
+
+\paragraph*{Release 1.\+14.\+0}
+
+\href{https://github.com/google/googletest/releases/tag/v1.14.0}{\tt Release 1.\+14.\+0} is now available.
+
+The 1.\+14.\+x branch requires at least C++14.
+
+\paragraph*{Continuous Integration}
+
+We use Google\textquotesingle{}s internal systems for continuous integration. \textbackslash{} Git\+Hub Actions were added for the convenience of open-\/source contributors. They are exclusively maintained by the open-\/source community and not used by the Google\+Test team.
+
+\paragraph*{Coming Soon}
+
+
+\begin{DoxyItemize}
+\item We are planning to take a dependency on \href{https://github.com/abseil/abseil-cpp}{\tt Abseil}.
+\item More documentation improvements are planned.
+\end{DoxyItemize}
+
+\subsection*{Welcome to {\bfseries Google\+Test}, Google\textquotesingle{}s C++ test framework!}
+
+This repository is a merger of the formerly separate Google\+Test and Google\+Mock projects. These were so closely related that it makes sense to maintain and release them together.
+
+\subsubsection*{Getting Started}
+
+See the \href{https://google.github.io/googletest/}{\tt Google\+Test User\textquotesingle{}s Guide} for documentation. We recommend starting with the \href{https://google.github.io/googletest/primer.html}{\tt Google\+Test Primer}.
+
+More information about building Google\+Test can be found at googletest/\+R\+E\+A\+D\+ME.md.
+
+\subsection*{Features}
+
+
+\begin{DoxyItemize}
+\item x\+Unit test framework\+: \textbackslash{} Googletest is based on the \href{https://en.wikipedia.org/wiki/XUnit}{\tt x\+Unit} testing framework, a popular architecture for unit testing
+\item Test discovery\+: \textbackslash{} Googletest automatically discovers and runs your tests, eliminating the need to manually register your tests
+\item Rich set of assertions\+: \textbackslash{} Googletest provides a variety of assertions, such as equality, inequality, exceptions, and more, making it easy to test your code
+\item User-\/defined assertions\+: \textbackslash{} You can define your own assertions with Googletest, making it simple to write tests that are specific to your code
+\item Death tests\+: \textbackslash{} Googletest supports death tests, which verify that your code exits in a certain way, making it useful for testing error-\/handling code
+\item Fatal and non-\/fatal failures\+: \textbackslash{} You can specify whether a test failure should be treated as fatal or non-\/fatal with Googletest, allowing tests to continue running even if a failure occurs
+\item Value-\/parameterized tests\+: \textbackslash{} Googletest supports value-\/parameterized tests, which run multiple times with different input values, making it useful for testing functions that take different inputs
+\item Type-\/parameterized tests\+: \textbackslash{} Googletest also supports type-\/parameterized tests, which run with different data types, making it useful for testing functions that work with different data types
+\item Various options for running tests\+: \textbackslash{} Googletest provides many options for running tests including running individual tests, running tests in a specific order and running tests in parallel
+\end{DoxyItemize}
+
+\subsection*{Supported Platforms}
+
+Google\+Test follows Google\textquotesingle{}s \href{https://opensource.google/documentation/policies/cplusplus-support}{\tt Foundational C++ Support Policy}. See https\+://github.com/google/oss-\/policies-\/info/blob/main/foundational-\/cxx-\/support-\/matrix.\+md \char`\"{}this table\char`\"{} for a list of currently supported versions of compilers, platforms, and build tools.
+
+\subsection*{Who Is Using Google\+Test?}
+
+In addition to many internal projects at Google, Google\+Test is also used by the following notable projects\+:
+
+
+\begin{DoxyItemize}
+\item The \href{https://www.chromium.org/}{\tt Chromium projects} (behind the Chrome browser and Chrome OS).
+\item The \href{https://llvm.org/}{\tt L\+L\+VM} compiler.
+\item \href{https://github.com/google/protobuf}{\tt Protocol Buffers}, Google\textquotesingle{}s data interchange format.
+\item The \href{https://opencv.org/}{\tt Open\+CV} computer vision library.
+\end{DoxyItemize}
+
+\subsection*{Related Open Source Projects}
+
+\href{https://github.com/nholthaus/gtest-runner}{\tt G\+Test Runner} is a Qt5 based automated test-\/runner and Graphical User \mbox{\hyperlink{classInterface}{Interface}} with powerful features for Windows and Linux platforms.
+
+\href{https://github.com/ospector/gtest-gbar}{\tt Google\+Test UI} is a test runner that runs your test binary, allows you to track its progress via a progress bar, and displays a list of test failures. Clicking on one shows failure text. Google\+Test UI is written in C\#.
+
+\href{https://github.com/kinow/gtest-tap-listener}{\tt G\+Test T\+AP Listener} is an event listener for Google\+Test that implements the \href{https://en.wikipedia.org/wiki/Test_Anything_Protocol}{\tt T\+AP protocol} for test result output. If your test runner understands T\+AP, you may find it useful.
+
+\href{https://github.com/google/gtest-parallel}{\tt gtest-\/parallel} is a test runner that runs tests from your binary in parallel to provide significant speed-\/up.
+
+\href{https://marketplace.visualstudio.com/items?itemName=DavidSchuldenfrei.gtest-adapter}{\tt Google\+Test Adapter} is a VS Code extension allowing to view Google\+Test in a tree view and run/debug your tests.
+
+\href{https://github.com/matepek/vscode-catch2-test-adapter}{\tt C++ Test\+Mate} is a VS Code extension allowing to view Google\+Test in a tree view and run/debug your tests.
+
+\href{https://pypi.org/project/cornichon/}{\tt Cornichon} is a small Gherkin D\+SL parser that generates stub code for Google\+Test.
+
+\subsection*{Contributing Changes}
+
+Please read https\+://github.com/google/googletest/blob/main/\+C\+O\+N\+T\+R\+I\+B\+U\+T\+I\+N\+G.\+md \char`\"{}\`{}\+C\+O\+N\+T\+R\+I\+B\+U\+T\+I\+N\+G.\+md\`{}\char`\"{} for details on how to contribute to this project.
+
+Happy testing! 

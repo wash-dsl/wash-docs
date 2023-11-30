@@ -1,0 +1,81 @@
+\hypertarget{mock__io_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/io/mock\+\_\+io.hpp File Reference}
+\label{mock__io_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/io/mock\+\_\+io.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/io/mock\+\_\+io.\+hpp}}
+
+
+Provides declarations for A\+PI functions dealing with file IO in the serial mock-\/up.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}../wash\+\_\+mockapi.\+hpp\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classwash_1_1GenericFileWriter}{wash\+::\+Generic\+File\+Writer}}
+\item 
+class \mbox{\hyperlink{classwash_1_1GenericFileReader}{wash\+::\+Generic\+File\+Reader}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ Generic\+File\+Writer $>$ {\bfseries wash\+::get\+\_\+file\+\_\+writer} (const std\+::string format)
+\begin{DoxyCompactList}\small\item\em Get the file writer object for a given format. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ Generic\+File\+Reader $>$ {\bfseries wash\+::get\+\_\+file\+\_\+reader} (const std\+::string format)
+\begin{DoxyCompactList}\small\item\em Get the file reader object based on the format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Provides declarations for A\+PI functions dealing with file IO in the serial mock-\/up. 
+
+\begin{DoxyAuthor}{Author}
+James Macer-\/\+Wright 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/11-\/15
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023
+\end{DoxyCopyright}
+Provides several functions useful for outputting the data to a file periodically, and reading data from those files to continue the simulation from a \char`\"{}checkpoint\char`\"{}
+
+Currently, supports in the implementation H\+D\+F5 or ascii (plaintext) file outputs. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{mock__io_8cpp_file_ad641b75009f166b30560b3fa61f0f9eb}\label{mock__io_8cpp_file_ad641b75009f166b30560b3fa61f0f9eb}} 
+\index{mock\+\_\+io.\+hpp@{mock\+\_\+io.\+hpp}!get\+\_\+file\+\_\+reader@{get\+\_\+file\+\_\+reader}}
+\index{get\+\_\+file\+\_\+reader@{get\+\_\+file\+\_\+reader}!mock\+\_\+io.\+hpp@{mock\+\_\+io.\+hpp}}
+\subsubsection{\texorpdfstring{get\+\_\+file\+\_\+reader()}{get\_file\_reader()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ Generic\+File\+Reader $>$ wash\+::get\+\_\+file\+\_\+reader (\begin{DoxyParamCaption}\item[{const std\+::string}]{format }\end{DoxyParamCaption})}
+
+
+
+Get the file reader object based on the format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+name} & File format we want to read in \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Generic\+File\+Reader 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mock__io_8cpp_file_a8d00d5b1a05d54f99a4105d5bf12e3ab}\label{mock__io_8cpp_file_a8d00d5b1a05d54f99a4105d5bf12e3ab}} 
+\index{mock\+\_\+io.\+hpp@{mock\+\_\+io.\+hpp}!get\+\_\+file\+\_\+writer@{get\+\_\+file\+\_\+writer}}
+\index{get\+\_\+file\+\_\+writer@{get\+\_\+file\+\_\+writer}!mock\+\_\+io.\+hpp@{mock\+\_\+io.\+hpp}}
+\subsubsection{\texorpdfstring{get\+\_\+file\+\_\+writer()}{get\_file\_writer()}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$ Generic\+File\+Writer $>$ wash\+::get\+\_\+file\+\_\+writer (\begin{DoxyParamCaption}\item[{const std\+::string}]{format }\end{DoxyParamCaption})}
+
+
+
+Get the file writer object for a given format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & File format we want to output as \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Generic\+File\+Writer 
+\end{DoxyReturn}

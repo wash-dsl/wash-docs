@@ -1,0 +1,2102 @@
+\subsection*{Introduction}
+
+Now that you have read the Google\+Test Primer and learned how to write tests using Google\+Test, it\textquotesingle{}s time to learn some new tricks. This document will show you more assertions as well as how to construct complex failure messages, propagate fatal failures, reuse and speed up your test fixtures, and use various flags with your tests.
+
+\subsection*{More Assertions}
+
+This section covers some less frequently used, but still significant, assertions.
+
+\subsubsection*{Explicit Success and Failure}
+
+See \href{reference/assertions.md#success-failure}{\tt Explicit Success and Failure} in the Assertions Reference.
+
+\subsubsection*{Exception Assertions}
+
+See \href{reference/assertions.md#exceptions}{\tt Exception Assertions} in the Assertions Reference.
+
+\subsubsection*{Predicate Assertions for Better Error Messages}
+
+Even though Google\+Test has a rich set of assertions, they can never be complete, as it\textquotesingle{}s impossible (nor a good idea) to anticipate all scenarios a user might run into. Therefore, sometimes a user has to use {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+U\+E()} to check a complex expression, for lack of a better macro. This has the problem of not showing you the values of the parts of the expression, making it hard to understand what went wrong. As a workaround, some users choose to construct the failure message by themselves, streaming it into {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+U\+E()}. However, this is awkward especially when the expression has side-\/effects or is expensive to evaluate.
+
+Google\+Test gives you three different options to solve this problem\+:
+
+\paragraph*{Using an Existing Boolean Function}
+
+If you already have a function or functor that returns {\ttfamily bool} (or a type that can be implicitly converted to {\ttfamily bool}), you can use it in a {\itshape predicate assertion} to get the function arguments printed for free. See \href{reference/assertions.md#EXPECT_PRED}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D$\ast$}} in the Assertions Reference for details.
+
+\paragraph*{Using a Function That Returns an Assertion\+Result}
+
+While {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D$\ast$()} and friends are handy for a quick job, the syntax is not satisfactory\+: you have to use different macros for different arities, and it feels more like Lisp than C++. The {\ttfamily \+::testing\+::\+Assertion\+Result} class solves this problem.
+
+An {\ttfamily Assertion\+Result} object represents the result of an assertion (whether it\textquotesingle{}s a success or a failure, and an associated message). You can create an {\ttfamily Assertion\+Result} using one of these factory functions\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+namespace testing \{
+
+// Returns an AssertionResult object to indicate that an assertion has
+// succeeded.
+AssertionResult AssertionSuccess();
+
+// Returns an AssertionResult object to indicate that an assertion has
+// failed.
+AssertionResult AssertionFailure();
+
+\}
+\end{DoxyCode}
+
+
+You can then use the {\ttfamily $<$$<$} operator to stream messages to the {\ttfamily Assertion\+Result} object.
+
+To provide more readable messages in Boolean assertions (e.\+g. {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+U\+E()}), write a predicate function that returns {\ttfamily Assertion\+Result} instead of {\ttfamily bool}. For example, if you define {\ttfamily Is\+Even()} as\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+testing::AssertionResult IsEven(int n) \{
+  if ((n % 2) == 0)
+    return testing::AssertionSuccess();
+  else
+    return testing::AssertionFailure() << n << " is odd";
+\}
+\end{DoxyCode}
+
+
+instead of\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+bool IsEven(int n) \{
+  return (n % 2) == 0;
+\}
+\end{DoxyCode}
+
+
+the failed assertion {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+UE(Is\+Even(\+Fib(4)))} will print\+:
+
+
+\begin{DoxyCode}
+Value of: IsEven(Fib(4))
+  Actual: false (3 is odd)
+Expected: true
+\end{DoxyCode}
+
+
+instead of a more opaque
+
+
+\begin{DoxyCode}
+Value of: IsEven(Fib(4))
+  Actual: false
+Expected: true
+\end{DoxyCode}
+
+
+If you want informative messages in {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+F\+A\+L\+SE} and {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+F\+A\+L\+SE} as well (one third of Boolean assertions in the Google code base are negative ones), and are fine with making the predicate slower in the success case, you can supply a success message\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+testing::AssertionResult IsEven(int n) \{
+  if ((n % 2) == 0)
+    return testing::AssertionSuccess() << n << " is even";
+  else
+    return testing::AssertionFailure() << n << " is odd";
+\}
+\end{DoxyCode}
+
+
+Then the statement {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+F\+A\+L\+SE(Is\+Even(\+Fib(6)))} will print
+
+
+\begin{DoxyCode}
+Value of: IsEven(Fib(6))
+   Actual: true (8 is even)
+Expected: false
+\end{DoxyCode}
+
+
+\paragraph*{Using a Predicate-\/\+Formatter}
+
+If you find the default message generated by \href{reference/assertions.md#EXPECT_PRED}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D$\ast$}} and \href{reference/assertions.md#EXPECT_TRUE}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+UE}} unsatisfactory, or some arguments to your predicate do not support streaming to {\ttfamily ostream}, you can instead use {\itshape predicate-\/formatter assertions} to {\itshape fully} customize how the message is formatted. See \href{reference/assertions.md#EXPECT_PRED_FORMAT}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T$\ast$}} in the Assertions Reference for details.
+
+\subsubsection*{Floating-\/\+Point Comparison}
+
+See \href{reference/assertions.md#floating-point}{\tt Floating-\/\+Point Comparison} in the Assertions Reference.
+
+\paragraph*{Floating-\/\+Point Predicate-\/\+Format Functions}
+
+Some floating-\/point operations are useful, but not that often used. In order to avoid an explosion of new macros, we provide them as predicate-\/format functions that can be used in the predicate assertion macro \href{reference/assertions.md#EXPECT_PRED_FORMAT}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T2}}, for example\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+using ::testing::FloatLE;
+using ::testing::DoubleLE;
+...
+EXPECT\_PRED\_FORMAT2(FloatLE, val1, val2);
+EXPECT\_PRED\_FORMAT2(DoubleLE, val1, val2);
+\end{DoxyCode}
+
+
+The above code verifies that {\ttfamily val1} is less than, or approximately equal to, {\ttfamily val2}.
+
+\subsubsection*{Asserting Using g\+Mock Matchers}
+
+See \href{reference/assertions.md#EXPECT_THAT}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+AT}} in the Assertions Reference.
+
+\subsubsection*{More String Assertions}
+
+(Please read the \href{#asserting-using-gmock-matchers}{\tt previous} section first if you haven\textquotesingle{}t.)
+
+You can use the g\+Mock \href{reference/matchers.md#string-matchers}{\tt string matchers} with \href{reference/assertions.md#EXPECT_THAT}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+AT}} to do more string comparison tricks (sub-\/string, prefix, suffix, regular expression, and etc). For example,
+
+
+\begin{DoxyCode}
+\{c++\}
+using ::testing::HasSubstr;
+using ::testing::MatchesRegex;
+...
+  ASSERT\_THAT(foo\_string, HasSubstr("needle"));
+  EXPECT\_THAT(bar\_string, MatchesRegex("\(\backslash\)\(\backslash\)w*\(\backslash\)\(\backslash\)d+"));
+\end{DoxyCode}
+
+
+\subsubsection*{Windows H\+R\+E\+S\+U\+LT assertions}
+
+See \href{reference/assertions.md#HRESULT}{\tt Windows H\+R\+E\+S\+U\+LT Assertions} in the Assertions Reference.
+
+\subsubsection*{Type Assertions}
+
+You can call the function
+
+
+\begin{DoxyCode}
+\{c++\}
+::testing::StaticAssertTypeEq<T1, T2>();
+\end{DoxyCode}
+
+
+to assert that types {\ttfamily T1} and {\ttfamily T2} are the same. The function does nothing if the assertion is satisfied. If the types are different, the function call will fail to compile, the compiler error message will say that {\ttfamily T1 and T2 are not the same type} and most likely (depending on the compiler) show you the actual values of {\ttfamily T1} and {\ttfamily T2}. This is mainly useful inside template code.
+
+{\bfseries Caveat}\+: When used inside a member function of a class template or a function template, {\ttfamily Static\+Assert\+Type\+Eq$<$T1, T2$>$()} is effective only if the function is instantiated. For example, given\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+template <typename T> class Foo \{
+ public:
+  void Bar() \{ testing::StaticAssertTypeEq<int, T>(); \}
+\};
+\end{DoxyCode}
+
+
+the code\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+void Test1() \{ Foo<bool> foo; \}
+\end{DoxyCode}
+
+
+will not generate a compiler error, as {\ttfamily Foo$<$bool$>$\+::\+Bar()} is never actually instantiated. Instead, you need\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+void Test2() \{ Foo<bool> foo; foo.Bar(); \}
+\end{DoxyCode}
+
+
+to cause a compiler error.
+
+\subsubsection*{Assertion Placement}
+
+You can use assertions in any C++ function. In particular, it doesn\textquotesingle{}t have to be a method of the test fixture class. The one constraint is that assertions that generate a fatal failure ({\ttfamily F\+A\+I\+L$\ast$} and {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$}) can only be used in void-\/returning functions. This is a consequence of Google\textquotesingle{}s not using exceptions. By placing it in a non-\/void function you\textquotesingle{}ll get a confusing compile error like {\ttfamily \char`\"{}error\+: void value not ignored as it ought to be\char`\"{}} or `\char`\"{}cannot
+initialize return object of type \textquotesingle{}bool' with an rvalue of type \textquotesingle{}void\textquotesingle{}\char`\"{}\`{} or \`{}\char`\"{}error\+: no viable conversion from \textquotesingle{}void\textquotesingle{} to \textquotesingle{}string\textquotesingle{}\char`\"{}\`{}.
+
+If you need to use fatal assertions in a function that returns non-\/void, one option is to make the function return the value in an out parameter instead. For example, you can rewrite {\ttfamily T2 Foo(\+T1 x)} to {\ttfamily void Foo(\+T1 x, T2$\ast$ result)}. You need to make sure that {\ttfamily $\ast$result} contains some sensible value even when the function returns prematurely. As the function now returns {\ttfamily void}, you can use any assertion inside of it.
+
+If changing the function\textquotesingle{}s type is not an option, you should just use assertions that generate non-\/fatal failures, such as {\ttfamily A\+D\+D\+\_\+\+F\+A\+I\+L\+U\+R\+E$\ast$} and {\ttfamily E\+X\+P\+E\+C\+T\+\_\+$\ast$}.
+
+\{\+: .callout .note\} N\+O\+TE\+: Constructors and destructors are not considered void-\/returning functions, according to the C++ language specification, and so you may not use fatal assertions in them; you\textquotesingle{}ll get a compilation error if you try. Instead, either call {\ttfamily abort} and crash the entire test executable, or put the fatal assertion in a {\ttfamily Set\+Up}/{\ttfamily Tear\+Down} function; see \href{faq.md#CtorVsSetUp}{\tt constructor/destructor vs. {\ttfamily Set\+Up}/{\ttfamily Tear\+Down}}
+
+\{\+: .callout .warning\} W\+A\+R\+N\+I\+NG\+: A fatal assertion in a helper function (private void-\/returning method) called from a constructor or destructor does not terminate the current test, as your intuition might suggest\+: it merely returns from the constructor or destructor early, possibly leaving your object in a partially-\/constructed or partially-\/destructed state! You almost certainly want to {\ttfamily abort} or use {\ttfamily Set\+Up}/{\ttfamily Tear\+Down} instead.
+
+\subsection*{Skipping test execution}
+
+Related to the assertions {\ttfamily S\+U\+C\+C\+E\+E\+D()} and {\ttfamily F\+A\+I\+L()}, you can prevent further test execution at runtime with the {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+K\+I\+P()} macro. This is useful when you need to check for preconditions of the system under test during runtime and skip tests in a meaningful way.
+
+{\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+K\+I\+P()} can be used in individual test cases or in the {\ttfamily Set\+Up()} methods of classes derived from either {\ttfamily \mbox{\hyperlink{classtesting_1_1Environment}{testing\+::\+Environment}}} or {\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}}. For example\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+TEST(SkipTest, DoesSkip) \{
+  GTEST\_SKIP() << "Skipping single test";
+  EXPECT\_EQ(0, 1);  // Won't fail; it won't be executed
+\}
+
+class SkipFixture : public ::testing::Test \{
+ protected:
+  void SetUp() override \{
+    GTEST\_SKIP() << "Skipping all tests for this fixture";
+  \}
+\};
+
+// Tests for SkipFixture won't be executed.
+TEST\_F(SkipFixture, SkipsOneTest) \{
+  EXPECT\_EQ(5, 7);  // Won't fail
+\}
+\end{DoxyCode}
+
+
+As with assertion macros, you can stream a custom message into {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+K\+I\+P()}.
+
+\subsection*{Teaching Google\+Test How to Print Your Values}
+
+When a test assertion such as {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ} fails, Google\+Test prints the argument values to help you debug. It does this using a user-\/extensible value printer.
+
+This printer knows how to print built-\/in C++ types, native arrays, S\+TL containers, and any type that supports the {\ttfamily $<$$<$} operator. For other types, it prints the raw bytes in the value and hopes that you the user can figure it out.
+
+As mentioned earlier, the printer is {\itshape extensible}. That means you can teach it to do a better job at printing your particular type than to dump the bytes. To do that, define an {\ttfamily Absl\+Stringify()} overload as a {\ttfamily friend} function template for your type\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{namespace }\mbox{\hyperlink{namespacefoo}{foo}} \{
+
+\textcolor{keyword}{class }Point \{  \textcolor{comment}{// We want GoogleTest to be able to print instances of this.}
+  ...
+  \textcolor{comment}{// Provide a friend overload.}
+  \textcolor{keyword}{template} <\textcolor{keyword}{typename} Sink>
+  \textcolor{keyword}{friend} \textcolor{keywordtype}{void} AbslStringify(Sink& sink, \textcolor{keyword}{const} Point& point) \{
+    absl::Format(&sink, \textcolor{stringliteral}{"(%d, %d)"}, point.x, point.y);
+  \}
+
+  \textcolor{keywordtype}{int} x;
+  \textcolor{keywordtype}{int} y;
+\};
+
+\textcolor{comment}{// If you can't declare the function in the class it's important that the}
+\textcolor{comment}{// AbslStringify overload is defined in the SAME namespace that defines Point.}
+\textcolor{comment}{// C++'s look-up rules rely on that.}
+\textcolor{keyword}{enum class} EnumWithStringify \{ kMany = 0, kChoices = 1 \};
+
+\textcolor{keyword}{template} <\textcolor{keyword}{typename} Sink>
+\textcolor{keywordtype}{void} AbslStringify(Sink& sink, EnumWithStringify e) \{
+  absl::Format(&sink, \textcolor{stringliteral}{"%s"}, e == EnumWithStringify::kMany ? \textcolor{stringliteral}{"Many"} : \textcolor{stringliteral}{"Choices"});
+\}
+
+\}  \textcolor{comment}{// namespace foo}
+\end{DoxyCode}
+
+
+\{\+: .callout .note\} Note\+: {\ttfamily Absl\+Stringify()} utilizes a generic \char`\"{}sink\char`\"{} buffer to construct its string. For more information about supported operations on {\ttfamily Absl\+Stringify()}\textquotesingle{}s sink, see go/abslstringify.
+
+{\ttfamily Absl\+Stringify()} can also use {\ttfamily absl\+::\+Str\+Format}\textquotesingle{}s catch-\/all {\ttfamily v} type specifier within its own format strings to perform type deduction. {\ttfamily Point} above could be formatted as {\ttfamily \char`\"{}(\%v, \%v)\char`\"{}} for example, and deduce the {\ttfamily int} values as {\ttfamily d}.
+
+Sometimes, {\ttfamily Absl\+Stringify()} might not be an option\+: your team may wish to print types with extra debugging information for testing purposes only. If so, you can instead define a {\ttfamily Print\+To()} function like this\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+#include <ostream>
+
+namespace foo \{
+
+class Point \{
+  ...
+  friend void PrintTo(const Point& point, std::ostream* os) \{
+    *os << "(" << point.x << "," << point.y << ")";
+  \}
+
+  int x;
+  int y;
+\};
+
+// If you can't declare the function in the class it's important that PrintTo()
+// is defined in the SAME namespace that defines Point.  C++'s look-up rules
+// rely on that.
+void PrintTo(const Point& point, std::ostream* os) \{
+    *os << "(" << point.x << "," << point.y << ")";
+\}
+
+\}  // namespace foo
+\end{DoxyCode}
+
+
+If you have defined both {\ttfamily Absl\+Stringify()} and {\ttfamily Print\+To()}, the latter will be used by Google\+Test. This allows you to customize how the value appears in Google\+Test\textquotesingle{}s output without affecting code that relies on the behavior of {\ttfamily Absl\+Stringify()}.
+
+If you have an existing {\ttfamily $<$$<$} operator and would like to define an {\ttfamily Absl\+Stringify()}, the latter will be used for Google\+Test printing.
+
+If you want to print a value {\ttfamily x} using Google\+Test\textquotesingle{}s value printer yourself, just call {\ttfamily \+::testing\+::\+Print\+To\+String(x)}, which returns an {\ttfamily std\+::string}\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+vector<pair<Point, int> > point\_ints = GetPointIntVector();
+
+EXPECT\_TRUE(IsCorrectPointIntVector(point\_ints))
+    << "point\_ints = " << testing::PrintToString(point\_ints);
+\end{DoxyCode}
+
+
+For more details regarding {\ttfamily Absl\+Stringify()} and its integration with other libraries, see go/abslstringify.
+
+\subsection*{Death Tests}
+
+In many applications, there are assertions that can cause application failure if a condition is not met. These consistency checks, which ensure that the program is in a known good state, are there to fail at the earliest possible time after some program state is corrupted. If the assertion checks the wrong condition, then the program may proceed in an erroneous state, which could lead to memory corruption, security holes, or worse. Hence it is vitally important to test that such assertion statements work as expected.
+
+Since these precondition checks cause the processes to die, we call such tests {\itshape death tests}. More generally, any test that checks that a program terminates (except by throwing an exception) in an expected fashion is also a death test.
+
+Note that if a piece of code throws an exception, we don\textquotesingle{}t consider it \char`\"{}death\char`\"{} for the purpose of death tests, as the caller of the code could catch the exception and avoid the crash. If you want to verify exceptions thrown by your code, see \href{#ExceptionAssertions}{\tt Exception Assertions}.
+
+If you want to test {\ttfamily E\+X\+P\+E\+C\+T\+\_\+$\ast$()/\+A\+S\+S\+E\+R\+T\+\_\+$\ast$()} failures in your test code, see \href{#catching-failures}{\tt \char`\"{}\+Catching\char`\"{} Failures}.
+
+\subsubsection*{How to Write a Death Test}
+
+Google\+Test provides assertion macros to support death tests. See \href{reference/assertions.md#death}{\tt Death Assertions} in the Assertions Reference for details.
+
+To write a death test, simply use one of the macros inside your test function. For example,
+
+
+\begin{DoxyCode}
+\{c++\}
+TEST(MyDeathTest, Foo) \{
+  // This death test uses a compound statement.
+  ASSERT\_DEATH(\{
+    int n = 5;
+    Foo(&n);
+  \}, "Error on line .* of Foo()");
+\}
+
+TEST(MyDeathTest, NormalExit) \{
+  EXPECT\_EXIT(NormalExit(), testing::ExitedWithCode(0), "Success");
+\}
+
+TEST(MyDeathTest, KillProcess) \{
+  EXPECT\_EXIT(KillProcess(), testing::KilledBySignal(SIGKILL),
+              "Sending myself unblockable signal");
+\}
+\end{DoxyCode}
+
+
+verifies that\+:
+
+
+\begin{DoxyItemize}
+\item calling {\ttfamily Foo(5)} causes the process to die with the given error message,
+\item calling {\ttfamily Normal\+Exit()} causes the process to print {\ttfamily \char`\"{}\+Success\char`\"{}} to stderr and exit with exit code 0, and
+\item calling {\ttfamily Kill\+Process()} kills the process with signal {\ttfamily S\+I\+G\+K\+I\+LL}.
+\end{DoxyItemize}
+
+The test function body may contain other assertions and statements as well, if necessary.
+
+Note that a death test only cares about three things\+:
+
+
+\begin{DoxyEnumerate}
+\item does {\ttfamily statement} abort or exit the process?
+\item (in the case of {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+E\+X\+IT} and {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+E\+X\+IT}) does the exit status satisfy {\ttfamily predicate}? Or (in the case of {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+D\+E\+A\+TH} and {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+TH}) is the exit status non-\/zero? And
+\item does the stderr output match {\ttfamily matcher}?
+\end{DoxyEnumerate}
+
+In particular, if {\ttfamily statement} generates an {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$} or {\ttfamily E\+X\+P\+E\+C\+T\+\_\+$\ast$} failure, it will {\bfseries not} cause the death test to fail, as Google\+Test assertions don\textquotesingle{}t abort the process.
+
+\subsubsection*{Death Test Naming}
+
+\{\+: .callout .important\} I\+M\+P\+O\+R\+T\+A\+NT\+: We strongly recommend you to follow the convention of naming your {\bfseries test suite} (not test) {\ttfamily $\ast$\+Death\+Test} when it contains a death test, as demonstrated in the above example. The \href{#death-tests-and-threads}{\tt Death Tests And Threads} section below explains why.
+
+If a test fixture class is shared by normal tests and death tests, you can use {\ttfamily using} or {\ttfamily typedef} to introduce an alias for the fixture class and avoid duplicating its code\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+class FooTest : public testing::Test \{ ... \};
+
+using FooDeathTest = FooTest;
+
+TEST\_F(FooTest, DoesThis) \{
+  // normal test
+\}
+
+TEST\_F(FooDeathTest, DoesThat) \{
+  // death test
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Regular Expression Syntax}
+
+When built with Bazel and using Abseil, Google\+Test uses the \href{https://github.com/google/re2/wiki/Syntax}{\tt R\+E2} syntax. Otherwise, for P\+O\+S\+IX systems (Linux, Cygwin, Mac), Google\+Test uses the \href{https://www.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap09.html#tag_09_04}{\tt P\+O\+S\+IX extended regular expression} syntax. To learn about P\+O\+S\+IX syntax, you may want to read this \href{https://en.wikipedia.org/wiki/Regular_expression#POSIX_extended}{\tt Wikipedia entry}.
+
+On Windows, Google\+Test uses its own simple regular expression implementation. It lacks many features. For example, we don\textquotesingle{}t support union ({\ttfamily \char`\"{}x$\vert$y\char`\"{}}), grouping ({\ttfamily \char`\"{}(xy)\char`\"{}}), brackets ({\ttfamily \char`\"{}\mbox{[}xy\mbox{]}\char`\"{}}), and repetition count ({\ttfamily \char`\"{}x\{5,7\}\char`\"{}}), among others. Below is what we do support ({\ttfamily A} denotes a literal character, period ({\ttfamily .}), or a single {\ttfamily \textbackslash{}\textbackslash{}} escape sequence; {\ttfamily x} and {\ttfamily y} denote regular expressions.)\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Expression  }&\textbf{ Meaning -\/-\/-\/-\/-\/-\/-\/---   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Expression  }&\textbf{ Meaning -\/-\/-\/-\/-\/-\/-\/---   }\\\cline{1-2}
+\endhead
+{\ttfamily c}  &matches any literal character {\ttfamily c}   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}d}  &matches any decimal digit   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}D}  &matches any character that\textquotesingle{}s not a decimal digit   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}f}  &matches {\ttfamily \textbackslash{}f}   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}n}  &matches {\ttfamily \textbackslash{}n}   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}r}  &matches {\ttfamily \textbackslash{}r}   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}s}  &matches any A\+S\+C\+II whitespace, including {\ttfamily \textbackslash{}n}   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}S}  &matches any character that\textquotesingle{}s not a whitespace   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}t}  &matches {\ttfamily \textbackslash{}t}   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}v}  &matches {\ttfamily \textbackslash{}v}   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}w}  &matches any letter, {\ttfamily \+\_\+}, or decimal digit   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}W}  &matches any character that {\ttfamily \textbackslash{}\textbackslash{}w} doesn\textquotesingle{}t match   \\\cline{1-2}
+{\ttfamily \textbackslash{}\textbackslash{}c}  &matches any literal character {\ttfamily c}, which must be a punctuation   \\\cline{1-2}
+{\ttfamily .}  &matches any single character except {\ttfamily \textbackslash{}n}   \\\cline{1-2}
+{\ttfamily A?}  &matches 0 or 1 occurrences of {\ttfamily A}   \\\cline{1-2}
+{\ttfamily A$\ast$}  &matches 0 or many occurrences of {\ttfamily A}   \\\cline{1-2}
+{\ttfamily A+}  &matches 1 or many occurrences of {\ttfamily A}   \\\cline{1-2}
+{\ttfamily $^\wedge$}  &matches the beginning of a string (not that of each line)   \\\cline{1-2}
+{\ttfamily \$}  &matches the end of a string (not that of each line)   \\\cline{1-2}
+{\ttfamily xy}  &matches {\ttfamily x} followed by {\ttfamily y}   \\\cline{1-2}
+\end{longtabu}
+
+
+To help you determine which capability is available on your system, Google\+Test defines macros to govern which regular expression it is using. The macros are\+: {\ttfamily G\+T\+E\+S\+T\+\_\+\+U\+S\+E\+S\+\_\+\+S\+I\+M\+P\+L\+E\+\_\+\+RE=1} or {\ttfamily G\+T\+E\+S\+T\+\_\+\+U\+S\+E\+S\+\_\+\+P\+O\+S\+I\+X\+\_\+\+RE=1}. If you want your death tests to work in all cases, you can either {\ttfamily \#if} on these macros or use the more limited syntax only.
+
+\subsubsection*{How It Works}
+
+See \href{reference/assertions.md#death}{\tt Death Assertions} in the Assertions Reference.
+
+\subsubsection*{Death Tests And Threads}
+
+The reason for the two death test styles has to do with thread safety. Due to well-\/known problems with forking in the presence of threads, death tests should be run in a single-\/threaded context. Sometimes, however, it isn\textquotesingle{}t feasible to arrange that kind of environment. For example, statically-\/initialized modules may start threads before main is ever reached. Once threads have been created, it may be difficult or impossible to clean them up.
+
+Google\+Test has three features intended to raise awareness of threading issues.
+
+
+\begin{DoxyEnumerate}
+\item A warning is emitted if multiple threads are running when a death test is encountered.
+\item Test suites with a name ending in \char`\"{}\+Death\+Test\char`\"{} are run before all other tests.
+\item It uses {\ttfamily clone()} instead of {\ttfamily fork()} to spawn the child process on Linux ({\ttfamily clone()} is not available on Cygwin and Mac), as {\ttfamily fork()} is more likely to cause the child to hang when the parent process has multiple threads.
+\end{DoxyEnumerate}
+
+It\textquotesingle{}s perfectly fine to create threads inside a death test statement; they are executed in a separate process and cannot affect the parent.
+
+\subsubsection*{Death Test Styles}
+
+The \char`\"{}threadsafe\char`\"{} death test style was introduced in order to help mitigate the risks of testing in a possibly multithreaded environment. It trades increased test execution time (potentially dramatically so) for improved thread safety.
+
+The automated testing framework does not set the style flag. You can choose a particular style of death tests by setting the flag programmatically\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+GTEST\_FLAG\_SET(death\_test\_style, "threadsafe");
+\end{DoxyCode}
+
+
+You can do this in {\ttfamily main()} to set the style for all death tests in the binary, or in individual tests. Recall that flags are saved before running each test and restored afterwards, so you need not do that yourself. For example\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+int main(int argc, char** argv) \{
+  testing::InitGoogleTest(&argc, argv);
+  GTEST\_FLAG\_SET(death\_test\_style, "fast");
+  return RUN\_ALL\_TESTS();
+\}
+
+TEST(MyDeathTest, TestOne) \{
+  GTEST\_FLAG\_SET(death\_test\_style, "threadsafe");
+  // This test is run in the "threadsafe" style:
+  ASSERT\_DEATH(ThisShouldDie(), "");
+\}
+
+TEST(MyDeathTest, TestTwo) \{
+  // This test is run in the "fast" style:
+  ASSERT\_DEATH(ThisShouldDie(), "");
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Caveats}
+
+The {\ttfamily statement} argument of {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+E\+X\+I\+T()} can be any valid C++ statement. If it leaves the current function via a {\ttfamily return} statement or by throwing an exception, the death test is considered to have failed. Some Google\+Test macros may return from the current function (e.\+g. {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+T\+R\+U\+E()}), so be sure to avoid them in {\ttfamily statement}.
+
+Since {\ttfamily statement} runs in the child process, any in-\/memory side effect (e.\+g. modifying a variable, releasing memory, etc) it causes will {\itshape not} be observable in the parent process. In particular, if you release memory in a death test, your program will fail the heap check as the parent process will never see the memory reclaimed. To solve this problem, you can
+
+
+\begin{DoxyEnumerate}
+\item try not to free memory in a death test;
+\item free the memory again in the parent process; or
+\item do not use the heap checker in your program.
+\end{DoxyEnumerate}
+
+Due to an implementation detail, you cannot place multiple death test assertions on the same line; otherwise, compilation will fail with an unobvious error message.
+
+Despite the improved thread safety afforded by the \char`\"{}threadsafe\char`\"{} style of death test, thread problems such as deadlock are still possible in the presence of handlers registered with {\ttfamily pthread\+\_\+atfork(3)}.
+
+\subsection*{Using Assertions in Sub-\/routines}
+
+\{\+: .callout .note\} Note\+: If you want to put a series of test assertions in a subroutine to check for a complex condition, consider using \href{gmock_cook_book.md#NewMatchers}{\tt a custom G\+Mock matcher} instead. This lets you provide a more readable error message in case of failure and avoid all of the issues described below.
+
+\subsubsection*{Adding Traces to Assertions}
+
+If a test sub-\/routine is called from several places, when an assertion inside it fails, it can be hard to tell which invocation of the sub-\/routine the failure is from. You can alleviate this problem using extra logging or custom failure messages, but that usually clutters up your tests. A better solution is to use the {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE} macro or the {\ttfamily Scoped\+Trace} utility\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+SCOPED\_TRACE(message);
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+\{c++\}
+ScopedTrace trace("file\_path", line\_number, message);
+\end{DoxyCode}
+
+
+where {\ttfamily message} can be anything streamable to {\ttfamily std\+::ostream}. {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE} macro will cause the current file name, line number, and the given message to be added in every failure message. {\ttfamily Scoped\+Trace} accepts explicit file name and line number in arguments, which is useful for writing test helpers. The effect will be undone when the control leaves the current lexical scope.
+
+For example,
+
+
+\begin{DoxyCode}
+\{c++\}
+10: void Sub1(int n) \{
+11:   EXPECT\_EQ(Bar(n), 1);
+12:   EXPECT\_EQ(Bar(n + 1), 2);
+13: \}
+14:
+15: TEST(FooTest, Bar) \{
+16:   \{
+17:     SCOPED\_TRACE("A");  // This trace point will be included in
+18:                         // every failure in this scope.
+19:     Sub1(1);
+20:   \}
+21:   // Now it won't.
+22:   Sub1(9);
+23: \}
+\end{DoxyCode}
+
+
+could result in messages like these\+:
+
+
+\begin{DoxyCode}
+path/to/foo\_test.cc:11: Failure
+Value of: Bar(n)
+Expected: 1
+  Actual: 2
+Google Test trace:
+path/to/foo\_test.cc:17: A
+
+path/to/foo\_test.cc:12: Failure
+Value of: Bar(n + 1)
+Expected: 2
+  Actual: 3
+\end{DoxyCode}
+
+
+Without the trace, it would\textquotesingle{}ve been difficult to know which invocation of {\ttfamily Sub1()} the two failures come from respectively. (You could add an extra message to each assertion in {\ttfamily Sub1()} to indicate the value of {\ttfamily n}, but that\textquotesingle{}s tedious.)
+
+Some tips on using {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE}\+:
+
+
+\begin{DoxyEnumerate}
+\item With a suitable message, it\textquotesingle{}s often enough to use {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE} at the beginning of a sub-\/routine, instead of at each call site.
+\item When calling sub-\/routines inside a loop, make the loop iterator part of the message in {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE} such that you can know which iteration the failure is from.
+\item Sometimes the line number of the trace point is enough for identifying the particular invocation of a sub-\/routine. In this case, you don\textquotesingle{}t have to choose a unique message for {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE}. You can simply use {\ttfamily \char`\"{}\char`\"{}}.
+\item You can use {\ttfamily S\+C\+O\+P\+E\+D\+\_\+\+T\+R\+A\+CE} in an inner scope when there is one in the outer scope. In this case, all active trace points will be included in the failure messages, in reverse order they are encountered.
+\item The trace dump is clickable in Emacs -\/ hit {\ttfamily return} on a line number and you\textquotesingle{}ll be taken to that line in the source file!
+\end{DoxyEnumerate}
+
+\subsubsection*{Propagating Fatal Failures}
+
+A common pitfall when using {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$} and {\ttfamily F\+A\+I\+L$\ast$} is not understanding that when they fail they only abort the {\itshape current function}, not the entire test. For example, the following test will segfault\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+void Subroutine() \{
+  // Generates a fatal failure and aborts the current function.
+  ASSERT\_EQ(1, 2);
+
+  // The following won't be executed.
+  ...
+\}
+
+TEST(FooTest, Bar) \{
+  Subroutine();  // The intended behavior is for the fatal failure
+                 // in Subroutine() to abort the entire test.
+
+  // The actual behavior: the function goes on after Subroutine() returns.
+  int* p = nullptr;
+  *p = 3;  // Segfault!
+\}
+\end{DoxyCode}
+
+
+To alleviate this, Google\+Test provides three different solutions. You could use either exceptions, the {\ttfamily (A\+S\+S\+E\+R\+T$\vert$\+E\+X\+P\+E\+CT)\+\_\+\+N\+O\+\_\+\+F\+A\+T\+A\+L\+\_\+\+F\+A\+I\+L\+U\+RE} assertions or the {\ttfamily Has\+Fatal\+Failure()} function. They are described in the following two subsections.
+
+\paragraph*{Asserting on Subroutines with an exception}
+
+The following code can turn A\+S\+S\+E\+R\+T-\/failure into an exception\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+class ThrowListener : public testing::EmptyTestEventListener \{
+  void OnTestPartResult(const testing::TestPartResult& result) override \{
+    if (result.type() == testing::TestPartResult::kFatalFailure) \{
+      throw testing::AssertionException(result);
+    \}
+  \}
+\};
+int main(int argc, char** argv) \{
+  ...
+  testing::UnitTest::GetInstance()->listeners().Append(new ThrowListener);
+  return RUN\_ALL\_TESTS();
+\}
+\end{DoxyCode}
+
+
+This listener should be added after other listeners if you have any, otherwise they won\textquotesingle{}t see failed {\ttfamily On\+Test\+Part\+Result}.
+
+\paragraph*{Asserting on Subroutines}
+
+As shown above, if your test calls a subroutine that has an {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$} failure in it, the test will continue after the subroutine returns. This may not be what you want.
+
+Often people want fatal failures to propagate like exceptions. For that Google\+Test offers the following macros\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Fatal assertion  }&\textbf{ Nonfatal assertion  }&\textbf{ Verifies   }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Fatal assertion  }&\textbf{ Nonfatal assertion  }&\textbf{ Verifies   }\\\cline{1-3}
+\endhead
+{\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+N\+O\+\_\+\+F\+A\+T\+A\+L\+\_\+\+F\+A\+I\+L\+U\+R\+E(statement);}  &{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+N\+O\+\_\+\+F\+A\+T\+A\+L\+\_\+\+F\+A\+I\+L\+U\+R\+E(statement);}  &{\ttfamily statement} doesn\textquotesingle{}t generate any new fatal failures in the current thread.   \\\cline{1-3}
+\end{longtabu}
+
+
+Only failures in the thread that executes the assertion are checked to determine the result of this type of assertions. If {\ttfamily statement} creates new threads, failures in these threads are ignored.
+
+Examples\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+ASSERT\_NO\_FATAL\_FAILURE(Foo());
+
+int i;
+EXPECT\_NO\_FATAL\_FAILURE(\{
+  i = Bar();
+\});
+\end{DoxyCode}
+
+
+Assertions from multiple threads are currently not supported on Windows.
+
+\paragraph*{Checking for Failures in the Current Test}
+
+{\ttfamily Has\+Fatal\+Failure()} in the {\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}} class returns {\ttfamily true} if an assertion in the current test has suffered a fatal failure. This allows functions to catch fatal failures in a sub-\/routine and return early.
+
+
+\begin{DoxyCode}
+\{c++\}
+class Test \{
+ public:
+  ...
+  static bool HasFatalFailure();
+\};
+\end{DoxyCode}
+
+
+The typical usage, which basically simulates the behavior of a thrown exception, is\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+TEST(FooTest, Bar) \{
+  Subroutine();
+  // Aborts if Subroutine() had a fatal failure.
+  if (HasFatalFailure()) return;
+
+  // The following won't be executed.
+  ...
+\}
+\end{DoxyCode}
+
+
+If {\ttfamily Has\+Fatal\+Failure()} is used outside of {\ttfamily T\+E\+S\+T()} , {\ttfamily T\+E\+S\+T\+\_\+\+F()} , or a test fixture, you must add the {\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}\+:\+:} prefix, as in\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+if (testing::Test::HasFatalFailure()) return;
+\end{DoxyCode}
+
+
+Similarly, {\ttfamily Has\+Nonfatal\+Failure()} returns {\ttfamily true} if the current test has at least one non-\/fatal failure, and {\ttfamily Has\+Failure()} returns {\ttfamily true} if the current test has at least one failure of either kind.
+
+\subsection*{Logging Additional Information}
+
+In your test code, you can call {\ttfamily Record\+Property(\char`\"{}key\char`\"{}, value)} to log additional information, where {\ttfamily value} can be either a string or an {\ttfamily int}. The {\itshape last} value recorded for a key will be emitted to the \href{#generating-an-xml-report}{\tt X\+ML output} if you specify one. For example, the test
+
+
+\begin{DoxyCode}
+\{c++\}
+TEST\_F(WidgetUsageTest, MinAndMaxWidgets) \{
+  RecordProperty("MaximumWidgets", ComputeMaxUsage());
+  RecordProperty("MinimumWidgets", ComputeMinUsage());
+\}
+\end{DoxyCode}
+
+
+will output X\+ML like this\+:
+
+
+\begin{DoxyCode}
+...
+  <\textcolor{keywordtype}{testcase} \textcolor{keyword}{name}=\textcolor{stringliteral}{"MinAndMaxWidgets"} \textcolor{keyword}{file}=\textcolor{stringliteral}{"test.cpp"} \textcolor{keyword}{line}=\textcolor{stringliteral}{"1"} \textcolor{keyword}{status}=\textcolor{stringliteral}{"run"} \textcolor{keyword}{time}=\textcolor{stringliteral}{"0.006"} \textcolor{keyword}{classname}=\textcolor{stringliteral}{
+      "WidgetUsageTest"} \textcolor{keyword}{MaximumWidgets}=\textcolor{stringliteral}{"12"} \textcolor{keyword}{MinimumWidgets}=\textcolor{stringliteral}{"9"} />
+...
+\end{DoxyCode}
+
+
+\{\+: .callout .note\} \begin{quote}
+N\+O\+TE\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Record\+Property()} is a static member of the {\ttfamily Test} class. Therefore it needs to be prefixed with {\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}\+:\+:} if used outside of the {\ttfamily T\+E\+ST} body and the test fixture class.
+\item $\ast${\ttfamily key}$\ast$ must be a valid X\+ML attribute name, and cannot conflict with the ones already used by Google\+Test ({\ttfamily name}, {\ttfamily status}, {\ttfamily time}, {\ttfamily classname}, {\ttfamily type\+\_\+param}, and {\ttfamily value\+\_\+param}).
+\item Calling {\ttfamily Record\+Property()} outside of the lifespan of a test is allowed. If it\textquotesingle{}s called outside of a test but between a test suite\textquotesingle{}s {\ttfamily Set\+Up\+Test\+Suite()} and {\ttfamily Tear\+Down\+Test\+Suite()} methods, it will be attributed to the X\+ML element for the test suite. If it\textquotesingle{}s called outside of all test suites (e.\+g. in a test environment), it will be attributed to the top-\/level X\+ML element. 
+\end{DoxyItemize}\end{quote}
+
+
+\subsection*{Sharing Resources Between Tests in the Same Test Suite}
+
+Google\+Test creates a new test fixture object for each test in order to make tests independent and easier to debug. However, sometimes tests use resources that are expensive to set up, making the one-\/copy-\/per-\/test model prohibitively expensive.
+
+If the tests don\textquotesingle{}t change the resource, there\textquotesingle{}s no harm in their sharing a single resource copy. So, in addition to per-\/test set-\/up/tear-\/down, Google\+Test also supports per-\/test-\/suite set-\/up/tear-\/down. To use it\+:
+
+
+\begin{DoxyEnumerate}
+\item In your test fixture class (say {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} ), declare as {\ttfamily static} some member variables to hold the shared resources.
+\item Outside your test fixture class (typically just below it), define those member variables, optionally giving them initial values.
+\item In the same test fixture class, define a public member function {\ttfamily static void Set\+Up\+Test\+Suite()} (remember not to spell it as $\ast$$\ast${\ttfamily Setup\+Test\+Suite}$\ast$$\ast$ with a small {\ttfamily u}!) to set up the shared resources and a {\ttfamily static void Tear\+Down\+Test\+Suite()} function to tear them down.
+\end{DoxyEnumerate}
+
+That\textquotesingle{}s it! Google\+Test automatically calls {\ttfamily Set\+Up\+Test\+Suite()} before running the {\itshape first test} in the {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} test suite (i.\+e. before creating the first {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} object), and calls {\ttfamily Tear\+Down\+Test\+Suite()} after running the {\itshape last test} in it (i.\+e. after deleting the last {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} object). In between, the tests can use the shared resources.
+
+Remember that the test order is undefined, so your code can\textquotesingle{}t depend on a test preceding or following another. Also, the tests must either not modify the state of any shared resource, or, if they do modify the state, they must restore the state to its original value before passing control to the next test.
+
+Note that {\ttfamily Set\+Up\+Test\+Suite()} may be called multiple times for a test fixture class that has derived classes, so you should not expect code in the function body to be run only once. Also, derived classes still have access to shared resources defined as static members, so careful consideration is needed when managing shared resources to avoid memory leaks if shared resources are not properly cleaned up in {\ttfamily Tear\+Down\+Test\+Suite()}.
+
+Here\textquotesingle{}s an example of per-\/test-\/suite set-\/up and tear-\/down\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+class FooTest : public testing::Test \{
+ protected:
+  // Per-test-suite set-up.
+  // Called before the first test in this test suite.
+  // Can be omitted if not needed.
+  static void SetUpTestSuite() \{
+    shared\_resource\_ = new ...;
+
+    // If `shared\_resource\_` is **not deleted** in `TearDownTestSuite()`,
+    // reallocation should be prevented because `SetUpTestSuite()` may be called
+    // in subclasses of FooTest and lead to memory leak.
+    //
+    // if (shared\_resource\_ == nullptr) \{
+    //   shared\_resource\_ = new ...;
+    // \}
+  \}
+
+  // Per-test-suite tear-down.
+  // Called after the last test in this test suite.
+  // Can be omitted if not needed.
+  static void TearDownTestSuite() \{
+    delete shared\_resource\_;
+    shared\_resource\_ = nullptr;
+  \}
+
+  // You can define per-test set-up logic as usual.
+  void SetUp() override \{ ... \}
+
+  // You can define per-test tear-down logic as usual.
+  void TearDown() override \{ ... \}
+
+  // Some expensive resource shared by all tests.
+  static T* shared\_resource\_;
+\};
+
+T* FooTest::shared\_resource\_ = nullptr;
+
+TEST\_F(FooTest, Test1) \{
+  ... you can refer to shared\_resource\_ here ...
+\}
+
+TEST\_F(FooTest, Test2) \{
+  ... you can refer to shared\_resource\_ here ...
+\}
+\end{DoxyCode}
+
+
+\{\+: .callout .note\} N\+O\+TE\+: Though the above code declares {\ttfamily Set\+Up\+Test\+Suite()} protected, it may sometimes be necessary to declare it public, such as when using it with {\ttfamily T\+E\+S\+T\+\_\+P}.
+
+\subsection*{Global Set-\/\+Up and Tear-\/\+Down}
+
+Just as you can do set-\/up and tear-\/down at the test level and the test suite level, you can also do it at the test program level. Here\textquotesingle{}s how.
+
+First, you subclass the {\ttfamily \mbox{\hyperlink{classtesting_1_1Environment}{testing\+::\+Environment}}} class to define a test environment, which knows how to set-\/up and tear-\/down\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+class Environment : public ::testing::Environment \{
+ public:
+  ~Environment() override \{\}
+
+  // Override this to define how to set up the environment.
+  void SetUp() override \{\}
+
+  // Override this to define how to tear down the environment.
+  void TearDown() override \{\}
+\};
+\end{DoxyCode}
+
+
+Then, you register an instance of your environment class with Google\+Test by calling the {\ttfamily \+::testing\+::\+Add\+Global\+Test\+Environment()} function\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+Environment* AddGlobalTestEnvironment(Environment* env);
+\end{DoxyCode}
+
+
+Now, when {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()} is called, it first calls the {\ttfamily Set\+Up()} method of each environment object, then runs the tests if none of the environments reported fatal failures and {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+K\+I\+P()} was not called. {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()} always calls {\ttfamily Tear\+Down()} with each environment object, regardless of whether or not the tests were run.
+
+It\textquotesingle{}s OK to register multiple environment objects. In this suite, their {\ttfamily Set\+Up()} will be called in the order they are registered, and their {\ttfamily Tear\+Down()} will be called in the reverse order.
+
+Note that Google\+Test takes ownership of the registered environment objects. Therefore {\bfseries do not delete them} by yourself.
+
+You should call {\ttfamily Add\+Global\+Test\+Environment()} before {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()} is called, probably in {\ttfamily main()}. If you use {\ttfamily gtest\+\_\+main}, you need to call this before {\ttfamily main()} starts for it to take effect. One way to do this is to define a global variable like this\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+testing::Environment* const foo\_env =
+    testing::AddGlobalTestEnvironment(new FooEnvironment);
+\end{DoxyCode}
+
+
+However, we strongly recommend you to write your own {\ttfamily main()} and call {\ttfamily Add\+Global\+Test\+Environment()} there, as relying on initialization of global variables makes the code harder to read and may cause problems when you register multiple environments from different translation units and the environments have dependencies among them (remember that the compiler doesn\textquotesingle{}t guarantee the order in which global variables from different translation units are initialized).
+
+\subsection*{Value-\/\+Parameterized Tests}
+
+{\itshape Value-\/parameterized tests} allow you to test your code with different parameters without writing multiple copies of the same test. This is useful in a number of situations, for example\+:
+
+
+\begin{DoxyItemize}
+\item You have a piece of code whose behavior is affected by one or more command-\/line flags. You want to make sure your code performs correctly for various values of those flags.
+\item You want to test different implementations of an OO interface.
+\item You want to test your code over various inputs (a.\+k.\+a. data-\/driven testing). This feature is easy to abuse, so please exercise your good sense when doing it!
+\end{DoxyItemize}
+
+\subsubsection*{How to Write Value-\/\+Parameterized Tests}
+
+To write value-\/parameterized tests, first you should define a fixture class. It must be derived from both {\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}} and {\ttfamily \mbox{\hyperlink{classtesting_1_1WithParamInterface}{testing\+::\+With\+Param\+Interface}}$<$T$>$} (the latter is a pure interface), where {\ttfamily T} is the type of your parameter values. For convenience, you can just derive the fixture class from {\ttfamily \mbox{\hyperlink{classtesting_1_1TestWithParam}{testing\+::\+Test\+With\+Param}}$<$T$>$}, which itself is derived from both {\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}} and {\ttfamily \mbox{\hyperlink{classtesting_1_1WithParamInterface}{testing\+::\+With\+Param\+Interface}}$<$T$>$}. {\ttfamily T} can be any copyable type. If it\textquotesingle{}s a raw pointer, you are responsible for managing the lifespan of the pointed values.
+
+\{\+: .callout .note\} N\+O\+TE\+: If your test fixture defines {\ttfamily Set\+Up\+Test\+Suite()} or {\ttfamily Tear\+Down\+Test\+Suite()} they must be declared {\bfseries public} rather than {\bfseries protected} in order to use {\ttfamily T\+E\+S\+T\+\_\+P}.
+
+
+\begin{DoxyCode}
+\{c++\}
+class FooTest :
+    public testing::TestWithParam<absl::string\_view> \{
+  // You can implement all the usual fixture class members here.
+  // To access the test parameter, call GetParam() from class
+  // TestWithParam<T>.
+\};
+
+// Or, when you want to add parameters to a pre-existing fixture class:
+class BaseTest : public testing::Test \{
+  ...
+\};
+class BarTest : public BaseTest,
+                public testing::WithParamInterface<absl::string\_view> \{
+  ...
+\};
+\end{DoxyCode}
+
+
+Then, use the {\ttfamily T\+E\+S\+T\+\_\+P} macro to define as many test patterns using this fixture as you want. The {\ttfamily \+\_\+P} suffix is for \char`\"{}parameterized\char`\"{} or \char`\"{}pattern\char`\"{}, whichever you prefer to think.
+
+
+\begin{DoxyCode}
+\{c++\}
+TEST\_P(FooTest, DoesBlah) \{
+  // Inside a test, access the test parameter with the GetParam() method
+  // of the TestWithParam<T> class:
+  EXPECT\_TRUE(foo.Blah(GetParam()));
+  ...
+\}
+
+TEST\_P(FooTest, HasBlahBlah) \{
+  ...
+\}
+\end{DoxyCode}
+
+
+Finally, you can use the {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} macro to instantiate the test suite with any set of parameters you want. Google\+Test defines a number of functions for generating test parameters—see details at \href{reference/testing.md#INSTANTIATE_TEST_SUITE_P}{\tt {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P}} in the Testing Reference.
+
+For example, the following statement will instantiate tests from the {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} test suite each with parameter values {\ttfamily \char`\"{}meeny\char`\"{}}, {\ttfamily \char`\"{}miny\char`\"{}}, and {\ttfamily \char`\"{}moe\char`\"{}} using the \href{reference/testing.md#param-generators}{\tt {\ttfamily Values}} parameter generator\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+INSTANTIATE\_TEST\_SUITE\_P(MeenyMinyMoe,
+                         FooTest,
+                         testing::Values("meeny", "miny", "moe"));
+\end{DoxyCode}
+
+
+\{\+: .callout .note\} N\+O\+TE\+: The code above must be placed at global or namespace scope, not at function scope.
+
+The first argument to {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} is a unique name for the instantiation of the test suite. The next argument is the name of the test pattern, and the last is the \href{reference/testing.md#param-generators}{\tt parameter generator}.
+
+The parameter generator expression is not evaluated until Google\+Test is initialized (via {\ttfamily Init\+Google\+Test()}). Any prior initialization done in the {\ttfamily main} function will be accessible from the parameter generator, for example, the results of flag parsing.
+
+You can instantiate a test pattern more than once, so to distinguish different instances of the pattern, the instantiation name is added as a prefix to the actual test suite name. Remember to pick unique prefixes for different instantiations. The tests from the instantiation above will have these names\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Meeny\+Miny\+Moe/\+Foo\+Test.\+Does\+Blah/0} for {\ttfamily \char`\"{}meeny\char`\"{}}
+\item {\ttfamily Meeny\+Miny\+Moe/\+Foo\+Test.\+Does\+Blah/1} for {\ttfamily \char`\"{}miny\char`\"{}}
+\item {\ttfamily Meeny\+Miny\+Moe/\+Foo\+Test.\+Does\+Blah/2} for {\ttfamily \char`\"{}moe\char`\"{}}
+\item {\ttfamily Meeny\+Miny\+Moe/\+Foo\+Test.\+Has\+Blah\+Blah/0} for {\ttfamily \char`\"{}meeny\char`\"{}}
+\item {\ttfamily Meeny\+Miny\+Moe/\+Foo\+Test.\+Has\+Blah\+Blah/1} for {\ttfamily \char`\"{}miny\char`\"{}}
+\item {\ttfamily Meeny\+Miny\+Moe/\+Foo\+Test.\+Has\+Blah\+Blah/2} for {\ttfamily \char`\"{}moe\char`\"{}}
+\end{DoxyItemize}
+
+You can use these names in \href{#running-a-subset-of-the-tests}{\tt {\ttfamily -\/-\/gtest\+\_\+filter}}.
+
+The following statement will instantiate all tests from {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} again, each with parameter values {\ttfamily \char`\"{}cat\char`\"{}} and {\ttfamily \char`\"{}dog\char`\"{}} using the \href{reference/testing.md#param-generators}{\tt {\ttfamily Values\+In}} parameter generator\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+constexpr absl::string\_view kPets[] = \{"cat", "dog"\};
+INSTANTIATE\_TEST\_SUITE\_P(Pets, FooTest, testing::ValuesIn(kPets));
+\end{DoxyCode}
+
+
+The tests from the instantiation above will have these names\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily Pets/\+Foo\+Test.\+Does\+Blah/0} for {\ttfamily \char`\"{}cat\char`\"{}}
+\item {\ttfamily Pets/\+Foo\+Test.\+Does\+Blah/1} for {\ttfamily \char`\"{}dog\char`\"{}}
+\item {\ttfamily Pets/\+Foo\+Test.\+Has\+Blah\+Blah/0} for {\ttfamily \char`\"{}cat\char`\"{}}
+\item {\ttfamily Pets/\+Foo\+Test.\+Has\+Blah\+Blah/1} for {\ttfamily \char`\"{}dog\char`\"{}}
+\end{DoxyItemize}
+
+Please note that {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} will instantiate {\itshape all} tests in the given test suite, whether their definitions come before or {\itshape after} the {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} statement.
+
+Additionally, by default, every {\ttfamily T\+E\+S\+T\+\_\+P} without a corresponding {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} causes a failing test in test suite {\ttfamily Google\+Test\+Verification}. If you have a test suite where that omission is not an error, for example it is in a library that may be linked in for other reasons or where the list of test cases is dynamic and may be empty, then this check can be suppressed by tagging the test suite\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+GTEST\_ALLOW\_UNINSTANTIATED\_PARAMETERIZED\_TEST(FooTest);
+\end{DoxyCode}
+
+
+You can see \href{https://github.com/google/googletest/blob/main/googletest/samples/sample7_unittest.cc}{\tt sample7\+\_\+unittest.\+cc} and \href{https://github.com/google/googletest/blob/main/googletest/samples/sample8_unittest.cc}{\tt sample8\+\_\+unittest.\+cc} for more examples.
+
+\subsubsection*{Creating Value-\/\+Parameterized Abstract Tests}
+
+In the above, we define and instantiate {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}} in the {\itshape same} source file. Sometimes you may want to define value-\/parameterized tests in a library and let other people instantiate them later. This pattern is known as {\itshape abstract tests}. As an example of its application, when you are designing an interface you can write a standard suite of abstract tests (perhaps using a factory function as the test parameter) that all implementations of the interface are expected to pass. When someone implements the interface, they can instantiate your suite to get all the interface-\/conformance tests for free.
+
+To define abstract tests, you should organize your code like this\+:
+
+
+\begin{DoxyEnumerate}
+\item Put the definition of the parameterized test fixture class (e.\+g. {\ttfamily \mbox{\hyperlink{classFooTest}{Foo\+Test}}}) in a header file, say {\ttfamily foo\+\_\+param\+\_\+test.\+h}. Think of this as {\itshape declaring} your abstract tests.
+\item Put the {\ttfamily T\+E\+S\+T\+\_\+P} definitions in {\ttfamily foo\+\_\+param\+\_\+test.\+cc}, which includes {\ttfamily foo\+\_\+param\+\_\+test.\+h}. Think of this as {\itshape implementing} your abstract tests.
+\end{DoxyEnumerate}
+
+Once they are defined, you can instantiate them by including {\ttfamily foo\+\_\+param\+\_\+test.\+h}, invoking {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+\+P()}, and depending on the library target that contains {\ttfamily foo\+\_\+param\+\_\+test.\+cc}. You can instantiate the same abstract test suite multiple times, possibly in different source files.
+
+\subsubsection*{Specifying Names for Value-\/\+Parameterized Test Parameters}
+
+The optional last argument to {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+\+P()} allows the user to specify a function or functor that generates custom test name suffixes based on the test parameters. The function should accept one argument of type {\ttfamily \mbox{\hyperlink{structtesting_1_1TestParamInfo}{testing\+::\+Test\+Param\+Info}}$<$class Param\+Type$>$}, and return {\ttfamily std\+::string}.
+
+{\ttfamily \mbox{\hyperlink{structtesting_1_1PrintToStringParamName}{testing\+::\+Print\+To\+String\+Param\+Name}}} is a builtin test suffix generator that returns the value of {\ttfamily testing\+::\+Print\+To\+String(\+Get\+Param())}. It does not work for {\ttfamily std\+::string} or C strings.
+
+\{\+: .callout .note\} N\+O\+TE\+: test names must be non-\/empty, unique, and may only contain A\+S\+C\+II alphanumeric characters. In particular, they \href{faq.md#why-should-test-suite-names-and-test-names-not-contain-underscore}{\tt should not contain underscores}
+
+
+\begin{DoxyCode}
+\{c++\}
+class MyTestSuite : public testing::TestWithParam<int> \{\};
+
+TEST\_P(MyTestSuite, MyTest)
+\{
+  std::cout << "Example Test Param: " << GetParam() << std::endl;
+\}
+
+INSTANTIATE\_TEST\_SUITE\_P(MyGroup, MyTestSuite, testing::Range(0, 10),
+                         testing::PrintToStringParamName());
+\end{DoxyCode}
+
+
+Providing a custom functor allows for more control over test parameter name generation, especially for types where the automatic conversion does not generate helpful parameter names (e.\+g. strings as demonstrated above). The following example illustrates this for multiple parameters, an enumeration type and a string, and also demonstrates how to combine generators. It uses a lambda for conciseness\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+enum class MyType \{ MY\_FOO = 0, MY\_BAR = 1 \};
+
+class MyTestSuite : public testing::TestWithParam<std::tuple<MyType, std::string>> \{
+\};
+
+INSTANTIATE\_TEST\_SUITE\_P(
+    MyGroup, MyTestSuite,
+    testing::Combine(
+        testing::Values(MyType::MY\_FOO, MyType::MY\_BAR),
+        testing::Values("A", "B")),
+    [](const testing::TestParamInfo<MyTestSuite::ParamType>& info) \{
+      std::string name = absl::StrCat(
+          std::get<0>(info.param) == MyType::MY\_FOO ? "Foo" : "Bar",
+          std::get<1>(info.param));
+      absl::c\_replace\_if(name, [](char c) \{ return !std::isalnum(c); \}, '\_');
+      return name;
+    \});
+\end{DoxyCode}
+
+
+\subsection*{Typed Tests}
+
+Suppose you have multiple implementations of the same interface and want to make sure that all of them satisfy some common requirements. Or, you may have defined several types that are supposed to conform to the same \char`\"{}concept\char`\"{} and you want to verify it. In both cases, you want the same test logic repeated for different types.
+
+While you can write one {\ttfamily T\+E\+ST} or {\ttfamily T\+E\+S\+T\+\_\+F} for each type you want to test (and you may even factor the test logic into a function template that you invoke from the {\ttfamily T\+E\+ST}), it\textquotesingle{}s tedious and doesn\textquotesingle{}t scale\+: if you want {\ttfamily m} tests over {\ttfamily n} types, you\textquotesingle{}ll end up writing {\ttfamily m$\ast$n} {\ttfamily T\+E\+ST}s.
+
+{\itshape Typed tests} allow you to repeat the same test logic over a list of types. You only need to write the test logic once, although you must know the type list when writing typed tests. Here\textquotesingle{}s how you do it\+:
+
+First, define a fixture class template. It should be parameterized by a type. Remember to derive it from {\ttfamily \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}}}\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+template <typename T>
+class FooTest : public testing::Test \{
+ public:
+  ...
+  using List = std::list<T>;
+  static T shared\_;
+  T value\_;
+\};
+\end{DoxyCode}
+
+
+Next, associate a list of types with the test suite, which will be repeated for each type in the list\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+using MyTypes = ::testing::Types<char, int, unsigned int>;
+TYPED\_TEST\_SUITE(FooTest, MyTypes);
+\end{DoxyCode}
+
+
+The type alias ({\ttfamily using} or {\ttfamily typedef}) is necessary for the {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+TE} macro to parse correctly. Otherwise the compiler will think that each comma in the type list introduces a new macro argument.
+
+Then, use {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T()} instead of {\ttfamily T\+E\+S\+T\+\_\+\+F()} to define a typed test for this test suite. You can repeat this as many times as you want\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+TYPED\_TEST(FooTest, DoesBlah) \{
+  // Inside a test, refer to the special name TypeParam to get the type
+  // parameter.  Since we are inside a derived class template, C++ requires
+  // us to visit the members of FooTest via 'this'.
+  TypeParam n = this->value\_;
+
+  // To visit static members of the fixture, add the 'TestFixture::'
+  // prefix.
+  n += TestFixture::shared\_;
+
+  // To refer to typedefs in the fixture, add the 'typename TestFixture::'
+  // prefix.  The 'typename' is required to satisfy the compiler.
+  typename TestFixture::List values;
+
+  values.push\_back(n);
+  ...
+\}
+
+TYPED\_TEST(FooTest, HasPropertyA) \{ ... \}
+\end{DoxyCode}
+
+
+You can see \href{https://github.com/google/googletest/blob/main/googletest/samples/sample6_unittest.cc}{\tt sample6\+\_\+unittest.\+cc} for a complete example.
+
+\subsection*{Type-\/\+Parameterized Tests}
+
+{\itshape Type-\/parameterized tests} are like typed tests, except that they don\textquotesingle{}t require you to know the list of types ahead of time. Instead, you can define the test logic first and instantiate it with different type lists later. You can even instantiate it more than once in the same program.
+
+If you are designing an interface or concept, you can define a suite of type-\/parameterized tests to verify properties that any valid implementation of the interface/concept should have. Then, the author of each implementation can just instantiate the test suite with their type to verify that it conforms to the requirements, without having to write similar tests repeatedly. Here\textquotesingle{}s an example\+:
+
+First, define a fixture class template, as we did with typed tests\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+template <typename T>
+class FooTest : public testing::Test \{
+  void DoSomethingInteresting();
+  ...
+\};
+\end{DoxyCode}
+
+
+Next, declare that you will define a type-\/parameterized test suite\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+TYPED\_TEST\_SUITE\_P(FooTest);
+\end{DoxyCode}
+
+
+Then, use {\ttfamily T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+P()} to define a type-\/parameterized test. You can repeat this as many times as you want\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+TYPED\_TEST\_P(FooTest, DoesBlah) \{
+  // Inside a test, refer to TypeParam to get the type parameter.
+  TypeParam n = 0;
+
+  // You will need to use `this` explicitly to refer to fixture members.
+  this->DoSomethingInteresting()
+  ...
+\}
+
+TYPED\_TEST\_P(FooTest, HasPropertyA) \{ ... \}
+\end{DoxyCode}
+
+
+Now the tricky part\+: you need to register all test patterns using the {\ttfamily R\+E\+G\+I\+S\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} macro before you can instantiate them. The first argument of the macro is the test suite name; the rest are the names of the tests in this test suite\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+REGISTER\_TYPED\_TEST\_SUITE\_P(FooTest,
+                            DoesBlah, HasPropertyA);
+\end{DoxyCode}
+
+
+Finally, you are free to instantiate the pattern with the types you want. If you put the above code in a header file, you can {\ttfamily \#include} it in multiple C++ source files and instantiate it multiple times.
+
+
+\begin{DoxyCode}
+\{c++\}
+using MyTypes = ::testing::Types<char, int, unsigned int>;
+INSTANTIATE\_TYPED\_TEST\_SUITE\_P(My, FooTest, MyTypes);
+\end{DoxyCode}
+
+
+To distinguish different instances of the pattern, the first argument to the {\ttfamily I\+N\+S\+T\+A\+N\+T\+I\+A\+T\+E\+\_\+\+T\+Y\+P\+E\+D\+\_\+\+T\+E\+S\+T\+\_\+\+S\+U\+I\+T\+E\+\_\+P} macro is a prefix that will be added to the actual test suite name. Remember to pick unique prefixes for different instances.
+
+In the special case where the type list contains only one type, you can write that type directly without {\ttfamily \+::testing\+::\+Types$<$...$>$}, like this\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+INSTANTIATE\_TYPED\_TEST\_SUITE\_P(My, FooTest, int);
+\end{DoxyCode}
+
+
+You can see \href{https://github.com/google/googletest/blob/main/googletest/samples/sample6_unittest.cc}{\tt sample6\+\_\+unittest.\+cc} for a complete example.
+
+\subsection*{Testing Private Code}
+
+If you change your software\textquotesingle{}s internal implementation, your tests should not break as long as the change is not observable by users. Therefore, {\bfseries per the black-\/box testing principle, most of the time you should test your code through its public interfaces.}
+
+{\bfseries If you still find yourself needing to test internal implementation code, consider if there\textquotesingle{}s a better design.} The desire to test internal implementation is often a sign that the class is doing too much. Consider extracting an implementation class, and testing it. Then use that implementation class in the original class.
+
+If you absolutely have to test non-\/public interface code though, you can. There are two cases to consider\+:
+
+
+\begin{DoxyItemize}
+\item Static functions ( {\itshape not} the same as static member functions!) or unnamed namespaces, and
+\item Private or protected class members
+\end{DoxyItemize}
+
+To test them, we use the following special techniques\+:
+
+
+\begin{DoxyItemize}
+\item Both static functions and definitions/declarations in an unnamed namespace are only visible within the same translation unit. To test them, you can {\ttfamily \#include} the entire {\ttfamily .cc} file being tested in your {\ttfamily $\ast$\+\_\+test.cc} file. (\#including {\ttfamily .cc} files is not a good way to reuse code -\/ you should not do this in production code!)
+
+However, a better approach is to move the private code into the {\ttfamily foo\+::internal} namespace, where {\ttfamily foo} is the namespace your project normally uses, and put the private declarations in a {\ttfamily $\ast$-\/internal.h} file. Your production {\ttfamily .cc} files and your tests are allowed to include this internal header, but your clients are not. This way, you can fully test your internal implementation without leaking it to your clients.
+\item Private class members are only accessible from within the class or by friends. To access a class\textquotesingle{} private members, you can declare your test fixture as a friend to the class and define accessors in your fixture. Tests using the fixture can then access the private members of your production class via the accessors in the fixture. Note that even though your fixture is a friend to your production class, your tests are not automatically friends to it, as they are technically defined in sub-\/classes of the fixture.
+
+Another way to test private members is to refactor them into an implementation class, which is then declared in a {\ttfamily $\ast$-\/internal.h} file. Your clients aren\textquotesingle{}t allowed to include this header but your tests can. Such is called the \href{https://www.gamedev.net/articles/programming/general-and-gameplay-programming/the-c-pimpl-r1794/}{\tt Pimpl} (Private Implementation) idiom.
+
+Or, you can declare an individual test as a friend of your class by adding this line in the class body\+:
+
+\`{}\`{}\`{}c++ F\+R\+I\+E\+N\+D\+\_\+\+T\+E\+S\+T(\+Test\+Suite\+Name, Test\+Name); \`{}\`{}\`{}
+
+For example,
+
+\`{}\`{}\`{}c++ // foo.\+h class Foo \{ ... private\+: F\+R\+I\+E\+N\+D\+\_\+\+T\+E\+S\+T(\+Foo\+Test, Bar\+Returns\+Zero\+On\+Null);
+
+int Bar(void$\ast$ x); \};
+
+// foo\+\_\+test.\+cc ... T\+E\+S\+T(\+Foo\+Test, Bar\+Returns\+Zero\+On\+Null) \{ Foo foo; E\+X\+P\+E\+C\+T\+\_\+\+EQ(foo.\+Bar(\+N\+U\+L\+L), 0); // Uses Foo\textquotesingle{}s private member Bar(). \} \`{}\`{}\`{}
+
+Pay special attention when your class is defined in a namespace. If you want your test fixtures and tests to be friends of your class, then they must be defined in the exact same namespace (no anonymous or inline namespaces).
+
+For example, if the code to be tested looks like\+:
+
+\`{}\`{}\`{}c++ namespace my\+\_\+namespace \{
+
+class Foo \{ friend class \mbox{\hyperlink{classFooTest}{Foo\+Test}}; F\+R\+I\+E\+N\+D\+\_\+\+T\+E\+S\+T(\+Foo\+Test, Bar); F\+R\+I\+E\+N\+D\+\_\+\+T\+E\+S\+T(\+Foo\+Test, Baz); ... definition of the class Foo ... \};
+
+\} // namespace my\+\_\+namespace \`{}\`{}\`{}
+
+Your test code should be something like\+:
+
+\`{}\`{}\`{}c++ namespace my\+\_\+namespace \{
+
+class \mbox{\hyperlink{classFooTest}{Foo\+Test}} \+: public \mbox{\hyperlink{classtesting_1_1Test}{testing\+::\+Test}} \{ protected\+: ... \};
+
+T\+E\+S\+T\+\_\+\+F(\+Foo\+Test, Bar) \{ ... \} T\+E\+S\+T\+\_\+\+F(\+Foo\+Test, Baz) \{ ... \}
+
+\} // namespace my\+\_\+namespace \`{}\`{}\`{}
+\end{DoxyItemize}
+
+\subsection*{\char`\"{}\+Catching\char`\"{} Failures}
+
+If you are building a testing utility on top of Google\+Test, you\textquotesingle{}ll want to test your utility. What framework would you use to test it? Google\+Test, of course.
+
+The challenge is to verify that your testing utility reports failures correctly. In frameworks that report a failure by throwing an exception, you could catch the exception and assert on it. But Google\+Test doesn\textquotesingle{}t use exceptions, so how do we test that a piece of code generates an expected failure?
+
+{\ttfamily \char`\"{}gtest/gtest-\/spi.\+h\char`\"{}} contains some constructs to do this. After \#including this header, you can use
+
+
+\begin{DoxyCode}
+\{c++\}
+  EXPECT\_FATAL\_FAILURE(statement, substring);
+\end{DoxyCode}
+
+
+to assert that {\ttfamily statement} generates a fatal (e.\+g. {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$}) failure in the current thread whose message contains the given {\ttfamily substring}, or use
+
+
+\begin{DoxyCode}
+\{c++\}
+  EXPECT\_NONFATAL\_FAILURE(statement, substring);
+\end{DoxyCode}
+
+
+if you are expecting a non-\/fatal (e.\+g. {\ttfamily E\+X\+P\+E\+C\+T\+\_\+$\ast$}) failure.
+
+Only failures in the current thread are checked to determine the result of this type of expectations. If {\ttfamily statement} creates new threads, failures in these threads are also ignored. If you want to catch failures in other threads as well, use one of the following macros instead\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+  EXPECT\_FATAL\_FAILURE\_ON\_ALL\_THREADS(statement, substring);
+  EXPECT\_NONFATAL\_FAILURE\_ON\_ALL\_THREADS(statement, substring);
+\end{DoxyCode}
+
+
+\{\+: .callout .note\} N\+O\+TE\+: Assertions from multiple threads are currently not supported on Windows.
+
+For technical reasons, there are some caveats\+:
+
+
+\begin{DoxyEnumerate}
+\item You cannot stream a failure message to either macro.
+\item {\ttfamily statement} in {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+F\+A\+T\+A\+L\+\_\+\+F\+A\+I\+L\+U\+RE\{\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+T\+H\+R\+E\+A\+DS\}()} cannot reference local non-\/static variables or non-\/static members of {\ttfamily this} object.
+\item {\ttfamily statement} in {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+F\+A\+T\+A\+L\+\_\+\+F\+A\+I\+L\+U\+RE\{\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+T\+H\+R\+E\+A\+DS\}()} cannot return a value.
+\end{DoxyEnumerate}
+
+\subsection*{Registering tests programmatically}
+
+The {\ttfamily T\+E\+ST} macros handle the vast majority of all use cases, but there are few where runtime registration logic is required. For those cases, the framework provides the {\ttfamily \+::testing\+::\+Register\+Test} that allows callers to register arbitrary tests dynamically.
+
+This is an advanced A\+PI only to be used when the {\ttfamily T\+E\+ST} macros are insufficient. The macros should be preferred when possible, as they avoid most of the complexity of calling this function.
+
+It provides the following signature\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+template <typename Factory>
+TestInfo* RegisterTest(const char* test\_suite\_name, const char* test\_name,
+                       const char* type\_param, const char* value\_param,
+                       const char* file, int line, Factory factory);
+\end{DoxyCode}
+
+
+The {\ttfamily factory} argument is a factory callable (move-\/constructible) object or function pointer that creates a new instance of the Test object. It handles ownership to the caller. The signature of the callable is {\ttfamily Fixture$\ast$()}, where {\ttfamily \mbox{\hyperlink{classFixture}{Fixture}}} is the test fixture class for the test. All tests registered with the same {\ttfamily test\+\_\+suite\+\_\+name} must return the same fixture type. This is checked at runtime.
+
+The framework will infer the fixture class from the factory and will call the {\ttfamily Set\+Up\+Test\+Suite} and {\ttfamily Tear\+Down\+Test\+Suite} for it.
+
+Must be called before {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()} is invoked, otherwise behavior is undefined.
+
+Use case example\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+class MyFixture : public testing::Test \{
+ public:
+  // All of these optional, just like in regular macro usage.
+  static void SetUpTestSuite() \{ ... \}
+  static void TearDownTestSuite() \{ ... \}
+  void SetUp() override \{ ... \}
+  void TearDown() override \{ ... \}
+\};
+
+class MyTest : public MyFixture \{
+ public:
+  explicit MyTest(int data) : data\_(data) \{\}
+  void TestBody() override \{ ... \}
+
+ private:
+  int data\_;
+\};
+
+void RegisterMyTests(const std::vector<int>& values) \{
+  for (int v : values) \{
+    testing::RegisterTest(
+        "MyFixture", ("Test" + std::to\_string(v)).c\_str(), nullptr,
+        std::to\_string(v).c\_str(),
+        \_\_FILE\_\_, \_\_LINE\_\_,
+        // Important to use the fixture type as the return type here.
+        [=]() -> MyFixture* \{ return new MyTest(v); \});
+  \}
+\}
+...
+int main(int argc, char** argv) \{
+  testing::InitGoogleTest(&argc, argv);
+  std::vector<int> values\_to\_test = LoadValuesFromConfig();
+  RegisterMyTests(values\_to\_test);
+  ...
+  return RUN\_ALL\_TESTS();
+\}
+\end{DoxyCode}
+
+
+\subsection*{Getting the Current Test\textquotesingle{}s Name}
+
+Sometimes a function may need to know the name of the currently running test. For example, you may be using the {\ttfamily Set\+Up()} method of your test fixture to set the golden file name based on which test is running. The \href{reference/testing.md#TestInfo}{\tt {\ttfamily Test\+Info}} class has this information.
+
+To obtain a {\ttfamily Test\+Info} object for the currently running test, call {\ttfamily current\+\_\+test\+\_\+info()} on the \href{reference/testing.md#UnitTest}{\tt {\ttfamily Unit\+Test}} singleton object\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+  // Gets information about the currently running test.
+  // Do NOT delete the returned object - it's managed by the UnitTest class.
+  const testing::TestInfo* const test\_info =
+      testing::UnitTest::GetInstance()->current\_test\_info();
+
+  printf("We are in test %s of test suite %s.\(\backslash\)n",
+         test\_info->name(),
+         test\_info->test\_suite\_name());
+\end{DoxyCode}
+
+
+{\ttfamily current\+\_\+test\+\_\+info()} returns a null pointer if no test is running. In particular, you cannot find the test suite name in {\ttfamily Set\+Up\+Test\+Suite()}, {\ttfamily Tear\+Down\+Test\+Suite()} (where you know the test suite name implicitly), or functions called from them.
+
+\subsection*{Extending Google\+Test by Handling Test Events}
+
+Google\+Test provides an {\bfseries event listener A\+PI} to let you receive notifications about the progress of a test program and test failures. The events you can listen to include the start and end of the test program, a test suite, or a test method, among others. You may use this A\+PI to augment or replace the standard console output, replace the X\+ML output, or provide a completely different form of output, such as a G\+UI or a database. You can also use test events as checkpoints to implement a resource leak checker, for example.
+
+\subsubsection*{Defining Event Listeners}
+
+To define a event listener, you subclass either \href{reference/testing.md#TestEventListener}{\tt {\ttfamily testing\+::\+Test\+Event\+Listener}} or \href{reference/testing.md#EmptyTestEventListener}{\tt {\ttfamily testing\+::\+Empty\+Test\+Event\+Listener}} The former is an (abstract) interface, where {\itshape each pure virtual method can be overridden to handle a test event} (For example, when a test starts, the {\ttfamily On\+Test\+Start()} method will be called.). The latter provides an empty implementation of all methods in the interface, such that a subclass only needs to override the methods it cares about.
+
+When an event is fired, its context is passed to the handler function as an argument. The following argument types are used\+:
+
+
+\begin{DoxyItemize}
+\item Unit\+Test reflects the state of the entire test program,
+\item Test\+Suite has information about a test suite, which can contain one or more tests,
+\item Test\+Info contains the state of a test, and
+\item Test\+Part\+Result represents the result of a test assertion.
+\end{DoxyItemize}
+
+An event handler function can examine the argument it receives to find out interesting information about the event and the test program\textquotesingle{}s state.
+
+Here\textquotesingle{}s an example\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+  class MinimalistPrinter : public testing::EmptyTestEventListener \{
+    // Called before a test starts.
+    void OnTestStart(const testing::TestInfo& test\_info) override \{
+      printf("*** Test %s.%s starting.\(\backslash\)n",
+             test\_info.test\_suite\_name(), test\_info.name());
+    \}
+
+    // Called after a failed assertion or a SUCCESS().
+    void OnTestPartResult(const testing::TestPartResult& test\_part\_result) override \{
+      printf("%s in %s:%d\(\backslash\)n%s\(\backslash\)n",
+             test\_part\_result.failed() ? "*** Failure" : "Success",
+             test\_part\_result.file\_name(),
+             test\_part\_result.line\_number(),
+             test\_part\_result.summary());
+    \}
+
+    // Called after a test ends.
+    void OnTestEnd(const testing::TestInfo& test\_info) override \{
+      printf("*** Test %s.%s ending.\(\backslash\)n",
+             test\_info.test\_suite\_name(), test\_info.name());
+    \}
+  \};
+\end{DoxyCode}
+
+
+\subsubsection*{Using Event Listeners}
+
+To use the event listener you have defined, add an instance of it to the Google\+Test event listener list (represented by class \href{reference/testing.md#TestEventListeners}{\tt {\ttfamily Test\+Event\+Listeners}} -\/ note the \char`\"{}s\char`\"{} at the end of the name) in your {\ttfamily main()} function, before calling {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+int main(int argc, char** argv) \{
+  testing::InitGoogleTest(&argc, argv);
+  // Gets hold of the event listener list.
+  testing::TestEventListeners& listeners =
+      testing::UnitTest::GetInstance()->listeners();
+  // Adds a listener to the end.  GoogleTest takes the ownership.
+  listeners.Append(new MinimalistPrinter);
+  return RUN\_ALL\_TESTS();
+\}
+\end{DoxyCode}
+
+
+There\textquotesingle{}s only one problem\+: the default test result printer is still in effect, so its output will mingle with the output from your minimalist printer. To suppress the default printer, just release it from the event listener list and delete it. You can do so by adding one line\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+  ...
+  delete listeners.Release(listeners.default\_result\_printer());
+  listeners.Append(new MinimalistPrinter);
+  return RUN\_ALL\_TESTS();
+\end{DoxyCode}
+
+
+Now, sit back and enjoy a completely different output from your tests. For more details, see \href{https://github.com/google/googletest/blob/main/googletest/samples/sample9_unittest.cc}{\tt sample9\+\_\+unittest.\+cc}.
+
+You may append more than one listener to the list. When an {\ttfamily On$\ast$\+Start()} or {\ttfamily On\+Test\+Part\+Result()} event is fired, the listeners will receive it in the order they appear in the list (since new listeners are added to the end of the list, the default text printer and the default X\+ML generator will receive the event first). An {\ttfamily On$\ast$\+End()} event will be received by the listeners in the {\itshape reverse} order. This allows output by listeners added later to be framed by output from listeners added earlier.
+
+\subsubsection*{Generating Failures in Listeners}
+
+You may use failure-\/raising macros ({\ttfamily E\+X\+P\+E\+C\+T\+\_\+$\ast$()}, {\ttfamily A\+S\+S\+E\+R\+T\+\_\+$\ast$()}, {\ttfamily F\+A\+I\+L()}, etc) when processing an event. There are some restrictions\+:
+
+
+\begin{DoxyEnumerate}
+\item You cannot generate any failure in {\ttfamily On\+Test\+Part\+Result()} (otherwise it will cause {\ttfamily On\+Test\+Part\+Result()} to be called recursively).
+\item A listener that handles {\ttfamily On\+Test\+Part\+Result()} is not allowed to generate any failure.
+\end{DoxyEnumerate}
+
+When you add listeners to the listener list, you should put listeners that handle {\ttfamily On\+Test\+Part\+Result()} {\itshape before} listeners that can generate failures. This ensures that failures generated by the latter are attributed to the right test by the former.
+
+See \href{https://github.com/google/googletest/blob/main/googletest/samples/sample10_unittest.cc}{\tt sample10\+\_\+unittest.\+cc} for an example of a failure-\/raising listener.
+
+\subsection*{Running Test Programs\+: Advanced Options}
+
+Google\+Test test programs are ordinary executables. Once built, you can run them directly and affect their behavior via the following environment variables and/or command line flags. For the flags to work, your programs must call {\ttfamily \+::testing\+::\+Init\+Google\+Test()} before calling {\ttfamily R\+U\+N\+\_\+\+A\+L\+L\+\_\+\+T\+E\+S\+T\+S()}.
+
+To see a list of supported flags and their usage, please run your test program with the {\ttfamily -\/-\/help} flag. You can also use {\ttfamily -\/h}, {\ttfamily -\/?}, or {\ttfamily /?} for short.
+
+If an option is specified both by an environment variable and by a flag, the latter takes precedence.
+
+\subsubsection*{Selecting Tests}
+
+\paragraph*{Listing Test Names}
+
+Sometimes it is necessary to list the available tests in a program before running them so that a filter may be applied if needed. Including the flag {\ttfamily -\/-\/gtest\+\_\+list\+\_\+tests} overrides all other flags and lists tests in the following format\+:
+
+
+\begin{DoxyCode}
+TestSuite1.
+  TestName1
+  TestName2
+TestSuite2.
+  TestName
+\end{DoxyCode}
+
+
+None of the tests listed are actually run if the flag is provided. There is no corresponding environment variable for this flag.
+
+\paragraph*{Running a Subset of the Tests}
+
+By default, a Google\+Test program runs all tests the user has defined. Sometimes, you want to run only a subset of the tests (e.\+g. for debugging or quickly verifying a change). If you set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+F\+I\+L\+T\+ER} environment variable or the {\ttfamily -\/-\/gtest\+\_\+filter} flag to a filter string, Google\+Test will only run the tests whose full names (in the form of {\ttfamily Test\+Suite\+Name.\+Test\+Name}) match the filter.
+
+The format of a filter is a \textquotesingle{}{\ttfamily \+:}\textquotesingle{}-\/separated list of wildcard patterns (called the {\itshape positive patterns}) optionally followed by a \textquotesingle{}{\ttfamily -\/}\textquotesingle{} and another \textquotesingle{}{\ttfamily \+:}\textquotesingle{}-\/separated pattern list (called the {\itshape negative patterns}). A test matches the filter if and only if it matches any of the positive patterns but does not match any of the negative patterns.
+
+A pattern may contain `'$\ast$\textquotesingle{}{\ttfamily (matches any string) or}\textquotesingle{}?\textquotesingle{}{\ttfamily (matches any single character). For convenience, the filter}\textquotesingle{}{\itshape -\/\+Negative\+Patterns\textquotesingle{}{\ttfamily can be also written as}\textquotesingle{}-\/\+Negative\+Patterns\textquotesingle{}\`{}.}
+
+{\itshape For example\+:}
+
+{\itshape 
+\begin{DoxyItemize}
+\item {\ttfamily ./foo\+\_\+test} Has no flag, and thus runs all its tests.
+\item {\ttfamily ./foo\+\_\+test -\/-\/gtest\+\_\+filter=$\ast$} Also runs everything, due to the single match-\/everything \`{}{\ttfamily value. $\ast$}./foo\+\_\+test --gtest\+\_\+filter=\mbox{\hyperlink{classFooTest}{Foo\+Test}}.$\ast${\ttfamily Runs everything in test suite }\mbox{\hyperlink{classFooTest}{Foo\+Test}}{\ttfamily . $\ast$}./foo\+\_\+test --gtest\+\_\+filter=$\ast$\+Null$\ast$\+:{\itshape Constructor}{\ttfamily Runs any test whose full name contains either}\char`\"{}\+Null\char`\"{}{\ttfamily or}\char`\"{}\+Constructor\char`\"{}{\ttfamily . $\ast$}./foo\+\_\+test --gtest\+\_\+filter=-\/$\ast$\+Death\+Test.$\ast${\ttfamily Runs all non-\/death tests. $\ast$}./foo\+\_\+test --gtest\+\_\+filter=\mbox{\hyperlink{classFooTest}{Foo\+Test}}.$\ast$-\/\+Foo\+Test.Bar{\ttfamily Runs everything in test suite}\mbox{\hyperlink{classFooTest}{Foo\+Test}}{\ttfamily except}Foo\+Test.\+Bar$<$tt$>$. $\ast$./foo\+\_\+test --gtest\+\_\+filter=\mbox{\hyperlink{classFooTest}{Foo\+Test}}.$\ast$\+:Bar\+Test.$\ast$-\/\+Foo\+Test.Bar\+:Bar\+Test.\+Foo$<$tt$>$Runs everything in test suite\mbox{\hyperlink{classFooTest}{Foo\+Test}}{\ttfamily except}Foo\+Test.\+Bar$<$tt$>$and everything in test suiteBar\+Test{\ttfamily except}Bar\+Test.\+Foo\`{}.
+\end{DoxyItemize}}
+
+{\itshape \paragraph*{Stop test execution upon first failure}}
+
+{\itshape }
+
+{\itshape By default, a Google\+Test program runs all tests the user has defined. In some cases (e.\+g. iterative test development \& execution) it may be desirable stop test execution upon first failure (trading improved latency for completeness). If {\ttfamily G\+T\+E\+S\+T\+\_\+\+F\+A\+I\+L\+\_\+\+F\+A\+ST} environment variable or {\ttfamily -\/-\/gtest\+\_\+fail\+\_\+fast} flag is set, the test runner will stop execution as soon as the first test failure is found.}
+
+{\itshape \paragraph*{Temporarily Disabling Tests}}
+
+{\itshape }
+
+{\itshape If you have a broken test that you cannot fix right away, you can add the {\ttfamily D\+I\+S\+A\+B\+L\+E\+D\+\_\+} prefix to its name. This will exclude it from execution. This is better than commenting out the code or using {\ttfamily \#if 0}, as disabled tests are still compiled (and thus won\textquotesingle{}t rot).}
+
+{\itshape If you need to disable all tests in a test suite, you can either add {\ttfamily D\+I\+S\+A\+B\+L\+E\+D\+\_\+} to the front of the name of each test, or alternatively add it to the front of the test suite name.}
+
+{\itshape For example, the following tests won\textquotesingle{}t be run by Google\+Test, even though they will still be compiled\+:}
+
+{\itshape 
+\begin{DoxyCode}
+\{c++\}
+// Tests that Foo does Abc.
+TEST(FooTest, DISABLED\_DoesAbc) \{ ... \}
+
+class DISABLED\_BarTest : public testing::Test \{ ... \};
+
+// Tests that Bar does Xyz.
+TEST\_F(DISABLED\_BarTest, DoesXyz) \{ ... \}
+\end{DoxyCode}
+}
+
+{\itshape \{\+: .callout .note\} N\+O\+TE\+: This feature should only be used for temporary pain-\/relief. You still have to fix the disabled tests at a later date. As a reminder, Google\+Test will print a banner warning you if a test program contains any disabled tests.}
+
+{\itshape \{\+: .callout .tip\} T\+IP\+: You can easily count the number of disabled tests you have using {\ttfamily grep}. This number can be used as a metric for improving your test quality.}
+
+{\itshape \paragraph*{Temporarily Enabling Disabled Tests}}
+
+{\itshape }
+
+{\itshape To include disabled tests in test execution, just invoke the test program with the {\ttfamily -\/-\/gtest\+\_\+also\+\_\+run\+\_\+disabled\+\_\+tests} flag or set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+A\+L\+S\+O\+\_\+\+R\+U\+N\+\_\+\+D\+I\+S\+A\+B\+L\+E\+D\+\_\+\+T\+E\+S\+TS} environment variable to a value other than {\ttfamily 0}. You can combine this with the {\ttfamily -\/-\/gtest\+\_\+filter} flag to further select which disabled tests to run.}
+
+{\itshape \subsubsection*{Repeating the Tests}}
+
+{\itshape }
+
+{\itshape Once in a while you\textquotesingle{}ll run into a test whose result is hit-\/or-\/miss. Perhaps it will fail only 1\% of the time, making it rather hard to reproduce the bug under a debugger. This can be a major source of frustration.}
+
+{\itshape The {\ttfamily -\/-\/gtest\+\_\+repeat} flag allows you to repeat all (or selected) test methods in a program many times. Hopefully, a flaky test will eventually fail and give you a chance to debug. Here\textquotesingle{}s how to use it\+:}
+
+{\itshape 
+\begin{DoxyCode}
+$ foo\_test --gtest\_repeat=1000
+Repeat foo\_test 1000 times and don't stop at failures.
+
+$ foo\_test --gtest\_repeat=-1
+A negative count means repeating forever.
+
+$ foo\_test --gtest\_repeat=1000 --gtest\_break\_on\_failure
+Repeat foo\_test 1000 times, stopping at the first failure.  This
+is especially useful when running under a debugger: when the test
+fails, it will drop into the debugger and you can then inspect
+variables and stacks.
+
+$ foo\_test --gtest\_repeat=1000 --gtest\_filter=FooBar.*
+Repeat the tests whose name matches the filter 1000 times.
+\end{DoxyCode}
+}
+
+{\itshape If your test program contains \href{#global-set-up-and-tear-down}{\tt global set-\/up/tear-\/down} code, it will be repeated in each iteration as well, as the flakiness may be in it. To avoid repeating global set-\/up/tear-\/down, specify {\ttfamily -\/-\/gtest\+\_\+recreate\+\_\+environments\+\_\+when\+\_\+repeating=false}\{.nowrap\}.}
+
+{\itshape You can also specify the repeat count by setting the {\ttfamily G\+T\+E\+S\+T\+\_\+\+R\+E\+P\+E\+AT} environment variable.}
+
+{\itshape \subsubsection*{Shuffling the Tests}}
+
+{\itshape }
+
+{\itshape You can specify the {\ttfamily -\/-\/gtest\+\_\+shuffle} flag (or set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+H\+U\+F\+F\+LE} environment variable to {\ttfamily 1}) to run the tests in a program in a random order. This helps to reveal bad dependencies between tests.}
+
+{\itshape By default, Google\+Test uses a random seed calculated from the current time. Therefore you\textquotesingle{}ll get a different order every time. The console output includes the random seed value, such that you can reproduce an order-\/related test failure later. To specify the random seed explicitly, use the {\ttfamily -\/-\/gtest\+\_\+random\+\_\+seed=S\+E\+ED} flag (or set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+S\+E\+ED} environment variable), where {\ttfamily S\+E\+ED} is an integer in the range \mbox{[}0, 99999\mbox{]}. The seed value 0 is special\+: it tells Google\+Test to do the default behavior of calculating the seed from the current time.}
+
+{\itshape If you combine this with {\ttfamily -\/-\/gtest\+\_\+repeat=N}, Google\+Test will pick a different random seed and re-\/shuffle the tests in each iteration.}
+
+{\itshape \subsubsection*{Distributing Test Functions to Multiple Machines}}
+
+{\itshape }
+
+{\itshape If you have more than one machine you can use to run a test program, you might want to run the test functions in parallel and get the result faster. We call this technique {\itshape sharding}, where each machine is called a {\itshape shard}.}
+
+{\itshape Google\+Test is compatible with test sharding. To take advantage of this feature, your test runner (not part of Google\+Test) needs to do the following\+:}
+
+{\itshape 
+\begin{DoxyEnumerate}
+\item Allocate a number of machines (shards) to run the tests.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item On each shard, set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+H\+A\+R\+DS} environment variable to the total number of shards. It must be the same for all shards.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item On each shard, set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+H\+A\+R\+D\+\_\+\+I\+N\+D\+EX} environment variable to the index of the shard. Different shards must be assigned different indices, which must be in the range {\ttfamily \mbox{[}0, G\+T\+E\+S\+T\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+H\+A\+R\+DS -\/ 1\mbox{]}}.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Run the same test program on all shards. When Google\+Test sees the above two environment variables, it will select a subset of the test functions to run. Across all shards, each test function in the program will be run exactly once.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item Wait for all shards to finish, then collect and report the results.
+\end{DoxyEnumerate}}
+
+{\itshape Your project may have tests that were written without Google\+Test and thus don\textquotesingle{}t understand this protocol. In order for your test runner to figure out which test supports sharding, it can set the environment variable {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+H\+A\+R\+D\+\_\+\+S\+T\+A\+T\+U\+S\+\_\+\+F\+I\+LE} to a non-\/existent file path. If a test program supports sharding, it will create this file to acknowledge that fact; otherwise it will not create it. The actual contents of the file are not important at this time, although we may put some useful information in it in the future.}
+
+{\itshape Here\textquotesingle{}s an example to make it clear. Suppose you have a test program {\ttfamily foo\+\_\+test} that contains the following 5 test functions\+:}
+
+{\itshape 
+\begin{DoxyCode}
+TEST(A, V)
+TEST(A, W)
+TEST(B, X)
+TEST(B, Y)
+TEST(B, Z)
+\end{DoxyCode}
+}
+
+{\itshape Suppose you have 3 machines at your disposal. To run the test functions in parallel, you would set {\ttfamily G\+T\+E\+S\+T\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+H\+A\+R\+DS} to 3 on all machines, and set {\ttfamily G\+T\+E\+S\+T\+\_\+\+S\+H\+A\+R\+D\+\_\+\+I\+N\+D\+EX} to 0, 1, and 2 on the machines respectively. Then you would run the same {\ttfamily foo\+\_\+test} on each machine.}
+
+{\itshape Google\+Test reserves the right to change how the work is distributed across the shards, but here\textquotesingle{}s one possible scenario\+:}
+
+{\itshape 
+\begin{DoxyItemize}
+\item Machine \#0 runs {\ttfamily A.\+V} and {\ttfamily B.\+X}.
+\item Machine \#1 runs {\ttfamily A.\+W} and {\ttfamily B.\+Y}.
+\item Machine \#2 runs {\ttfamily B.\+Z}.
+\end{DoxyItemize}}
+
+{\itshape \subsubsection*{Controlling Test Output}}
+
+{\itshape }
+
+{\itshape \paragraph*{Colored Terminal Output}}
+
+{\itshape }
+
+{\itshape Google\+Test can use colors in its terminal output to make it easier to spot the important information\+:}
+
+{\itshape 
+\begin{DoxyPre}...
+<font color="green">[----------]</font> 1 test from \mbox{\hyperlink{classFooTest}{FooTest}}
+<font color="green">[ RUN      ]</font> FooTest.DoesAbc
+<font color="green">[       OK ]</font> FooTest.DoesAbc
+<font color="green">[----------]</font> 2 tests from BarTest
+<font color="green">[ RUN      ]</font> BarTest.HasXyzProperty
+<font color="green">[       OK ]</font> BarTest.HasXyzProperty
+<font color="green">[ RUN      ]</font> BarTest.ReturnsTrueOnSuccess
+... some error messages ...
+<font color="red">[   FAILED ]</font> BarTest.ReturnsTrueOnSuccess
+...
+<font color="green">[==========]</font> 30 tests from 14 test suites ran.
+<font color="green">[   PASSED ]</font> 28 tests.
+<font color="red">[   FAILED ]</font> 2 tests, listed below:
+<font color="red">[   FAILED ]</font> BarTest.ReturnsTrueOnSuccess
+<font color="red">[   FAILED ]</font> AnotherTest.DoesXyz\end{DoxyPre}
+}
+
+{\itshape 
+\begin{DoxyPre} 2 FAILED TESTS
+\end{DoxyPre}
+}
+
+{\itshape You can set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+C\+O\+L\+OR} environment variable or the {\ttfamily -\/-\/gtest\+\_\+color} command line flag to {\ttfamily yes}, {\ttfamily no}, or {\ttfamily auto} (the default) to enable colors, disable colors, or let Google\+Test decide. When the value is {\ttfamily auto}, Google\+Test will use colors if and only if the output goes to a terminal and (on non-\/\+Windows platforms) the {\ttfamily T\+E\+RM} environment variable is set to {\ttfamily xterm} or {\ttfamily xterm-\/color}.}
+
+{\itshape \paragraph*{Suppressing test passes}}
+
+{\itshape }
+
+{\itshape By default, Google\+Test prints 1 line of output for each test, indicating if it passed or failed. To show only test failures, run the test program with {\ttfamily -\/-\/gtest\+\_\+brief=1}, or set the G\+T\+E\+S\+T\+\_\+\+B\+R\+I\+EF environment variable to {\ttfamily 1}.}
+
+{\itshape \paragraph*{Suppressing the Elapsed Time}}
+
+{\itshape }
+
+{\itshape By default, Google\+Test prints the time it takes to run each test. To disable that, run the test program with the {\ttfamily -\/-\/gtest\+\_\+print\+\_\+time=0} command line flag, or set the G\+T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+T\+I\+ME environment variable to {\ttfamily 0}.}
+
+{\itshape \paragraph*{Suppressing U\+T\+F-\/8 Text Output}}
+
+{\itshape }
+
+{\itshape In case of assertion failures, Google\+Test prints expected and actual values of type {\ttfamily string} both as hex-\/encoded strings as well as in readable U\+T\+F-\/8 text if they contain valid non-\/\+A\+S\+C\+II U\+T\+F-\/8 characters. If you want to suppress the U\+T\+F-\/8 text because, for example, you don\textquotesingle{}t have an U\+T\+F-\/8 compatible output medium, run the test program with {\ttfamily -\/-\/gtest\+\_\+print\+\_\+utf8=0} or set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+P\+R\+I\+N\+T\+\_\+\+U\+T\+F8} environment variable to {\ttfamily 0}.}
+
+{\itshape \paragraph*{Generating an X\+ML Report}}
+
+{\itshape }
+
+{\itshape Google\+Test can emit a detailed X\+ML report to a file in addition to its normal textual output. The report contains the duration of each test, and thus can help you identify slow tests.}
+
+{\itshape To generate the X\+ML report, set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+O\+U\+T\+P\+UT} environment variable or the {\ttfamily -\/-\/gtest\+\_\+output} flag to the string {\ttfamily \char`\"{}xml\+:path\+\_\+to\+\_\+output\+\_\+file\char`\"{}}, which will create the file at the given location. You can also just use the string {\ttfamily \char`\"{}xml\char`\"{}}, in which case the output can be found in the {\ttfamily test\+\_\+detail.\+xml} file in the current directory.}
+
+{\itshape If you specify a directory (for example, {\ttfamily \char`\"{}xml\+:output/directory/\char`\"{}} on Linux or {\ttfamily \char`\"{}xml\+:output\textbackslash{}directory\textbackslash{}\char`\"{}} on Windows), Google\+Test will create the X\+ML file in that directory, named after the test executable (e.\+g. {\ttfamily foo\+\_\+test.\+xml} for test program {\ttfamily foo\+\_\+test} or {\ttfamily foo\+\_\+test.\+exe}). If the file already exists (perhaps left over from a previous run), Google\+Test will pick a different name (e.\+g. {\ttfamily foo\+\_\+test\+\_\+1.\+xml}) to avoid overwriting it.}
+
+{\itshape The report is based on the {\ttfamily junitreport} Ant task. Since that format was originally intended for Java, a little interpretation is required to make it apply to Google\+Test tests, as shown here\+:}
+
+{\itshape 
+\begin{DoxyCode}
+<\textcolor{keywordtype}{testsuites} \textcolor{keyword}{name}=\textcolor{stringliteral}{"AllTests"} ...>
+  <\textcolor{keywordtype}{testsuite} \textcolor{keyword}{name}=\textcolor{stringliteral}{"test\_case\_name"} ...>
+    <\textcolor{keywordtype}{testcase}    \textcolor{keyword}{name}=\textcolor{stringliteral}{"test\_name"} ...>
+      <\textcolor{keywordtype}{failure} \textcolor{keyword}{message}=\textcolor{stringliteral}{"..."}/>
+      <\textcolor{keywordtype}{failure} \textcolor{keyword}{message}=\textcolor{stringliteral}{"..."}/>
+      <\textcolor{keywordtype}{failure} \textcolor{keyword}{message}=\textcolor{stringliteral}{"..."}/>
+    </\textcolor{keywordtype}{testcase}>
+  </\textcolor{keywordtype}{testsuite}>
+</\textcolor{keywordtype}{testsuites}>
+\end{DoxyCode}
+}
+
+{\itshape 
+\begin{DoxyItemize}
+\item The root {\ttfamily $<$testsuites$>$} element corresponds to the entire test program.
+\item {\ttfamily $<$testsuite$>$} elements correspond to Google\+Test test suites.
+\item {\ttfamily $<$testcase$>$} elements correspond to Google\+Test test functions.
+\end{DoxyItemize}}
+
+{\itshape For instance, the following program}
+
+{\itshape 
+\begin{DoxyCode}
+\{c++\}
+TEST(MathTest, Addition) \{ ... \}
+TEST(MathTest, Subtraction) \{ ... \}
+TEST(LogicTest, NonContradiction) \{ ... \}
+\end{DoxyCode}
+}
+
+{\itshape could generate this report\+:}
+
+{\itshape 
+\begin{DoxyCode}
+<?\textcolor{keyword}{xml} \textcolor{keyword}{version}=\textcolor{stringliteral}{"1.0"} \textcolor{keyword}{encoding}=\textcolor{stringliteral}{"UTF-8"}?>
+<\textcolor{keywordtype}{testsuites} \textcolor{keyword}{tests}=\textcolor{stringliteral}{"3"} \textcolor{keyword}{failures}=\textcolor{stringliteral}{"1"} \textcolor{keyword}{errors}=\textcolor{stringliteral}{"0"} \textcolor{keyword}{time}=\textcolor{stringliteral}{"0.035"} \textcolor{keyword}{timestamp}=\textcolor{stringliteral}{"2011-10-31T18:52:42"} \textcolor{keyword}{name}=\textcolor{stringliteral}{"AllTests"}>
+  <\textcolor{keywordtype}{testsuite} \textcolor{keyword}{name}=\textcolor{stringliteral}{"MathTest"} \textcolor{keyword}{tests}=\textcolor{stringliteral}{"2"} \textcolor{keyword}{failures}=\textcolor{stringliteral}{"1"} \textcolor{keyword}{errors}=\textcolor{stringliteral}{"0"} \textcolor{keyword}{time}=\textcolor{stringliteral}{"0.015"}>
+    <\textcolor{keywordtype}{testcase} \textcolor{keyword}{name}=\textcolor{stringliteral}{"Addition"} \textcolor{keyword}{file}=\textcolor{stringliteral}{"test.cpp"} \textcolor{keyword}{line}=\textcolor{stringliteral}{"1"} \textcolor{keyword}{status}=\textcolor{stringliteral}{"run"} \textcolor{keyword}{time}=\textcolor{stringliteral}{"0.007"} \textcolor{keyword}{classname}=\textcolor{stringliteral}{""}>
+      <\textcolor{keywordtype}{failure} \textcolor{keyword}{message}=\textcolor{stringliteral}{"Value of: add(1, 1)&#x0A;  Actual: 3&#x0A;Expected: 2"} \textcolor{keyword}{type}=\textcolor{stringliteral}{""}>...</\textcolor{keywordtype}{failure}>
+      <\textcolor{keywordtype}{failure} \textcolor{keyword}{message}=\textcolor{stringliteral}{"Value of: add(1, -1)&#x0A;  Actual: 1&#x0A;Expected: 0"} \textcolor{keyword}{type}=\textcolor{stringliteral}{""}>...</\textcolor{keywordtype}{failure}>
+    </\textcolor{keywordtype}{testcase}>
+    <\textcolor{keywordtype}{testcase} \textcolor{keyword}{name}=\textcolor{stringliteral}{"Subtraction"} \textcolor{keyword}{file}=\textcolor{stringliteral}{"test.cpp"} \textcolor{keyword}{line}=\textcolor{stringliteral}{"2"} \textcolor{keyword}{status}=\textcolor{stringliteral}{"run"} \textcolor{keyword}{time}=\textcolor{stringliteral}{"0.005"} \textcolor{keyword}{classname}=\textcolor{stringliteral}{""}>
+    </\textcolor{keywordtype}{testcase}>
+  </\textcolor{keywordtype}{testsuite}>
+  <\textcolor{keywordtype}{testsuite} \textcolor{keyword}{name}=\textcolor{stringliteral}{"LogicTest"} \textcolor{keyword}{tests}=\textcolor{stringliteral}{"1"} \textcolor{keyword}{failures}=\textcolor{stringliteral}{"0"} \textcolor{keyword}{errors}=\textcolor{stringliteral}{"0"} \textcolor{keyword}{time}=\textcolor{stringliteral}{"0.005"}>
+    <\textcolor{keywordtype}{testcase} \textcolor{keyword}{name}=\textcolor{stringliteral}{"NonContradiction"} \textcolor{keyword}{file}=\textcolor{stringliteral}{"test.cpp"} \textcolor{keyword}{line}=\textcolor{stringliteral}{"3"} \textcolor{keyword}{status}=\textcolor{stringliteral}{"run"} \textcolor{keyword}{time}=\textcolor{stringliteral}{"0.005"} \textcolor{keyword}{classname}=\textcolor{stringliteral}{""}>
+    </\textcolor{keywordtype}{testcase}>
+  </\textcolor{keywordtype}{testsuite}>
+</\textcolor{keywordtype}{testsuites}>
+\end{DoxyCode}
+}
+
+{\itshape Things to note\+:}
+
+{\itshape 
+\begin{DoxyItemize}
+\item The {\ttfamily tests} attribute of a {\ttfamily $<$testsuites$>$} or {\ttfamily $<$testsuite$>$} element tells how many test functions the Google\+Test program or test suite contains, while the {\ttfamily failures} attribute tells how many of them failed.
+\item The {\ttfamily time} attribute expresses the duration of the test, test suite, or entire test program in seconds.
+\item The {\ttfamily timestamp} attribute records the local date and time of the test execution.
+\item The {\ttfamily file} and {\ttfamily line} attributes record the source file location, where the test was defined.
+\item Each {\ttfamily $<$failure$>$} element corresponds to a single failed Google\+Test assertion.
+\end{DoxyItemize}}
+
+{\itshape \paragraph*{Generating a J\+S\+ON Report}}
+
+{\itshape }
+
+{\itshape Google\+Test can also emit a J\+S\+ON report as an alternative format to X\+ML. To generate the J\+S\+ON report, set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+O\+U\+T\+P\+UT} environment variable or the {\ttfamily -\/-\/gtest\+\_\+output} flag to the string {\ttfamily \char`\"{}json\+:path\+\_\+to\+\_\+output\+\_\+file\char`\"{}}, which will create the file at the given location. You can also just use the string {\ttfamily \char`\"{}json\char`\"{}}, in which case the output can be found in the {\ttfamily test\+\_\+detail.\+json} file in the current directory.}
+
+{\itshape The report format conforms to the following J\+S\+ON Schema\+:}
+
+{\itshape 
+\begin{DoxyCode}
+\{
+  "$schema": "https://json-schema.org/schema#",
+  "type": "object",
+  "definitions": \{
+    "TestCase": \{
+      "type": "object",
+      "properties": \{
+        "name": \{ "type": "string" \},
+        "tests": \{ "type": "integer" \},
+        "failures": \{ "type": "integer" \},
+        "disabled": \{ "type": "integer" \},
+        "time": \{ "type": "string" \},
+        "testsuite": \{
+          "type": "array",
+          "items": \{
+            "$ref": "#/definitions/TestInfo"
+          \}
+        \}
+      \}
+    \},
+    "TestInfo": \{
+      "type": "object",
+      "properties": \{
+        "name": \{ "type": "string" \},
+        "file": \{ "type": "string" \},
+        "line": \{ "type": "integer" \},
+        "status": \{
+          "type": "string",
+          "enum": ["RUN", "NOTRUN"]
+        \},
+        "time": \{ "type": "string" \},
+        "classname": \{ "type": "string" \},
+        "failures": \{
+          "type": "array",
+          "items": \{
+            "$ref": "#/definitions/Failure"
+          \}
+        \}
+      \}
+    \},
+    "Failure": \{
+      "type": "object",
+      "properties": \{
+        "failures": \{ "type": "string" \},
+        "type": \{ "type": "string" \}
+      \}
+    \}
+  \},
+  "properties": \{
+    "tests": \{ "type": "integer" \},
+    "failures": \{ "type": "integer" \},
+    "disabled": \{ "type": "integer" \},
+    "errors": \{ "type": "integer" \},
+    "timestamp": \{
+      "type": "string",
+      "format": "date-time"
+    \},
+    "time": \{ "type": "string" \},
+    "name": \{ "type": "string" \},
+    "testsuites": \{
+      "type": "array",
+      "items": \{
+        "$ref": "#/definitions/TestCase"
+      \}
+    \}
+  \}
+\}
+\end{DoxyCode}
+}
+
+{\itshape The report uses the format that conforms to the following Proto3 using the \href{https://developers.google.com/protocol-buffers/docs/proto3#json}{\tt J\+S\+ON encoding}\+:}
+
+{\itshape 
+\begin{DoxyCode}
+syntax = "proto3";
+
+package googletest;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+message UnitTest \{
+  int32 tests = 1;
+  int32 failures = 2;
+  int32 disabled = 3;
+  int32 errors = 4;
+  google.protobuf.Timestamp timestamp = 5;
+  google.protobuf.Duration time = 6;
+  string name = 7;
+  repeated TestCase testsuites = 8;
+\}
+
+message TestCase \{
+  string name = 1;
+  int32 tests = 2;
+  int32 failures = 3;
+  int32 disabled = 4;
+  int32 errors = 5;
+  google.protobuf.Duration time = 6;
+  repeated TestInfo testsuite = 7;
+\}
+
+message TestInfo \{
+  string name = 1;
+  string file = 6;
+  int32 line = 7;
+  enum Status \{
+    RUN = 0;
+    NOTRUN = 1;
+  \}
+  Status status = 2;
+  google.protobuf.Duration time = 3;
+  string classname = 4;
+  message Failure \{
+    string failures = 1;
+    string type = 2;
+  \}
+  repeated Failure failures = 5;
+\}
+\end{DoxyCode}
+}
+
+{\itshape For instance, the following program}
+
+{\itshape 
+\begin{DoxyCode}
+\{c++\}
+TEST(MathTest, Addition) \{ ... \}
+TEST(MathTest, Subtraction) \{ ... \}
+TEST(LogicTest, NonContradiction) \{ ... \}
+\end{DoxyCode}
+}
+
+{\itshape could generate this report\+:}
+
+{\itshape 
+\begin{DoxyCode}
+\{
+  "tests": 3,
+  "failures": 1,
+  "errors": 0,
+  "time": "0.035s",
+  "timestamp": "2011-10-31T18:52:42Z",
+  "name": "AllTests",
+  "testsuites": [
+    \{
+      "name": "MathTest",
+      "tests": 2,
+      "failures": 1,
+      "errors": 0,
+      "time": "0.015s",
+      "testsuite": [
+        \{
+          "name": "Addition",
+          "file": "test.cpp",
+          "line": 1,
+          "status": "RUN",
+          "time": "0.007s",
+          "classname": "",
+          "failures": [
+            \{
+              "message": "Value of: add(1, 1)\(\backslash\)n  Actual: 3\(\backslash\)nExpected: 2",
+              "type": ""
+            \},
+            \{
+              "message": "Value of: add(1, -1)\(\backslash\)n  Actual: 1\(\backslash\)nExpected: 0",
+              "type": ""
+            \}
+          ]
+        \},
+        \{
+          "name": "Subtraction",
+          "file": "test.cpp",
+          "line": 2,
+          "status": "RUN",
+          "time": "0.005s",
+          "classname": ""
+        \}
+      ]
+    \},
+    \{
+      "name": "LogicTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "time": "0.005s",
+      "testsuite": [
+        \{
+          "name": "NonContradiction",
+          "file": "test.cpp",
+          "line": 3,
+          "status": "RUN",
+          "time": "0.005s",
+          "classname": ""
+        \}
+      ]
+    \}
+  ]
+\}
+\end{DoxyCode}
+}
+
+{\itshape \{\+: .callout .important\} I\+M\+P\+O\+R\+T\+A\+NT\+: The exact format of the J\+S\+ON document is subject to change.}
+
+{\itshape \subsubsection*{Controlling How Failures Are Reported}}
+
+{\itshape }
+
+{\itshape \paragraph*{Detecting Test Premature Exit}}
+
+{\itshape }
+
+{\itshape Google Test implements the {\itshape premature-\/exit-\/file} protocol for test runners to catch any kind of unexpected exits of test programs. Upon start, Google Test creates the file which will be automatically deleted after all work has been finished. Then, the test runner can check if this file exists. In case the file remains undeleted, the inspected test has exited prematurely.}
+
+{\itshape This feature is enabled only if the {\ttfamily T\+E\+S\+T\+\_\+\+P\+R\+E\+M\+A\+T\+U\+R\+E\+\_\+\+E\+X\+I\+T\+\_\+\+F\+I\+LE} environment variable has been set.}
+
+{\itshape \paragraph*{Turning Assertion Failures into Break-\/\+Points}}
+
+{\itshape }
+
+{\itshape When running test programs under a debugger, it\textquotesingle{}s very convenient if the debugger can catch an assertion failure and automatically drop into interactive mode. Google\+Test\textquotesingle{}s {\itshape break-\/on-\/failure} mode supports this behavior.}
+
+{\itshape To enable it, set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+B\+R\+E\+A\+K\+\_\+\+O\+N\+\_\+\+F\+A\+I\+L\+U\+RE} environment variable to a value other than {\ttfamily 0}. Alternatively, you can use the {\ttfamily -\/-\/gtest\+\_\+break\+\_\+on\+\_\+failure} command line flag.}
+
+{\itshape \paragraph*{Disabling Catching Test-\/\+Thrown Exceptions}}
+
+{\itshape }
+
+{\itshape Google\+Test can be used either with or without exceptions enabled. If a test throws a C++ exception or (on Windows) a structured exception (S\+EH), by default Google\+Test catches it, reports it as a test failure, and continues with the next test method. This maximizes the coverage of a test run. Also, on Windows an uncaught exception will cause a pop-\/up window, so catching the exceptions allows you to run the tests automatically.}
+
+{\itshape When debugging the test failures, however, you may instead want the exceptions to be handled by the debugger, such that you can examine the call stack when an exception is thrown. To achieve that, set the {\ttfamily G\+T\+E\+S\+T\+\_\+\+C\+A\+T\+C\+H\+\_\+\+E\+X\+C\+E\+P\+T\+I\+O\+NS} environment variable to {\ttfamily 0}, or use the {\ttfamily -\/-\/gtest\+\_\+catch\+\_\+exceptions=0} flag when running the tests.}
+
+{\itshape \subsubsection*{Sanitizer Integration}}
+
+{\itshape }
+
+{\itshape The \href{https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html}{\tt Undefined Behavior Sanitizer}, \href{https://github.com/google/sanitizers/wiki/AddressSanitizer}{\tt Address Sanitizer}, and \href{https://github.com/google/sanitizers/wiki/ThreadSanitizerCppManual}{\tt Thread Sanitizer} all provide weak functions that you can override to trigger explicit failures when they detect sanitizer errors, such as creating a reference from {\ttfamily nullptr}. To override these functions, place definitions for them in a source file that you compile as part of your main binary\+:}
+
+{\itshape 
+\begin{DoxyCode}
+extern "C" \{
+void \_\_ubsan\_on\_report() \{
+  FAIL() << "Encountered an undefined behavior sanitizer error";
+\}
+void \_\_asan\_on\_error() \{
+  FAIL() << "Encountered an address sanitizer error";
+\}
+void \_\_tsan\_on\_report() \{
+  FAIL() << "Encountered a thread sanitizer error";
+\}
+\}  // extern "C"
+\end{DoxyCode}
+}
+
+{\itshape After compiling your project with one of the sanitizers enabled, if a particular test triggers a sanitizer error, Google\+Test will report that it failed. }

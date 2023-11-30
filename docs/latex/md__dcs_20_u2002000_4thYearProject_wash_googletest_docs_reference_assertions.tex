@@ -1,0 +1,436 @@
+This page lists the assertion macros provided by Google\+Test for verifying code behavior. To use them, add {\ttfamily \#include $<$\mbox{\hyperlink{gtest_8h_source}{gtest/gtest.\+h}}$>$}.
+
+The majority of the macros listed below come as a pair with an {\ttfamily E\+X\+P\+E\+C\+T\+\_\+} variant and an {\ttfamily A\+S\+S\+E\+R\+T\+\_\+} variant. Upon failure, {\ttfamily E\+X\+P\+E\+C\+T\+\_\+} macros generate nonfatal failures and allow the current function to continue running, while {\ttfamily A\+S\+S\+E\+R\+T\+\_\+} macros generate fatal failures and abort the current function.
+
+All assertion macros support streaming a custom failure message into them with the {\ttfamily $<$$<$} operator, for example\+:
+
+
+\begin{DoxyCode}
+EXPECT\_TRUE(my\_condition) << \textcolor{stringliteral}{"My condition is not true"};
+\end{DoxyCode}
+
+
+Anything that can be streamed to an {\ttfamily ostream} can be streamed to an assertion macro—in particular, C strings and string objects. If a wide string ({\ttfamily wchar\+\_\+t$\ast$}, {\ttfamily T\+C\+H\+A\+R$\ast$} in {\ttfamily U\+N\+I\+C\+O\+DE} mode on Windows, or {\ttfamily std\+::wstring}) is streamed to an assertion, it will be translated to U\+T\+F-\/8 when printed.
+
+The assertions in this section generate a success or failure directly instead of testing a value or expression. These are useful when control flow, rather than a Boolean expression, determines the test\textquotesingle{}s success or failure, as shown by the following example\+:
+
+
+\begin{DoxyCode}
+\{c++\}
+switch(expression) \{
+  case 1:
+    ... some checks ...
+  case 2:
+    ... some other checks ...
+  default:
+    FAIL() << "We shouldn't get here.";
+\}
+\end{DoxyCode}
+
+
+{\ttfamily S\+U\+C\+C\+E\+E\+D()}
+
+Generates a success. This {\itshape does not} make the overall test succeed. A test is considered successful only if none of its assertions fail during its execution.
+
+The {\ttfamily S\+U\+C\+C\+E\+ED} assertion is purely documentary and currently doesn\textquotesingle{}t generate any user-\/visible output. However, we may add {\ttfamily S\+U\+C\+C\+E\+ED} messages to Google\+Test output in the future.
+
+{\ttfamily F\+A\+I\+L()}
+
+Generates a fatal failure, which returns from the current function.
+
+Can only be used in functions that return {\ttfamily void}. See \href{../advanced.md#assertion-placement}{\tt Assertion Placement} for more information.
+
+{\ttfamily A\+D\+D\+\_\+\+F\+A\+I\+L\+U\+R\+E()}
+
+Generates a nonfatal failure, which allows the current function to continue running.
+
+{\ttfamily A\+D\+D\+\_\+\+F\+A\+I\+L\+U\+R\+E\+\_\+\+AT(}$\ast${\ttfamily file\+\_\+path}$\ast${\ttfamily ,}$\ast${\ttfamily line\+\_\+number}$\ast${\ttfamily )}
+
+Generates a nonfatal failure at the file and line number specified.
+
+The following assertion allows matchers to be used to verify values.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+AT(}$\ast${\ttfamily value}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+AT(}$\ast${\ttfamily value}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily value}$\ast$ matches the matcher $\ast${\ttfamily matcher}$\ast$.
+
+For example, the following code verifies that the string {\ttfamily value1} starts with {\ttfamily \char`\"{}\+Hello\char`\"{}}, {\ttfamily value2} matches a regular expression, and {\ttfamily value3} is between 5 and 10\+:
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <gmock/gmock.h>}
+
+using ::testing::AllOf;
+using ::testing::Gt;
+using ::testing::Lt;
+using ::testing::MatchesRegex;
+using ::testing::StartsWith;
+
+...
+EXPECT\_THAT(value1, StartsWith(\textcolor{stringliteral}{"Hello"}));
+EXPECT\_THAT(value2, MatchesRegex(\textcolor{stringliteral}{"Line \(\backslash\)\(\backslash\)d+"}));
+ASSERT\_THAT(value3, AllOf(Gt(5), Lt(10)));
+\end{DoxyCode}
+
+
+Matchers enable assertions of this form to read like English and generate informative failure messages. For example, if the above assertion on {\ttfamily value1} fails, the resulting message will be similar to the following\+:
+
+
+\begin{DoxyCode}
+Value of: value1
+  Actual: "Hi, world!"
+Expected: starts with "Hello"
+\end{DoxyCode}
+
+
+Google\+Test provides a built-\/in library of matchers—see the Matchers Reference. It is also possible to write your own matchers—see \href{../gmock_cook_book.md#NewMatchers}{\tt Writing New Matchers Quickly}. The use of matchers makes {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+AT} a powerful, extensible assertion.
+
+{\itshape The idea for this assertion was borrowed from Joe Walnes\textquotesingle{} Hamcrest project, which adds {\ttfamily assert\+That()} to J\+Unit.}
+
+The following assertions test Boolean conditions.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+UE(}$\ast${\ttfamily condition}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+T\+R\+UE(}$\ast${\ttfamily condition}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily condition}$\ast$ is true.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+F\+A\+L\+SE(}$\ast${\ttfamily condition}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+F\+A\+L\+SE(}$\ast${\ttfamily condition}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily condition}$\ast$ is false.
+
+The following assertions compare two values. The value arguments must be comparable by the assertion\textquotesingle{}s comparison operator, otherwise a compiler error will result.
+
+If an argument supports the {\ttfamily $<$$<$} operator, it will be called to print the argument when the assertion fails. Otherwise, Google\+Test will attempt to print them in the best way it can—see \href{../advanced.md#teaching-googletest-how-to-print-your-values}{\tt Teaching Google\+Test How to Print Your Values}.
+
+Arguments are always evaluated exactly once, so it\textquotesingle{}s OK for the arguments to have side effects. However, the argument evaluation order is undefined and programs should not depend on any particular argument evaluation order.
+
+These assertions work with both narrow and wide string objects ({\ttfamily string} and {\ttfamily wstring}).
+
+See also the \href{#floating-point}{\tt Floating-\/\+Point Comparison} assertions to compare floating-\/point numbers and avoid problems caused by rounding.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+EQ(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily val1}$\ast${\ttfamily ==}$\ast${\ttfamily val2}$\ast$.
+
+Does pointer equality on pointers. If used on two C strings, it tests if they are in the same memory location, not if they have the same value. Use \href{#EXPECT_STREQ}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+S\+T\+R\+EQ}} to compare C strings (e.\+g. {\ttfamily const char$\ast$}) by value.
+
+When comparing a pointer to {\ttfamily N\+U\+LL}, use {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ(}$\ast${\ttfamily ptr}$\ast${\ttfamily , nullptr)} instead of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ(}$\ast${\ttfamily ptr}$\ast${\ttfamily , N\+U\+LL)}.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+NE(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+NE(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily val1}$\ast${\ttfamily !=}$\ast${\ttfamily val2}$\ast$.
+
+Does pointer equality on pointers. If used on two C strings, it tests if they are in different memory locations, not if they have different values. Use \href{#EXPECT_STRNE}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+S\+T\+R\+NE}} to compare C strings (e.\+g. {\ttfamily const char$\ast$}) by value.
+
+When comparing a pointer to {\ttfamily N\+U\+LL}, use {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+NE(}$\ast${\ttfamily ptr}$\ast${\ttfamily , nullptr)} instead of {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+NE(}$\ast${\ttfamily ptr}$\ast${\ttfamily , N\+U\+LL)}.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+LT(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+LT(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily val1}$\ast${\ttfamily $<$}$\ast${\ttfamily val2}$\ast$.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+LE(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+LE(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily val1}$\ast${\ttfamily $<$=}$\ast${\ttfamily val2}$\ast$.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+GT(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+GT(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily val1}$\ast${\ttfamily $>$}$\ast${\ttfamily val2}$\ast$.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+GE(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+GE(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily val1}$\ast${\ttfamily $>$=}$\ast${\ttfamily val2}$\ast$.
+
+The following assertions compare two {\bfseries C strings}. To compare two {\ttfamily string} objects, use \href{#EXPECT_EQ}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ}} or \href{#EXPECT_NE}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+NE}} instead.
+
+These assertions also accept wide C strings ({\ttfamily wchar\+\_\+t$\ast$}). If a comparison of two wide strings fails, their values will be printed as U\+T\+F-\/8 narrow strings.
+
+To compare a C string with {\ttfamily N\+U\+LL}, use {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ(}$\ast${\ttfamily c\+\_\+string}$\ast${\ttfamily , nullptr)} or {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+NE(}$\ast${\ttfamily c\+\_\+string}$\ast${\ttfamily , nullptr)}.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+S\+T\+R\+EQ(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+S\+T\+R\+EQ(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )}
+
+Verifies that the two C strings $\ast${\ttfamily str1}$\ast$ and $\ast${\ttfamily str2}$\ast$ have the same contents.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+S\+T\+R\+NE(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+S\+T\+R\+NE(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )}
+
+Verifies that the two C strings $\ast${\ttfamily str1}$\ast$ and $\ast${\ttfamily str2}$\ast$ have different contents.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+S\+T\+R\+C\+A\+S\+E\+EQ(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+S\+T\+R\+C\+A\+S\+E\+EQ(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )}
+
+Verifies that the two C strings $\ast${\ttfamily str1}$\ast$ and $\ast${\ttfamily str2}$\ast$ have the same contents, ignoring case.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+S\+T\+R\+C\+A\+S\+E\+NE(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+S\+T\+R\+C\+A\+S\+E\+NE(}$\ast${\ttfamily str1}$\ast${\ttfamily ,}$\ast${\ttfamily str2}$\ast${\ttfamily )}
+
+Verifies that the two C strings $\ast${\ttfamily str1}$\ast$ and $\ast${\ttfamily str2}$\ast$ have different contents, ignoring case.
+
+The following assertions compare two floating-\/point values.
+
+Due to rounding errors, it is very unlikely that two floating-\/point values will match exactly, so {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+EQ} is not suitable. In general, for floating-\/point comparison to make sense, the user needs to carefully choose the error bound.
+
+Google\+Test also provides assertions that use a default error bound based on Units in the Last Place (U\+L\+Ps). To learn more about U\+L\+Ps, see the article \href{https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/}{\tt Comparing Floating Point Numbers}.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+EQ(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+F\+L\+O\+A\+T\+\_\+\+EQ(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that the two {\ttfamily float} values $\ast${\ttfamily val1}$\ast$ and $\ast${\ttfamily val2}$\ast$ are approximately equal, to within 4 U\+L\+Ps from each other.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+EQ(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+EQ(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )}
+
+Verifies that the two {\ttfamily double} values $\ast${\ttfamily val1}$\ast$ and $\ast${\ttfamily val2}$\ast$ are approximately equal, to within 4 U\+L\+Ps from each other.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+N\+E\+AR(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily abs\+\_\+error}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+N\+E\+AR(}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily abs\+\_\+error}$\ast${\ttfamily )}
+
+Verifies that the difference between $\ast${\ttfamily val1}$\ast$ and $\ast${\ttfamily val2}$\ast$ does not exceed the absolute error bound $\ast${\ttfamily abs\+\_\+error}$\ast$.
+
+The following assertions verify that a piece of code throws, or does not throw, an exception. Usage requires exceptions to be enabled in the build environment.
+
+Note that the piece of code under test can be a compound statement, for example\+:
+
+
+\begin{DoxyCode}
+EXPECT\_NO\_THROW(\{
+  \textcolor{keywordtype}{int} n = 5;
+  DoSomething(&n);
+\});
+\end{DoxyCode}
+
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+H\+R\+OW(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily exception\+\_\+type}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+T\+H\+R\+OW(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily exception\+\_\+type}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily statement}$\ast$ throws an exception of type $\ast${\ttfamily exception\+\_\+type}$\ast$.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+A\+N\+Y\+\_\+\+T\+H\+R\+OW(}$\ast${\ttfamily statement}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+A\+N\+Y\+\_\+\+T\+H\+R\+OW(}$\ast${\ttfamily statement}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily statement}$\ast$ throws an exception of any type.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+N\+O\+\_\+\+T\+H\+R\+OW(}$\ast${\ttfamily statement}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+N\+O\+\_\+\+T\+H\+R\+OW(}$\ast${\ttfamily statement}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily statement}$\ast$ does not throw any exception.
+
+The following assertions enable more complex predicates to be verified while printing a more clear failure message than if {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+T\+R\+UE} were used alone.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D1(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D2(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D3(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D4(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D5(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily ,}$\ast${\ttfamily val5}$\ast${\ttfamily )}
+
+{\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D1(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D2(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D3(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D4(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D5(}$\ast${\ttfamily pred}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily ,}$\ast${\ttfamily val5}$\ast${\ttfamily )}
+
+Verifies that the predicate $\ast${\ttfamily pred}$\ast$ returns {\ttfamily true} when passed the given values as arguments.
+
+The parameter $\ast${\ttfamily pred}$\ast$ is a function or functor that accepts as many arguments as the corresponding macro accepts values. If $\ast${\ttfamily pred}$\ast$ returns {\ttfamily true} for the given arguments, the assertion succeeds, otherwise the assertion fails.
+
+When the assertion fails, it prints the value of each argument. Arguments are always evaluated exactly once.
+
+As an example, see the following code\+:
+
+
+\begin{DoxyCode}
+\textcolor{comment}{// Returns true if m and n have no common divisors except 1.}
+\textcolor{keywordtype}{bool} MutuallyPrime(\textcolor{keywordtype}{int} m, \textcolor{keywordtype}{int} n) \{ ... \}
+...
+const \textcolor{keywordtype}{int} a = 3;
+\textcolor{keyword}{const} \textcolor{keywordtype}{int} b = 4;
+\textcolor{keyword}{const} \textcolor{keywordtype}{int} c = 10;
+...
+EXPECT\_PRED2(MutuallyPrime, a, b);  \textcolor{comment}{// Succeeds}
+EXPECT\_PRED2(MutuallyPrime, b, c);  \textcolor{comment}{// Fails}
+\end{DoxyCode}
+
+
+In the above example, the first assertion succeeds, and the second fails with the following message\+:
+
+
+\begin{DoxyCode}
+MutuallyPrime(b, c) is false, where
+b is 4
+c is 10
+\end{DoxyCode}
+
+
+Note that if the given predicate is an overloaded function or a function template, the assertion macro might not be able to determine which version to use, and it might be necessary to explicitly specify the type of the function. For example, for a Boolean function {\ttfamily Is\+Positive()} overloaded to take either a single {\ttfamily int} or {\ttfamily double} argument, it would be necessary to write one of the following\+:
+
+
+\begin{DoxyCode}
+EXPECT\_PRED1(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{bool} (*)(\textcolor{keywordtype}{int})\textcolor{keyword}{>}(IsPositive), 5);
+EXPECT\_PRED1(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{bool} (*)(\textcolor{keywordtype}{double})\textcolor{keyword}{>}(IsPositive), 3.14);
+\end{DoxyCode}
+
+
+Writing simply {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D1(\+Is\+Positive, 5);} would result in a compiler error. Similarly, to use a template function, specify the template arguments\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{template} <\textcolor{keyword}{typename} T>
+\textcolor{keywordtype}{bool} IsNegative(T x) \{
+  \textcolor{keywordflow}{return} x < 0;
+\}
+...
+EXPECT\_PRED1(IsNegative<int>, -5);  \textcolor{comment}{// Must specify type for IsNegative}
+\end{DoxyCode}
+
+
+If a template has multiple parameters, wrap the predicate in parentheses so the macro arguments are parsed correctly\+:
+
+
+\begin{DoxyCode}
+ASSERT\_PRED2((MyPredicate<int, int>), 5, 0);
+\end{DoxyCode}
+
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T1(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T2(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T3(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T4(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily )} \textbackslash{} {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T5(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily ,}$\ast${\ttfamily val5}$\ast${\ttfamily )}
+
+{\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T1(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T2(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T3(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T4(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+P\+R\+E\+D\+\_\+\+F\+O\+R\+M\+A\+T5(}$\ast${\ttfamily pred\+\_\+formatter}$\ast${\ttfamily ,}$\ast${\ttfamily val1}$\ast${\ttfamily ,}$\ast${\ttfamily val2}$\ast${\ttfamily ,}$\ast${\ttfamily val3}$\ast${\ttfamily ,}$\ast${\ttfamily val4}$\ast${\ttfamily ,}$\ast${\ttfamily val5}$\ast${\ttfamily )}
+
+Verifies that the predicate $\ast${\ttfamily pred\+\_\+formatter}$\ast$ succeeds when passed the given values as arguments.
+
+The parameter $\ast${\ttfamily pred\+\_\+formatter}$\ast$ is a {\itshape predicate-\/formatter}, which is a function or functor with the signature\+:
+
+
+\begin{DoxyCode}
+testing::AssertionResult PredicateFormatter(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* expr1,
+                                            \textcolor{keyword}{const} \textcolor{keywordtype}{char}* expr2,
+                                            ...
+                                            \textcolor{keyword}{const} \textcolor{keywordtype}{char}* exprn,
+                                            T1 val1,
+                                            T2 val2,
+                                            ...
+                                            Tn valn);
+\end{DoxyCode}
+
+
+where $\ast${\ttfamily val1}$\ast$, $\ast${\ttfamily val2}$\ast$, ..., $\ast${\ttfamily valn}$\ast$ are the values of the predicate arguments, and $\ast${\ttfamily expr1}$\ast$, $\ast${\ttfamily expr2}$\ast$, ..., $\ast${\ttfamily exprn}$\ast$ are the corresponding expressions as they appear in the source code. The types {\ttfamily T1}, {\ttfamily T2}, ..., {\ttfamily Tn} can be either value types or reference types; if an argument has type {\ttfamily T}, it can be declared as either {\ttfamily T} or {\ttfamily const T\&}, whichever is appropriate. For more about the return type {\ttfamily testing\+::\+Assertion\+Result}, see \href{../advanced.md#using-a-function-that-returns-an-assertionresult}{\tt Using a Function That Returns an Assertion\+Result}.
+
+As an example, see the following code\+:
+
+
+\begin{DoxyCode}
+\textcolor{comment}{// Returns the smallest prime common divisor of m and n,}
+\textcolor{comment}{// or 1 when m and n are mutually prime.}
+\textcolor{keywordtype}{int} SmallestPrimeCommonDivisor(\textcolor{keywordtype}{int} m, \textcolor{keywordtype}{int} n) \{ ... \}
+
+\textcolor{comment}{// Returns true if m and n have no common divisors except 1.}
+\textcolor{keywordtype}{bool} MutuallyPrime(\textcolor{keywordtype}{int} m, \textcolor{keywordtype}{int} n) \{ ... \}
+
+\textcolor{comment}{// A predicate-formatter for asserting that two integers are mutually prime.}
+testing::AssertionResult AssertMutuallyPrime(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* m\_expr,
+                                             \textcolor{keyword}{const} \textcolor{keywordtype}{char}* n\_expr,
+                                             \textcolor{keywordtype}{int} m,
+                                             \textcolor{keywordtype}{int} n) \{
+  \textcolor{keywordflow}{if} (MutuallyPrime(m, n)) \textcolor{keywordflow}{return} testing::AssertionSuccess();
+
+  \textcolor{keywordflow}{return} testing::AssertionFailure() << m\_expr << \textcolor{stringliteral}{" and "} << n\_expr
+      << \textcolor{stringliteral}{" ("} << m << \textcolor{stringliteral}{" and "} << n << \textcolor{stringliteral}{") are not mutually prime, "}
+      << \textcolor{stringliteral}{"as they have a common divisor "} << SmallestPrimeCommonDivisor(m, n);
+\}
+
+...
+const \textcolor{keywordtype}{int} a = 3;
+\textcolor{keyword}{const} \textcolor{keywordtype}{int} b = 4;
+\textcolor{keyword}{const} \textcolor{keywordtype}{int} c = 10;
+...
+EXPECT\_PRED\_FORMAT2(AssertMutuallyPrime, a, b);  \textcolor{comment}{// Succeeds}
+EXPECT\_PRED\_FORMAT2(AssertMutuallyPrime, b, c);  \textcolor{comment}{// Fails}
+\end{DoxyCode}
+
+
+In the above example, the final assertion fails and the predicate-\/formatter produces the following failure message\+:
+
+
+\begin{DoxyCode}
+b and c (4 and 10) are not mutually prime, as they have a common divisor 2
+\end{DoxyCode}
+
+
+The following assertions test for {\ttfamily H\+R\+E\+S\+U\+LT} success or failure. For example\+:
+
+
+\begin{DoxyCode}
+CComPtr<IShellDispatch2> shell;
+ASSERT\_HRESULT\_SUCCEEDED(shell.CoCreateInstance(L\textcolor{stringliteral}{"Shell.Application"}));
+CComVariant empty;
+ASSERT\_HRESULT\_SUCCEEDED(shell->ShellExecute(CComBSTR(url), empty, empty, empty, empty));
+\end{DoxyCode}
+
+
+The generated output contains the human-\/readable error message associated with the returned {\ttfamily H\+R\+E\+S\+U\+LT} code.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+H\+R\+E\+S\+U\+L\+T\+\_\+\+S\+U\+C\+C\+E\+E\+D\+ED(}$\ast${\ttfamily expression}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+H\+R\+E\+S\+U\+L\+T\+\_\+\+S\+U\+C\+C\+E\+E\+D\+ED(}$\ast${\ttfamily expression}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily expression}$\ast$ is a success {\ttfamily H\+R\+E\+S\+U\+LT}.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+H\+R\+E\+S\+U\+L\+T\+\_\+\+F\+A\+I\+L\+ED(}$\ast${\ttfamily expression}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+H\+R\+E\+S\+U\+L\+T\+\_\+\+F\+A\+I\+L\+ED(}$\ast${\ttfamily expression}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily expression}$\ast$ is a failure {\ttfamily H\+R\+E\+S\+U\+LT}.
+
+The following assertions verify that a piece of code causes the process to terminate. For context, see \href{../advanced.md#death-tests}{\tt Death Tests}.
+
+These assertions spawn a new process and execute the code under test in that process. How that happens depends on the platform and the variable {\ttfamily \+::testing\+::\+G\+T\+E\+S\+T\+\_\+\+F\+L\+A\+G(death\+\_\+test\+\_\+style)}, which is initialized from the command-\/line flag {\ttfamily -\/-\/gtest\+\_\+death\+\_\+test\+\_\+style}.
+
+
+\begin{DoxyItemize}
+\item On P\+O\+S\+IX systems, {\ttfamily fork()} (or {\ttfamily clone()} on Linux) is used to spawn the child, after which\+:
+\begin{DoxyItemize}
+\item If the variable\textquotesingle{}s value is {\ttfamily \char`\"{}fast\char`\"{}}, the death test statement is immediately executed.
+\item If the variable\textquotesingle{}s value is {\ttfamily \char`\"{}threadsafe\char`\"{}}, the child process re-\/executes the unit test binary just as it was originally invoked, but with some extra flags to cause just the single death test under consideration to be run.
+\end{DoxyItemize}
+\item On Windows, the child is spawned using the {\ttfamily Create\+Process()} A\+PI, and re-\/executes the binary to cause just the single death test under consideration to be run -\/ much like the {\ttfamily \char`\"{}threadsafe\char`\"{}} mode on P\+O\+S\+IX.
+\end{DoxyItemize}
+
+Other values for the variable are illegal and will cause the death test to fail. Currently, the flag\textquotesingle{}s default value is $\ast$$\ast${\ttfamily \char`\"{}fast\char`\"{}}$\ast$$\ast$.
+
+If the death test statement runs to completion without dying, the child process will nonetheless terminate, and the assertion fails.
+
+Note that the piece of code under test can be a compound statement, for example\+:
+
+
+\begin{DoxyCode}
+EXPECT\_DEATH(\{
+  \textcolor{keywordtype}{int} n = 5;
+  DoSomething(&n);
+\}, \textcolor{stringliteral}{"Error on line .* of DoSomething()"});
+\end{DoxyCode}
+
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+TH(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+D\+E\+A\+TH(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily statement}$\ast$ causes the process to terminate with a nonzero exit status and produces {\ttfamily stderr} output that matches $\ast${\ttfamily matcher}$\ast$.
+
+The parameter $\ast${\ttfamily matcher}$\ast$ is either a matcher for a {\ttfamily const std\+::string\&}, or a regular expression (see \href{../advanced.md#regular-expression-syntax}{\tt Regular Expression Syntax})—a bare string $\ast${\ttfamily s}$\ast$ (with no matcher) is treated as \href{matchers.md#string-matchers}{\tt {\ttfamily Contains\+Regex(s)}}, {\bfseries not} \href{matchers.md#generic-comparison}{\tt {\ttfamily Eq(s)}}.
+
+For example, the following code verifies that calling {\ttfamily Do\+Something(42)} causes the process to die with an error message that contains the text {\ttfamily My error}\+:
+
+
+\begin{DoxyCode}
+EXPECT\_DEATH(DoSomething(42), \textcolor{stringliteral}{"My error"});
+\end{DoxyCode}
+
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+T\+H\+\_\+\+I\+F\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+D\+E\+A\+T\+H\+\_\+\+I\+F\+\_\+\+S\+U\+P\+P\+O\+R\+T\+ED(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )}
+
+If death tests are supported, behaves the same as \href{#EXPECT_DEATH}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+TH}}. Otherwise, verifies nothing.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+B\+U\+G\+\_\+\+D\+E\+A\+TH(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+D\+E\+B\+U\+G\+\_\+\+D\+E\+A\+TH(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )}
+
+In debug mode, behaves the same as \href{#EXPECT_DEATH}{\tt {\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+D\+E\+A\+TH}}. When not in debug mode (i.\+e. {\ttfamily N\+D\+E\+B\+UG} is defined), just executes $\ast${\ttfamily statement}$\ast$.
+
+{\ttfamily E\+X\+P\+E\+C\+T\+\_\+\+E\+X\+IT(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily predicate}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )} \textbackslash{} {\ttfamily A\+S\+S\+E\+R\+T\+\_\+\+E\+X\+IT(}$\ast${\ttfamily statement}$\ast${\ttfamily ,}$\ast${\ttfamily predicate}$\ast${\ttfamily ,}$\ast${\ttfamily matcher}$\ast${\ttfamily )}
+
+Verifies that $\ast${\ttfamily statement}$\ast$ causes the process to terminate with an exit status that satisfies $\ast${\ttfamily predicate}$\ast$, and produces {\ttfamily stderr} output that matches $\ast${\ttfamily matcher}$\ast$.
+
+The parameter $\ast${\ttfamily predicate}$\ast$ is a function or functor that accepts an {\ttfamily int} exit status and returns a {\ttfamily bool}. Google\+Test provides two predicates to handle common cases\+:
+
+
+\begin{DoxyCode}
+\textcolor{comment}{// Returns true if the program exited normally with the given exit status code.}
+::testing::ExitedWithCode(exit\_code);
+
+\textcolor{comment}{// Returns true if the program was killed by the given signal.}
+\textcolor{comment}{// Not available on Windows.}
+::testing::KilledBySignal(signal\_number);
+\end{DoxyCode}
+
+
+The parameter $\ast${\ttfamily matcher}$\ast$ is either a matcher for a {\ttfamily const std\+::string\&}, or a regular expression (see \href{../advanced.md#regular-expression-syntax}{\tt Regular Expression Syntax})—a bare string $\ast${\ttfamily s}$\ast$ (with no matcher) is treated as \href{matchers.md#string-matchers}{\tt {\ttfamily Contains\+Regex(s)}}, {\bfseries not} \href{matchers.md#generic-comparison}{\tt {\ttfamily Eq(s)}}.
+
+For example, the following code verifies that calling {\ttfamily Normal\+Exit()} causes the process to print a message containing the text {\ttfamily Success} to {\ttfamily stderr} and exit with exit status code 0\+:
+
+
+\begin{DoxyCode}
+EXPECT\_EXIT(NormalExit(), testing::ExitedWithCode(0), \textcolor{stringliteral}{"Success"});
+\end{DoxyCode}
+ 

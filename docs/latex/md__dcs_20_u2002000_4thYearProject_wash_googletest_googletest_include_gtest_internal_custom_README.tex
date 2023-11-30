@@ -1,0 +1,55 @@
+The custom directory is an injection point for custom user configurations.
+
+\subsection*{Header {\ttfamily gtest.\+h}}
+
+\subsubsection*{The following macros can be defined\+:}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+O\+S\+\_\+\+S\+T\+A\+C\+K\+\_\+\+T\+R\+A\+C\+E\+\_\+\+G\+E\+T\+T\+E\+R\+\_\+} -\/ The name of an implementation of {\ttfamily Os\+Stack\+Trace\+Getter\+Interface}.
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+C\+U\+S\+T\+O\+M\+\_\+\+T\+E\+M\+P\+D\+I\+R\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+} -\/ An override for {\ttfamily testing\+::\+Temp\+Dir()}. See {\ttfamily testing\+::\+Temp\+Dir} for semantics and signature.
+\end{DoxyItemize}
+
+\subsection*{Header {\ttfamily gtest-\/port.\+h}}
+
+The following macros can be defined\+:
+
+\subsubsection*{Logging\+:}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+L\+O\+G\+\_\+(severity)}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+C\+H\+E\+C\+K\+\_\+(condition)}
+\item Functions {\ttfamily Log\+To\+Stderr()} and {\ttfamily Flush\+Info\+Log()} have to be provided too.
+\end{DoxyItemize}
+
+\subsubsection*{Threading\+:}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+H\+A\+S\+\_\+\+N\+O\+T\+I\+F\+I\+C\+A\+T\+I\+O\+N\+\_\+} -\/ Enabled if Notification is already provided.
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+H\+A\+S\+\_\+\+M\+U\+T\+E\+X\+\_\+\+A\+N\+D\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+L\+O\+C\+A\+L\+\_\+} -\/ Enabled if {\ttfamily Mutex} and {\ttfamily Thread\+Local} are already provided. Must also provide {\ttfamily G\+T\+E\+S\+T\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+(mutex)} and {\ttfamily G\+T\+E\+S\+T\+\_\+\+D\+E\+F\+I\+N\+E\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+M\+U\+T\+E\+X\+\_\+(mutex)}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+E\+X\+C\+L\+U\+S\+I\+V\+E\+\_\+\+L\+O\+C\+K\+\_\+\+R\+E\+Q\+U\+I\+R\+E\+D\+\_\+(locks)}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+L\+O\+C\+K\+\_\+\+E\+X\+C\+L\+U\+D\+E\+D\+\_\+(locks)}
+\end{DoxyItemize}
+
+\subsubsection*{Underlying library support features}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+H\+A\+S\+\_\+\+C\+X\+X\+A\+B\+I\+\_\+\+H\+\_\+}
+\end{DoxyItemize}
+
+\subsubsection*{Exporting A\+PI symbols\+:}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily G\+T\+E\+S\+T\+\_\+\+A\+P\+I\+\_\+} -\/ Specifier for exported symbols.
+\end{DoxyItemize}
+
+\subsection*{Header {\ttfamily gtest-\/printers.\+h}}
+
+
+\begin{DoxyItemize}
+\item See documentation at {\ttfamily \mbox{\hyperlink{gtest-printers_8h_source}{gtest/gtest-\/printers.\+h}}} for details on how to define a custom printer. 
+\end{DoxyItemize}

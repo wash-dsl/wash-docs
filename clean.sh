@@ -1,4 +1,4 @@
-rm ./*.png
-rm ./*.html
-rm ./*.js
-rm ./*.css
+rm docs/*.png
+rm docs/*.html
+rm docs/*.js
+rm docs/*.css
