@@ -2,7 +2,7 @@
 
 \section intro_sec Introduction
 
-This is the introduction.
+**Wa**rwick **S**mooth Particle **H**ydrodynamics (**WaSH**) is a Domain Specific Language used for developing High Performance SPH simulations.
 
 \section install_sec Installation
 
