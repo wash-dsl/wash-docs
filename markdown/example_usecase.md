@@ -77,7 +77,7 @@ Your simulation must have a starting state for your particles. This is done like
 ```cpp
     wash::add_init_kernel(&init);
 ```
-When the simulation starts, it will use whatever is defined in the `init` function. The contents of the `init` function may look like this:
+When the simulation starts, it will use whatever is defined in the `init` function. The contents of the `init` function may look like this if your goal is to spawn uniformly distributed particles:
 ```cpp
 void init() {
     std::cout << "Calculated Time Step: " << deltaTime << std::endl;
@@ -146,6 +146,148 @@ int main(int argc, char** argv) {
     wash::start();
 }
 ```
-This is the last part of our Main function, and we must write what computations we want our kernels to perform.
+This is the last part of our Main function. It describes the high-level behaviour of the simulation, and all that's left is the low-level specification of what should happen in each kernel.
+
+Notice that the kernels are to be specified for *one* particle. WaSH will take care of the looping and parallelisation.
+
+### VelocityUpdate Implementation
+This kernel function helps us predict where the particle will be in the next timestep.
+```cpp
+void VelocityUpdate(wash::Particle& particle) {
+    particle.set_vel(particle.get_vel() + ExternelForces(particle.get_pos(), particle.get_vel()) * deltaTime);
+    // std::cout << "Particle velocity: " << particle.get_vel() << std::endl;
+
+    const double predictionFactor = 1 / 120.0;
+    // set predicted pos to the real position + some timestep of current vel
+    particle.set_pos(particle.get_force_vector("position") + particle.get_vel() * predictionFactor);
+    // std::cout << "Particle pred pos: " << particle.get_pos() << std::endl;
+}
+```
+
+### CalculateDensity Implementation
+Calculating density of particles is common across most, if not all, SPH simulations. Here's how we'll define it for our example:
+
+```cpp
+void CalculateDensity(wash::Particle& particle, const std::vector<wash::Particle>& neighbours) {
+    // std::cout << "Running Custom Density Func" << std::endl;
+    double density = 1.0;
+    double nearDensity = 1.0;
+
+    for (auto& neighbour : neighbours) {
+        auto offset = neighbour.get_pos() - particle.get_pos();
+        double dst = offset.magnitude();
+
+        density += DensityKernel(dst, smoothingRadius);
+        nearDensity += NearDensityKernel(dst, smoothingRadius);
+    }
+
+    particle.set_density(density);
+    particle.set_force_scalar("nearDensity", nearDensity);
+}
+```
+
+### force_kernel Implementation
+Here, forces are applied to particles to simulate incompressible fluid with some viscosity. In this case, we want something resembling water.
+```cpp
+void force_kernel(wash::Particle& particle, const std::vector<wash::Particle>& neighbours) {
+    CalculatePressureForce(particle, neighbours);
+    CalculateViscosity(particle, neighbours);
+}
+```
+
+```cpp
+void CalculatePressureForce(wash::Particle& particle, const std::vector<wash::Particle>& neighbours) {
+    double density = particle.get_density();
+    double nearDensity = particle.get_force_scalar("nearDensity");
+    double pressure = PressureFromDensity(density);
+    double nearPressure = NearPressureFromDensity(nearDensity);
+    wash::Vec2D pressureForce = wash::Vec2D({0.0, 0.0});
+
+    wash::Vec2D pos = particle.get_pos();
+
+    for (auto& neighbour : neighbours) {
+        wash::Vec2D neighbourPos = neighbour.get_pos();
+        wash::Vec2D offsetToNeighbour = neighbourPos - pos;
+        double dst = offsetToNeighbour.magnitude();
+        
+        wash::Vec2D dirToNeighbour = dst > 0.0 ? offsetToNeighbour / dst : wash::Vec2D({0.0, 1.0});
+
+        double neighbourDensity = neighbour.get_density();
+        double neighbourNearDensity = neighbour.get_force_scalar("nearDensity");
+        double neighbourPressure = PressureFromDensity(neighbourDensity);
+        double neighbourNearPressure = NearPressureFromDensity(neighbourNearDensity);
+
+        double sharedPressure = (pressure + neighbourPressure) * 0.5;
+        double sharedNearPressure = (nearPressure + neighbourNearPressure) * 0.5;
+
+        pressureForce += dirToNeighbour * DensityDerivative(dst, smoothingRadius) * sharedPressure / neighbourDensity;
+        // std::cout << "w density p " << pressureForce << std::endl;
+        pressureForce +=
+            dirToNeighbour * NearDensityDerivative(dst, smoothingRadius) * sharedNearPressure / neighbourNearDensity;
+        // std::cout << "w near density p " << pressureForce << std::endl;
+    }
+
+    wash::Vec2D acceleration = pressureForce / density;
+    // std::cout << "PRESSURE FORCE p" << pressureForce << std::endl;
+
+    particle.set_force_vector("pressure", pressureForce / density);
+    particle.set_vel(particle.get_vel() + acceleration * deltaTime);
+}
+```
+
+```cpp
+void CalculateViscosity(wash::Particle& particle, const std::vector<wash::Particle>& neighbours) {
+    wash::Vec2D pos = particle.get_pos();
+
+    wash::Vec2D viscosityForce = wash::Vec2D { 0.0, 0.0 };
+    wash::Vec2D velocity = particle.get_vel();
+
+    for (auto& neighbour : neighbours) {
+        wash::Vec2D neighbourPos = neighbour.get_pos();
+        wash::Vec2D offsetToNeighbour = neighbourPos - pos;
+        double dst = offsetToNeighbour.magnitude();
+        
+        wash::Vec2D neighbourVelocity = neighbour.get_vel();
+        viscosityForce += (neighbourVelocity - velocity) * ViscosityKernel(dst, smoothingRadius);
+    }
+
+    particle.set_force_vector("viscosity", viscosityForce * viscosityStrength);
+    particle.set_vel(particle.get_vel() + viscosityForce * viscosityStrength * deltaTime);
+}
+```
 
 
+### UpdatePositions Implementation
+This one's pretty self-explanatory. Using basic SUVAT to update the particles' positions.
+```cpp
+void UpdatePositions(wash::Particle& particle) {
+    // particle.set_pos(particle.get_pos() + particle.get_vel() * deltaTime);
+    particle.set_force_vector("position", particle.get_force_vector("position") + particle.get_vel() * deltaTime);
+}
+```
+
+### HandleCollisions Implementation
+The HandleCollisions kernel ensures particles do not exit the bounds of the simulation, and instead bounce back against a 'wall' (with a little damping)
+```cpp
+void HandleCollisions(wash::Particle& particle) {
+    wash::Vec2D pos = particle.get_force_vector("position");
+    wash::Vec2D vel = particle.get_vel();
+
+    const wash::Vec2D halfSize = boundsSize * 0.5;
+    wash::Vec2D edgeDst = halfSize - pos.abs();
+
+    if (*(edgeDst[0]) <= 0) {
+        *(pos[0]) = halfSize.at(0) * wash::sgn(pos.at(0));
+        *(vel[0]) *= -1 * collisionDamping;
+    }
+
+    if (*(edgeDst[1]) <= 0) {
+        *(pos[1]) = halfSize.at(1) * wash::sgn(pos.at(1));
+        *(vel[1]) *= -1 * collisionDamping;
+    }
+    // do any obstacle collision here
+
+    particle.set_force_vector("position", pos);
+    particle.set_vel(vel);
+}
+```

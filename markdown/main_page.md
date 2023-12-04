@@ -2,12 +2,11 @@
 
 \section intro_sec Introduction
 
-**Wa**rwick **S**mooth Particle **H**ydrodynamics (**WaSH**) is a Domain Specific Language used for developing High Performance SPH simulations.
+<b>Wa</b>rwick <b>S</b>mooth Particle <b>H</b>ydrodynamics (<b>WaSH</b>) is a Domain Specific Language used for developing High Performance SPH simulations with built-in parallelisation using OpenMP and CUDA.
 
-\section install_sec Installation
+This documentation has an <a href="md_markdown_example_usecase.html"><b>Introductory Simulation</b></a> to show you how to use the WaSH API to write a fully-functional SPH simulation.
 
-\subsection step1 Step 1: 
+Before that, you must make sure all the required libraries and dependencies are installed. Just follow the <a href="md_markdown_installation.html"><b>Installation Steps</b></a> here.
 
-@ref Particle
 
 
