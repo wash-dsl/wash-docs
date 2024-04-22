@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['genericfilereader',['GenericFileReader',['../classwash_1_1GenericFileReader.html',1,'wash']]],
-  ['genericfilewriter',['GenericFileWriter',['../classwash_1_1GenericFileWriter.html',1,'wash']]]
+  ['asciireader',['ASCIIReader',['../classwash_1_1ASCIIReader.html',1,'wash']]],
+  ['asciiwriter',['ASCIIWriter',['../classwash_1_1ASCIIWriter.html',1,'wash']]]
 ];

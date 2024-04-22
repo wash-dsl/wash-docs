@@ -1,0 +1,33 @@
+\hypertarget{classFindWashFunctionsPlugin}{}\section{Find\+Wash\+Functions\+Plugin Class Reference}
+\label{classFindWashFunctionsPlugin}\index{Find\+Wash\+Functions\+Plugin@{Find\+Wash\+Functions\+Plugin}}
+
+
+Implements the plugin through using the already defined behaviour of the frontent action.  
+
+
+Inheritance diagram for Find\+Wash\+Functions\+Plugin\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classFindWashFunctionsPlugin}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classFindWashFunctionsPlugin_acbaba39a9d96878d684361427c0d92ad}\label{classFindWashFunctionsPlugin_acbaba39a9d96878d684361427c0d92ad}} 
+std\+::unique\+\_\+ptr$<$ clang\+::\+A\+S\+T\+Consumer $>$ {\bfseries Create\+A\+S\+T\+Consumer} (clang\+::\+Compiler\+Instance \&Compiler, llvm\+::\+String\+Ref In\+File) override
+\item 
+\mbox{\Hypertarget{classFindWashFunctionsPlugin_a5a26a021392c239258217236f1016a20}\label{classFindWashFunctionsPlugin_a5a26a021392c239258217236f1016a20}} 
+bool \mbox{\hyperlink{classFindWashFunctionsPlugin_a5a26a021392c239258217236f1016a20}{Parse\+Args}} (const clang\+::\+Compiler\+Instance \&CI, const std\+::vector$<$ std\+::string $>$ \&args) override
+\begin{DoxyCompactList}\small\item\em Allows the plugin to take in a set of arguments. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classFindWashFunctionsPlugin_a6c0b54d000be41e28df04e36bbde4561}\label{classFindWashFunctionsPlugin_a6c0b54d000be41e28df04e36bbde4561}} 
+clang\+::\+Plugin\+A\+S\+T\+Action\+::\+Action\+Type \mbox{\hyperlink{classFindWashFunctionsPlugin_a6c0b54d000be41e28df04e36bbde4561}{get\+Action\+Type}} () override
+\begin{DoxyCompactList}\small\item\em Sets when this plugin should be run. Before Main Action = Before Code Gen I believe. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements the plugin through using the already defined behaviour of the frontent action. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/dcs/20/u2002000/4th\+Year\+Project/wash/src/gen/\mbox{\hyperlink{finder__plugin_8cpp}{finder\+\_\+plugin.\+cpp}}\end{DoxyCompactItemize}

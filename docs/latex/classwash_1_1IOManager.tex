@@ -1,0 +1,73 @@
+\hypertarget{classwash_1_1IOManager}{}\section{wash\+:\+:I\+O\+Manager Class Reference}
+\label{classwash_1_1IOManager}\index{wash\+::\+I\+O\+Manager@{wash\+::\+I\+O\+Manager}}
+
+
+Manages the IO options for the simulation.  
+
+
+
+
+{\ttfamily \#include $<$io.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classwash_1_1IOManager_a700c9e0c1b3f90e408012b7b97fdf74c}\label{classwash_1_1IOManager_a700c9e0c1b3f90e408012b7b97fdf74c}} 
+{\bfseries I\+O\+Manager} (const std\+::string format)
+\item 
+\mbox{\Hypertarget{classwash_1_1IOManager_ae2b51434752a46f631c9c20ecb99e5d2}\label{classwash_1_1IOManager_ae2b51434752a46f631c9c20ecb99e5d2}} 
+{\bfseries I\+O\+Manager} (const std\+::string format, const size\+\_\+t output\+\_\+nth)
+\item 
+\mbox{\Hypertarget{classwash_1_1IOManager_a7c04519d80a8e1ff53d58a6a7d412209}\label{classwash_1_1IOManager_a7c04519d80a8e1ff53d58a6a7d412209}} 
+void {\bfseries set\+\_\+path} (std\+::string simulation\+\_\+name, std\+::string output\+\_\+file\+\_\+name)
+\item 
+\mbox{\Hypertarget{classwash_1_1IOManager_a061951b9d8f6c47e625e0bbf27507b01}\label{classwash_1_1IOManager_a061951b9d8f6c47e625e0bbf27507b01}} 
+const std\+::string {\bfseries get\+\_\+path} () const
+\item 
+void \mbox{\hyperlink{classwash_1_1IOManager_a37c0150160a8e7f4e97951469d9abb30}{handle\+\_\+iteration}} (size\+\_\+t iteration) const
+\begin{DoxyCompactList}\small\item\em Dispatches an iteration call to the writer based on the iteration number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classwash_1_1IOManager_ae635581c17822a8f18c228952000e6cc}{write\+\_\+timings}} (const std\+::string \&event\+\_\+name, const int tag, const int64\+\_\+t time\+\_\+taken) const
+\begin{DoxyCompactList}\small\item\em Write a timing even out to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manages the IO options for the simulation. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classwash_1_1IOManager_a37c0150160a8e7f4e97951469d9abb30}\label{classwash_1_1IOManager_a37c0150160a8e7f4e97951469d9abb30}} 
+\index{wash\+::\+I\+O\+Manager@{wash\+::\+I\+O\+Manager}!handle\+\_\+iteration@{handle\+\_\+iteration}}
+\index{handle\+\_\+iteration@{handle\+\_\+iteration}!wash\+::\+I\+O\+Manager@{wash\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{handle\+\_\+iteration()}{handle\_iteration()}}
+{\footnotesize\ttfamily void wash\+::\+I\+O\+Manager\+::handle\+\_\+iteration (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{iteration }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dispatches an iteration call to the writer based on the iteration number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iteration} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwash_1_1IOManager_ae635581c17822a8f18c228952000e6cc}\label{classwash_1_1IOManager_ae635581c17822a8f18c228952000e6cc}} 
+\index{wash\+::\+I\+O\+Manager@{wash\+::\+I\+O\+Manager}!write\+\_\+timings@{write\+\_\+timings}}
+\index{write\+\_\+timings@{write\+\_\+timings}!wash\+::\+I\+O\+Manager@{wash\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{write\+\_\+timings()}{write\_timings()}}
+{\footnotesize\ttfamily void wash\+::\+I\+O\+Manager\+::write\+\_\+timings (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{event\+\_\+name,  }\item[{const int}]{tag,  }\item[{const int64\+\_\+t}]{time\+\_\+taken }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write a timing even out to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+\_\+name} & \\
+\hline
+{\em time\+\_\+taken} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/dcs/20/u2002000/4th\+Year\+Project/wash/src/io/io.\+hpp\end{DoxyCompactItemize}

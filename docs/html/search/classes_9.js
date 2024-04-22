@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kindof',['KindOf',['../structtesting_1_1internal_1_1KindOf.html',1,'testing::internal']]]
+  ['optional',['optional',['../structbetter__enums_1_1optional.html',1,'better_enums']]]
 ];

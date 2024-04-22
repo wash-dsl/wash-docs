@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['hasdebugstringandshortdebugstring',['HasDebugStringAndShortDebugString',['../classtesting_1_1internal_1_1HasDebugStringAndShortDebugString.html',1,'testing::internal']]],
-  ['hasdebugstringmethods',['HasDebugStringMethods',['../structHasDebugStringMethods.html',1,'']]],
-  ['holder',['Holder',['../structtesting_1_1internal_1_1ImplBase_1_1Holder.html',1,'testing::internal::ImplBase']]]
+  ['map',['map',['../structbetter__enums_1_1map.html',1,'better_enums']]],
+  ['map_5fcompare',['map_compare',['../structbetter__enums_1_1map__compare.html',1,'better_enums']]],
+  ['map_5fcompare_3c_20const_20char_20_2a_20_3e',['map_compare&lt; const char * &gt;',['../structbetter__enums_1_1map__compare_3_01const_01char_01_5_01_4.html',1,'better_enums']]],
+  ['map_5fcompare_3c_20const_20wchar_5ft_20_2a_20_3e',['map_compare&lt; const wchar_t * &gt;',['../structbetter__enums_1_1map__compare_3_01const_01wchar__t_01_5_01_4.html',1,'better_enums']]]
 ];

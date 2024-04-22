@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>WaSH Docs: cs407</title>
+<title>WaSH Docs: &lt;strong&gt;WaSH&lt;/strong&gt;</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -62,11 +62,18 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">cs407 </div>  </div>
+<div class="title"><b>WaSH</b> </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>WaSH - **__Wa__** rwick **__S__** mooth **__H__** ydro</p>
-<p>WaSH is a Domain Specific Language on top of C++ for Smooth Particle Hydrodynamics simulations to help developers and researchers best utilise all their available hardware, using combinations of CUDA, OpenMP, and MPI. </p>
+<div class="textblock"><h3>(<em><b>Wa</b>rwick <b>S</b>mooth <b>H</b>ydrodynamics</em>)</h3>
+<p><em>WaSH</em> is a Domain Specific Language built with C++ designed to accelerate Smooth Particle Hydrodynamics simulations, and to help developers and researchers best utilise all of available hardware functionaly, using combinations of CUDA, OpenMP, and MPI, without needing specialist HPC programming knowledge.</p>
+<h2>Examples</h2>
+<ul>
+<li><code>ca_fluid_sim</code> (<code>make fluid_sim</code>) Basic 2D fluid simulation built as a proof of concept of API usage. Kernels were inspired from Code Adventures <a href="https://www.youtube.com/watch?v=rSKMYc1CQHE">youtube video</a>.</li>
+<li><code>3d_fluid_sim</code> (<code>make flu3d_sim</code>) Slightly more complex 3D fluid simulation, following the same basic forces as the 2D version.</li>
+<li><code>sedov</code> (<code>make sedov</code>) Sedov–von Neumann–Taylor blast wave test case. Kernels were inspired by the implementation in <a href="https://github.com/unibas-dmi-hpc/SPH-EXA">SPH-EXA</a> from the University of Basel.</li>
+<li><code>sedov_solution</code> (<code>make sedov_sol</code>) Computation which produces an analytical solution to the Sedov blast wave, see above. </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

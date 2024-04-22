@@ -1,3 +1,13 @@
-Wa\+SH -\/ $\ast$$\ast$\+\_\+\+\_\+\+Wa\+\_\+\+\_\+$\ast$$\ast$ rwick $\ast$$\ast$\+\_\+\+\_\+\+S\+\_\+\+\_\+$\ast$$\ast$ mooth $\ast$$\ast$\+\_\+\+\_\+\+H\+\_\+\+\_\+$\ast$$\ast$ ydro
+\subsubsection*{({\itshape {\bfseries Wa}rwick {\bfseries S}mooth {\bfseries H}ydrodynamics})}
 
-Wa\+SH is a Domain Specific Language on top of C++ for Smooth Particle Hydrodynamics simulations to help developers and researchers best utilise all their available hardware, using combinations of C\+U\+DA, Open\+MP, and M\+PI. 
+{\itshape Wa\+SH} is a Domain Specific Language built with C++ designed to accelerate Smooth Particle Hydrodynamics simulations, and to help developers and researchers best utilise all of available hardware functionaly, using combinations of C\+U\+DA, Open\+MP, and M\+PI, without needing specialist H\+PC programming knowledge.
+
+\subsection*{Examples}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily ca\+\_\+fluid\+\_\+sim} ({\ttfamily make fluid\+\_\+sim}) Basic 2D fluid simulation built as a proof of concept of A\+PI usage. Kernels were inspired from Code Adventures \href{https://www.youtube.com/watch?v=rSKMYc1CQHE}{\tt youtube video}.
+\item {\ttfamily 3d\+\_\+fluid\+\_\+sim} ({\ttfamily make flu3d\+\_\+sim}) Slightly more complex 3D fluid simulation, following the same basic forces as the 2D version.
+\item {\ttfamily sedov} ({\ttfamily make sedov}) Sedov–von Neumann–\+Taylor blast wave test case. Kernels were inspired by the implementation in \href{https://github.com/unibas-dmi-hpc/SPH-EXA}{\tt S\+P\+H-\/\+E\+XA} from the University of Basel.
+\item {\ttfamily sedov\+\_\+solution} ({\ttfamily make sedov\+\_\+sol}) Computation which produces an analytical solution to the Sedov blast wave, see above. 
+\end{DoxyItemize}

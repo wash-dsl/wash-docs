@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['quickstart_3a_20building_20with_20bazel',['Quickstart: Building with Bazel',['../md__dcs_20_u2002000_4thYearProject_wash_googletest_docs_quickstart-bazel.html',1,'']]],
-  ['quickstart_3a_20building_20with_20cmake',['Quickstart: Building with CMake',['../md__dcs_20_u2002000_4thYearProject_wash_googletest_docs_quickstart-cmake.html',1,'']]],
-  ['queue',['Queue',['../classQueue.html',1,'']]],
-  ['queuenode',['QueueNode',['../classQueueNode.html',1,'']]]
+  ['vec',['Vec',['../classwash_1_1Vec.html',1,'wash']]],
+  ['vec_3c_20double_2c_20dim_20_3e',['Vec&lt; double, DIM &gt;',['../classwash_1_1Vec.html',1,'wash']]],
+  ['voidkernel',['VoidKernel',['../classwash_1_1VoidKernel.html',1,'wash']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['kindof',['KindOf',['../structtesting_1_1internal_1_1KindOf.html',1,'testing::internal']]]
+  ['nonereader',['NoneReader',['../classwash_1_1NoneReader.html',1,'wash']]],
+  ['nonewriter',['NoneWriter',['../classwash_1_1NoneWriter.html',1,'wash']]]
 ];

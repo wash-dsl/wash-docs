@@ -1,0 +1,65 @@
+\hypertarget{sedov__computer_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/sedov\+\_\+computer.hpp File Reference}
+\label{sedov__computer_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/sedov\+\_\+computer.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/sedov\+\_\+computer.\+hpp}}
+
+
+This class produces 1d solutions for a sedov blast wave propagating through a density gradient\+: rho = rho$\ast$$\ast$(-\/omega) , in planar(1\+D), cylindrical(2\+D) or spherical geometry(3\+D) for the \textquotesingle{}standard\textquotesingle{}, \textquotesingle{}singular\textquotesingle{} and \textquotesingle{}vaccum\textquotesingle{} cases.  
+
+
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$variant$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classSedovComputer}{Sedov\+Computer}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sedov__computer_8hpp_a4b04262b81aa7d31eb5d2f607e2a35de}\label{sedov__computer_8hpp_a4b04262b81aa7d31eb5d2f607e2a35de}} 
+using {\bfseries Real} = double
+\item 
+\mbox{\Hypertarget{sedov__computer_8hpp_ad29765d017498143e4586d5d86b9f32b}\label{sedov__computer_8hpp_ad29765d017498143e4586d5d86b9f32b}} 
+using {\bfseries Key\+Type} = uint64\+\_\+t
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sedov__computer_8hpp_a774d708554c17cb0fc5b809667cbde62}\label{sedov__computer_8hpp_a774d708554c17cb0fc5b809667cbde62}} 
+{\footnotesize template$<$class... T, class... Separators$>$ }\\void {\bfseries write\+Ascii} (size\+\_\+t first\+Index, size\+\_\+t last\+Index, const std\+::string \&path, bool append, const std\+::vector$<$ std\+::variant$<$ T $\ast$... $>$$>$ \&fields, Separators \&\&... separators)
+\item 
+\mbox{\Hypertarget{sedov__computer_8hpp_a035d67441548774e0b6cfc00745f61c6}\label{sedov__computer_8hpp_a035d67441548774e0b6cfc00745f61c6}} 
+void {\bfseries print\+Help} (char $\ast$bin\+Name)
+\item 
+\mbox{\Hypertarget{sedov__computer_8hpp_a14e41e46e8c7a63f4da8dd3f0b392391}\label{sedov__computer_8hpp_a14e41e46e8c7a63f4da8dd3f0b392391}} 
+void {\bfseries write\+Columns1D} (const std\+::string \&path)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class produces 1d solutions for a sedov blast wave propagating through a density gradient\+: rho = rho$\ast$$\ast$(-\/omega) , in planar(1\+D), cylindrical(2\+D) or spherical geometry(3\+D) for the \textquotesingle{}standard\textquotesingle{}, \textquotesingle{}singular\textquotesingle{} and \textquotesingle{}vaccum\textquotesingle{} cases. 
+
+\begin{DoxyAuthor}{Author}
+Jose A. Escartin \href{mailto:ja.escartin@gmail.com}{\tt ja.\+escartin@gmail.\+com}
+\begin{DoxyItemize}
+\item standard case\+: a nonzero solution extends from the shock to the origin, where the pressure is finite.
+\item singular case\+: a nonzero solution extends from the shock to the origin, where the pressure vanishes.
+\item vacuum case \+: a nonzero solution extends from the shock to a boundary point, where the density vanishes making the pressure meaningless. \begin{DoxyVerb}   This routine is a C++ conversion of one Fortran code based in these two papers:
+   - "Evaluation of the sedov-von neumann-taylor blast wave solution", Jim Kamm, la-ur-00-6055
+   - "The sedov self-similiar point blast solutions in nonuniform media", David Book, shock waves, 4, 1, 1994
+
+   Although the ordinary differential equations are analytic, the sedov expressions appear to become singular for
+\end{DoxyVerb}
+ various combinations of parameters and at the lower limits of the integration range. All these singularies are removable and done so by this routine.
+\end{DoxyItemize}
+\end{DoxyAuthor}
+This file is based on the analytical solution presented in S\+P\+H-\/\+E\+XA \href{https://github.com/unibas-dmi-hpc/SPH-EXA}{\tt https\+://github.\+com/unibas-\/dmi-\/hpc/\+S\+P\+H-\/\+E\+XA}
+
+\begin{DoxyDate}{Date}
+2023-\/11-\/30 
+\end{DoxyDate}
