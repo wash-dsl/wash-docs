@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['genericfilereader',['GenericFileReader',['../classwash_1_1GenericFileReader.html',1,'wash']]],
-  ['genericfilewriter',['GenericFileWriter',['../classwash_1_1GenericFileWriter.html',1,'wash']]]
+  ['particle',['Particle',['../classwash_1_1Particle.html',1,'wash']]]
 ];

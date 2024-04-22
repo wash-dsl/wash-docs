@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['write_5ftimings',['write_timings',['../classwash_1_1IOManager.html#ae635581c17822a8f18c228952000e6cc',1,'wash::IOManager']]]
+  ['new_5ftimings',['new_timings',['../classwash_1_1io_1_1IOManager.html#ae23d3d68354b0ba5b410992c60fe6762',1,'wash::io::IOManager']]]
 ];

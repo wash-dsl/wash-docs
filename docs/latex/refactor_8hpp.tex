@@ -1,0 +1,82 @@
+\hypertarget{refactor_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/refactor.hpp File Reference}
+\label{refactor_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/refactor.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/refactor.\+hpp}}
+
+
+Idea is to write out the results of the refactoring using the classes defined here.  
+
+
+{\ttfamily \#include \char`\"{}arguments.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+hpp\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1WashMatchCallback}{ws2st\+::refactor\+::\+Wash\+Match\+Callback}}
+\begin{DoxyCompactList}\small\item\em A specialised refactoring callback type for Wash using custom function pointers instead of subclassing tooling\+::\+Refactoring\+Callback and implementing ...\+::run a million times. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1WashRefactoringAction}{ws2st\+::refactor\+::\+Wash\+Refactoring\+Action}}
+\begin{DoxyCompactList}\small\item\em Developer defined registration of a refactoring action -\/ a ($<$\+T$>$Matcher, Callback\+Fn) pair. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1WashComputationAction}{ws2st\+::refactor\+::\+Wash\+Computation\+Action}}
+\begin{DoxyCompactList}\small\item\em Define a function to be run at the end of the refactor pass. Computation Actions will be run in the order they\textquotesingle{}re defined, but will be run after all refactoring actions in the pass have completed. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1RefactorPass}{ws2st\+::refactor\+::\+Refactor\+Pass}}
+\begin{DoxyCompactList}\small\item\em A pass of a refactoring tool over the source files running a series of actions defined. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1RefactoringToolConfiguration}{ws2st\+::refactor\+::\+Refactoring\+Tool\+Configuration}}
+\begin{DoxyCompactList}\small\item\em We configure the whole tool by a series of refactoring passes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{refactor_8cpp_a06d0c091199ff73aac3a1131cc04842b}{ws2st\+::refactor\+::run\+Refactoring}} (const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\begin{DoxyCompactList}\small\item\em Runs the wash refactoring application. \end{DoxyCompactList}\item 
+const Refactoring\+Tool\+Configuration \& {\bfseries ws2st\+::refactor\+::config\+::get\+Configuration\+For\+Implementation} (Implementations impl)
+\begin{DoxyCompactList}\small\item\em Returns the set of passes specified by the implementation given. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Idea is to write out the results of the refactoring using the classes defined here. 
+
+\begin{DoxyAuthor}{Author}
+james 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/22
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{empty__rules_8cpp_file_a0fc0edc6c85a212d9a53d019ac66844d}\label{empty__rules_8cpp_file_a0fc0edc6c85a212d9a53d019ac66844d}} 
+\index{refactor.\+hpp@{refactor.\+hpp}!get\+Configuration\+For\+Implementation@{get\+Configuration\+For\+Implementation}}
+\index{get\+Configuration\+For\+Implementation@{get\+Configuration\+For\+Implementation}!refactor.\+hpp@{refactor.\+hpp}}
+\subsubsection{\texorpdfstring{get\+Configuration\+For\+Implementation()}{getConfigurationForImplementation()}}
+{\footnotesize\ttfamily const Refactoring\+Tool\+Configuration \& ws2st\+::refactor\+::config\+::get\+Configuration\+For\+Implementation (\begin{DoxyParamCaption}\item[{Implementations}]{impl }\end{DoxyParamCaption})}
+
+
+
+Returns the set of passes specified by the implementation given. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impl} & Implementation to use passes of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a Configuration, which is a collection of passes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{refactor_8cpp_file_a06d0c091199ff73aac3a1131cc04842b}\label{refactor_8cpp_file_a06d0c091199ff73aac3a1131cc04842b}} 
+\index{refactor.\+hpp@{refactor.\+hpp}!run\+Refactoring@{run\+Refactoring}}
+\index{run\+Refactoring@{run\+Refactoring}!refactor.\+hpp@{refactor.\+hpp}}
+\subsubsection{\texorpdfstring{run\+Refactoring()}{runRefactoring()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::run\+Refactoring (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&}]{opts }\end{DoxyParamCaption})}
+
+
+
+Runs the wash refactoring application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opts} & Application options \\
+\hline
+\end{DoxyParams}

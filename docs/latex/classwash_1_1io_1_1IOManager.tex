@@ -1,0 +1,141 @@
+\hypertarget{classwash_1_1io_1_1IOManager}{}\section{wash\+:\+:io\+:\+:I\+O\+Manager Class Reference}
+\label{classwash_1_1io_1_1IOManager}\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+
+
+Manages the IO options for the simulation.  
+
+
+
+
+{\ttfamily \#include $<$io.\+hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}\label{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}} 
+using {\bfseries Writer\+FuncT} = std\+::function$<$ int(const \mbox{\hyperlink{classwash_1_1io_1_1IOManager}{io\+::\+I\+O\+Manager}} \&, const \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} \&, const size\+\_\+t)$>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_acea5f3f8a7f3e8eb1bfda9bc551b8435}\label{classwash_1_1io_1_1IOManager_acea5f3f8a7f3e8eb1bfda9bc551b8435}} 
+{\bfseries I\+O\+Manager} (const std\+::string format, Writer\+FuncT writer, const size\+\_\+t nth, const size\+\_\+t rank=0, const size\+\_\+t size=1, const bool timings=true)
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_a736c595ca08833f2a4df8f0db90ceb28}\label{classwash_1_1io_1_1IOManager_a736c595ca08833f2a4df8f0db90ceb28}} 
+{\bfseries I\+O\+Manager} (const std\+::string format, Writer\+FuncT writer)
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_af011701d8fed420a51bafe7fcf035774}\label{classwash_1_1io_1_1IOManager_af011701d8fed420a51bafe7fcf035774}} 
+{\bfseries I\+O\+Manager} (const std\+::string format, Writer\+FuncT writer, const size\+\_\+t rank, const size\+\_\+t size)
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_aded7d1dbc7a4c2fc21e3a914ea0ea3b0}\label{classwash_1_1io_1_1IOManager_aded7d1dbc7a4c2fc21e3a914ea0ea3b0}} 
+const std\+::string {\bfseries get\+\_\+path} () const
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ad290bc39e3c9ccafb070bf6ba75597b6}\label{classwash_1_1io_1_1IOManager_ad290bc39e3c9ccafb070bf6ba75597b6}} 
+size\+\_\+t {\bfseries get\+\_\+rank} () const
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_a01f3e40f12375f3128ad9b19f3ecda12}\label{classwash_1_1io_1_1IOManager_a01f3e40f12375f3128ad9b19f3ecda12}} 
+size\+\_\+t {\bfseries get\+\_\+size} () const
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ab599141d728a1d6c09ce273a9e556eff}\label{classwash_1_1io_1_1IOManager_ab599141d728a1d6c09ce273a9e556eff}} 
+void {\bfseries set\+\_\+gather} (bool value=true)
+\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}\label{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}} 
+const std\+::string \& \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}{expand\+\_\+label}} (const std\+::string \&label) const
+\begin{DoxyCompactList}\small\item\em Helper function to expand a label if an expansion exists. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} \mbox{\hyperlink{classwash_1_1io_1_1IOManager_acd4d5358ca4bb964926dfc080a72475c}{get\+\_\+simulation\+\_\+data}} ()
+\begin{DoxyCompactList}\small\item\em Copies the simulation data at the current point of the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ab4670696bfb277a364f6112fc6f0d051}{write\+\_\+iteration}} (const size\+\_\+t iteration)
+\begin{DoxyCompactList}\small\item\em Dispatches an iteration call to the writer based on the iteration number. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ab2397361f7dc4f7b54b559d332bafb11}{write\+\_\+timings}} (const std\+::string \&event\+\_\+name, const int tag, const int64\+\_\+t time\+\_\+taken) const
+\begin{DoxyCompactList}\small\item\em Write a timing even out to a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}\label{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}} 
+void \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}{new\+\_\+timings}} ()
+\begin{DoxyCompactList}\small\item\em Clear the timings output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ {\bfseries label\+\_\+map}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Manages the IO options for the simulation. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_acd4d5358ca4bb964926dfc080a72475c}\label{classwash_1_1io_1_1IOManager_acd4d5358ca4bb964926dfc080a72475c}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!get\+\_\+simulation\+\_\+data@{get\+\_\+simulation\+\_\+data}}
+\index{get\+\_\+simulation\+\_\+data@{get\+\_\+simulation\+\_\+data}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{get\+\_\+simulation\+\_\+data()}{get\_simulation\_data()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} wash\+::io\+::\+I\+O\+Manager\+::get\+\_\+simulation\+\_\+data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copies the simulation data at the current point of the simulation. 
+
+If set to use a gather this will use M\+PI to gather from all processes
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} The simulation data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ab4670696bfb277a364f6112fc6f0d051}\label{classwash_1_1io_1_1IOManager_ab4670696bfb277a364f6112fc6f0d051}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!write\+\_\+iteration@{write\+\_\+iteration}}
+\index{write\+\_\+iteration@{write\+\_\+iteration}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{write\+\_\+iteration()}{write\_iteration()}}
+{\footnotesize\ttfamily void wash\+::io\+::\+I\+O\+Manager\+::write\+\_\+iteration (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{iteration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Dispatches an iteration call to the writer based on the iteration number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iteration} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ab2397361f7dc4f7b54b559d332bafb11}\label{classwash_1_1io_1_1IOManager_ab2397361f7dc4f7b54b559d332bafb11}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!write\+\_\+timings@{write\+\_\+timings}}
+\index{write\+\_\+timings@{write\+\_\+timings}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{write\+\_\+timings()}{write\_timings()}}
+{\footnotesize\ttfamily void wash\+::io\+::\+I\+O\+Manager\+::write\+\_\+timings (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{event\+\_\+name,  }\item[{const int}]{tag,  }\item[{const int64\+\_\+t}]{time\+\_\+taken }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Write a timing even out to a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event\+\_\+name} & \\
+\hline
+{\em time\+\_\+taken} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ae2918fb006b6571b0eeceed90d2685b4}\label{classwash_1_1io_1_1IOManager_ae2918fb006b6571b0eeceed90d2685b4}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!label\+\_\+map@{label\+\_\+map}}
+\index{label\+\_\+map@{label\+\_\+map}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{label\+\_\+map}{label\_map}}
+{\footnotesize\ttfamily const std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ wash\+::io\+::\+I\+O\+Manager\+::label\+\_\+map\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{ 
+        \{\textcolor{stringliteral}{"id"}, \textcolor{stringliteral}{"ParticleIDs"}\},
+        \{\textcolor{stringliteral}{"pos"}, \textcolor{stringliteral}{"Coordinates"}\},
+        \{\textcolor{stringliteral}{"vel"}, \textcolor{stringliteral}{"Velocities"}\},
+        \{\textcolor{stringliteral}{"acc"}, \textcolor{stringliteral}{"Acceleration"}\},
+        \{\textcolor{stringliteral}{"rho"}, \textcolor{stringliteral}{"Density"}\},
+        \{\textcolor{stringliteral}{"density"}, \textcolor{stringliteral}{"Density"}\},
+        \{\textcolor{stringliteral}{"h"}, \textcolor{stringliteral}{"SmoothingLength"}\},
+        \{\textcolor{stringliteral}{"smoothing\_length"}, \textcolor{stringliteral}{"SmoothingLength"}\},
+        \{\textcolor{stringliteral}{"m"}, \textcolor{stringliteral}{"Masses"}\},
+        \{\textcolor{stringliteral}{"mass"}, \textcolor{stringliteral}{"Masses"}\}
+    \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/dcs/20/u2002000/4th\+Year\+Project/wash/include/io.\+hpp\item 
+/dcs/20/u2002000/4th\+Year\+Project/wash/src/io/io.\+cpp\end{DoxyCompactItemize}

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['read_5fascii_2ecpp',['read_ascii.cpp',['../read__ascii_8cpp.html',1,'']]],
-  ['read_5fhdf5_2ecpp',['read_hdf5.cpp',['../read__hdf5_8cpp.html',1,'']]]
+  ['refactor_2ecpp',['refactor.cpp',['../refactor_8cpp.html',1,'']]],
+  ['refactor_2ehpp',['refactor.hpp',['../refactor_8hpp.html',1,'']]],
+  ['register_5fvariable_2ecpp',['register_variable.cpp',['../register__variable_8cpp.html',1,'']]]
 ];

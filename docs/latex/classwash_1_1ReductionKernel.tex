@@ -1,5 +1,14 @@
 \hypertarget{classwash_1_1ReductionKernel}{}\section{wash\+:\+:Reduction\+Kernel Class Reference}
 \label{classwash_1_1ReductionKernel}\index{wash\+::\+Reduction\+Kernel@{wash\+::\+Reduction\+Kernel}}
+
+
+Reduction \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} implements a reduction operation over the particles to a specifed variable.  
+
+
+
+
+{\ttfamily \#include $<$kernels.\+hpp$>$}
+
 Inheritance diagram for wash\+:\+:Reduction\+Kernel\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,21 +18,20 @@ Inheritance diagram for wash\+:\+:Reduction\+Kernel\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classwash_1_1ReductionKernel_ab916c2db7332203aed95dbd1adfbdd8e}\label{classwash_1_1ReductionKernel_ab916c2db7332203aed95dbd1adfbdd8e}} 
-{\bfseries Reduction\+Kernel} (const Map\+FuncT map\+\_\+func, const Reduce\+FuncT reduce\+\_\+func, const double seed, const std\+::string variable)
+\mbox{\Hypertarget{classwash_1_1ReductionKernel_a107edb65b63afdbc530718b5d3e901d6}\label{classwash_1_1ReductionKernel_a107edb65b63afdbc530718b5d3e901d6}} 
+{\bfseries Reduction\+Kernel} (const Map\+FuncT map\+\_\+func, const \mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807e}{Reduce\+Op}} reduce\+\_\+op, double $\ast$variable)
 \item 
 \mbox{\Hypertarget{classwash_1_1ReductionKernel_a3ead90df8748700f40b2e6820e8e7e91}\label{classwash_1_1ReductionKernel_a3ead90df8748700f40b2e6820e8e7e91}} 
-virtual void {\bfseries exec} () const override
-\item 
-\mbox{\Hypertarget{classwash_1_1ReductionKernel_ab916c2db7332203aed95dbd1adfbdd8e}\label{classwash_1_1ReductionKernel_ab916c2db7332203aed95dbd1adfbdd8e}} 
-{\bfseries Reduction\+Kernel} (const Map\+FuncT map\+\_\+func, const Reduce\+FuncT reduce\+\_\+func, const double seed, const std\+::string variable)
-\item 
-\mbox{\Hypertarget{classwash_1_1ReductionKernel_aa06e992c0bc5d3e97fdf7553ad583bf3}\label{classwash_1_1ReductionKernel_aa06e992c0bc5d3e97fdf7553ad583bf3}} 
 virtual void {\bfseries exec} () const override
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+Reduction \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} implements a reduction operation over the particles to a specifed variable. 
+
+This kernel may need to be used to collect a total value across all particles (e.\+g. sum of kinetic energy) 
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/dcs/20/u2002000/4th\+Year\+Project/wash/src/wash/wash.\+hpp\item 
-/dcs/20/u2002000/4th\+Year\+Project/wash/src/wash/wash.\+cpp\end{DoxyCompactItemize}
+/dcs/20/u2002000/4th\+Year\+Project/wash/include/kernels.\+hpp\item 
+/dcs/20/u2002000/4th\+Year\+Project/wash/src/impl/cstone/kernels.\+cpp\end{DoxyCompactItemize}

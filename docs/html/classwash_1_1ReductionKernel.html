@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>wash</b></li><li class="navelem"><a class="el" href="classwash_1_1ReductionKernel.html">ReductionKernel</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacewash.html">wash</a></li><li class="navelem"><a class="el" href="classwash_1_1ReductionKernel.html">ReductionKernel</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -72,35 +72,36 @@ $(function() {
 <div class="title">wash::ReductionKernel Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Reduction <a class="el" href="classwash_1_1Kernel.html" title="Parent Kernel Class. ">Kernel</a> implements a reduction operation over the particles to a specifed variable.  
+ <a href="classwash_1_1ReductionKernel.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="kernels_8hpp_source.html">kernels.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for wash::ReductionKernel:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classwash_1_1ReductionKernel.png" usemap="#wash::ReductionKernel_map" alt=""/>
   <map id="wash::ReductionKernel_map" name="wash::ReductionKernel_map">
-<area href="classwash_1_1Kernel.html" alt="wash::Kernel" shape="rect" coords="0,0,140,24"/>
-<area href="classwash_1_1Kernel.html" alt="wash::Kernel" shape="rect" coords="150,0,290,24"/>
+<area href="classwash_1_1Kernel.html" title="Parent Kernel Class. " alt="wash::Kernel" shape="rect" coords="0,0,140,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab916c2db7332203aed95dbd1adfbdd8e"><td class="memItemLeft" align="right" valign="top"><a id="ab916c2db7332203aed95dbd1adfbdd8e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ReductionKernel</b> (const MapFuncT map_func, const ReduceFuncT reduce_func, const double seed, const std::string variable)</td></tr>
-<tr class="separator:ab916c2db7332203aed95dbd1adfbdd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a107edb65b63afdbc530718b5d3e901d6"><td class="memItemLeft" align="right" valign="top"><a id="a107edb65b63afdbc530718b5d3e901d6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ReductionKernel</b> (const MapFuncT map_func, const <a class="el" href="namespacewash.html#a9c59e8c142d63d8640921c1b1957807e">ReduceOp</a> reduce_op, double *variable)</td></tr>
+<tr class="separator:a107edb65b63afdbc530718b5d3e901d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ead90df8748700f40b2e6820e8e7e91"><td class="memItemLeft" align="right" valign="top"><a id="a3ead90df8748700f40b2e6820e8e7e91"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>exec</b> () const override</td></tr>
 <tr class="separator:a3ead90df8748700f40b2e6820e8e7e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab916c2db7332203aed95dbd1adfbdd8e"><td class="memItemLeft" align="right" valign="top"><a id="ab916c2db7332203aed95dbd1adfbdd8e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ReductionKernel</b> (const MapFuncT map_func, const ReduceFuncT reduce_func, const double seed, const std::string variable)</td></tr>
-<tr class="separator:ab916c2db7332203aed95dbd1adfbdd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa06e992c0bc5d3e97fdf7553ad583bf3"><td class="memItemLeft" align="right" valign="top"><a id="aa06e992c0bc5d3e97fdf7553ad583bf3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>exec</b> () const override</td></tr>
-<tr class="separator:aa06e992c0bc5d3e97fdf7553ad583bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/dcs/20/u2002000/4thYearProject/wash/src/wash/<a class="el" href="wash_2wash_8hpp_source.html">wash.hpp</a></li>
-<li>/dcs/20/u2002000/4thYearProject/wash/src/wash/wash.cpp</li>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Reduction <a class="el" href="classwash_1_1Kernel.html" title="Parent Kernel Class. ">Kernel</a> implements a reduction operation over the particles to a specifed variable. </p>
+<p>This kernel may need to be used to collect a total value across all particles (e.g. sum of kinetic energy) </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>/dcs/20/u2002000/4thYearProject/wash/include/<a class="el" href="kernels_8hpp_source.html">kernels.hpp</a></li>
+<li>/dcs/20/u2002000/4thYearProject/wash/src/impl/cstone/kernels.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

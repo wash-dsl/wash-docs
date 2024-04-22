@@ -35,7 +35,7 @@ The first step is to set some parameters for your simulation.
 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
     wash::set\_precision(\textcolor{stringliteral}{"double"});
     wash::set\_influence\_radius(smoothingRadius);
-    wash::set\_max\_iterations(1000);
+    \mbox{\hyperlink{namespacewash_aeb7b287406244c8ab192d0524ad4da5b}{wash::set\_max\_iterations}}(1000);
 \}
 \end{DoxyCode}
 
@@ -48,15 +48,15 @@ The simulation results must be written {\itshape somewhere}. Wa\+SH provides A\+
     ...
     \textcolor{keywordflow}{if} (argc > 1) \{
         \textcolor{comment}{// argv[1] = simulation name}
-        wash::set\_simulation\_name(argv[1]);
+        \mbox{\hyperlink{namespacewash_a4ddbab848bef96e0fc69bf8e280d4775}{wash::set\_simulation\_name}}(argv[1]);
         \textcolor{keywordflow}{if} (argc > 2) \{
             \textcolor{comment}{// argv[2] = output file name}
-            wash::set\_output\_file\_name(argv[2]);
+            \mbox{\hyperlink{namespacewash_ad6de17b9a27f58f6245a68ede303e84b}{wash::set\_output\_file\_name}}(argv[2]);
         \} \textcolor{keywordflow}{else} \{
-            wash::set\_output\_file\_name(\textcolor{stringliteral}{"ca"});
+            \mbox{\hyperlink{namespacewash_ad6de17b9a27f58f6245a68ede303e84b}{wash::set\_output\_file\_name}}(\textcolor{stringliteral}{"ca"});
         \}
     \} \textcolor{keywordflow}{else} \{
-        wash::set\_simulation\_name(\textcolor{stringliteral}{"serial\_test"});
+        \mbox{\hyperlink{namespacewash_a4ddbab848bef96e0fc69bf8e280d4775}{wash::set\_simulation\_name}}(\textcolor{stringliteral}{"serial\_test"});
     \}
 \}
 \end{DoxyCode}
@@ -150,14 +150,14 @@ These kernels define how particles change. The registration order of these kerne
 \begin{DoxyCode}
 \textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
     ...
-    wash::add\_update\_kernel(&VelocityUpdate);
-    wash::add\_force\_kernel(&CalculateDensity);
-    wash::add\_force\_kernel(&force\_kernel);
+    \mbox{\hyperlink{namespacewash_abc27c958fb1156da77a1346c3559abc1}{wash::add\_update\_kernel}}(&VelocityUpdate);
+    \mbox{\hyperlink{namespacewash_a2ffa21a9e32d3ca6ce87def3e7db4837}{wash::add\_force\_kernel}}(&CalculateDensity);
+    \mbox{\hyperlink{namespacewash_a2ffa21a9e32d3ca6ce87def3e7db4837}{wash::add\_force\_kernel}}(&force\_kernel);
 
-    wash::add\_update\_kernel(&UpdatePositions);
-    wash::add\_update\_kernel(&HandleCollisions);
+    \mbox{\hyperlink{namespacewash_abc27c958fb1156da77a1346c3559abc1}{wash::add\_update\_kernel}}(&UpdatePositions);
+    \mbox{\hyperlink{namespacewash_abc27c958fb1156da77a1346c3559abc1}{wash::add\_update\_kernel}}(&HandleCollisions);
 
-    wash::start();
+    \mbox{\hyperlink{namespacewash_a4c8a9913a535b341da9e72826916544b}{wash::start}}();
 \}
 \end{DoxyCode}
  This is the last part of our Main function. It describes the high-\/level behaviour of the simulation, and all that\textquotesingle{}s left is the low-\/level specification of what should happen in each kernel.
@@ -312,12 +312,12 @@ The Handle\+Collisions kernel ensures particles do not exit the bounds of the si
     \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} edgeDst = halfSize - pos.abs();
 
     \textcolor{keywordflow}{if} (*(edgeDst[0]) <= 0) \{
-        *(pos[0]) = halfSize.at(0) * wash::sgn(pos.at(0));
+        *(pos[0]) = halfSize.at(0) * \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{wash::sgn}}(pos.at(0));
         *(vel[0]) *= -1 * collisionDamping;
     \}
 
     \textcolor{keywordflow}{if} (*(edgeDst[1]) <= 0) \{
-        *(pos[1]) = halfSize.at(1) * wash::sgn(pos.at(1));
+        *(pos[1]) = halfSize.at(1) * \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{wash::sgn}}(pos.at(1));
         *(vel[1]) *= -1 * collisionDamping;
     \}
     \textcolor{comment}{// do any obstacle collision here}

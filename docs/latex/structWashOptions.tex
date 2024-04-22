@@ -1,0 +1,56 @@
+\hypertarget{structWashOptions}{}\section{Wash\+Options Struct Reference}
+\label{structWashOptions}\index{Wash\+Options@{Wash\+Options}}
+
+
+Options about how the Wash analysis will behave.  
+
+
+
+
+{\ttfamily \#include $<$common.\+hpp$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structWashOptions_a44a1b923dc5034a3bf45dee2f54623ca}\label{structWashOptions_a44a1b923dc5034a3bf45dee2f54623ca}} 
+Implementations {\bfseries impl}
+\item 
+\mbox{\Hypertarget{structWashOptions_a50d97883a6c0eaf8bafda97f5bad2a1e}\label{structWashOptions_a50d97883a6c0eaf8bafda97f5bad2a1e}} 
+bool {\bfseries openmp}
+\item 
+\mbox{\Hypertarget{structWashOptions_a9ec267278d89d04982e3d70e877d5c67}\label{structWashOptions_a9ec267278d89d04982e3d70e877d5c67}} 
+bool {\bfseries mpi}
+\item 
+\mbox{\Hypertarget{structWashOptions_a31ed802896363b97ac1f5199a6940df9}\label{structWashOptions_a31ed802896363b97ac1f5199a6940df9}} 
+bool {\bfseries hdf5}
+\item 
+\mbox{\Hypertarget{structWashOptions_a5bc365ad8fc0544864d15709b6808843}\label{structWashOptions_a5bc365ad8fc0544864d15709b6808843}} 
+bool {\bfseries debug}
+\item 
+\mbox{\Hypertarget{structWashOptions_a0caa33c545fc380c4104ca90f6462dfb}\label{structWashOptions_a0caa33c545fc380c4104ca90f6462dfb}} 
+uint8\+\_\+t {\bfseries dim}
+\item 
+\mbox{\Hypertarget{structWashOptions_a4b43b8f0700908a6975a367d2cb9d567}\label{structWashOptions_a4b43b8f0700908a6975a367d2cb9d567}} 
+std\+::string {\bfseries input\+\_\+path}
+\item 
+\mbox{\Hypertarget{structWashOptions_a091c31f0eee54c7b079268f7a1001547}\label{structWashOptions_a091c31f0eee54c7b079268f7a1001547}} 
+std\+::string {\bfseries output\+\_\+name}
+\item 
+\mbox{\Hypertarget{structWashOptions_a27f59d7e66cdf80f0fe5cc5e699b0953}\label{structWashOptions_a27f59d7e66cdf80f0fe5cc5e699b0953}} 
+std\+::string {\bfseries temp\+\_\+path}
+\item 
+\mbox{\Hypertarget{structWashOptions_abc32ad74441fbc82069b4addc130d4cd}\label{structWashOptions_abc32ad74441fbc82069b4addc130d4cd}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries args}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Options about how the Wash analysis will behave. 
+
+Whether to enable certain features via flags in the compiler analysis and then again in the final compilation stages.
+
+T\+O\+DO\+: If multiple options are enabled which are contradictory, then we should generate multiple output binaries at the end. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/common.\+hpp\end{DoxyCompactItemize}

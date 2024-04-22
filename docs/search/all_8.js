@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['kernel',['Kernel',['../classwash_1_1Kernel.html',1,'wash']]],
-  ['kernels_2ecpp',['kernels.cpp',['../kernels_8cpp.html',1,'']]]
+  ['new_5ftimings',['new_timings',['../classwash_1_1io_1_1IOManager.html#ae23d3d68354b0ba5b410992c60fe6762',1,'wash::io::IOManager']]]
 ];

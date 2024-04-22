@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>wash</b></li><li class="navelem"><a class="el" href="classwash_1_1Vec.html">Vec</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacewash.html">wash</a></li><li class="navelem"><a class="el" href="classwash_1_1Vec.html">Vec</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -73,12 +73,20 @@ $(function() {
 <div class="title">wash::Vec&lt; T, dim &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Custom vector class for WaSH simulation.  
+ <a href="classwash_1_1Vec.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="vector_8hpp_source.html">vector.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5927d6caa8489a88b8470fe8bb8779d0"><td class="memItemLeft" align="right" valign="top"><a id="a5927d6caa8489a88b8470fe8bb8779d0"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int i)</td></tr>
-<tr class="separator:a5927d6caa8489a88b8470fe8bb8779d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9bf604894ed27189131909371e5af70"><td class="memItemLeft" align="right" valign="top"><a id="ac9bf604894ed27189131909371e5af70"></a>
+T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int i)</td></tr>
+<tr class="separator:ac9bf604894ed27189131909371e5af70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751a7a202ad5e726937568887700a954"><td class="memItemLeft" align="right" valign="top"><a id="a751a7a202ad5e726937568887700a954"></a>
+const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int i) const</td></tr>
+<tr class="separator:a751a7a202ad5e726937568887700a954"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8a8863138b26c2b2eae41e11f40e78f"><td class="memItemLeft" align="right" valign="top"><a id="ad8a8863138b26c2b2eae41e11f40e78f"></a>
 <a class="el" href="classwash_1_1Vec.html">Vec</a>&lt; T, dim &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+</b> (T d)</td></tr>
 <tr class="separator:ad8a8863138b26c2b2eae41e11f40e78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,29 +117,31 @@ T&#160;</td><td class="memItemRight" valign="bottom"><b>at</b> (const size_t i) 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a1f8030900a506e51197d5af4ec4d1143"><td class="memItemLeft" align="right" valign="top">std::array&lt; T, dim &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwash_1_1Vec.html#a1f8030900a506e51197d5af4ec4d1143">data</a></td></tr>
+<tr class="memitem:a1f8030900a506e51197d5af4ec4d1143"><td class="memItemLeft" align="right" valign="top"><a id="a1f8030900a506e51197d5af4ec4d1143"></a>
+std::array&lt; T, dim &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
 <tr class="separator:a1f8030900a506e51197d5af4ec4d1143"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a1f8030900a506e51197d5af4ec4d1143"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f8030900a506e51197d5af4ec4d1143">&#9670;&nbsp;</a></span>data</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename T, int dim&gt;<br />
+class wash::Vec&lt; T, dim &gt;</h3>
 
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T, int dim&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::array&lt;T, dim&gt; <a class="el" href="classwash_1_1Vec.html">wash::Vec</a>&lt; T, dim &gt;::data</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Vector Class for WASH </p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/dcs/20/u2002000/4thYearProject/wash/src/wash/<a class="el" href="vector_8hpp_source.html">vector.hpp</a></li>
+<p>Custom vector class for WaSH simulation. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Datatype of the vector </td></tr>
+    <tr><td class="paramname">dim</td><td>How many elements in the vector WaSH custom vector class</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This class is how we represent vectors in WaSH. It provides a number of basic operations, and is templated on the type of the vector and the dimensionality. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">T</td><td>The type of the vector (double/float) </td></tr>
+    <tr><td class="paramname">dim</td><td>The dimensionality of the vector (2/3 typically) </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>/dcs/20/u2002000/4thYearProject/wash/include/<a class="el" href="vector_8hpp_source.html">vector.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

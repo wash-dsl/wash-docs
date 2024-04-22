@@ -1,0 +1,116 @@
+\hypertarget{sources_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/sources.hpp File Reference}
+\label{sources_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/sources.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/sources.\+hpp}}
+
+
+Contains methods to operating with the filesystem.  
+
+
+{\ttfamily \#include \char`\"{}common.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string {\bfseries ws2st\+::files\+::generate\+App\+Directory\+Name} (const std\+::string \&source\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Creates a random 8-\/character directory name from the input source directory (loosely based on fs\+::hash) \end{DoxyCompactList}\item 
+bool {\bfseries ws2st\+::files\+::clean\+Directory} (const fs\+::path \&directory\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Cleans a directory by removing all files within it. \end{DoxyCompactList}\item 
+std\+::optional$<$ std\+::vector$<$ std\+::string $>$ $>$ {\bfseries ws2st\+::files\+::copy\+Directory\+Files} (const fs\+::path \&source\+\_\+dir, const fs\+::path \&destination\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Copies a directories files to another directory Is recursive in the filesystem and will rename any colliding files. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ {\bfseries ws2st\+::files\+::assemble\+Source\+With\+Backend} (\mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\begin{DoxyCompactList}\small\item\em Performs the necessary steps to prepare for the refactoring tool Creates temporary directory \& copies all the necessary files there. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains methods to operating with the filesystem. 
+
+\begin{DoxyAuthor}{Author}
+james 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/01-\/25
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2024 
+\end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{sources_8cpp_file_a10984d26ef2edd156ea7c1a81359349a}\label{sources_8cpp_file_a10984d26ef2edd156ea7c1a81359349a}} 
+\index{sources.\+hpp@{sources.\+hpp}!assemble\+Source\+With\+Backend@{assemble\+Source\+With\+Backend}}
+\index{assemble\+Source\+With\+Backend@{assemble\+Source\+With\+Backend}!sources.\+hpp@{sources.\+hpp}}
+\subsubsection{\texorpdfstring{assemble\+Source\+With\+Backend()}{assembleSourceWithBackend()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ws2st\+::files\+::assemble\+Source\+With\+Backend (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&}]{opts }\end{DoxyParamCaption})}
+
+
+
+Performs the necessary steps to prepare for the refactoring tool Creates temporary directory \& copies all the necessary files there. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opts} & Wash program options \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of files created 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sources_8cpp_file_a0fed937b7498df1fb8980bc8150cc5b4}\label{sources_8cpp_file_a0fed937b7498df1fb8980bc8150cc5b4}} 
+\index{sources.\+hpp@{sources.\+hpp}!clean\+Directory@{clean\+Directory}}
+\index{clean\+Directory@{clean\+Directory}!sources.\+hpp@{sources.\+hpp}}
+\subsubsection{\texorpdfstring{clean\+Directory()}{cleanDirectory()}}
+{\footnotesize\ttfamily bool ws2st\+::files\+::clean\+Directory (\begin{DoxyParamCaption}\item[{const fs\+::path \&}]{directory\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Cleans a directory by removing all files within it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em directory\+\_\+path} & Directory to clean \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean indicating success/failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{sources_8cpp_file_a64eab5e7433c2cf4f1dc38751b740b48}\label{sources_8cpp_file_a64eab5e7433c2cf4f1dc38751b740b48}} 
+\index{sources.\+hpp@{sources.\+hpp}!copy\+Directory\+Files@{copy\+Directory\+Files}}
+\index{copy\+Directory\+Files@{copy\+Directory\+Files}!sources.\+hpp@{sources.\+hpp}}
+\subsubsection{\texorpdfstring{copy\+Directory\+Files()}{copyDirectoryFiles()}}
+{\footnotesize\ttfamily std\+::optional$<$ std\+::vector$<$ std\+::string $>$ $>$ ws2st\+::files\+::copy\+Directory\+Files (\begin{DoxyParamCaption}\item[{const fs\+::path \&}]{source\+\_\+dir,  }\item[{const fs\+::path \&}]{destination\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Copies a directories files to another directory Is recursive in the filesystem and will rename any colliding files. 
+
+
+\begin{DoxyItemize}
+\item This will cause include errors if there are collisions in header files but I can\textquotesingle{}t see a way to resolve this anyway 
+\begin{DoxyParams}{Parameters}
+{\em source\+\_\+dir} & Source to copy from \\
+\hline
+{\em destination\+\_\+dir} & Destination to copy to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Either nullopt on fail, or on success a vector of all processed files 
+\end{DoxyReturn}
+
+\end{DoxyItemize}\mbox{\Hypertarget{sources_8cpp_file_ae8e7cbbd08d003dfce48a2e0a8a4c768}\label{sources_8cpp_file_ae8e7cbbd08d003dfce48a2e0a8a4c768}} 
+\index{sources.\+hpp@{sources.\+hpp}!generate\+App\+Directory\+Name@{generate\+App\+Directory\+Name}}
+\index{generate\+App\+Directory\+Name@{generate\+App\+Directory\+Name}!sources.\+hpp@{sources.\+hpp}}
+\subsubsection{\texorpdfstring{generate\+App\+Directory\+Name()}{generateAppDirectoryName()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::files\+::generate\+App\+Directory\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{source\+\_\+dir }\end{DoxyParamCaption})}
+
+
+
+Creates a random 8-\/character directory name from the input source directory (loosely based on fs\+::hash) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em souce\+\_\+dir} & Directory to base the random string on \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Random directory to place source files in 
+\end{DoxyReturn}

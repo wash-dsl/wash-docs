@@ -1,0 +1,802 @@
+\hypertarget{namespacewash}{}\section{wash Namespace Reference}
+\label{namespacewash}\index{wash@{wash}}
+
+
+T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classwash_1_1ForceKernel}{Force\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Force \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}}
+\begin{DoxyCompactList}\small\item\em Parent \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1Particle}{Particle}}
+\item 
+class \mbox{\hyperlink{classwash_1_1ReductionKernel}{Reduction\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Reduction \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} implements a reduction operation over the particles to a specifed variable. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1UpdateKernel}{Update\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Update \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1Vec}{Vec}}
+\begin{DoxyCompactList}\small\item\em Custom vector class for Wa\+SH simulation. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1VoidKernel}{Void\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Void \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} has no arguments/return. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacewash_a3687ea698f8cb8c077d728e5d74de495}\label{namespacewash_a3687ea698f8cb8c077d728e5d74de495}} 
+using {\bfseries Force\+FuncT} = std\+::function$<$ void(\mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{Particle}} $>$\+::const\+\_\+iterator \&, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{Particle}} $>$\+::const\+\_\+iterator \&)$>$
+\item 
+\mbox{\Hypertarget{namespacewash_aaae2f0d4980b7c550d6de709b35f0b8e}\label{namespacewash_aaae2f0d4980b7c550d6de709b35f0b8e}} 
+using {\bfseries Update\+FuncT} = std\+::function$<$ void(\mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&)$>$
+\item 
+\mbox{\Hypertarget{namespacewash_ad515914307c88c01ff7524c57feabf83}\label{namespacewash_ad515914307c88c01ff7524c57feabf83}} 
+using {\bfseries Map\+FuncT} = std\+::function$<$ double(const \mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&)$>$
+\item 
+\mbox{\Hypertarget{namespacewash_a7de7a4195ce994df4dd54ff86e3fff20}\label{namespacewash_a7de7a4195ce994df4dd54ff86e3fff20}} 
+using {\bfseries Void\+FuncT} = std\+::function$<$ void()$>$
+\item 
+\mbox{\Hypertarget{namespacewash_a8135d763bfc59fce07b49873d8af0ed6}\label{namespacewash_a8135d763bfc59fce07b49873d8af0ed6}} 
+using {\bfseries Neighbors\+FuncT} = std\+::function$<$ void(\mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&)$>$
+\item 
+\mbox{\Hypertarget{namespacewash_ab2cbbc37941b733095c9225b49b4cad9}\label{namespacewash_ab2cbbc37941b733095c9225b49b4cad9}} 
+using {\bfseries Simulation\+VecT} = \mbox{\hyperlink{classwash_1_1Vec}{Vec}}$<$ double, D\+IM $>$
+\item 
+\mbox{\Hypertarget{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}\label{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}} 
+typedef \mbox{\hyperlink{classwash_1_1Vec}{Vec}}$<$ double, 2 $>$ {\bfseries Vec2D}
+\item 
+\mbox{\Hypertarget{namespacewash_a57da016a0635e7d25a96165adb48c7e3}\label{namespacewash_a57da016a0635e7d25a96165adb48c7e3}} 
+typedef \mbox{\hyperlink{classwash_1_1Vec}{Vec}}$<$ double, 3 $>$ {\bfseries Vec3D}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacewash_a9c59e8c142d63d8640921c1b1957807e}\label{namespacewash_a9c59e8c142d63d8640921c1b1957807e}} 
+enum \mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807e}{Reduce\+Op}} \{ {\bfseries max}, 
+{\bfseries min}, 
+{\bfseries sum}, 
+{\bfseries prod}
+ \}
+\begin{DoxyCompactList}\small\item\em Type of reduction operation to perform in a reduce kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classwash_1_1io_1_1IOManager}{io\+::\+I\+O\+Manager}} \mbox{\hyperlink{namespacewash_a92e4e768dbd609eba32fc0d68977d42f}{create\+\_\+io}} (const std\+::string format, const size\+\_\+t output\+\_\+nth, const bool use\+\_\+gather=false, const size\+\_\+t rank=0, const size\+\_\+t size=1, const bool timings=true)
+\begin{DoxyCompactList}\small\item\em Set-\/up the IO options for the simulation. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{namespacewash_afb1cc65bb4ecf6112723b4fb95450c96}{copy\+\_\+variables}} ()
+\begin{DoxyCompactList}\small\item\em Copy the variables of the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacewash_aebd88baa23220ce7842c503157c0bb71}\label{namespacewash_aebd88baa23220ce7842c503157c0bb71}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+\_\+variables\+\_\+names} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a1c8fa60f6e44bc34cd82b152c9570603}\label{namespacewash_a1c8fa60f6e44bc34cd82b152c9570603}} 
+{\footnotesize template$<$typename T $>$ }\\int64\+\_\+t {\bfseries diff\+\_\+ms} (std\+::chrono\+::time\+\_\+point$<$ T $>$ time1, std\+::chrono\+::time\+\_\+point$<$ T $>$ time2)
+\item 
+{\footnotesize template$<$typename... Args$>$ }\\std\+::string \mbox{\hyperlink{namespacewash_a3c692ea6f1cb04614c790fd4b9dc34ba}{string\+\_\+format}} (const std\+::string \&format, Args... args)
+\begin{DoxyCompactList}\small\item\em Helper function to format to a c++ string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\int \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{sgn}} (T val)
+\begin{DoxyCompactList}\small\item\em Helper function for the pure sign of a numerical type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacewash_ae34701c709b5a3bace6dfc0e19dcf01b}\label{namespacewash_ae34701c709b5a3bace6dfc0e19dcf01b}} 
+{\footnotesize template$<$typename T , size\+\_\+t N, size\+\_\+t... I$>$ }\\auto {\bfseries make\+\_\+tuple} (std\+::array$<$ T, N $>$ \&arr, std\+::index\+\_\+sequence$<$ I... $>$)
+\item 
+\mbox{\Hypertarget{namespacewash_a22d9c927a5c59b8a587e335472411ae7}\label{namespacewash_a22d9c927a5c59b8a587e335472411ae7}} 
+{\footnotesize template$<$typename T , size\+\_\+t N$>$ }\\auto {\bfseries make\+\_\+tuple} (std\+::array$<$ T, N $>$ \&arr)
+\item 
+\mbox{\Hypertarget{namespacewash_a477322dfaa4429578d544d713f5d4df9}\label{namespacewash_a477322dfaa4429578d544d713f5d4df9}} 
+{\footnotesize template$<$typename T , size\+\_\+t N, size\+\_\+t M$>$ }\\auto {\bfseries make\+\_\+tuple} (std\+::array$<$ T, N $>$ \&arr)
+\item 
+uint64\+\_\+t \mbox{\hyperlink{namespacewash_ab59a4fff607c38a8cded277413cdafec}{get\+\_\+max\+\_\+iterations}} ()
+\begin{DoxyCompactList}\small\item\em Get the max iterations of the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_aeb7b287406244c8ab192d0524ad4da5b}{set\+\_\+max\+\_\+iterations}} (const uint64\+\_\+t iterations)
+\begin{DoxyCompactList}\small\item\em Set the max number of iterations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a24bef1df5fe5c24cd518f12885a51055}{set\+\_\+bounding\+\_\+box}} (const double min, const double max, const bool periodic)
+\begin{DoxyCompactList}\small\item\em Set the bounding box dimensions and periodicity type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacewash_a70aeb215881f159a7efb6da02e5e452b}\label{namespacewash_a70aeb215881f159a7efb6da02e5e452b}} 
+void \mbox{\hyperlink{namespacewash_a70aeb215881f159a7efb6da02e5e452b}{set\+\_\+bounding\+\_\+box}} (const double xmin, const double xmax, const double ymin, const double ymax, const double zmin, const double zmax, const bool x\+\_\+periodic, const bool y\+\_\+periodic, const bool z\+\_\+periodic)
+\begin{DoxyCompactList}\small\item\em Set the bounding box dimensions and periodicity type in 3 dimensions. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a6103b7efdcc3045c8d2aae4d5598e7ae}{add\+\_\+force\+\_\+scalar}} (const std\+::string force)
+\begin{DoxyCompactList}\small\item\em Add a scalar force to the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a9f85f4ec09db604cb09806616365a5b8}{add\+\_\+force\+\_\+vector}} (const std\+::string force)
+\begin{DoxyCompactList}\small\item\em Add a n-\/dim vector force to the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_ae40d87ba5e1d4b16f1cc52932a030b3d}{add\+\_\+variable}} (const std\+::string variable, double init\+\_\+value=0.\+0)
+\begin{DoxyCompactList}\small\item\em Add a scalar variable to the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a2bed8ccfb6599a8edd0eb88037d8c8af}{add\+\_\+init\+\_\+update\+\_\+kernel}} (const Update\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add an initialisation update kernel (will be executed for each particle) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a4aa9c050821f26f11d51e72a861a1102}{add\+\_\+init\+\_\+void\+\_\+kernel}} (const Void\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add an initialization void kernel to the simulation -\/ run once. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a2ffa21a9e32d3ca6ce87def3e7db4837}{add\+\_\+force\+\_\+kernel}} (const Force\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add a force kernel to the simulation which will loop over the particles and their neighbourhood. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_abc27c958fb1156da77a1346c3559abc1}{add\+\_\+update\+\_\+kernel}} (const Update\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add an update kernel to the simulation which will loop over the particles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a730e8352e9361e6ef88fd4b4c21e7f8c}{add\+\_\+reduction\+\_\+kernel}} (const Map\+FuncT map\+\_\+func, const \mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807e}{Reduce\+Op}} reduce\+\_\+op, double $\ast$variable)
+\begin{DoxyCompactList}\small\item\em Add a reduction kernel to the simulation which will loop over the particles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_ab49fcc701f7afced2186465ba5cce978}{add\+\_\+void\+\_\+kernel}} (const Void\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add a void kernel to the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_abc2e79908c969eabb61a865c8f279d02}{set\+\_\+default\+\_\+neighbor\+\_\+search}} (const unsigned max\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Set the neighborhood search to use the provided default which uses the smoothing length of the particle and returns at most max\+\_\+count neighbours. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a49d266f2bd4daa1a1de50dab5a4250df}{set\+\_\+neighbor\+\_\+search\+\_\+kernel}} (const Neighbors\+FuncT func, const unsigned max\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Sets the neighbourhood search to use a custom function. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacewash_a6c61472c6ffa0cb654bc9497292b7f30}{get\+\_\+variable}} (const std\+::string \&variable)
+\begin{DoxyCompactList}\small\item\em Get the value of a variable. \end{DoxyCompactList}\item 
+double $\ast$ \mbox{\hyperlink{namespacewash_ad9a1f6575e74c6c12ddbae8d58c2b478}{use\+\_\+variable}} (const std\+::string \&variable)
+\begin{DoxyCompactList}\small\item\em Returns a reference to a variable useful for e.\+g. reduction kernels. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a5045909b6d97db3d92cc44bfd5df70ee}{set\+\_\+variable}} (const std\+::string \&variable, const double value)
+\begin{DoxyCompactList}\small\item\em Set the value of a variable. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a4c8a9913a535b341da9e72826916544b}{start}} ()
+\begin{DoxyCompactList}\small\item\em Get the vector of all particles in the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a4ddbab848bef96e0fc69bf8e280d4775}{set\+\_\+simulation\+\_\+name}} (const std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the simulation, used in IO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_ad6de17b9a27f58f6245a68ede303e84b}{set\+\_\+output\+\_\+file\+\_\+name}} (const std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the output file name of the simulation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacewash_aecf1c6d565098a830dfeb491a4638093}{eucdist}} (const \mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&p, const \mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&q)
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Move eucdist calculation to the paticle header? \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a20a6940ce5a881482fe472ed704f177e}{set\+\_\+particle\+\_\+count}} (const size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Set the number of particles to be used in the simulation. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{namespacewash_a3b281fefe2419e7bc1450029b0324ab8}{get\+\_\+particle\+\_\+count}} ()
+\begin{DoxyCompactList}\small\item\em Get the number of particles used in the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a6b9608d3d8934431c9ab6af488992f10}{set\+\_\+dimension}} (int dim)
+\begin{DoxyCompactList}\small\item\em Set the dimensionality of the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacewash_aaa75af8f4a35ef4b222eace2714ee9f8}\label{namespacewash_aaa75af8f4a35ef4b222eace2714ee9f8}} 
+void \mbox{\hyperlink{namespacewash_aaa75af8f4a35ef4b222eace2714ee9f8}{set\+\_\+io}} (const std\+::string format, size\+\_\+t output\+\_\+nth, bool timings=true)
+\begin{DoxyCompactList}\small\item\em Set the IO parameters used for the simulation. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{namespacewash_a344dd90c7f5c2e7fb6ba80fc25d71bf2}\label{namespacewash_a344dd90c7f5c2e7fb6ba80fc25d71bf2}} 
+double constexpr {\bfseries sqrt\+Newton\+Raphson} (double x, double curr, double prev)
+\item 
+\mbox{\Hypertarget{namespacewash_aa7c01695ae3be583edc0ed8c4bd756f5}\label{namespacewash_aa7c01695ae3be583edc0ed8c4bd756f5}} 
+double constexpr {\bfseries sqrt} (double x)
+\item 
+\mbox{\Hypertarget{namespacewash_a95f49b3110d612f44f7b88a0da43f154}\label{namespacewash_a95f49b3110d612f44f7b88a0da43f154}} 
+std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{Particle}} $>$ \& {\bfseries get\+\_\+global\+\_\+particles} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a79e2901674acaec9da9603ba4fdb12bf}\label{namespacewash_a79e2901674acaec9da9603ba4fdb12bf}} 
+std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{Particle}} $>$ \& {\bfseries get\+\_\+particles} ()
+\item 
+\mbox{\Hypertarget{namespacewash_abc2f2a24cba2a641e3a2177b85b20953}\label{namespacewash_abc2f2a24cba2a641e3a2177b85b20953}} 
+std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&os, const \mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&p)
+\item 
+\mbox{\Hypertarget{namespacewash_ae53e7d7035c2a890e62ce7687f173222}\label{namespacewash_ae53e7d7035c2a890e62ce7687f173222}} 
+std\+::string {\bfseries get\+\_\+simulation\+\_\+name} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a5ffed72aa633299d2cb1692076563f55}\label{namespacewash_a5ffed72aa633299d2cb1692076563f55}} 
+std\+::string {\bfseries get\+\_\+output\+\_\+file\+\_\+name} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a0cac03b47f7ed36a343e0d42aa0f013a}\label{namespacewash_a0cac03b47f7ed36a343e0d42aa0f013a}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+\_\+forces\+\_\+scalar} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a1b363919a60e27b3a13ee7eec7a3dcdb}\label{namespacewash_a1b363919a60e27b3a13ee7eec7a3dcdb}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+\_\+forces\+\_\+vector} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a1c3211b3b0c5f804ecd247b159703b68}\label{namespacewash_a1c3211b3b0c5f804ecd247b159703b68}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+\_\+variables} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a24c5e20c82921f02f79e9947f7113f70}\label{namespacewash_a24c5e20c82921f02f79e9947f7113f70}} 
+std\+::tuple$<$ int, int $>$ {\bfseries init\+\_\+mpi} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a1473dce3a353e16eae7e13990f27a9b3}\label{namespacewash_a1473dce3a353e16eae7e13990f27a9b3}} 
+cstone\+::\+Domain$<$ uint64\+\_\+t, double, cstone\+::\+Cpu\+Tag $>$ {\bfseries init\+\_\+domain} (int rank, int n\+\_\+ranks, size\+\_\+t num\+\_\+particles)
+\item 
+\mbox{\Hypertarget{namespacewash_aba64dafc759621369351c22f65435fe6}\label{namespacewash_aba64dafc759621369351c22f65435fe6}} 
+void {\bfseries recreate\+\_\+particles} (unsigned count\+\_\+with\+\_\+halos, size\+\_\+t start\+\_\+idx, size\+\_\+t end\+\_\+idx)
+\item 
+\mbox{\Hypertarget{namespacewash_a075ba78df60938a5d76fe39041396f37}\label{namespacewash_a075ba78df60938a5d76fe39041396f37}} 
+void {\bfseries sync\+\_\+domain} (cstone\+::\+Domain$<$ uint64\+\_\+t, double, cstone\+::\+Cpu\+Tag $>$ \&domain, std\+::vector$<$ size\+\_\+t $>$ \&keys, std\+::vector$<$ double $>$ \&s1, std\+::vector$<$ double $>$ \&s2, std\+::vector$<$ double $>$ \&s3)
+\item 
+\mbox{\Hypertarget{namespacewash_aaf7c907c156c086ad032365076e04b92}\label{namespacewash_aaf7c907c156c086ad032365076e04b92}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+\_\+force\+\_\+scalars\+\_\+names} ()
+\item 
+\mbox{\Hypertarget{namespacewash_ae42fc803544c64f176f65f72e0fc1fe0}\label{namespacewash_ae42fc803544c64f176f65f72e0fc1fe0}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+\_\+force\+\_\+vectors\+\_\+names} ()
+\item 
+\mbox{\Hypertarget{namespacewash_aaa0505290c83069eeb4f67744d4b8f1e}\label{namespacewash_aaa0505290c83069eeb4f67744d4b8f1e}} 
+void {\bfseries reset\+\_\+neighbour\+\_\+data} ()
+\item 
+\mbox{\Hypertarget{namespacewash_a0bc7b17c64c2b0f7bdd6c7c2d30f2398}\label{namespacewash_a0bc7b17c64c2b0f7bdd6c7c2d30f2398}} 
+void {\bfseries initialise\+\_\+particles} (size\+\_\+t particle\+\_\+count)
+\item 
+\mbox{\Hypertarget{namespacewash_a34943cddac15887cbaca01af7ca106c5}\label{namespacewash_a34943cddac15887cbaca01af7ca106c5}} 
+void {\bfseries create\+\_\+particles} ()
+\item 
+\mbox{\Hypertarget{namespacewash_aa3671e8d906a2f71aa6a17ce42029ad5}\label{namespacewash_aa3671e8d906a2f71aa6a17ce42029ad5}} 
+Particle\+Data $\ast$ {\bfseries get\+\_\+particle\+\_\+data} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacewash_a7c97ecfdda83ead3747575f282914fc7}\label{namespacewash_a7c97ecfdda83ead3747575f282914fc7}} 
+uint64\+\_\+t {\bfseries max\+\_\+iterations}
+\item 
+\mbox{\Hypertarget{namespacewash_ad6aebf5344b1fc0abbba9caafc9e4148}\label{namespacewash_ad6aebf5344b1fc0abbba9caafc9e4148}} 
+size\+\_\+t {\bfseries particle\+\_\+cnt}
+\item 
+\mbox{\Hypertarget{namespacewash_a5594c5b6d88e52502a105679e9dce1e5}\label{namespacewash_a5594c5b6d88e52502a105679e9dce1e5}} 
+double {\bfseries box\+\_\+xmin}
+\item 
+\mbox{\Hypertarget{namespacewash_a2bb279bd282b3bb57afec4eaaa7881f0}\label{namespacewash_a2bb279bd282b3bb57afec4eaaa7881f0}} 
+double {\bfseries box\+\_\+ymin}
+\item 
+\mbox{\Hypertarget{namespacewash_aa81fea0809af4d84ee5cc0cde58ef23a}\label{namespacewash_aa81fea0809af4d84ee5cc0cde58ef23a}} 
+double {\bfseries box\+\_\+zmin}
+\item 
+\mbox{\Hypertarget{namespacewash_ad5a717b6958f5b958fdc4095a379bbc1}\label{namespacewash_ad5a717b6958f5b958fdc4095a379bbc1}} 
+double {\bfseries box\+\_\+xmax}
+\item 
+\mbox{\Hypertarget{namespacewash_a29748bd44623020b9ccbd84f4f0873cd}\label{namespacewash_a29748bd44623020b9ccbd84f4f0873cd}} 
+double {\bfseries box\+\_\+ymax}
+\item 
+\mbox{\Hypertarget{namespacewash_a4e905cfd39ee71265bcf49732b1c8738}\label{namespacewash_a4e905cfd39ee71265bcf49732b1c8738}} 
+double {\bfseries box\+\_\+zmax}
+\item 
+\mbox{\Hypertarget{namespacewash_ae78f9afe5afb195bb7756b8d5214079d}\label{namespacewash_ae78f9afe5afb195bb7756b8d5214079d}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} $>$ $>$ {\bfseries init\+\_\+kernels}
+\item 
+\mbox{\Hypertarget{namespacewash_a5de57cfe1510fe6ee588720a6776fc13}\label{namespacewash_a5de57cfe1510fe6ee588720a6776fc13}} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} $>$ $>$ {\bfseries loop\+\_\+kernels}
+\item 
+\mbox{\Hypertarget{namespacewash_a203a4143c9b4f10b183aaaa4ad06bbc3}\label{namespacewash_a203a4143c9b4f10b183aaaa4ad06bbc3}} 
+Neighbors\+FuncT {\bfseries neighbors\+\_\+kernel}
+\item 
+\mbox{\Hypertarget{namespacewash_a30e3126cfc2ad16d213276aae000265a}\label{namespacewash_a30e3126cfc2ad16d213276aae000265a}} 
+std\+::function$<$ unsigned(unsigned, unsigned)$>$ {\bfseries neighbors\+\_\+func}
+\item 
+\mbox{\Hypertarget{namespacewash_a0f37c0d27c6c9494a3955d553b540690}\label{namespacewash_a0f37c0d27c6c9494a3955d553b540690}} 
+unsigned {\bfseries neighbors\+\_\+max}
+\item 
+\mbox{\Hypertarget{namespacewash_a32772cb14a972d767ad1389cd98c5dbc}\label{namespacewash_a32772cb14a972d767ad1389cd98c5dbc}} 
+std\+::vector$<$ unsigned $>$ {\bfseries neighbors\+\_\+cnt}
+\item 
+\mbox{\Hypertarget{namespacewash_a5d5845915575f101cad2c7f2a2ecb377}\label{namespacewash_a5d5845915575f101cad2c7f2a2ecb377}} 
+std\+::vector$<$ unsigned $>$ {\bfseries neighbors\+\_\+data}
+\item 
+\mbox{\Hypertarget{namespacewash_a820e90a9045d0f0df213eed09939e1ca}\label{namespacewash_a820e90a9045d0f0df213eed09939e1ca}} 
+std\+::unordered\+\_\+map$<$ std\+::string, double $>$ {\bfseries variables}
+\item 
+\mbox{\Hypertarget{namespacewash_a789543df6661367f3f1c74564b651bc1}\label{namespacewash_a789543df6661367f3f1c74564b651bc1}} 
+size\+\_\+t {\bfseries force\+\_\+cnt}
+\item 
+\mbox{\Hypertarget{namespacewash_a77bf373c7f48aed54e36e089a47a74ab}\label{namespacewash_a77bf373c7f48aed54e36e089a47a74ab}} 
+std\+::unordered\+\_\+map$<$ std\+::string, size\+\_\+t $>$ {\bfseries force\+\_\+map}
+\item 
+\mbox{\Hypertarget{namespacewash_a28483034a1e07f656173e973ac88e82b}\label{namespacewash_a28483034a1e07f656173e973ac88e82b}} 
+std\+::array$<$ std\+::vector$<$ double $>$, M\+A\+X\+\_\+\+F\+O\+R\+C\+ES $>$ {\bfseries force\+\_\+data}
+\item 
+\mbox{\Hypertarget{namespacewash_aa7c72cd2ae1de516f31beb4bc63f31ef}\label{namespacewash_aa7c72cd2ae1de516f31beb4bc63f31ef}} 
+std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{Particle}} $>$ {\bfseries particles}
+\item 
+\mbox{\Hypertarget{namespacewash_acb289595df7b8e6626daeeb132e1c445}\label{namespacewash_acb289595df7b8e6626daeeb132e1c445}} 
+std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{Particle}} $>$ {\bfseries local\+\_\+particles}
+\item 
+\mbox{\Hypertarget{namespacewash_a6ec4f15aa36a1ef9fe7ea1a5ddf4480f}\label{namespacewash_a6ec4f15aa36a1ef9fe7ea1a5ddf4480f}} 
+std\+::string {\bfseries simulation\+\_\+name}
+\item 
+\mbox{\Hypertarget{namespacewash_a4e3b615c7ac7e5c0cc44bfe52b7df557}\label{namespacewash_a4e3b615c7ac7e5c0cc44bfe52b7df557}} 
+std\+::string {\bfseries output\+\_\+file\+\_\+name}
+\item 
+\mbox{\Hypertarget{namespacewash_a37597bf1ffacb6fb6d4ac5db730fe436}\label{namespacewash_a37597bf1ffacb6fb6d4ac5db730fe436}} 
+bool {\bfseries started}
+\item 
+\mbox{\Hypertarget{namespacewash_a8c0da9131f4544d469602bc9f38aaa04}\label{namespacewash_a8c0da9131f4544d469602bc9f38aaa04}} 
+cstone\+::\+Boundary\+Type {\bfseries box\+\_\+xtype}
+\item 
+\mbox{\Hypertarget{namespacewash_a90050d690568d13ee3dfee971a349f00}\label{namespacewash_a90050d690568d13ee3dfee971a349f00}} 
+cstone\+::\+Boundary\+Type {\bfseries box\+\_\+ytype}
+\item 
+\mbox{\Hypertarget{namespacewash_a9e584dee30db785be9fa1d5a1c5c8220}\label{namespacewash_a9e584dee30db785be9fa1d5a1c5c8220}} 
+cstone\+::\+Boundary\+Type {\bfseries box\+\_\+ztype}
+\item 
+\mbox{\Hypertarget{namespacewash_a035f6f724e8c8720dfce129a9de67097}\label{namespacewash_a035f6f724e8c8720dfce129a9de67097}} 
+std\+::string {\bfseries out\+\_\+format}
+\item 
+\mbox{\Hypertarget{namespacewash_a7b6eb3e63a02fcbd9fafd59e34fbd320}\label{namespacewash_a7b6eb3e63a02fcbd9fafd59e34fbd320}} 
+size\+\_\+t {\bfseries output\+\_\+nth}
+\item 
+\mbox{\Hypertarget{namespacewash_a40aed5edcd0e0403841e3f83eaa41965}\label{namespacewash_a40aed5edcd0e0403841e3f83eaa41965}} 
+bool {\bfseries timings}
+\item 
+\mbox{\Hypertarget{namespacewash_a7845fa82d1b536c12c2d9495ede361ca}\label{namespacewash_a7845fa82d1b536c12c2d9495ede361ca}} 
+size\+\_\+t {\bfseries particle\+\_\+count}
+\item 
+\mbox{\Hypertarget{namespacewash_aa9f79200cc65dc6e48b4ef9af5d0c389}\label{namespacewash_aa9f79200cc65dc6e48b4ef9af5d0c389}} 
+size\+\_\+t {\bfseries out\+\_\+nth}
+\item 
+\mbox{\Hypertarget{namespacewash_a6e885743f18d66ca373fb6c4c0146d1d}\label{namespacewash_a6e885743f18d66ca373fb6c4c0146d1d}} 
+bool {\bfseries out\+\_\+timing}
+\item 
+\mbox{\Hypertarget{namespacewash_a0d969973e893cc2316bad2597bf0ad17}\label{namespacewash_a0d969973e893cc2316bad2597bf0ad17}} 
+Neighbors\+FuncT {\bfseries neighbours\+\_\+kernel}
+\item 
+\mbox{\Hypertarget{namespacewash_a17d27449eff38aaca1e4206070bbb868}\label{namespacewash_a17d27449eff38aaca1e4206070bbb868}} 
+unsigned {\bfseries max\+\_\+neighbours}
+\item 
+\mbox{\Hypertarget{namespacewash_a15b300d4e8a12c38c1e54650db4476f1}\label{namespacewash_a15b300d4e8a12c38c1e54650db4476f1}} 
+std\+::vector$<$ unsigned $>$ {\bfseries neighbour\+\_\+counts}
+\item 
+\mbox{\Hypertarget{namespacewash_aa6580757775fdbcb82b9a6b6f75332a1}\label{namespacewash_aa6580757775fdbcb82b9a6b6f75332a1}} 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{Particle}} $>$ $>$ {\bfseries neighbour\+\_\+data}
+\item 
+\mbox{\Hypertarget{namespacewash_a9c297685f13f82d6f804157081b56402}\label{namespacewash_a9c297685f13f82d6f804157081b56402}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries forces\+\_\+scalar} = \{ \char`\"{}mass\char`\"{}, \char`\"{}density\char`\"{}, \char`\"{}smoothing\+\_\+length\char`\"{} \}
+\item 
+\mbox{\Hypertarget{namespacewash_a0dce58e51e269cb2298f5ec6648f28ab}\label{namespacewash_a0dce58e51e269cb2298f5ec6648f28ab}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries forces\+\_\+vector} = \{ \char`\"{}pos\char`\"{}, \char`\"{}vel\char`\"{}, \char`\"{}acc\char`\"{} \}
+\item 
+\mbox{\Hypertarget{namespacewash_ae61aecb586450fdd500b953593701239}\label{namespacewash_ae61aecb586450fdd500b953593701239}} 
+Particle\+Data $\ast$ {\bfseries particle\+\_\+data} = nullptr
+\item 
+\mbox{\Hypertarget{namespacewash_a53e8b34558bb0851dd0c229c8d720f28}\label{namespacewash_a53e8b34558bb0851dd0c229c8d720f28}} 
+cstone\+::\+Domain$<$ uint64\+\_\+t, double, cstone\+::\+Cpu\+Tag $>$ $\ast$ {\bfseries domain}
+\item 
+\mbox{\Hypertarget{namespacewash_a820391e694539fac01ed9916b92b427c}\label{namespacewash_a820391e694539fac01ed9916b92b427c}} 
+unsigned {\bfseries start\+\_\+idx}
+\item 
+\mbox{\Hypertarget{namespacewash_a46edd0c40cbb3607c190c2acab5fe7b4}\label{namespacewash_a46edd0c40cbb3607c190c2acab5fe7b4}} 
+unsigned {\bfseries end\+\_\+idx}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacewash_a2ffa21a9e32d3ca6ce87def3e7db4837}\label{namespacewash_a2ffa21a9e32d3ca6ce87def3e7db4837}} 
+\index{wash@{wash}!add\+\_\+force\+\_\+kernel@{add\+\_\+force\+\_\+kernel}}
+\index{add\+\_\+force\+\_\+kernel@{add\+\_\+force\+\_\+kernel}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+force\+\_\+kernel()}{add\_force\_kernel()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+force\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Force\+FuncT}]{func }\end{DoxyParamCaption})}
+
+
+
+Add a force kernel to the simulation which will loop over the particles and their neighbourhood. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Reference to the kernel function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a6103b7efdcc3045c8d2aae4d5598e7ae}\label{namespacewash_a6103b7efdcc3045c8d2aae4d5598e7ae}} 
+\index{wash@{wash}!add\+\_\+force\+\_\+scalar@{add\+\_\+force\+\_\+scalar}}
+\index{add\+\_\+force\+\_\+scalar@{add\+\_\+force\+\_\+scalar}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+force\+\_\+scalar()}{add\_force\_scalar()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+force\+\_\+scalar (\begin{DoxyParamCaption}\item[{const std\+::string}]{force }\end{DoxyParamCaption})}
+
+
+
+Add a scalar force to the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & Name of the force \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a9f85f4ec09db604cb09806616365a5b8}\label{namespacewash_a9f85f4ec09db604cb09806616365a5b8}} 
+\index{wash@{wash}!add\+\_\+force\+\_\+vector@{add\+\_\+force\+\_\+vector}}
+\index{add\+\_\+force\+\_\+vector@{add\+\_\+force\+\_\+vector}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+force\+\_\+vector()}{add\_force\_vector()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+force\+\_\+vector (\begin{DoxyParamCaption}\item[{const std\+::string}]{force }\end{DoxyParamCaption})}
+
+
+
+Add a n-\/dim vector force to the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em force} & Name of the force \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a2bed8ccfb6599a8edd0eb88037d8c8af}\label{namespacewash_a2bed8ccfb6599a8edd0eb88037d8c8af}} 
+\index{wash@{wash}!add\+\_\+init\+\_\+update\+\_\+kernel@{add\+\_\+init\+\_\+update\+\_\+kernel}}
+\index{add\+\_\+init\+\_\+update\+\_\+kernel@{add\+\_\+init\+\_\+update\+\_\+kernel}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+init\+\_\+update\+\_\+kernel()}{add\_init\_update\_kernel()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+init\+\_\+update\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Update\+FuncT}]{func }\end{DoxyParamCaption})}
+
+
+
+Add an initialisation update kernel (will be executed for each particle) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Reference to the kernel function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a4aa9c050821f26f11d51e72a861a1102}\label{namespacewash_a4aa9c050821f26f11d51e72a861a1102}} 
+\index{wash@{wash}!add\+\_\+init\+\_\+void\+\_\+kernel@{add\+\_\+init\+\_\+void\+\_\+kernel}}
+\index{add\+\_\+init\+\_\+void\+\_\+kernel@{add\+\_\+init\+\_\+void\+\_\+kernel}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+init\+\_\+void\+\_\+kernel()}{add\_init\_void\_kernel()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+init\+\_\+void\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Void\+FuncT}]{func }\end{DoxyParamCaption})}
+
+
+
+Add an initialization void kernel to the simulation -\/ run once. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Reference to the kernel function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a730e8352e9361e6ef88fd4b4c21e7f8c}\label{namespacewash_a730e8352e9361e6ef88fd4b4c21e7f8c}} 
+\index{wash@{wash}!add\+\_\+reduction\+\_\+kernel@{add\+\_\+reduction\+\_\+kernel}}
+\index{add\+\_\+reduction\+\_\+kernel@{add\+\_\+reduction\+\_\+kernel}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+reduction\+\_\+kernel()}{add\_reduction\_kernel()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+reduction\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Map\+FuncT}]{map\+\_\+func,  }\item[{const \mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807e}{Reduce\+Op}}}]{reduce\+\_\+op,  }\item[{double $\ast$}]{variable }\end{DoxyParamCaption})}
+
+
+
+Add a reduction kernel to the simulation which will loop over the particles. 
+
+Extracts a value from each particle using {\ttfamily map\+\_\+func}, then aggregates these values using {\ttfamily reduce\+\_\+op}. The result will be saved to {\ttfamily variable}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em map\+\_\+func} & Function to map each particle to \\
+\hline
+{\em reduce\+\_\+op} & The reduction operator type to use in the reduction \\
+\hline
+{\em variable} & Variable to store the result in \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_abc27c958fb1156da77a1346c3559abc1}\label{namespacewash_abc27c958fb1156da77a1346c3559abc1}} 
+\index{wash@{wash}!add\+\_\+update\+\_\+kernel@{add\+\_\+update\+\_\+kernel}}
+\index{add\+\_\+update\+\_\+kernel@{add\+\_\+update\+\_\+kernel}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+update\+\_\+kernel()}{add\_update\_kernel()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+update\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Update\+FuncT}]{func }\end{DoxyParamCaption})}
+
+
+
+Add an update kernel to the simulation which will loop over the particles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Reference to the kernel function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_ae40d87ba5e1d4b16f1cc52932a030b3d}\label{namespacewash_ae40d87ba5e1d4b16f1cc52932a030b3d}} 
+\index{wash@{wash}!add\+\_\+variable@{add\+\_\+variable}}
+\index{add\+\_\+variable@{add\+\_\+variable}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+variable()}{add\_variable()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+variable (\begin{DoxyParamCaption}\item[{const std\+::string}]{variable,  }\item[{double}]{init\+\_\+value = {\ttfamily 0.0} }\end{DoxyParamCaption})}
+
+
+
+Add a scalar variable to the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variable} & Name of the variable \\
+\hline
+{\em init\+\_\+value} & The initial value of the variable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_ab49fcc701f7afced2186465ba5cce978}\label{namespacewash_ab49fcc701f7afced2186465ba5cce978}} 
+\index{wash@{wash}!add\+\_\+void\+\_\+kernel@{add\+\_\+void\+\_\+kernel}}
+\index{add\+\_\+void\+\_\+kernel@{add\+\_\+void\+\_\+kernel}!wash@{wash}}
+\subsubsection{\texorpdfstring{add\+\_\+void\+\_\+kernel()}{add\_void\_kernel()}}
+{\footnotesize\ttfamily void wash\+::add\+\_\+void\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Void\+FuncT}]{func }\end{DoxyParamCaption})}
+
+
+
+Add a void kernel to the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Reference to the kernel function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_afb1cc65bb4ecf6112723b4fb95450c96}\label{namespacewash_afb1cc65bb4ecf6112723b4fb95450c96}} 
+\index{wash@{wash}!copy\+\_\+variables@{copy\+\_\+variables}}
+\index{copy\+\_\+variables@{copy\+\_\+variables}!wash@{wash}}
+\subsubsection{\texorpdfstring{copy\+\_\+variables()}{copy\_variables()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ wash\+::copy\+\_\+variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Copy the variables of the simulation. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$double$\ast$$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_a92e4e768dbd609eba32fc0d68977d42f}\label{namespacewash_a92e4e768dbd609eba32fc0d68977d42f}} 
+\index{wash@{wash}!create\+\_\+io@{create\+\_\+io}}
+\index{create\+\_\+io@{create\+\_\+io}!wash@{wash}}
+\subsubsection{\texorpdfstring{create\+\_\+io()}{create\_io()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classwash_1_1io_1_1IOManager}{io\+::\+I\+O\+Manager}} wash\+::create\+\_\+io (\begin{DoxyParamCaption}\item[{const std\+::string}]{format,  }\item[{const size\+\_\+t}]{output\+\_\+nth,  }\item[{const bool}]{use\+\_\+gather = {\ttfamily false},  }\item[{const size\+\_\+t}]{rank = {\ttfamily 0},  }\item[{const size\+\_\+t}]{size = {\ttfamily 1},  }\item[{const bool}]{timings = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Set-\/up the IO options for the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & \\
+\hline
+{\em output\+\_\+nth} & \\
+\hline
+{\em rank} & M\+PI Rank \\
+\hline
+{\em size} & M\+PI Size\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classwash_1_1io_1_1IOManager}{io\+::\+I\+O\+Manager}} IO Interface for simulation / particular rank 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_aecf1c6d565098a830dfeb491a4638093}\label{namespacewash_aecf1c6d565098a830dfeb491a4638093}} 
+\index{wash@{wash}!eucdist@{eucdist}}
+\index{eucdist@{eucdist}!wash@{wash}}
+\subsubsection{\texorpdfstring{eucdist()}{eucdist()}}
+{\footnotesize\ttfamily double wash\+::eucdist (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&}]{p,  }\item[{const \mbox{\hyperlink{classwash_1_1Particle}{Particle}} \&}]{q }\end{DoxyParamCaption})}
+
+
+
+T\+O\+DO\+: Move eucdist calculation to the paticle header? 
+
+Compute the euclidean distance between two particles
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & First particle \\
+\hline
+{\em q} & Second particle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_ab59a4fff607c38a8cded277413cdafec}\label{namespacewash_ab59a4fff607c38a8cded277413cdafec}} 
+\index{wash@{wash}!get\+\_\+max\+\_\+iterations@{get\+\_\+max\+\_\+iterations}}
+\index{get\+\_\+max\+\_\+iterations@{get\+\_\+max\+\_\+iterations}!wash@{wash}}
+\subsubsection{\texorpdfstring{get\+\_\+max\+\_\+iterations()}{get\_max\_iterations()}}
+{\footnotesize\ttfamily uint64\+\_\+t wash\+::get\+\_\+max\+\_\+iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the max iterations of the simulation. 
+
+\begin{DoxyReturn}{Returns}
+uint64\+\_\+t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_a3b281fefe2419e7bc1450029b0324ab8}\label{namespacewash_a3b281fefe2419e7bc1450029b0324ab8}} 
+\index{wash@{wash}!get\+\_\+particle\+\_\+count@{get\+\_\+particle\+\_\+count}}
+\index{get\+\_\+particle\+\_\+count@{get\+\_\+particle\+\_\+count}!wash@{wash}}
+\subsubsection{\texorpdfstring{get\+\_\+particle\+\_\+count()}{get\_particle\_count()}}
+{\footnotesize\ttfamily size\+\_\+t wash\+::get\+\_\+particle\+\_\+count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the number of particles used in the simulation. 
+
+\begin{DoxyReturn}{Returns}
+size\+\_\+t 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_a6c61472c6ffa0cb654bc9497292b7f30}\label{namespacewash_a6c61472c6ffa0cb654bc9497292b7f30}} 
+\index{wash@{wash}!get\+\_\+variable@{get\+\_\+variable}}
+\index{get\+\_\+variable@{get\+\_\+variable}!wash@{wash}}
+\subsubsection{\texorpdfstring{get\+\_\+variable()}{get\_variable()}}
+{\footnotesize\ttfamily double wash\+::get\+\_\+variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{variable }\end{DoxyParamCaption})}
+
+
+
+Get the value of a variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variable} & Name of the variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_a24bef1df5fe5c24cd518f12885a51055}\label{namespacewash_a24bef1df5fe5c24cd518f12885a51055}} 
+\index{wash@{wash}!set\+\_\+bounding\+\_\+box@{set\+\_\+bounding\+\_\+box}}
+\index{set\+\_\+bounding\+\_\+box@{set\+\_\+bounding\+\_\+box}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+bounding\+\_\+box()}{set\_bounding\_box()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+bounding\+\_\+box (\begin{DoxyParamCaption}\item[{const double}]{min,  }\item[{const double}]{max,  }\item[{const bool}]{periodic }\end{DoxyParamCaption})}
+
+
+
+Set the bounding box dimensions and periodicity type. 
+
+T\+O\+DO\+: impl bounding box methods even though they likely don\textquotesingle{}t have any function in wser. \mbox{\Hypertarget{namespacewash_abc2e79908c969eabb61a865c8f279d02}\label{namespacewash_abc2e79908c969eabb61a865c8f279d02}} 
+\index{wash@{wash}!set\+\_\+default\+\_\+neighbor\+\_\+search@{set\+\_\+default\+\_\+neighbor\+\_\+search}}
+\index{set\+\_\+default\+\_\+neighbor\+\_\+search@{set\+\_\+default\+\_\+neighbor\+\_\+search}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+default\+\_\+neighbor\+\_\+search()}{set\_default\_neighbor\_search()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+default\+\_\+neighbor\+\_\+search (\begin{DoxyParamCaption}\item[{const unsigned}]{max\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Set the neighborhood search to use the provided default which uses the smoothing length of the particle and returns at most max\+\_\+count neighbours. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+\_\+count} & Maximum number of neighbours to return \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a6b9608d3d8934431c9ab6af488992f10}\label{namespacewash_a6b9608d3d8934431c9ab6af488992f10}} 
+\index{wash@{wash}!set\+\_\+dimension@{set\+\_\+dimension}}
+\index{set\+\_\+dimension@{set\+\_\+dimension}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+dimension()}{set\_dimension()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+dimension (\begin{DoxyParamCaption}\item[{int}]{dim }\end{DoxyParamCaption})}
+
+
+
+Set the dimensionality of the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dim} & 2, or 3 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_aeb7b287406244c8ab192d0524ad4da5b}\label{namespacewash_aeb7b287406244c8ab192d0524ad4da5b}} 
+\index{wash@{wash}!set\+\_\+max\+\_\+iterations@{set\+\_\+max\+\_\+iterations}}
+\index{set\+\_\+max\+\_\+iterations@{set\+\_\+max\+\_\+iterations}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+max\+\_\+iterations()}{set\_max\_iterations()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+max\+\_\+iterations (\begin{DoxyParamCaption}\item[{const uint64\+\_\+t}]{iterations }\end{DoxyParamCaption})}
+
+
+
+Set the max number of iterations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterations} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a49d266f2bd4daa1a1de50dab5a4250df}\label{namespacewash_a49d266f2bd4daa1a1de50dab5a4250df}} 
+\index{wash@{wash}!set\+\_\+neighbor\+\_\+search\+\_\+kernel@{set\+\_\+neighbor\+\_\+search\+\_\+kernel}}
+\index{set\+\_\+neighbor\+\_\+search\+\_\+kernel@{set\+\_\+neighbor\+\_\+search\+\_\+kernel}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+neighbor\+\_\+search\+\_\+kernel()}{set\_neighbor\_search\_kernel()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+neighbor\+\_\+search\+\_\+kernel (\begin{DoxyParamCaption}\item[{const Neighbors\+FuncT}]{func,  }\item[{const unsigned}]{max\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Sets the neighbourhood search to use a custom function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & Reference to the search function \\
+\hline
+{\em max\+\_\+count} & Maximum number of neighbours(?) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_ad6de17b9a27f58f6245a68ede303e84b}\label{namespacewash_ad6de17b9a27f58f6245a68ede303e84b}} 
+\index{wash@{wash}!set\+\_\+output\+\_\+file\+\_\+name@{set\+\_\+output\+\_\+file\+\_\+name}}
+\index{set\+\_\+output\+\_\+file\+\_\+name@{set\+\_\+output\+\_\+file\+\_\+name}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+output\+\_\+file\+\_\+name()}{set\_output\_file\_name()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+output\+\_\+file\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Set the output file name of the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a20a6940ce5a881482fe472ed704f177e}\label{namespacewash_a20a6940ce5a881482fe472ed704f177e}} 
+\index{wash@{wash}!set\+\_\+particle\+\_\+count@{set\+\_\+particle\+\_\+count}}
+\index{set\+\_\+particle\+\_\+count@{set\+\_\+particle\+\_\+count}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+particle\+\_\+count()}{set\_particle\_count()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+particle\+\_\+count (\begin{DoxyParamCaption}\item[{const size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+
+
+Set the number of particles to be used in the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em count} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a4ddbab848bef96e0fc69bf8e280d4775}\label{namespacewash_a4ddbab848bef96e0fc69bf8e280d4775}} 
+\index{wash@{wash}!set\+\_\+simulation\+\_\+name@{set\+\_\+simulation\+\_\+name}}
+\index{set\+\_\+simulation\+\_\+name@{set\+\_\+simulation\+\_\+name}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+simulation\+\_\+name()}{set\_simulation\_name()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+simulation\+\_\+name (\begin{DoxyParamCaption}\item[{const std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Set the name of the simulation, used in IO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name to use \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a5045909b6d97db3d92cc44bfd5df70ee}\label{namespacewash_a5045909b6d97db3d92cc44bfd5df70ee}} 
+\index{wash@{wash}!set\+\_\+variable@{set\+\_\+variable}}
+\index{set\+\_\+variable@{set\+\_\+variable}!wash@{wash}}
+\subsubsection{\texorpdfstring{set\+\_\+variable()}{set\_variable()}}
+{\footnotesize\ttfamily void wash\+::set\+\_\+variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{variable,  }\item[{const double}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the value of a variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variable} & Name of the variable \\
+\hline
+{\em value} & Value to set it to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacewash_a706d6d30508a81b6b9f25494cd759dff}\label{namespacewash_a706d6d30508a81b6b9f25494cd759dff}} 
+\index{wash@{wash}!sgn@{sgn}}
+\index{sgn@{sgn}!wash@{wash}}
+\subsubsection{\texorpdfstring{sgn()}{sgn()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+int wash\+::sgn (\begin{DoxyParamCaption}\item[{T}]{val }\end{DoxyParamCaption})}
+
+
+
+Helper function for the pure sign of a numerical type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em val} & numerical value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
++1 if positive, -\/1 if negative 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_a4c8a9913a535b341da9e72826916544b}\label{namespacewash_a4c8a9913a535b341da9e72826916544b}} 
+\index{wash@{wash}!start@{start}}
+\index{start@{start}!wash@{wash}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void wash\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the vector of all particles in the simulation. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Particle$>$\& Starts the simulation 
+\end{DoxyReturn}
+T\+O\+DO\+: what\textquotesingle{}s this?
+
+T\+O\+DO\+: what\textquotesingle{}s this? \mbox{\Hypertarget{namespacewash_a3c692ea6f1cb04614c790fd4b9dc34ba}\label{namespacewash_a3c692ea6f1cb04614c790fd4b9dc34ba}} 
+\index{wash@{wash}!string\+\_\+format@{string\+\_\+format}}
+\index{string\+\_\+format@{string\+\_\+format}!wash@{wash}}
+\subsubsection{\texorpdfstring{string\+\_\+format()}{string\_format()}}
+{\footnotesize\ttfamily template$<$typename... Args$>$ \\
+std\+::string wash\+::string\+\_\+format (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{format,  }\item[{Args...}]{args }\end{DoxyParamCaption})}
+
+
+
+Helper function to format to a c++ string. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Args} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em format} & standard style format string \\
+\hline
+{\em args} & arguments for the format string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacewash_ad9a1f6575e74c6c12ddbae8d58c2b478}\label{namespacewash_ad9a1f6575e74c6c12ddbae8d58c2b478}} 
+\index{wash@{wash}!use\+\_\+variable@{use\+\_\+variable}}
+\index{use\+\_\+variable@{use\+\_\+variable}!wash@{wash}}
+\subsubsection{\texorpdfstring{use\+\_\+variable()}{use\_variable()}}
+{\footnotesize\ttfamily double $\ast$ wash\+::use\+\_\+variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{variable }\end{DoxyParamCaption})}
+
+
+
+Returns a reference to a variable useful for e.\+g. reduction kernels. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variable} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double$\ast$ 
+\end{DoxyReturn}

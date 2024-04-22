@@ -1,10 +1,22 @@
 \hypertarget{classwash_1_1Vec}{}\section{wash\+:\+:Vec$<$ T, dim $>$ Class Template Reference}
 \label{classwash_1_1Vec}\index{wash\+::\+Vec$<$ T, dim $>$@{wash\+::\+Vec$<$ T, dim $>$}}
+
+
+Custom vector class for Wa\+SH simulation.  
+
+
+
+
+{\ttfamily \#include $<$vector.\+hpp$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classwash_1_1Vec_a5927d6caa8489a88b8470fe8bb8779d0}\label{classwash_1_1Vec_a5927d6caa8489a88b8470fe8bb8779d0}} 
-T $\ast$ {\bfseries operator\mbox{[}$\,$\mbox{]}} (int i)
+\mbox{\Hypertarget{classwash_1_1Vec_ac9bf604894ed27189131909371e5af70}\label{classwash_1_1Vec_ac9bf604894ed27189131909371e5af70}} 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int i)
+\item 
+\mbox{\Hypertarget{classwash_1_1Vec_a751a7a202ad5e726937568887700a954}\label{classwash_1_1Vec_a751a7a202ad5e726937568887700a954}} 
+const T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (int i) const
 \item 
 \mbox{\Hypertarget{classwash_1_1Vec_ad8a8863138b26c2b2eae41e11f40e78f}\label{classwash_1_1Vec_ad8a8863138b26c2b2eae41e11f40e78f}} 
 \mbox{\hyperlink{classwash_1_1Vec}{Vec}}$<$ T, dim $>$ {\bfseries operator+} (T d)
@@ -36,20 +48,33 @@ T {\bfseries at} (const size\+\_\+t i) const
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::array$<$ T, dim $>$ \mbox{\hyperlink{classwash_1_1Vec_a1f8030900a506e51197d5af4ec4d1143}{data}}
+\mbox{\Hypertarget{classwash_1_1Vec_a1f8030900a506e51197d5af4ec4d1143}\label{classwash_1_1Vec_a1f8030900a506e51197d5af4ec4d1143}} 
+std\+::array$<$ T, dim $>$ {\bfseries data}
 \end{DoxyCompactItemize}
 
 
-\subsection{Member Data Documentation}
-\mbox{\Hypertarget{classwash_1_1Vec_a1f8030900a506e51197d5af4ec4d1143}\label{classwash_1_1Vec_a1f8030900a506e51197d5af4ec4d1143}} 
-\index{wash\+::\+Vec@{wash\+::\+Vec}!data@{data}}
-\index{data@{data}!wash\+::\+Vec@{wash\+::\+Vec}}
-\subsubsection{\texorpdfstring{data}{data}}
-{\footnotesize\ttfamily template$<$typename T, int dim$>$ \\
-std\+::array$<$T, dim$>$ \mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec}}$<$ T, dim $>$\+::data}
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T, int dim$>$\newline
+class wash\+::\+Vec$<$ T, dim $>$}
 
-Vector Class for W\+A\+SH 
+Custom vector class for Wa\+SH simulation. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Datatype of the vector \\
+\hline
+{\em dim} & How many elements in the vector Wa\+SH custom vector class\\
+\hline
+\end{DoxyTemplParams}
+This class is how we represent vectors in Wa\+SH. It provides a number of basic operations, and is templated on the type of the vector and the dimensionality. 
+\begin{DoxyParams}{Parameters}
+{\em T} & The type of the vector (double/float) \\
+\hline
+{\em dim} & The dimensionality of the vector (2/3 typically) \\
+\hline
+\end{DoxyParams}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/dcs/20/u2002000/4th\+Year\+Project/wash/src/wash/vector.\+hpp\end{DoxyCompactItemize}
+/dcs/20/u2002000/4th\+Year\+Project/wash/include/vector.\+hpp\end{DoxyCompactItemize}

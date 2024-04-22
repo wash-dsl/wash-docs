@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['asciireader',['ASCIIReader',['../classwash_1_1ASCIIReader.html',1,'wash']]],
-  ['asciiwriter',['ASCIIWriter',['../classwash_1_1ASCIIWriter.html',1,'wash']]]
+  ['implementationfeatures',['ImplementationFeatures',['../structImplementationFeatures.html',1,'']]],
+  ['iomanager',['IOManager',['../classwash_1_1io_1_1IOManager.html',1,'wash::io']]]
 ];

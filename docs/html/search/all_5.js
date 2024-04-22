@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['genericfilereader',['GenericFileReader',['../classwash_1_1GenericFileReader.html',1,'wash']]],
-  ['genericfilewriter',['GenericFileWriter',['../classwash_1_1GenericFileWriter.html',1,'wash']]],
-  ['getactiontype',['getActionType',['../classFindWashFunctionsPlugin.html#a6c0b54d000be41e28df04e36bbde4561',1,'FindWashFunctionsPlugin']]]
+  ['implementationfeatures',['ImplementationFeatures',['../structImplementationFeatures.html',1,'']]],
+  ['iomanager',['IOManager',['../classwash_1_1io_1_1IOManager.html',1,'wash::io']]],
+  ['installation_20guide',['Installation Guide',['../md_markdown_installation.html',1,'']]]
 ];

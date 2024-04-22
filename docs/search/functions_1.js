@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['handle_5fiteration',['handle_iteration',['../classwash_1_1IOManager.html#a37c0150160a8e7f4e97951469d9abb30',1,'wash::IOManager']]]
+  ['copy_5fvariables',['copy_variables',['../namespacewash.html#afb1cc65bb4ecf6112723b4fb95450c96',1,'wash']]],
+  ['create_5fio',['create_io',['../namespacewash.html#a92e4e768dbd609eba32fc0d68977d42f',1,'wash']]]
 ];
