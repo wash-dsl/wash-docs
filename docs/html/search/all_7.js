@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['kernel',['Kernel',['../classwash_1_1Kernel.html',1,'wash']]],
-  ['kernels_2ecpp',['kernels.cpp',['../kernels_8cpp.html',1,'']]]
+  ['inspect_2ecpp',['inspect.cpp',['../inspect_8cpp.html',1,'']]],
+  ['iomanager',['IOManager',['../classwash_1_1IOManager.html',1,'wash']]],
+  ['installation_20guide',['Installation Guide',['../md_markdown_installation.html',1,'']]]
 ];

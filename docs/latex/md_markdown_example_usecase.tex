@@ -1,0 +1,329 @@
+Wa\+SH allows for arbitrary orderings of kernel functions in order to simulate a large variety of S\+PH scenarios.
+
+This page describes how one can use Wa\+SH to create a basic water simulation. A finished version of this example may be found in the Wa\+SH source code as the {\ttfamily ca\+\_\+fluid\+\_\+sim} example.
+
+\section*{Constants}
+
+Some constants are defined before starting the simulation for easy parameter tweaking. Here\textquotesingle{}s what constants should be defined at the top\+: 
+\begin{DoxyCode}
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} spawnCentre \{ 3.35, 0.51 \};
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} initialVelocity \{ 0.0, 0.0 \};
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} spawnSize \{ 7.0, 7.0 \};
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} boundsSize \{ 17.1, 9.3 \};
+
+constexpr \textcolor{keywordtype}{double} jitterStr = 0.025;
+constexpr \textcolor{keywordtype}{double} numParticles = 4032;
+constexpr \textcolor{keywordtype}{double} gravity = -12.0;
+
+constexpr \textcolor{keywordtype}{double} deltaTime = TIME\_DELTA(1, 3);
+constexpr \textcolor{keywordtype}{double} collisionDamping = 0.95;
+constexpr \textcolor{keywordtype}{double} smoothingRadius = 0.35;
+
+constexpr \textcolor{keywordtype}{double} targetDensity = 55.0;
+constexpr \textcolor{keywordtype}{double} pressureMultiplier = 500.0;
+constexpr \textcolor{keywordtype}{double} nearPressureMultiplier = 18.0;
+constexpr \textcolor{keywordtype}{double} viscosityStrength = 0.06;
+\end{DoxyCode}
+
+
+\section*{Initialising Common Parameters}
+
+The first step is to set some parameters for your simulation.
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+    wash::set\_precision(\textcolor{stringliteral}{"double"});
+    wash::set\_influence\_radius(smoothingRadius);
+    wash::set\_max\_iterations(1000);
+\}
+\end{DoxyCode}
+
+
+\section*{Outputs}
+
+The simulation results must be written {\itshape somewhere}. Wa\+SH provides A\+PI calls for specifying what file to output to\+: 
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+    ...
+    \textcolor{keywordflow}{if} (argc > 1) \{
+        \textcolor{comment}{// argv[1] = simulation name}
+        wash::set\_simulation\_name(argv[1]);
+        \textcolor{keywordflow}{if} (argc > 2) \{
+            \textcolor{comment}{// argv[2] = output file name}
+            wash::set\_output\_file\_name(argv[2]);
+        \} \textcolor{keywordflow}{else} \{
+            wash::set\_output\_file\_name(\textcolor{stringliteral}{"ca"});
+        \}
+    \} \textcolor{keywordflow}{else} \{
+        wash::set\_simulation\_name(\textcolor{stringliteral}{"serial\_test"});
+    \}
+\}
+\end{DoxyCode}
+
+
+\section*{Forces}
+
+A \textquotesingle{}Force\textquotesingle{} in this case is not necessarily a force, but could be a particle\textquotesingle{}s {\itshape property} for example temperature, that some other simulations may want to use for their calculations. 
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+    ...
+    wash::add\_force(\textcolor{stringliteral}{"nearDensity"}, 1);
+
+    wash::add\_force(\textcolor{stringliteral}{"predictedPosition"}, 2);
+    wash::add\_force(\textcolor{stringliteral}{"pressure"}, 2);
+\}
+\end{DoxyCode}
+ These forces are now tracked for each particle in the simulation and may be used within kernel functions.
+
+\section*{Kernels}
+
+The kernels that describe the specific computations to take place in the simulation must be registered with Wa\+SH.
+
+\subsection*{Initialisation Kernel}
+
+Your simulation must have a starting state for your particles. This is done like so\+: 
+\begin{DoxyCode}
+wash::add\_init\_kernel(&init);
+\end{DoxyCode}
+ When the simulation starts, it will use whatever is defined in the {\ttfamily init} function. The contents of the {\ttfamily init} function may look like this if your goal is to spawn uniformly distributed particles\+: 
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} init() \{
+    std::cout << \textcolor{stringliteral}{"Calculated Time Step: "} << deltaTime << std::endl;
+
+    SpawnParticles(spawnSize, numParticles);
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} SpawnParticles(\textcolor{keyword}{const} \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} spawnSizeVec, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} particleCount) \{
+    std::uniform\_real\_distribution<double> unif(0.0, 1.0);
+    std::default\_random\_engine re(42);
+
+    \textcolor{keywordtype}{double} s\_x = spawnSizeVec.at(0);
+    \textcolor{keywordtype}{double} s\_y = spawnSizeVec.at(1);
+
+    \textcolor{keywordtype}{int} numX = (int)std::ceil( std::sqrt(
+        s\_x / s\_y * particleCount + (s\_x - s\_y) * (s\_x - s\_y) / (4 * s\_y * s\_y)
+    ) - (s\_x - s\_y) / (2 * s\_y));
+
+    \textcolor{keywordtype}{int} numY = (int)std::ceil( (\textcolor{keywordtype}{double})particleCount / (double)numX );
+    \textcolor{keywordtype}{int} i = 0;
+
+    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} y = 0; y < numY; y++) \{
+        \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} x = 0; x < numX; x++) \{
+            \textcolor{keywordflow}{if} (i >= particleCount) \textcolor{keywordflow}{break};
+
+            \textcolor{keywordtype}{double} tx = numX <= 1 ? 0.5 : x / (numX - 1.0);
+            \textcolor{keywordtype}{double} ty = numY <= 1 ? 0.5 : y / (numY - 1.0);
+
+            \textcolor{keywordtype}{double} angle = unif(re) * PI * 2.0;
+            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} dir = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{ std::cos(angle), std::sin(angle) \});
+            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} jitter = dir * jitterStr * (unif(re) - 0.5);
+            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{ (tx - 0.5) * s\_x, (ty - 0.5) * s\_y \}) + 
+      jitter + spawnCentre;
+
+            \textcolor{comment}{// wash::Particle newp = wash::Particle();}
+            \textcolor{comment}{// newp.set\_force\_vector("position", newp.get\_pos());}
+            \textcolor{comment}{// newp.set\_vel(initialVelocity);}
+            \textcolor{comment}{// // VelocityUpdate(newp); // call here as the first initial call before density kernel}
+            \textcolor{comment}{// wash::add\_par(newp);}
+            \textcolor{keyword}{auto}& p = wash::create\_particle(0.0, 1.0, smoothingRadius, pos, initialVelocity);
+            p.set\_force\_vector(\textcolor{stringliteral}{"position"}, pos);
+
+            \textcolor{keywordflow}{if} (i < 5) \{
+                std::cout << \textcolor{stringliteral}{"Particle "} << i << \textcolor{stringliteral}{" position "} << pos << std::endl;
+            \}
+
+            i++;
+        \}
+    \}
+\}
+\end{DoxyCode}
+
+
+\subsection*{Force and Update Kernels}
+
+These kernels define how particles change. The registration order of these kernels is order-\/sensitive, meaning they are run (at each iteration) in the order specified. Here\textquotesingle{}s how we will order our force kernels\+: 
+\begin{DoxyCode}
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+    ...
+    wash::add\_update\_kernel(&VelocityUpdate);
+    wash::add\_force\_kernel(&CalculateDensity);
+    wash::add\_force\_kernel(&force\_kernel);
+
+    wash::add\_update\_kernel(&UpdatePositions);
+    wash::add\_update\_kernel(&HandleCollisions);
+
+    wash::start();
+\}
+\end{DoxyCode}
+ This is the last part of our Main function. It describes the high-\/level behaviour of the simulation, and all that\textquotesingle{}s left is the low-\/level specification of what should happen in each kernel.
+
+Notice that the kernels are to be specified for {\itshape one} particle. Wa\+SH will take care of the looping and parallelisation.
+
+\subsubsection*{Velocity\+Update Implementation}
+
+This kernel function helps us predict where the particle will be in the next timestep. 
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} VelocityUpdate(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle) \{
+    particle.set\_vel(particle.get\_vel() + ExternelForces(particle.get\_pos(), particle.get\_vel()) * 
+      deltaTime);
+    \textcolor{comment}{// std::cout << "Particle velocity: " << particle.get\_vel() << std::endl;}
+
+    \textcolor{keyword}{const} \textcolor{keywordtype}{double} predictionFactor = 1 / 120.0;
+    \textcolor{comment}{// set predicted pos to the real position + some timestep of current vel}
+    particle.set\_pos(particle.get\_force\_vector(\textcolor{stringliteral}{"position"}) + particle.get\_vel() * predictionFactor);
+    \textcolor{comment}{// std::cout << "Particle pred pos: " << particle.get\_pos() << std::endl;}
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Calculate\+Density Implementation}
+
+Calculating density of particles is common across most, if not all, S\+PH simulations. Here\textquotesingle{}s how we\textquotesingle{}ll define it for our example\+:
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} CalculateDensity(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle, \textcolor{keyword}{const} std::vector<wash::Particle>& neighbours
+      ) \{
+    \textcolor{comment}{// std::cout << "Running Custom Density Func" << std::endl;}
+    \textcolor{keywordtype}{double} density = 1.0;
+    \textcolor{keywordtype}{double} nearDensity = 1.0;
+
+    \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& neighbour : neighbours) \{
+        \textcolor{keyword}{auto} offset = neighbour.get\_pos() - particle.get\_pos();
+        \textcolor{keywordtype}{double} dst = offset.magnitude();
+
+        density += DensityKernel(dst, smoothingRadius);
+        nearDensity += NearDensityKernel(dst, smoothingRadius);
+    \}
+
+    particle.set\_density(density);
+    particle.set\_force\_scalar(\textcolor{stringliteral}{"nearDensity"}, nearDensity);
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{force\+\_\+kernel Implementation}
+
+Here, forces are applied to particles to simulate incompressible fluid with some viscosity. In this case, we want something resembling water. 
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} force\_kernel(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle, \textcolor{keyword}{const} std::vector<wash::Particle>& neighbours) \{
+    CalculatePressureForce(particle, neighbours);
+    CalculateViscosity(particle, neighbours);
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} CalculatePressureForce(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle, \textcolor{keyword}{const} std::vector<wash::Particle>& 
+      neighbours) \{
+    \textcolor{keywordtype}{double} density = particle.get\_density();
+    \textcolor{keywordtype}{double} nearDensity = particle.get\_force\_scalar(\textcolor{stringliteral}{"nearDensity"});
+    \textcolor{keywordtype}{double} pressure = PressureFromDensity(density);
+    \textcolor{keywordtype}{double} nearPressure = NearPressureFromDensity(nearDensity);
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pressureForce = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{0.0, 0.0\});
+
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.get\_pos();
+
+    \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& neighbour : neighbours) \{
+        \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} neighbourPos = neighbour.get\_pos();
+        \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} offsetToNeighbour = neighbourPos - pos;
+        \textcolor{keywordtype}{double} dst = offsetToNeighbour.magnitude();
+
+        \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} dirToNeighbour = dst > 0.0 ? offsetToNeighbour / dst : 
+      \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{0.0, 1.0\});
+
+        \textcolor{keywordtype}{double} neighbourDensity = neighbour.get\_density();
+        \textcolor{keywordtype}{double} neighbourNearDensity = neighbour.get\_force\_scalar(\textcolor{stringliteral}{"nearDensity"});
+        \textcolor{keywordtype}{double} neighbourPressure = PressureFromDensity(neighbourDensity);
+        \textcolor{keywordtype}{double} neighbourNearPressure = NearPressureFromDensity(neighbourNearDensity);
+
+        \textcolor{keywordtype}{double} sharedPressure = (pressure + neighbourPressure) * 0.5;
+        \textcolor{keywordtype}{double} sharedNearPressure = (nearPressure + neighbourNearPressure) * 0.5;
+
+        pressureForce += dirToNeighbour * DensityDerivative(dst, smoothingRadius) * sharedPressure / 
+      neighbourDensity;
+        \textcolor{comment}{// std::cout << "w density p " << pressureForce << std::endl;}
+        pressureForce +=
+            dirToNeighbour * NearDensityDerivative(dst, smoothingRadius) * sharedNearPressure / 
+      neighbourNearDensity;
+        \textcolor{comment}{// std::cout << "w near density p " << pressureForce << std::endl;}
+    \}
+
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} acceleration = pressureForce / density;
+    \textcolor{comment}{// std::cout << "PRESSURE FORCE p" << pressureForce << std::endl;}
+
+    particle.set\_force\_vector(\textcolor{stringliteral}{"pressure"}, pressureForce / density);
+    particle.set\_vel(particle.get\_vel() + acceleration * deltaTime);
+\}
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} CalculateViscosity(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle, \textcolor{keyword}{const} std::vector<wash::Particle>& 
+      neighbours) \{
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.get\_pos();
+
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} viscosityForce = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} \{ 0.0, 0.0 \};
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} velocity = particle.get\_vel();
+
+    \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& neighbour : neighbours) \{
+        \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} neighbourPos = neighbour.get\_pos();
+        \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} offsetToNeighbour = neighbourPos - pos;
+        \textcolor{keywordtype}{double} dst = offsetToNeighbour.magnitude();
+
+        \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} neighbourVelocity = neighbour.get\_vel();
+        viscosityForce += (neighbourVelocity - velocity) * ViscosityKernel(dst, smoothingRadius);
+    \}
+
+    particle.set\_force\_vector(\textcolor{stringliteral}{"viscosity"}, viscosityForce * viscosityStrength);
+    particle.set\_vel(particle.get\_vel() + viscosityForce * viscosityStrength * deltaTime);
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Update\+Positions Implementation}
+
+This one\textquotesingle{}s pretty self-\/explanatory. Using basic S\+U\+V\+AT to update the particles\textquotesingle{} positions. 
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} UpdatePositions(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle) \{
+    \textcolor{comment}{// particle.set\_pos(particle.get\_pos() + particle.get\_vel() * deltaTime);}
+    particle.set\_force\_vector(\textcolor{stringliteral}{"position"}, particle.get\_force\_vector(\textcolor{stringliteral}{"position"}) + particle.get\_vel() * 
+      deltaTime);
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Handle\+Collisions Implementation}
+
+The Handle\+Collisions kernel ensures particles do not exit the bounds of the simulation, and instead bounce back against a \textquotesingle{}wall\textquotesingle{} (with a little damping) 
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} HandleCollisions(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle) \{
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.get\_force\_vector(\textcolor{stringliteral}{"position"});
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} vel = particle.get\_vel();
+
+    \textcolor{keyword}{const} \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} halfSize = boundsSize * 0.5;
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} edgeDst = halfSize - pos.abs();
+
+    \textcolor{keywordflow}{if} (*(edgeDst[0]) <= 0) \{
+        *(pos[0]) = halfSize.at(0) * wash::sgn(pos.at(0));
+        *(vel[0]) *= -1 * collisionDamping;
+    \}
+
+    \textcolor{keywordflow}{if} (*(edgeDst[1]) <= 0) \{
+        *(pos[1]) = halfSize.at(1) * wash::sgn(pos.at(1));
+        *(vel[1]) *= -1 * collisionDamping;
+    \}
+    \textcolor{comment}{// do any obstacle collision here}
+
+    particle.set\_force\_vector(\textcolor{stringliteral}{"position"}, pos);
+    particle.set\_vel(vel);
+\}
+\end{DoxyCode}
+ 

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_20page',['Main Page',['../index.html',1,'']]],
-  ['markdown_5ftest',['markdown_test',['../md_markdown_markdown_test.html',1,'']]]
+  ['installation_20guide',['Installation Guide',['../md_markdown_installation.html',1,'']]]
 ];
