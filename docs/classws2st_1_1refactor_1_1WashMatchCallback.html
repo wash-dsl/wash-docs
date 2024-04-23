@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacews2st.html">ws2st</a></li><li class="navelem"><a class="el" href="namespacews2st_1_1refactor.html">refactor</a></li><li class="navelem"><a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html">WashMatchCallback</a></li>  </ul>
+<li class="navelem"><b>ws2st</b></li><li class="navelem"><b>refactor</b></li><li class="navelem"><a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html">WashMatchCallback</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -89,137 +89,25 @@ Inheritance diagram for ws2st::refactor::WashMatchCallback:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a92cc5cf8562d6d0df12547a5df116bec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html#a92cc5cf8562d6d0df12547a5df116bec">WashMatchCallback</a> (<a class="el" href="namespacews2st.html#a682dfda40d8282c7e579a7b826a7d861">WashCallbackFn</a> callback_ptr)</td></tr>
+<tr class="memitem:a92cc5cf8562d6d0df12547a5df116bec"><td class="memItemLeft" align="right" valign="top"><a id="a92cc5cf8562d6d0df12547a5df116bec"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>WashMatchCallback</b> (WashCallbackFn callback_ptr)</td></tr>
 <tr class="separator:a92cc5cf8562d6d0df12547a5df116bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1712bb28c2728b43b5ca0f2d682382a6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html#a1712bb28c2728b43b5ca0f2d682382a6">run</a> (const MatchFinder::MatchResult &amp;Result)</td></tr>
+<tr class="memitem:a1712bb28c2728b43b5ca0f2d682382a6"><td class="memItemLeft" align="right" valign="top"><a id="a1712bb28c2728b43b5ca0f2d682382a6"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>run</b> (const MatchFinder::MatchResult &amp;Result)</td></tr>
 <tr class="separator:a1712bb28c2728b43b5ca0f2d682382a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91f255d66c7a62daa588b7f6910b5b50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacews2st.html#a682dfda40d8282c7e579a7b826a7d861">WashCallbackFn</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html#a91f255d66c7a62daa588b7f6910b5b50">getCallback</a> ()</td></tr>
+<tr class="memitem:a91f255d66c7a62daa588b7f6910b5b50"><td class="memItemLeft" align="right" valign="top"><a id="a91f255d66c7a62daa588b7f6910b5b50"></a>
+WashCallbackFn&#160;</td><td class="memItemRight" valign="bottom"><b>getCallback</b> ()</td></tr>
 <tr class="separator:a91f255d66c7a62daa588b7f6910b5b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a0038f6cb22cb01fa32430f4857862513"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html#a0038f6cb22cb01fa32430f4857862513">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html">WashMatchCallback</a> &amp;obj)</td></tr>
+<tr class="memitem:a0038f6cb22cb01fa32430f4857862513"><td class="memItemLeft" align="right" valign="top"><a id="a0038f6cb22cb01fa32430f4857862513"></a>
+std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html">WashMatchCallback</a> &amp;obj)</td></tr>
 <tr class="separator:a0038f6cb22cb01fa32430f4857862513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A specialised refactoring callback type for Wash using custom function pointers instead of subclassing tooling::RefactoringCallback and implementing ...::run a million times. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a92cc5cf8562d6d0df12547a5df116bec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92cc5cf8562d6d0df12547a5df116bec">&#9670;&nbsp;</a></span>WashMatchCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ws2st::refactor::WashMatchCallback::WashMatchCallback </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacews2st.html#a682dfda40d8282c7e579a7b826a7d861">WashCallbackFn</a>&#160;</td>
-          <td class="paramname"><em>callback_ptr</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a91f255d66c7a62daa588b7f6910b5b50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91f255d66c7a62daa588b7f6910b5b50">&#9670;&nbsp;</a></span>getCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespacews2st.html#a682dfda40d8282c7e579a7b826a7d861">WashCallbackFn</a> ws2st::refactor::WashMatchCallback::getCallback </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a1712bb28c2728b43b5ca0f2d682382a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1712bb28c2728b43b5ca0f2d682382a6">&#9670;&nbsp;</a></span>run()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void ws2st::refactor::WashMatchCallback::run </td>
-          <td>(</td>
-          <td class="paramtype">const MatchFinder::MatchResult &amp;&#160;</td>
-          <td class="paramname"><em>Result</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Friends And Related Function Documentation</h2>
-<a id="a0038f6cb22cb01fa32430f4857862513"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0038f6cb22cb01fa32430f4857862513">&#9670;&nbsp;</a></span>operator&lt;&lt;</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream&amp; operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>os</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classws2st_1_1refactor_1_1WashMatchCallback.html">WashMatchCallback</a> &amp;&#160;</td>
-          <td class="paramname"><em>obj</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>/dcs/20/u2002000/4thYearProject/wash/src/ws2st/<a class="el" href="refactor_8hpp_source.html">refactor.hpp</a></li>
 </ul>
 </div><!-- contents -->

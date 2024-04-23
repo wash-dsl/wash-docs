@@ -66,7 +66,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">sources.hpp File Reference</div>  </div>
@@ -75,30 +74,23 @@ $(function() {
 
 <p>Contains methods to operating with the filesystem.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="common_8hpp_source.html">common.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;common.hpp&quot;</code><br />
 </div>
 <p><a href="sources_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacews2st"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st.html">ws2st</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacews2st_1_1files"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1files.html">ws2st::files</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae8e7cbbd08d003dfce48a2e0a8a4c768"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1files.html#ae8e7cbbd08d003dfce48a2e0a8a4c768">ws2st::files::generateAppDirectoryName</a> (const std::string &amp;source_dir)</td></tr>
-<tr class="memdesc:ae8e7cbbd08d003dfce48a2e0a8a4c768"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a random 8-character directory name from the input source directory (loosely based on fs::hash)  <a href="namespacews2st_1_1files.html#ae8e7cbbd08d003dfce48a2e0a8a4c768">More...</a><br /></td></tr>
+<tr class="memitem:ae8e7cbbd08d003dfce48a2e0a8a4c768"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::files::generateAppDirectoryName</b> (const std::string &amp;source_dir)</td></tr>
+<tr class="memdesc:ae8e7cbbd08d003dfce48a2e0a8a4c768"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a random 8-character directory name from the input source directory (loosely based on fs::hash)  <a href="sources_8cpp.html#ae8e7cbbd08d003dfce48a2e0a8a4c768">More...</a><br /></td></tr>
 <tr class="separator:ae8e7cbbd08d003dfce48a2e0a8a4c768"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fed937b7498df1fb8980bc8150cc5b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1files.html#a0fed937b7498df1fb8980bc8150cc5b4">ws2st::files::cleanDirectory</a> (const fs::path &amp;directory_path)</td></tr>
-<tr class="memdesc:a0fed937b7498df1fb8980bc8150cc5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans a directory by removing all files within it.  <a href="namespacews2st_1_1files.html#a0fed937b7498df1fb8980bc8150cc5b4">More...</a><br /></td></tr>
+<tr class="memitem:a0fed937b7498df1fb8980bc8150cc5b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::files::cleanDirectory</b> (const fs::path &amp;directory_path)</td></tr>
+<tr class="memdesc:a0fed937b7498df1fb8980bc8150cc5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cleans a directory by removing all files within it.  <a href="sources_8cpp.html#a0fed937b7498df1fb8980bc8150cc5b4">More...</a><br /></td></tr>
 <tr class="separator:a0fed937b7498df1fb8980bc8150cc5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64eab5e7433c2cf4f1dc38751b740b48"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1files.html#a64eab5e7433c2cf4f1dc38751b740b48">ws2st::files::copyDirectoryFiles</a> (const fs::path &amp;source_dir, const fs::path &amp;destination_dir)</td></tr>
-<tr class="memdesc:a64eab5e7433c2cf4f1dc38751b740b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies a directories files to another directory Is recursive in the filesystem and will rename any colliding files.  <a href="namespacews2st_1_1files.html#a64eab5e7433c2cf4f1dc38751b740b48">More...</a><br /></td></tr>
+<tr class="memitem:a64eab5e7433c2cf4f1dc38751b740b48"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::files::copyDirectoryFiles</b> (const fs::path &amp;source_dir, const fs::path &amp;destination_dir)</td></tr>
+<tr class="memdesc:a64eab5e7433c2cf4f1dc38751b740b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies a directories files to another directory Is recursive in the filesystem and will rename any colliding files.  <a href="sources_8cpp.html#a64eab5e7433c2cf4f1dc38751b740b48">More...</a><br /></td></tr>
 <tr class="separator:a64eab5e7433c2cf4f1dc38751b740b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10984d26ef2edd156ea7c1a81359349a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1files.html#a10984d26ef2edd156ea7c1a81359349a">ws2st::files::assembleSourceWithBackend</a> (<a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
-<tr class="memdesc:a10984d26ef2edd156ea7c1a81359349a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the necessary steps to prepare for the refactoring tool Creates temporary directory &amp; copies all the necessary files there.  <a href="namespacews2st_1_1files.html#a10984d26ef2edd156ea7c1a81359349a">More...</a><br /></td></tr>
+<tr class="memitem:a10984d26ef2edd156ea7c1a81359349a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::files::assembleSourceWithBackend</b> (<a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
+<tr class="memdesc:a10984d26ef2edd156ea7c1a81359349a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the necessary steps to prepare for the refactoring tool Creates temporary directory &amp; copies all the necessary files there.  <a href="sources_8cpp.html#a10984d26ef2edd156ea7c1a81359349a">More...</a><br /></td></tr>
 <tr class="separator:a10984d26ef2edd156ea7c1a81359349a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -107,7 +99,130 @@ Functions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024-01-25</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="file_a10984d26ef2edd156ea7c1a81359349a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a10984d26ef2edd156ea7c1a81359349a">&#9670;&nbsp;</a></span>assembleSourceWithBackend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; ws2st::files::assembleSourceWithBackend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structWashOptions.html">WashOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs the necessary steps to prepare for the refactoring tool Creates temporary directory &amp; copies all the necessary files there. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opts</td><td>Wash program options </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>List of files created </dd></dl>
+
+</div>
+</div>
+<a id="file_a0fed937b7498df1fb8980bc8150cc5b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a0fed937b7498df1fb8980bc8150cc5b4">&#9670;&nbsp;</a></span>cleanDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ws2st::files::cleanDirectory </td>
+          <td>(</td>
+          <td class="paramtype">const fs::path &amp;&#160;</td>
+          <td class="paramname"><em>directory_path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cleans a directory by removing all files within it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">directory_path</td><td>Directory to clean </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean indicating success/failure </dd></dl>
+
+</div>
+</div>
+<a id="file_a64eab5e7433c2cf4f1dc38751b740b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a64eab5e7433c2cf4f1dc38751b740b48">&#9670;&nbsp;</a></span>copyDirectoryFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::vector&lt; std::string &gt; &gt; ws2st::files::copyDirectoryFiles </td>
+          <td>(</td>
+          <td class="paramtype">const fs::path &amp;&#160;</td>
+          <td class="paramname"><em>source_dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const fs::path &amp;&#160;</td>
+          <td class="paramname"><em>destination_dir</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copies a directories files to another directory Is recursive in the filesystem and will rename any colliding files. </p>
+<ul>
+<li>This will cause include errors if there are collisions in header files but I can't see a way to resolve this anyway <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source_dir</td><td>Source to copy from </td></tr>
+    <tr><td class="paramname">destination_dir</td><td>Destination to copy to </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Either nullopt on fail, or on success a vector of all processed files </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="file_ae8e7cbbd08d003dfce48a2e0a8a4c768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ae8e7cbbd08d003dfce48a2e0a8a4c768">&#9670;&nbsp;</a></span>generateAppDirectoryName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ws2st::files::generateAppDirectoryName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>source_dir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a random 8-character directory name from the input source directory (loosely based on fs::hash) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">souce_dir</td><td>Directory to base the random string on </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Random directory to place source files in </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -89,91 +89,19 @@ Inheritance diagram for wash::ReductionKernel:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a107edb65b63afdbc530718b5d3e901d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwash_1_1ReductionKernel.html#a107edb65b63afdbc530718b5d3e901d6">ReductionKernel</a> (const <a class="el" href="namespacewash.html#ad515914307c88c01ff7524c57feabf83">MapFuncT</a> map_func, const <a class="el" href="namespacewash.html#a9c59e8c142d63d8640921c1b1957807e">ReduceOp</a> reduce_op, double *variable)</td></tr>
+<tr class="memitem:a107edb65b63afdbc530718b5d3e901d6"><td class="memItemLeft" align="right" valign="top"><a id="a107edb65b63afdbc530718b5d3e901d6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ReductionKernel</b> (const MapFuncT map_func, const <a class="el" href="namespacewash.html#a9c59e8c142d63d8640921c1b1957807e">ReduceOp</a> reduce_op, double *variable)</td></tr>
 <tr class="separator:a107edb65b63afdbc530718b5d3e901d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ead90df8748700f40b2e6820e8e7e91"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwash_1_1ReductionKernel.html#a3ead90df8748700f40b2e6820e8e7e91">exec</a> () const override</td></tr>
+<tr class="memitem:a3ead90df8748700f40b2e6820e8e7e91"><td class="memItemLeft" align="right" valign="top"><a id="a3ead90df8748700f40b2e6820e8e7e91"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>exec</b> () const override</td></tr>
 <tr class="separator:a3ead90df8748700f40b2e6820e8e7e91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classwash_1_1Kernel"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classwash_1_1Kernel')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classwash_1_1Kernel.html">wash::Kernel</a></td></tr>
-<tr class="memitem:a614fe73b6b39ee48838eedcb2d9e42b5 inherit pub_methods_classwash_1_1Kernel"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwash_1_1Kernel.html#a614fe73b6b39ee48838eedcb2d9e42b5">~Kernel</a> ()=default</td></tr>
-<tr class="separator:a614fe73b6b39ee48838eedcb2d9e42b5 inherit pub_methods_classwash_1_1Kernel"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Reduction <a class="el" href="classwash_1_1Kernel.html" title="Parent Kernel Class. ">Kernel</a> implements a reduction operation over the particles to a specifed variable. </p>
 <p>This kernel may need to be used to collect a total value across all particles (e.g. sum of kinetic energy) </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a107edb65b63afdbc530718b5d3e901d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a107edb65b63afdbc530718b5d3e901d6">&#9670;&nbsp;</a></span>ReductionKernel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">wash::ReductionKernel::ReductionKernel </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacewash.html#ad515914307c88c01ff7524c57feabf83">MapFuncT</a>&#160;</td>
-          <td class="paramname"><em>map_func</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="namespacewash.html#a9c59e8c142d63d8640921c1b1957807e">ReduceOp</a>&#160;</td>
-          <td class="paramname"><em>reduce_op</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>variable</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3ead90df8748700f40b2e6820e8e7e91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ead90df8748700f40b2e6820e8e7e91">&#9670;&nbsp;</a></span>exec()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void wash::ReductionKernel::exec </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implements <a class="el" href="classwash_1_1Kernel.html#a0ec211840402ce975997b22136f16e39">wash::Kernel</a>.</p>
-
-</div>
-</div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>/dcs/20/u2002000/4thYearProject/wash/include/<a class="el" href="kernels_8hpp_source.html">kernels.hpp</a></li>
-<li>/dcs/20/u2002000/4thYearProject/wash/src/impl/cstone/<a class="el" href="cstone_2kernels_8cpp.html">kernels.cpp</a></li>
+<li>/dcs/20/u2002000/4thYearProject/wash/src/impl/cstone/kernels.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

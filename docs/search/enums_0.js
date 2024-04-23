@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['forcetype',['ForceType',['../namespacews2st.html#a6f0a66f31a77eae4630693b8d4d27a05',1,'ws2st']]]
+  ['reduceop',['ReduceOp',['../namespacewash.html#a9c59e8c142d63d8640921c1b1957807e',1,'wash']]]
 ];

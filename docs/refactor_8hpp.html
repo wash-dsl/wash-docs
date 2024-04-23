@@ -67,7 +67,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">refactor.hpp File Reference</div>  </div>
@@ -77,7 +76,7 @@ $(function() {
 <p>Idea is to write out the results of the refactoring using the classes defined here.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="arguments_8hpp_source.html">arguments.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="common_8hpp_source.html">common.hpp</a>&quot;</code><br />
+<code>#include &quot;common.hpp&quot;</code><br />
 </div>
 <p><a href="refactor_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -99,22 +98,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">We configure the whole tool by a series of refactoring passes.  <a href="classws2st_1_1refactor_1_1RefactoringToolConfiguration.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacews2st"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st.html">ws2st</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacews2st_1_1refactor"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1refactor.html">ws2st::refactor</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacews2st_1_1refactor_1_1config"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1refactor_1_1config.html">ws2st::refactor::config</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a06d0c091199ff73aac3a1131cc04842b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1refactor.html#a06d0c091199ff73aac3a1131cc04842b">ws2st::refactor::runRefactoring</a> (const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
-<tr class="memdesc:a06d0c091199ff73aac3a1131cc04842b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the wash refactoring application.  <a href="namespacews2st_1_1refactor.html#a06d0c091199ff73aac3a1131cc04842b">More...</a><br /></td></tr>
+<tr class="memitem:a06d0c091199ff73aac3a1131cc04842b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="refactor_8cpp.html#a06d0c091199ff73aac3a1131cc04842b">ws2st::refactor::runRefactoring</a> (const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
+<tr class="memdesc:a06d0c091199ff73aac3a1131cc04842b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the wash refactoring application.  <a href="refactor_8cpp.html#a06d0c091199ff73aac3a1131cc04842b">More...</a><br /></td></tr>
 <tr class="separator:a06d0c091199ff73aac3a1131cc04842b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fc0edc6c85a212d9a53d019ac66844d"><td class="memItemLeft" align="right" valign="top">const RefactoringToolConfiguration &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1refactor_1_1config.html#a0fc0edc6c85a212d9a53d019ac66844d">ws2st::refactor::config::getConfigurationForImplementation</a> (<a class="el" href="common_8hpp.html#aad9d1428f17c06ff77ef15dea22624dc">Implementations</a> impl)</td></tr>
-<tr class="memdesc:a0fc0edc6c85a212d9a53d019ac66844d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the set of passes specified by the implementation given.  <a href="namespacews2st_1_1refactor_1_1config.html#a0fc0edc6c85a212d9a53d019ac66844d">More...</a><br /></td></tr>
+<tr class="memitem:a0fc0edc6c85a212d9a53d019ac66844d"><td class="memItemLeft" align="right" valign="top">const RefactoringToolConfiguration &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::refactor::config::getConfigurationForImplementation</b> (Implementations impl)</td></tr>
+<tr class="memdesc:a0fc0edc6c85a212d9a53d019ac66844d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the set of passes specified by the implementation given.  <a href="empty__rules_8cpp.html#a0fc0edc6c85a212d9a53d019ac66844d">More...</a><br /></td></tr>
 <tr class="separator:a0fc0edc6c85a212d9a53d019ac66844d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -123,7 +113,61 @@ Functions</h2></td></tr>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024-01-22</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="file_a0fc0edc6c85a212d9a53d019ac66844d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a0fc0edc6c85a212d9a53d019ac66844d">&#9670;&nbsp;</a></span>getConfigurationForImplementation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const RefactoringToolConfiguration &amp; ws2st::refactor::config::getConfigurationForImplementation </td>
+          <td>(</td>
+          <td class="paramtype">Implementations&#160;</td>
+          <td class="paramname"><em>impl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the set of passes specified by the implementation given. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">impl</td><td>Implementation to use passes of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a Configuration, which is a collection of passes </dd></dl>
+
+</div>
+</div>
+<a id="file_a06d0c091199ff73aac3a1131cc04842b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a06d0c091199ff73aac3a1131cc04842b">&#9670;&nbsp;</a></span>runRefactoring()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ws2st::refactor::runRefactoring </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>opts</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the wash refactoring application. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">opts</td><td>Application options </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
