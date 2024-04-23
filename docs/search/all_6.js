@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['kernel',['Kernel',['../classwash_1_1Kernel.html',1,'wash']]],
-  ['kerneldependencies',['KernelDependencies',['../structws2st_1_1KernelDependencies.html',1,'ws2st']]]
+  ['implementationfeatures',['ImplementationFeatures',['../structImplementationFeatures.html',1,'']]],
+  ['iomanager',['IOManager',['../classwash_1_1io_1_1IOManager.html',1,'wash::io']]],
+  ['installation_20guide',['Installation Guide',['../md_markdown_installation.html',1,'']]]
 ];

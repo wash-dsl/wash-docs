@@ -67,6 +67,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">wash.hpp File Reference</div>  </div>
@@ -97,6 +98,24 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacewash"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacewash.html">wash</a></td></tr>
 <tr class="memdesc:namespacewash"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: Consider having this as a private header in WISB/WS2ST/etc implementations. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ae03823afa0476d165a3e8aeeed0594da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wash_8hpp.html#ae03823afa0476d165a3e8aeeed0594da">defineWashForceKernel</a>(kernel_name,  particle_name)</td></tr>
+<tr class="memdesc:ae03823afa0476d165a3e8aeeed0594da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a wash force kernel function with a name and particle parameter The force kernel iterates through all particles in the simulation and their neighbours.  <a href="#ae03823afa0476d165a3e8aeeed0594da">More...</a><br /></td></tr>
+<tr class="separator:ae03823afa0476d165a3e8aeeed0594da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaebd5ab9cc432e0045423e9e8aeb52c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wash_8hpp.html#aaebd5ab9cc432e0045423e9e8aeb52c6">defineWashVoidKernel</a>(kernel_name)&#160;&#160;&#160;void kernel_name (void)</td></tr>
+<tr class="memdesc:aaebd5ab9cc432e0045423e9e8aeb52c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a wash void kernel function with a given name. The void kernel is executed once every simulation loop.  <a href="#aaebd5ab9cc432e0045423e9e8aeb52c6">More...</a><br /></td></tr>
+<tr class="separator:aaebd5ab9cc432e0045423e9e8aeb52c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab38d9050a72937ed82b9a68a09304c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wash_8hpp.html#aaab38d9050a72937ed82b9a68a09304c">defineWashUpdateKernel</a>(kernel_name,  particle_name)&#160;&#160;&#160;void kernel_name (<a class="el" href="classwash_1_1Particle.html">wash::Particle</a>&amp; particle_name)</td></tr>
+<tr class="memdesc:aaab38d9050a72937ed82b9a68a09304c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a wash update kernel function with a name and particle parameter The update kernel is executed once for every particle in the simulation every loop.  <a href="#aaab38d9050a72937ed82b9a68a09304c">More...</a><br /></td></tr>
+<tr class="separator:aaab38d9050a72937ed82b9a68a09304c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf0cb8c952a42be96b3128d8da9408b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wash_8hpp.html#acf0cb8c952a42be96b3128d8da9408b4">defineWashReductionKernel</a>(kernel_name,  particle_name)&#160;&#160;&#160;double kernel_name (const <a class="el" href="classwash_1_1Particle.html">wash::Particle</a>&amp; particle_name)</td></tr>
+<tr class="memdesc:acf0cb8c952a42be96b3128d8da9408b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a wash reduction kernel function with a name and particle parameter The reduction kernel returns a single value from each particle in the simulation.  <a href="#acf0cb8c952a42be96b3128d8da9408b4">More...</a><br /></td></tr>
+<tr class="separator:acf0cb8c952a42be96b3128d8da9408b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f06a172af0125a56863cadbe6180af8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="wash_8hpp.html#a6f06a172af0125a56863cadbe6180af8">washForEachNeighbour</a>(var_name,  body)</td></tr>
+<tr class="memdesc:a6f06a172af0125a56863cadbe6180af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a for loop across the particle's neighbourhood. This should only be used within a force kernel.  <a href="#a6f06a172af0125a56863cadbe6180af8">More...</a><br /></td></tr>
+<tr class="separator:a6f06a172af0125a56863cadbe6180af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -198,7 +217,183 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <li>Wash is a dimension agnostic API. Certain implementations have requirements due to technical reasons</li>
 <li>The dimension of Simulation Vectors is controlled by the DIM define (-DDIM=d) </li>
 </ul>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ae03823afa0476d165a3e8aeeed0594da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae03823afa0476d165a3e8aeeed0594da">&#9670;&nbsp;</a></span>defineWashForceKernel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define defineWashForceKernel</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">kernel_name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">particle_name&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordtype">void</span> kernel_name (<a class="code" href="classwash_1_1Particle.html">wash::Particle</a>&amp; particle_name, \</div><div class="line">    <span class="keyword">const</span> std::vector&lt;wash::Particle&gt;::const_iterator&amp; begin, \</div><div class="line">    <span class="keyword">const</span> std::vector&lt;wash::Particle&gt;::const_iterator&amp; end)</div><div class="ttc" id="classwash_1_1Particle_html"><div class="ttname"><a href="classwash_1_1Particle.html">wash::Particle</a></div><div class="ttdef"><b>Definition:</b> particle.hpp:13</div></div>
+</div><!-- fragment -->
+<p>Define a wash force kernel function with a name and particle parameter The force kernel iterates through all particles in the simulation and their neighbours. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kernel_name</td><td>Name of the kernel function </td></tr>
+    <tr><td class="paramname">particle_name</td><td>Name of the particle parameter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acf0cb8c952a42be96b3128d8da9408b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf0cb8c952a42be96b3128d8da9408b4">&#9670;&nbsp;</a></span>defineWashReductionKernel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define defineWashReductionKernel</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">kernel_name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">particle_name&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;double kernel_name (const <a class="el" href="classwash_1_1Particle.html">wash::Particle</a>&amp; particle_name)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a wash reduction kernel function with a name and particle parameter The reduction kernel returns a single value from each particle in the simulation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kernel_name</td><td>Name of the kernel </td></tr>
+    <tr><td class="paramname">particle_name</td><td>Name of the particle parameter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaab38d9050a72937ed82b9a68a09304c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab38d9050a72937ed82b9a68a09304c">&#9670;&nbsp;</a></span>defineWashUpdateKernel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define defineWashUpdateKernel</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">kernel_name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">particle_name&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;void kernel_name (<a class="el" href="classwash_1_1Particle.html">wash::Particle</a>&amp; particle_name)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a wash update kernel function with a name and particle parameter The update kernel is executed once for every particle in the simulation every loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kernel_name</td><td>Name of the kernel </td></tr>
+    <tr><td class="paramname">particle_name</td><td>Name of the particle parameter </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aaebd5ab9cc432e0045423e9e8aeb52c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaebd5ab9cc432e0045423e9e8aeb52c6">&#9670;&nbsp;</a></span>defineWashVoidKernel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define defineWashVoidKernel</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">kernel_name</td><td>)</td>
+          <td>&#160;&#160;&#160;void kernel_name (void)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define a wash void kernel function with a given name. The void kernel is executed once every simulation loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kernel_name</td><td>Name of the kernel function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6f06a172af0125a56863cadbe6180af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f06a172af0125a56863cadbe6180af8">&#9670;&nbsp;</a></span>washForEachNeighbour</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define washForEachNeighbour</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">var_name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">body&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line">_Pragma(<span class="stringliteral">&quot;omp simd&quot;</span>)\</div><div class="line">    for (<span class="keyword">auto</span> it = begin; it != end; it++) {\</div><div class="line">        const <span class="keyword">auto</span>&amp; var_name = *it;\</div><div class="line">        { body }\</div><div class="line">    }</div></div><!-- fragment -->
+<p>Define a for loop across the particle's neighbourhood. This should only be used within a force kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">var_name</td><td>Variable name of the neighbour. Marked const. </td></tr>
+    <tr><td class="paramname">body</td><td>Body of the loop, to be run for every neighbouring particle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

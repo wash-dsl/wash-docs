@@ -24,6 +24,19 @@ The public facing A\+PI for all Wash programs to be written with.
 \item 
  \mbox{\hyperlink{namespacewash}{wash}}
 \begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{wash_8hpp_ae03823afa0476d165a3e8aeeed0594da}{define\+Wash\+Force\+Kernel}}(kernel\+\_\+name,  particle\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Define a wash force kernel function with a name and particle parameter The force kernel iterates through all particles in the simulation and their neighbours. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{wash_8hpp_aaebd5ab9cc432e0045423e9e8aeb52c6}{define\+Wash\+Void\+Kernel}}(kernel\+\_\+name)~void kernel\+\_\+name (void)
+\begin{DoxyCompactList}\small\item\em Define a wash void kernel function with a given name. The void kernel is executed once every simulation loop. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{wash_8hpp_aaab38d9050a72937ed82b9a68a09304c}{define\+Wash\+Update\+Kernel}}(kernel\+\_\+name,  particle\+\_\+name)~void kernel\+\_\+name (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}}\& particle\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Define a wash update kernel function with a name and particle parameter The update kernel is executed once for every particle in the simulation every loop. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{wash_8hpp_acf0cb8c952a42be96b3128d8da9408b4}{define\+Wash\+Reduction\+Kernel}}(kernel\+\_\+name,  particle\+\_\+name)~double kernel\+\_\+name (const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}}\& particle\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Define a wash reduction kernel function with a name and particle parameter The reduction kernel returns a single value from each particle in the simulation. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{wash_8hpp_a6f06a172af0125a56863cadbe6180af8}{wash\+For\+Each\+Neighbour}}(var\+\_\+name,  body)
+\begin{DoxyCompactList}\small\item\em Define a for loop across the particle\textquotesingle{}s neighbourhood. This should only be used within a force kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -112,3 +125,102 @@ Dimensionality\+:
 \item Wash is a dimension agnostic A\+PI. Certain implementations have requirements due to technical reasons
 \item The dimension of Simulation Vectors is controlled by the D\+IM define (-\/\+D\+D\+IM=d) 
 \end{DoxyItemize}
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{wash_8hpp_ae03823afa0476d165a3e8aeeed0594da}\label{wash_8hpp_ae03823afa0476d165a3e8aeeed0594da}} 
+\index{wash.\+hpp@{wash.\+hpp}!define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}}
+\index{define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}!wash.\+hpp@{wash.\+hpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Force\+Kernel}{defineWashForceKernel}}
+{\footnotesize\ttfamily \#define define\+Wash\+Force\+Kernel(\begin{DoxyParamCaption}\item[{}]{kernel\+\_\+name,  }\item[{}]{particle\+\_\+name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} kernel\_name (\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle\_name, \(\backslash\)
+    \textcolor{keyword}{const} std::vector<wash::Particle>::const\_iterator& begin, \(\backslash\)
+    \textcolor{keyword}{const} std::vector<wash::Particle>::const\_iterator& end)
+\end{DoxyCode}
+
+
+Define a wash force kernel function with a name and particle parameter The force kernel iterates through all particles in the simulation and their neighbours. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kernel\+\_\+name} & Name of the kernel function \\
+\hline
+{\em particle\+\_\+name} & Name of the particle parameter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wash_8hpp_acf0cb8c952a42be96b3128d8da9408b4}\label{wash_8hpp_acf0cb8c952a42be96b3128d8da9408b4}} 
+\index{wash.\+hpp@{wash.\+hpp}!define\+Wash\+Reduction\+Kernel@{define\+Wash\+Reduction\+Kernel}}
+\index{define\+Wash\+Reduction\+Kernel@{define\+Wash\+Reduction\+Kernel}!wash.\+hpp@{wash.\+hpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Reduction\+Kernel}{defineWashReductionKernel}}
+{\footnotesize\ttfamily \#define define\+Wash\+Reduction\+Kernel(\begin{DoxyParamCaption}\item[{}]{kernel\+\_\+name,  }\item[{}]{particle\+\_\+name }\end{DoxyParamCaption})~double kernel\+\_\+name (const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}}\& particle\+\_\+name)}
+
+
+
+Define a wash reduction kernel function with a name and particle parameter The reduction kernel returns a single value from each particle in the simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kernel\+\_\+name} & Name of the kernel \\
+\hline
+{\em particle\+\_\+name} & Name of the particle parameter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wash_8hpp_aaab38d9050a72937ed82b9a68a09304c}\label{wash_8hpp_aaab38d9050a72937ed82b9a68a09304c}} 
+\index{wash.\+hpp@{wash.\+hpp}!define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}}
+\index{define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}!wash.\+hpp@{wash.\+hpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Update\+Kernel}{defineWashUpdateKernel}}
+{\footnotesize\ttfamily \#define define\+Wash\+Update\+Kernel(\begin{DoxyParamCaption}\item[{}]{kernel\+\_\+name,  }\item[{}]{particle\+\_\+name }\end{DoxyParamCaption})~void kernel\+\_\+name (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}}\& particle\+\_\+name)}
+
+
+
+Define a wash update kernel function with a name and particle parameter The update kernel is executed once for every particle in the simulation every loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kernel\+\_\+name} & Name of the kernel \\
+\hline
+{\em particle\+\_\+name} & Name of the particle parameter \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wash_8hpp_aaebd5ab9cc432e0045423e9e8aeb52c6}\label{wash_8hpp_aaebd5ab9cc432e0045423e9e8aeb52c6}} 
+\index{wash.\+hpp@{wash.\+hpp}!define\+Wash\+Void\+Kernel@{define\+Wash\+Void\+Kernel}}
+\index{define\+Wash\+Void\+Kernel@{define\+Wash\+Void\+Kernel}!wash.\+hpp@{wash.\+hpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Void\+Kernel}{defineWashVoidKernel}}
+{\footnotesize\ttfamily \#define define\+Wash\+Void\+Kernel(\begin{DoxyParamCaption}\item[{}]{kernel\+\_\+name }\end{DoxyParamCaption})~void kernel\+\_\+name (void)}
+
+
+
+Define a wash void kernel function with a given name. The void kernel is executed once every simulation loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kernel\+\_\+name} & Name of the kernel function \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{wash_8hpp_a6f06a172af0125a56863cadbe6180af8}\label{wash_8hpp_a6f06a172af0125a56863cadbe6180af8}} 
+\index{wash.\+hpp@{wash.\+hpp}!wash\+For\+Each\+Neighbour@{wash\+For\+Each\+Neighbour}}
+\index{wash\+For\+Each\+Neighbour@{wash\+For\+Each\+Neighbour}!wash.\+hpp@{wash.\+hpp}}
+\subsubsection{\texorpdfstring{wash\+For\+Each\+Neighbour}{washForEachNeighbour}}
+{\footnotesize\ttfamily \#define wash\+For\+Each\+Neighbour(\begin{DoxyParamCaption}\item[{}]{var\+\_\+name,  }\item[{}]{body }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\_Pragma(\textcolor{stringliteral}{"omp simd"})\(\backslash\)
+    for (\textcolor{keyword}{auto} it = begin; it != end; it++) \{\(\backslash\)
+        const \textcolor{keyword}{auto}& var\_name = *it;\(\backslash\)
+        \{ body \}\(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+Define a for loop across the particle\textquotesingle{}s neighbourhood. This should only be used within a force kernel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+\_\+name} & Variable name of the neighbour. Marked const. \\
+\hline
+{\em body} & Body of the loop, to be run for every neighbouring particle. \\
+\hline
+\end{DoxyParams}
