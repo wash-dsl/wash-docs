@@ -1,0 +1,44 @@
+\hypertarget{kernels_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/include/kernels.hpp File Reference}
+\label{kernels_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/include/kernels.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/include/kernels.\+hpp}}
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include \char`\"{}particle.\+hpp\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classwash_1_1Kernel}{wash\+::\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Parent \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1ForceKernel}{wash\+::\+Force\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Force \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1UpdateKernel}{wash\+::\+Update\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Update \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1ReductionKernel}{wash\+::\+Reduction\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Reduction \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} implements a reduction operation over the particles to a specifed variable. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classwash_1_1VoidKernel}{wash\+::\+Void\+Kernel}}
+\begin{DoxyCompactList}\small\item\em Void \mbox{\hyperlink{classwash_1_1Kernel}{Kernel}} has no arguments/return. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacewash}{wash}}
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacewash_a3687ea698f8cb8c077d728e5d74de495}{wash\+::\+Force\+FuncT}} = std\+::function$<$ void(Particle \&, const std\+::vector$<$ Particle $>$\+::const\+\_\+iterator \&, const std\+::vector$<$ Particle $>$\+::const\+\_\+iterator \&)$>$
+\item 
+using \mbox{\hyperlink{namespacewash_aaae2f0d4980b7c550d6de709b35f0b8e}{wash\+::\+Update\+FuncT}} = std\+::function$<$ void(Particle \&)$>$
+\item 
+using \mbox{\hyperlink{namespacewash_ad515914307c88c01ff7524c57feabf83}{wash\+::\+Map\+FuncT}} = std\+::function$<$ double(const Particle \&)$>$
+\item 
+using \mbox{\hyperlink{namespacewash_a7de7a4195ce994df4dd54ff86e3fff20}{wash\+::\+Void\+FuncT}} = std\+::function$<$ void()$>$
+\item 
+using \mbox{\hyperlink{namespacewash_a8135d763bfc59fce07b49873d8af0ed6}{wash\+::\+Neighbors\+FuncT}} = std\+::function$<$ void(Particle \&)$>$
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807e}{wash\+::\+Reduce\+Op}} \{ \mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807ea2ffe4e77325d9a7152f7086ea7aa5114}{wash\+::\+Reduce\+Op\+::max}}, 
+\mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807ead8bd79cc131920d5de426f914d17405a}{wash\+::\+Reduce\+Op\+::min}}, 
+\mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807ea1d623b89683f9ce4e074de1676d12416}{wash\+::\+Reduce\+Op\+::sum}}, 
+\mbox{\hyperlink{namespacewash_a9c59e8c142d63d8640921c1b1957807ead6e4a9b6646c62fc48baa6dd6150d1f7}{wash\+::\+Reduce\+Op\+::prod}}
+ \}
+\begin{DoxyCompactList}\small\item\em Type of reduction operation to perform in a reduce kernel. \end{DoxyCompactList}\end{DoxyCompactItemize}

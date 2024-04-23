@@ -1,0 +1,152 @@
+\hypertarget{namespacews2st_1_1refactor_1_1variables}{}\section{ws2st\+:\+:refactor\+:\+:variables Namespace Reference}
+\label{namespacews2st_1_1refactor_1_1variables}\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_a3a4d7300be9fe7ab218d635e003cdf17}{Handle\+Register\+Variable}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_aa668312b7309e9263a184d843ff80dec}{get\+Variable\+Declaration\+Source}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_a64cf7d9b331531ffc997992313627026}{get\+Variable\+Definition\+Source}} ()
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_abd67fe0f6eeb461f57ea652c43890c4a}{Handle\+Insert\+Variables\+Declaration}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_a7896c4e7ab5a8bec3da0c340a60f18f9}{Handle\+Set\+Variable}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_adffc576eece8524a54ea36593310c4fb}{Handle\+Get\+Variable}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_a792197f02667d39f6a345ac2e0a63008}{Handle\+Get\+Variable\+Ref}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_afd44f50cdfee36cffc078a0a476443ac}{Register\+Variable\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_aa604808c747d1f1c063e9486b2938ed7}{Register\+Variable\+No\+Init\+Matcher}}
+\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_aa3430fb2507e08ed6f9f620b0b72894f}{Insert\+Variables\+Declaration\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_a954310f0d468e2af710cdee89425736a}{Set\+Variable\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_acb7644acb8e3aa823648a4178f2d893e}{Get\+Variable\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables_ac49f830b8c6647d5b2c4a6957a304ab0}{Get\+Variable\+Ref\+Matcher}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_aa668312b7309e9263a184d843ff80dec}\label{namespacews2st_1_1refactor_1_1variables_aa668312b7309e9263a184d843ff80dec}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!get\+Variable\+Declaration\+Source@{get\+Variable\+Declaration\+Source}}
+\index{get\+Variable\+Declaration\+Source@{get\+Variable\+Declaration\+Source}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{get\+Variable\+Declaration\+Source()}{getVariableDeclarationSource()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::refactor\+::variables\+::get\+Variable\+Declaration\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_a64cf7d9b331531ffc997992313627026}\label{namespacews2st_1_1refactor_1_1variables_a64cf7d9b331531ffc997992313627026}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!get\+Variable\+Definition\+Source@{get\+Variable\+Definition\+Source}}
+\index{get\+Variable\+Definition\+Source@{get\+Variable\+Definition\+Source}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{get\+Variable\+Definition\+Source()}{getVariableDefinitionSource()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::refactor\+::variables\+::get\+Variable\+Definition\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_adffc576eece8524a54ea36593310c4fb}\label{namespacews2st_1_1refactor_1_1variables_adffc576eece8524a54ea36593310c4fb}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Handle\+Get\+Variable@{Handle\+Get\+Variable}}
+\index{Handle\+Get\+Variable@{Handle\+Get\+Variable}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Variable()}{HandleGetVariable()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::variables\+::\+Handle\+Get\+Variable (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_a792197f02667d39f6a345ac2e0a63008}\label{namespacews2st_1_1refactor_1_1variables_a792197f02667d39f6a345ac2e0a63008}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Handle\+Get\+Variable\+Ref@{Handle\+Get\+Variable\+Ref}}
+\index{Handle\+Get\+Variable\+Ref@{Handle\+Get\+Variable\+Ref}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Variable\+Ref()}{HandleGetVariableRef()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::variables\+::\+Handle\+Get\+Variable\+Ref (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_abd67fe0f6eeb461f57ea652c43890c4a}\label{namespacews2st_1_1refactor_1_1variables_abd67fe0f6eeb461f57ea652c43890c4a}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Handle\+Insert\+Variables\+Declaration@{Handle\+Insert\+Variables\+Declaration}}
+\index{Handle\+Insert\+Variables\+Declaration@{Handle\+Insert\+Variables\+Declaration}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Handle\+Insert\+Variables\+Declaration()}{HandleInsertVariablesDeclaration()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::variables\+::\+Handle\+Insert\+Variables\+Declaration (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_a3a4d7300be9fe7ab218d635e003cdf17}\label{namespacews2st_1_1refactor_1_1variables_a3a4d7300be9fe7ab218d635e003cdf17}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Handle\+Register\+Variable@{Handle\+Register\+Variable}}
+\index{Handle\+Register\+Variable@{Handle\+Register\+Variable}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Handle\+Register\+Variable()}{HandleRegisterVariable()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::variables\+::\+Handle\+Register\+Variable (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_a7896c4e7ab5a8bec3da0c340a60f18f9}\label{namespacews2st_1_1refactor_1_1variables_a7896c4e7ab5a8bec3da0c340a60f18f9}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Handle\+Set\+Variable@{Handle\+Set\+Variable}}
+\index{Handle\+Set\+Variable@{Handle\+Set\+Variable}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Variable()}{HandleSetVariable()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::variables\+::\+Handle\+Set\+Variable (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_acb7644acb8e3aa823648a4178f2d893e}\label{namespacews2st_1_1refactor_1_1variables_acb7644acb8e3aa823648a4178f2d893e}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Get\+Variable\+Matcher@{Get\+Variable\+Matcher}}
+\index{Get\+Variable\+Matcher@{Get\+Variable\+Matcher}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Get\+Variable\+Matcher}{GetVariableMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::variables\+::\+Get\+Variable\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_ac49f830b8c6647d5b2c4a6957a304ab0}\label{namespacews2st_1_1refactor_1_1variables_ac49f830b8c6647d5b2c4a6957a304ab0}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Get\+Variable\+Ref\+Matcher@{Get\+Variable\+Ref\+Matcher}}
+\index{Get\+Variable\+Ref\+Matcher@{Get\+Variable\+Ref\+Matcher}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Get\+Variable\+Ref\+Matcher}{GetVariableRefMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::variables\+::\+Get\+Variable\+Ref\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_aa3430fb2507e08ed6f9f620b0b72894f}\label{namespacews2st_1_1refactor_1_1variables_aa3430fb2507e08ed6f9f620b0b72894f}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Insert\+Variables\+Declaration\+Matcher@{Insert\+Variables\+Declaration\+Matcher}}
+\index{Insert\+Variables\+Declaration\+Matcher@{Insert\+Variables\+Declaration\+Matcher}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Insert\+Variables\+Declaration\+Matcher}{InsertVariablesDeclarationMatcher}}
+{\footnotesize\ttfamily Declaration\+Matcher ws2st\+::refactor\+::variables\+::\+Insert\+Variables\+Declaration\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, 
+        cxxRecordDecl(hasName(\textcolor{stringliteral}{"\_variables\_defs"})).bind(\textcolor{stringliteral}{"decl"})
+    )
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_afd44f50cdfee36cffc078a0a476443ac}\label{namespacews2st_1_1refactor_1_1variables_afd44f50cdfee36cffc078a0a476443ac}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Register\+Variable\+Matcher@{Register\+Variable\+Matcher}}
+\index{Register\+Variable\+Matcher@{Register\+Variable\+Matcher}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Register\+Variable\+Matcher}{RegisterVariableMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::variables\+::\+Register\+Variable\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+        hasDescendant(
+            declRefExpr(
+                to(functionDecl(
+                    hasName(\textcolor{stringliteral}{"wash::add\_variable"})
+                ))
+            )
+        ),
+        hasArgument(0, ignoringImplicit( stringLiteral().bind(\textcolor{stringliteral}{"variableName"}) )),
+        hasArgument(1, ignoringImplicit( expr().bind(\textcolor{stringliteral}{"initValue"}) ))
+    ).bind(\textcolor{stringliteral}{"call"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_aa604808c747d1f1c063e9486b2938ed7}\label{namespacews2st_1_1refactor_1_1variables_aa604808c747d1f1c063e9486b2938ed7}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Register\+Variable\+No\+Init\+Matcher@{Register\+Variable\+No\+Init\+Matcher}}
+\index{Register\+Variable\+No\+Init\+Matcher@{Register\+Variable\+No\+Init\+Matcher}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Register\+Variable\+No\+Init\+Matcher}{RegisterVariableNoInitMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::variables\+::\+Register\+Variable\+No\+Init\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+        hasDescendant(
+            declRefExpr(
+                to(functionDecl(
+                    hasName(\textcolor{stringliteral}{"wash::add\_variable"})
+                ))
+            )
+        ),
+        hasArgument(0, ignoringImplicit( stringLiteral().bind(\textcolor{stringliteral}{"variableName"}) )),
+        argumentCountIs(1)
+    ).bind(\textcolor{stringliteral}{"call"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1variables_a954310f0d468e2af710cdee89425736a}\label{namespacews2st_1_1refactor_1_1variables_a954310f0d468e2af710cdee89425736a}} 
+\index{ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}!Set\+Variable\+Matcher@{Set\+Variable\+Matcher}}
+\index{Set\+Variable\+Matcher@{Set\+Variable\+Matcher}!ws2st\+::refactor\+::variables@{ws2st\+::refactor\+::variables}}
+\subsubsection{\texorpdfstring{Set\+Variable\+Matcher}{SetVariableMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::variables\+::\+Set\+Variable\+Matcher}
+

@@ -1,0 +1,26 @@
+\hypertarget{util_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/include/util.hpp File Reference}
+\label{util_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/include/util.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/include/util.\+hpp}}
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacewash}{wash}}
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\int64\+\_\+t \mbox{\hyperlink{namespacewash_a1c8fa60f6e44bc34cd82b152c9570603}{wash\+::diff\+\_\+ms}} (std\+::chrono\+::time\+\_\+point$<$ T $>$ time1, std\+::chrono\+::time\+\_\+point$<$ T $>$ time2)
+\item 
+{\footnotesize template$<$typename... Args$>$ }\\std\+::string \mbox{\hyperlink{namespacewash_a3c692ea6f1cb04614c790fd4b9dc34ba}{wash\+::string\+\_\+format}} (const std\+::string \&format, Args... args)
+\begin{DoxyCompactList}\small\item\em Helper function to format to a c++ string. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\int \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{wash\+::sgn}} (T val)
+\begin{DoxyCompactList}\small\item\em Helper function for the pure sign of a numerical type. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , size\+\_\+t N, size\+\_\+t... I$>$ }\\auto \mbox{\hyperlink{namespacewash_ae34701c709b5a3bace6dfc0e19dcf01b}{wash\+::make\+\_\+tuple}} (std\+::array$<$ T, N $>$ \&arr, std\+::index\+\_\+sequence$<$ I... $>$)
+\item 
+{\footnotesize template$<$typename T , size\+\_\+t N$>$ }\\auto \mbox{\hyperlink{namespacewash_a22d9c927a5c59b8a587e335472411ae7}{wash\+::make\+\_\+tuple}} (std\+::array$<$ T, N $>$ \&arr)
+\item 
+{\footnotesize template$<$typename T , size\+\_\+t N, size\+\_\+t M$>$ }\\auto \mbox{\hyperlink{namespacewash_a477322dfaa4429578d544d713f5d4df9}{wash\+::make\+\_\+tuple}} (std\+::array$<$ T, N $>$ \&arr)
+\end{DoxyCompactItemize}

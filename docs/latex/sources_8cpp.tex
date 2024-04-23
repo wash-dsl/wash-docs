@@ -1,0 +1,21 @@
+\hypertarget{sources_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/sources.cpp File Reference}
+\label{sources_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/sources.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/sources.\+cpp}}
+{\ttfamily \#include \char`\"{}sources.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1files}{ws2st\+::files}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1files_ae8e7cbbd08d003dfce48a2e0a8a4c768}{ws2st\+::files\+::generate\+App\+Directory\+Name}} (const std\+::string \&source\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Creates a random 8-\/character directory name from the input source directory (loosely based on fs\+::hash) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacews2st_1_1files_a0fed937b7498df1fb8980bc8150cc5b4}{ws2st\+::files\+::clean\+Directory}} (const fs\+::path \&directory\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Cleans a directory by removing all files within it. \end{DoxyCompactList}\item 
+std\+::optional$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacews2st_1_1files_a64eab5e7433c2cf4f1dc38751b740b48}{ws2st\+::files\+::copy\+Directory\+Files}} (const fs\+::path \&source\+\_\+dir, const fs\+::path \&destination\+\_\+dir)
+\begin{DoxyCompactList}\small\item\em Copies a directories files to another directory Is recursive in the filesystem and will rename any colliding files. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1files_a10984d26ef2edd156ea7c1a81359349a}{ws2st\+::files\+::assemble\+Source\+With\+Backend}} (\mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\begin{DoxyCompactList}\small\item\em Performs the necessary steps to prepare for the refactoring tool Creates temporary directory \& copies all the necessary files there. \end{DoxyCompactList}\end{DoxyCompactItemize}

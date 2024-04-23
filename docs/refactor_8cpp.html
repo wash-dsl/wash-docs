@@ -66,6 +66,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -74,19 +75,24 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="refactor_8hpp_source.html">refactor.hpp</a>&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacews2st"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st.html">ws2st</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacews2st_1_1refactor"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1refactor.html">ws2st::refactor</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a02ec0178024bc5884b5dfdfa5992fa93"><td class="memItemLeft" align="right" valign="top"><a id="a02ec0178024bc5884b5dfdfa5992fa93"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>CLANG_LOC</b>&#160;&#160;&#160;&quot;/usr/lib64/clang/16/include&quot;</td></tr>
+<tr class="memitem:a02ec0178024bc5884b5dfdfa5992fa93"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="refactor_8cpp.html#a02ec0178024bc5884b5dfdfa5992fa93">CLANG_LOC</a>&#160;&#160;&#160;&quot;/usr/lib64/clang/16/include&quot;</td></tr>
 <tr class="separator:a02ec0178024bc5884b5dfdfa5992fa93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad2aa623558e939afddc247c8f8192c26"><td class="memItemLeft" align="right" valign="top"><a id="ad2aa623558e939afddc247c8f8192c26"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::refactor::prepareArguments</b> (const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts, const std::vector&lt; std::string &gt; &amp;files)</td></tr>
+<tr class="memitem:ad2aa623558e939afddc247c8f8192c26"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1refactor.html#ad2aa623558e939afddc247c8f8192c26">ws2st::refactor::prepareArguments</a> (const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts, const std::vector&lt; std::string &gt; &amp;files)</td></tr>
 <tr class="separator:ad2aa623558e939afddc247c8f8192c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06d0c091199ff73aac3a1131cc04842b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="refactor_8cpp.html#a06d0c091199ff73aac3a1131cc04842b">ws2st::refactor::runRefactoring</a> (const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
-<tr class="memdesc:a06d0c091199ff73aac3a1131cc04842b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the wash refactoring application.  <a href="refactor_8cpp.html#a06d0c091199ff73aac3a1131cc04842b">More...</a><br /></td></tr>
+<tr class="memitem:a06d0c091199ff73aac3a1131cc04842b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1refactor.html#a06d0c091199ff73aac3a1131cc04842b">ws2st::refactor::runRefactoring</a> (const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
+<tr class="memdesc:a06d0c091199ff73aac3a1131cc04842b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the wash refactoring application.  <a href="namespacews2st_1_1refactor.html#a06d0c091199ff73aac3a1131cc04842b">More...</a><br /></td></tr>
 <tr class="separator:a06d0c091199ff73aac3a1131cc04842b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -95,30 +101,18 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 <dl class="section date"><dt>Date</dt><dd>2024-01-22</dd></dl>
 <p>Compile with -DCLANG_LOC="./path/to/clang/version/include" to change the location of where clang's std header files are included from.</p>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="file_a06d0c091199ff73aac3a1131cc04842b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a06d0c091199ff73aac3a1131cc04842b">&#9670;&nbsp;</a></span>runRefactoring()</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a02ec0178024bc5884b5dfdfa5992fa93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ec0178024bc5884b5dfdfa5992fa93">&#9670;&nbsp;</a></span>CLANG_LOC</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ws2st::refactor::runRefactoring </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;&#160;</td>
-          <td class="paramname"><em>opts</em></td><td>)</td>
-          <td></td>
+          <td class="memname">#define CLANG_LOC&#160;&#160;&#160;&quot;/usr/lib64/clang/16/include&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Runs the wash refactoring application. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">opts</td><td>Application options </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

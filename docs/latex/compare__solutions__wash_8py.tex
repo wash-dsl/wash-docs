@@ -1,0 +1,61 @@
+\hypertarget{compare__solutions__wash_8py}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/compare\+\_\+solutions\+\_\+wash.py File Reference}
+\label{compare__solutions__wash_8py}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/compare\+\_\+solutions\+\_\+wash.\+py@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/compare\+\_\+solutions\+\_\+wash.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacecompare__solutions__wash}{compare\+\_\+solutions\+\_\+wash}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_ae62cbff3d508ce20459a98127dfb1ae5}{compare\+\_\+solutions\+\_\+wash.\+parse\+Solution}} (fname)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a33b80a6270677304a6b35ebb66823a61}{compare\+\_\+solutions\+\_\+wash.\+load\+H5\+Field}} (h5\+File, what, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_afbcdb3d9e80bd0dfe06fba04102488b5}{compare\+\_\+solutions\+\_\+wash.\+load\+H5\+Field\+Indexed}} (h5\+File, what, index, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a45f4b24054ceb028d7ca53bcdeefef5f}{compare\+\_\+solutions\+\_\+wash.\+load\+Timesteps}} (h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a13dfad6bbc2ba1a437ee77253075b68a}{compare\+\_\+solutions\+\_\+wash.\+load\+Step\+Numbers}} (h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a63cd726e61321a8fc75b08386a4f58fc}{compare\+\_\+solutions\+\_\+wash.\+determine\+Timestep}} (time, timesteps)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a9563fef2b2c5b092ed811a3bbbf20f3e}{compare\+\_\+solutions\+\_\+wash.\+compute\+Radii}} (h5\+File, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_aafcb27af091ee03dd6f847cb5bc8dff9}{compare\+\_\+solutions\+\_\+wash.\+compute\+L1\+Error}} (x\+Sim, y\+Sim, x\+Sol, y\+Sol)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_acdc64255ec535e0337c193b278bc2a2c}{compare\+\_\+solutions\+\_\+wash.\+plot\+Radial\+Profile}} (props, x\+Sim, y\+Sim, x\+Sol, y\+Sol)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a2c480c555da3fe80731046f9437e45d0}{compare\+\_\+solutions\+\_\+wash.\+create\+Density\+Plot}} (h5\+File, solution, radii, time, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a236abe92088293534f0bce89ea79e371}{compare\+\_\+solutions\+\_\+wash.\+create\+Pressure\+Plot}} (h5\+File, solution, radii, time, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_aac854cee7d44cae442c294a76e83ed6a}{compare\+\_\+solutions\+\_\+wash.\+create\+Velocity\+Plot}} (h5\+File, solution, radii, time, step)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{namespacecompare__solutions__wash_ae83d941d7a508d3c738fccee130273a0}{compare\+\_\+solutions\+\_\+wash.\+results\+\_\+dir}} = \char`\"{}graphs\+\_\+out/\char`\"{}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions__wash_afeba07d349a56775d3ad54a471ac69b3}{compare\+\_\+solutions\+\_\+wash.\+parser}} = Argument\+Parser(description=\textquotesingle{}Plot analytical solutions against S\+PH simulations\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacecompare__solutions__wash_a1fbca7d235a0148467562a83da0f7205}{compare\+\_\+solutions\+\_\+wash.\+help}}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions__wash_a4d39b8cd639016493dc3983a1f639177}{compare\+\_\+solutions\+\_\+wash.\+args}} = parser.\+parse\+\_\+args()
+\item 
+\mbox{\hyperlink{namespacecompare__solutions__wash_a134c58f3c3cb96d84b6070546fd6830c}{compare\+\_\+solutions\+\_\+wash.\+h5\+File}} = h5py.\+File(args.\+sim\+File, \char`\"{}r\char`\"{})
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_acd63a8b5cbad89bba3c4ca2abf9a8231}{compare\+\_\+solutions\+\_\+wash.\+timesteps}} = load\+Timesteps(h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a419f9f7ba74b2aff6ac5826306d0b512}{compare\+\_\+solutions\+\_\+wash.\+step\+Numbers}} = load\+Step\+Numbers(h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a65f9aa74f262df7a8fe6b3ca1a4f49ea}{compare\+\_\+solutions\+\_\+wash.\+hdf5\+\_\+step}} = step\+Numbers\mbox{[}0\mbox{]}
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_addfb10b27eaa62790f49a45459f6dbc5}{compare\+\_\+solutions\+\_\+wash.\+time}} = timesteps\mbox{[}0\mbox{]}
+\item 
+string \mbox{\hyperlink{namespacecompare__solutions__wash_af109703ea04251678337f3fc650a2d7f}{compare\+\_\+solutions\+\_\+wash.\+sol\+File}} = \char`\"{}analytical\+\_\+sedov/sedov\+\_\+solution.\+dat\char`\"{}
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions__wash_a12d25e9192cbe8fd9232d4e9f3c60c21}{compare\+\_\+solutions\+\_\+wash.\+solution}} = parse\+Solution(sol\+File)
+\item 
+\mbox{\hyperlink{namespacecompare__solutions__wash_afbb849fe1473042de242bb0af37ecef2}{compare\+\_\+solutions\+\_\+wash.\+radii}} = None
+\end{DoxyCompactItemize}

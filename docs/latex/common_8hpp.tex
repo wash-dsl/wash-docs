@@ -1,0 +1,188 @@
+\hypertarget{common_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/common.hpp File Reference}
+\label{common_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/common.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/common.\+hpp}}
+{\ttfamily \#include \char`\"{}clang/\+Frontend/\+Frontend\+Actions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+Frontend/\+Text\+Diagnostic\+Printer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+Rewrite/\+Core/\+Rewriter.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+Tooling/\+Common\+Options\+Parser.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+Tooling/\+Refactoring.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+Tooling/\+Refactoring\+Callbacks.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+Tooling/\+Tooling.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+A\+S\+T\+Matchers/\+A\+S\+T\+Match\+Finder.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}clang/\+A\+S\+T\+Matchers/\+A\+S\+T\+Matchers.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}llvm/\+Support/\+Command\+Line.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$any$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include $<$variant$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$initializer\+\_\+list$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$optional$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structWashOptions}{Wash\+Options}}
+\begin{DoxyCompactList}\small\item\em Options about how the Wash analysis will behave. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structImplementationFeatures}{Implementation\+Features}}
+\item 
+struct \mbox{\hyperlink{structws2st_1_1KernelDependencies}{ws2st\+::\+Kernel\+Dependencies}}
+\begin{DoxyCompactList}\small\item\em Struct to hold two vectors of dependencies (appropriately named) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structws2st_1_1WashProgramMeta}{ws2st\+::\+Wash\+Program\+Meta}}
+\begin{DoxyCompactList}\small\item\em Meta information about the simulation which is defined globally and can be read/written to by the callback functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{ws2st\+::\+Wash\+Callback\+Fn}}) (const Match\+Finder\+::\+Match\+Result \&, Replacements \&)
+\begin{DoxyCompactList}\small\item\em Defines the type of the callback function which takes a Match\+Result containing A\+ST information about the match and a mutable reference to the Replacements list which can be added to by the callback function. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{namespacews2st_a77544d74f310dc9ec5c11bffa3ea77b6}{ws2st\+::\+Wash\+Compute\+Fn}}) (const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} \{ \newline
+\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca3ea88c09708a5249b91005897ef1c7b5}{Implementations\+::wser}}, 
+\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca51ebdf65e8265412558ead76b3a2731a}{Implementations\+::wisb}}, 
+\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dcada4f0053a5c13882268852ae2da2e466}{Implementations\+::west}}, 
+\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dcad4c140b283e210215c1b507247417c54}{Implementations\+::cstone}}, 
+\newline
+\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca0650d4decfd768ea852fe73e3c206a1a}{Implementations\+::wone}}
+ \}
+\item 
+enum \mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05}{ws2st\+::\+Force\+Type}} \{ \mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a8f3d9a4b6a7b7f2c7afa61ca113d0db9}{ws2st\+::\+Force\+Type\+::\+S\+C\+A\+L\+AR}}, 
+\mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a87752381b583740610f1dfeb07fdad7e}{ws2st\+::\+Force\+Type\+::\+V\+E\+C\+T\+OR}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::optional$<$ std\+::string $>$ \mbox{\hyperlink{common_8hpp_a339b70e7726df0dfadc8e712dabccba6}{get\+Source\+Text}} (A\+S\+T\+Context $\ast$ctx, Source\+Range src\+Range)
+\begin{DoxyCompactList}\small\item\em Get the text of a source code range or not if it\textquotesingle{}s not there. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} \mbox{\hyperlink{common_8hpp_a425d671ecb936cfaeee0aa078d27a53a}{default\+\_\+impl}}
+\item 
+std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}}, \mbox{\hyperlink{structImplementationFeatures}{Implementation\+Features}} $>$ \mbox{\hyperlink{common_8hpp_ac893090b38f3f0ae5b810b37d554ca46}{api\+\_\+impls}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{common_8hpp_a22883d278f6a27a3eed3b3bf0f4eb53a}{User\+Files}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{common_8hpp_a32e9965ca68cc0719a8dcfeb4e9a1dc2}{Backend\+Files}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{common_8hpp_a50a70ea98bb7508735ebb283798362ae}{Public\+Headers}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{common_8hpp_a6be9b5257ca58b32d8c51116e036856c}{All\+Files}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{common_8hpp_a87aec6ecd039b2319a11651af4462a07}{No\+Files}}
+\item 
+std\+::shared\+\_\+ptr$<$ Wash\+Program\+Meta $>$ \mbox{\hyperlink{namespacews2st_ab3effe8d87dc3f3df0533a3cdcf136e4}{ws2st\+::program\+\_\+meta}} = std\+::make\+\_\+shared$<$Wash\+Program\+Meta$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}\label{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}} 
+\index{common.\+hpp@{common.\+hpp}!Implementations@{Implementations}}
+\index{Implementations@{Implementations}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{Implementations}{Implementations}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{wser@{wser}!common.\+hpp@{common.\+hpp}}\index{common.\+hpp@{common.\+hpp}!wser@{wser}}}\mbox{\Hypertarget{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca3ea88c09708a5249b91005897ef1c7b5}\label{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca3ea88c09708a5249b91005897ef1c7b5}} 
+wser&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{wisb@{wisb}!common.\+hpp@{common.\+hpp}}\index{common.\+hpp@{common.\+hpp}!wisb@{wisb}}}\mbox{\Hypertarget{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca51ebdf65e8265412558ead76b3a2731a}\label{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca51ebdf65e8265412558ead76b3a2731a}} 
+wisb&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{west@{west}!common.\+hpp@{common.\+hpp}}\index{common.\+hpp@{common.\+hpp}!west@{west}}}\mbox{\Hypertarget{common_8hpp_aad9d1428f17c06ff77ef15dea22624dcada4f0053a5c13882268852ae2da2e466}\label{common_8hpp_aad9d1428f17c06ff77ef15dea22624dcada4f0053a5c13882268852ae2da2e466}} 
+west&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{cstone@{cstone}!common.\+hpp@{common.\+hpp}}\index{common.\+hpp@{common.\+hpp}!cstone@{cstone}}}\mbox{\Hypertarget{common_8hpp_aad9d1428f17c06ff77ef15dea22624dcad4c140b283e210215c1b507247417c54}\label{common_8hpp_aad9d1428f17c06ff77ef15dea22624dcad4c140b283e210215c1b507247417c54}} 
+cstone&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{wone@{wone}!common.\+hpp@{common.\+hpp}}\index{common.\+hpp@{common.\+hpp}!wone@{wone}}}\mbox{\Hypertarget{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca0650d4decfd768ea852fe73e3c206a1a}\label{common_8hpp_aad9d1428f17c06ff77ef15dea22624dca0650d4decfd768ea852fe73e3c206a1a}} 
+wone&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{common_8hpp_a339b70e7726df0dfadc8e712dabccba6}\label{common_8hpp_a339b70e7726df0dfadc8e712dabccba6}} 
+\index{common.\+hpp@{common.\+hpp}!get\+Source\+Text@{get\+Source\+Text}}
+\index{get\+Source\+Text@{get\+Source\+Text}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{get\+Source\+Text()}{getSourceText()}}
+{\footnotesize\ttfamily std\+::optional$<$std\+::string$>$ get\+Source\+Text (\begin{DoxyParamCaption}\item[{A\+S\+T\+Context $\ast$}]{ctx,  }\item[{Source\+Range}]{src\+Range }\end{DoxyParamCaption})}
+
+
+
+Get the text of a source code range or not if it\textquotesingle{}s not there. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctx} & \\
+\hline
+{\em src\+Range} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::optional$<$std\+::string$>$
+\end{DoxyReturn}
+Get the text of a source code range or not if it\textquotesingle{}s not there. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{common_8hpp_a6be9b5257ca58b32d8c51116e036856c}\label{common_8hpp_a6be9b5257ca58b32d8c51116e036856c}} 
+\index{common.\+hpp@{common.\+hpp}!All\+Files@{All\+Files}}
+\index{All\+Files@{All\+Files}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{All\+Files}{AllFiles}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ All\+Files}
+
+\mbox{\Hypertarget{common_8hpp_ac893090b38f3f0ae5b810b37d554ca46}\label{common_8hpp_ac893090b38f3f0ae5b810b37d554ca46}} 
+\index{common.\+hpp@{common.\+hpp}!api\+\_\+impls@{api\+\_\+impls}}
+\index{api\+\_\+impls@{api\+\_\+impls}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{api\+\_\+impls}{api\_impls}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}}, \mbox{\hyperlink{structImplementationFeatures}{Implementation\+Features}}$>$ api\+\_\+impls}
+
+\mbox{\Hypertarget{common_8hpp_a32e9965ca68cc0719a8dcfeb4e9a1dc2}\label{common_8hpp_a32e9965ca68cc0719a8dcfeb4e9a1dc2}} 
+\index{common.\+hpp@{common.\+hpp}!Backend\+Files@{Backend\+Files}}
+\index{Backend\+Files@{Backend\+Files}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{Backend\+Files}{BackendFiles}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Backend\+Files}
+
+\mbox{\Hypertarget{common_8hpp_a425d671ecb936cfaeee0aa078d27a53a}\label{common_8hpp_a425d671ecb936cfaeee0aa078d27a53a}} 
+\index{common.\+hpp@{common.\+hpp}!default\+\_\+impl@{default\+\_\+impl}}
+\index{default\+\_\+impl@{default\+\_\+impl}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{default\+\_\+impl}{default\_impl}}
+{\footnotesize\ttfamily \mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} default\+\_\+impl}
+
+\mbox{\Hypertarget{common_8hpp_a87aec6ecd039b2319a11651af4462a07}\label{common_8hpp_a87aec6ecd039b2319a11651af4462a07}} 
+\index{common.\+hpp@{common.\+hpp}!No\+Files@{No\+Files}}
+\index{No\+Files@{No\+Files}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{No\+Files}{NoFiles}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ No\+Files}
+
+\mbox{\Hypertarget{common_8hpp_a50a70ea98bb7508735ebb283798362ae}\label{common_8hpp_a50a70ea98bb7508735ebb283798362ae}} 
+\index{common.\+hpp@{common.\+hpp}!Public\+Headers@{Public\+Headers}}
+\index{Public\+Headers@{Public\+Headers}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{Public\+Headers}{PublicHeaders}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Public\+Headers}
+
+\mbox{\Hypertarget{common_8hpp_a22883d278f6a27a3eed3b3bf0f4eb53a}\label{common_8hpp_a22883d278f6a27a3eed3b3bf0f4eb53a}} 
+\index{common.\+hpp@{common.\+hpp}!User\+Files@{User\+Files}}
+\index{User\+Files@{User\+Files}!common.\+hpp@{common.\+hpp}}
+\subsubsection{\texorpdfstring{User\+Files}{UserFiles}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ User\+Files}
+

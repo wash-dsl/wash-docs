@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['use_5fvariable',['use_variable',['../namespacewash.html#ad9a1f6575e74c6c12ddbae8d58c2b478',1,'wash']]]
+  ['magnitude',['magnitude',['../classwash_1_1Vec.html#a41de499daf12160b2cf515ce0c9da70f',1,'wash::Vec']]],
+  ['main',['main',['../3d__fluid__sim_2fluid__sim_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;fluid_sim.cpp'],['../ca__fluid__sim_2fluid__sim_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;fluid_sim.cpp'],['../sedov__blast__wave_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;main.cpp'],['../sedov__solution_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;main.cpp'],['../ws2st_8cpp.html#a217dbf8b442f20279ea00b898af96f52',1,'main(int argc, const char **argv):&#160;ws2st.cpp'],['../io__test_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;io_test.cpp']]],
+  ['make_5ftuple',['make_tuple',['../namespacewash.html#ae34701c709b5a3bace6dfc0e19dcf01b',1,'wash::make_tuple(std::array&lt; T, N &gt; &amp;arr, std::index_sequence&lt; I... &gt;)'],['../namespacewash.html#a22d9c927a5c59b8a587e335472411ae7',1,'wash::make_tuple(std::array&lt; T, N &gt; &amp;arr)'],['../namespacewash.html#a477322dfaa4429578d544d713f5d4df9',1,'wash::make_tuple(std::array&lt; T, N &gt; &amp;arr)']]]
 ];

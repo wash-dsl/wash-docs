@@ -1,0 +1,56 @@
+\hypertarget{io_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/include/io.hpp File Reference}
+\label{io_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/include/io.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/include/io.\+hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include \char`\"{}wash.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}vector.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}particle\+\_\+data.\+hpp\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{wash\+::io\+::\+Simulation\+Data}}
+\item 
+class \mbox{\hyperlink{classwash_1_1io_1_1IOManager}{wash\+::io\+::\+I\+O\+Manager}}
+\begin{DoxyCompactList}\small\item\em Manages the IO options for the simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacewash}{wash}}
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacewash_1_1io}{wash\+::io}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{io_8hpp_aaae430420e25984e327a89b068e1582b}{M\+P\+I\+\_\+\+S\+I\+Z\+E\+\_\+T}}~M\+P\+I\+\_\+\+U\+N\+S\+I\+G\+N\+E\+D\+\_\+\+C\+H\+AR
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::string \mbox{\hyperlink{namespacewash_1_1io_a8976ca6dfe3e6332440f2627928db7f9}{wash\+::io\+::get\+\_\+simulation\+\_\+name}} ()
+\item 
+const std\+::string \mbox{\hyperlink{namespacewash_1_1io_af034a23a15be4666c01bc18c86a45e3e}{wash\+::io\+::get\+\_\+output\+\_\+name}} ()
+\item 
+Simulation\+Data \mbox{\hyperlink{namespacewash_1_1io_aa9be91ca55f718793aa2e38512d6bdab}{wash\+::io\+::copy\+\_\+simulation\+\_\+data}} ()
+\item 
+I\+O\+Manager\+::\+Writer\+FuncT \mbox{\hyperlink{namespacewash_1_1io_ac3ef6862cb415612f2bd0f102459511e}{wash\+::io\+::return\+\_\+writer}} (const std\+::string format)
+\item 
+io\+::\+I\+O\+Manager \mbox{\hyperlink{namespacewash_a92e4e768dbd609eba32fc0d68977d42f}{wash\+::create\+\_\+io}} (const std\+::string format, const size\+\_\+t output\+\_\+nth, const bool use\+\_\+gather=false, const size\+\_\+t rank=0, const size\+\_\+t \mbox{\hyperlink{consts_8cpp_ae8542fe44413919dee9f41ede5a5032d}{size}}=1, const bool timings=true)
+\begin{DoxyCompactList}\small\item\em Set-\/up the IO options for the simulation. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{namespacewash_afb1cc65bb4ecf6112723b4fb95450c96}{wash\+::copy\+\_\+variables}} ()
+\begin{DoxyCompactList}\small\item\em Copy the variables of the simulation. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacewash_aebd88baa23220ce7842c503157c0bb71}{wash\+::get\+\_\+variables\+\_\+names}} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{io_8hpp_aaae430420e25984e327a89b068e1582b}\label{io_8hpp_aaae430420e25984e327a89b068e1582b}} 
+\index{io.\+hpp@{io.\+hpp}!M\+P\+I\+\_\+\+S\+I\+Z\+E\+\_\+T@{M\+P\+I\+\_\+\+S\+I\+Z\+E\+\_\+T}}
+\index{M\+P\+I\+\_\+\+S\+I\+Z\+E\+\_\+T@{M\+P\+I\+\_\+\+S\+I\+Z\+E\+\_\+T}!io.\+hpp@{io.\+hpp}}
+\subsubsection{\texorpdfstring{M\+P\+I\+\_\+\+S\+I\+Z\+E\+\_\+T}{MPI\_SIZE\_T}}
+{\footnotesize\ttfamily \#define M\+P\+I\+\_\+\+S\+I\+Z\+E\+\_\+T~M\+P\+I\+\_\+\+U\+N\+S\+I\+G\+N\+E\+D\+\_\+\+C\+H\+AR}
+

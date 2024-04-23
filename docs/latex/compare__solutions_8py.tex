@@ -1,0 +1,71 @@
+\hypertarget{compare__solutions_8py}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/compare\+\_\+solutions.py File Reference}
+\label{compare__solutions_8py}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/compare\+\_\+solutions.\+py@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+solution/compare\+\_\+solutions.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacecompare__solutions}{compare\+\_\+solutions}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_ae6db53243984030adbac586e151de969}{compare\+\_\+solutions.\+parse\+Solution}} (fname)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_ac7f6e5e690423263698b6a90f4f5eb51}{compare\+\_\+solutions.\+load\+H5\+Field}} (h5\+File, what, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a027a643ca4b78f4096ae7c990da396d4}{compare\+\_\+solutions.\+load\+Timesteps}} (h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a3e94566cadb571133ea525491b2e573e}{compare\+\_\+solutions.\+load\+Step\+Numbers}} (h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a93703a7dfe643e19a4ac6d56ceca5b6e}{compare\+\_\+solutions.\+determine\+Timestep}} (time, timesteps)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a8b926f5606b575b076a639234b9f3cf8}{compare\+\_\+solutions.\+compute\+Radii}} (h5\+File, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a2fe90bcceeb8a3e4204af4eea023ee0d}{compare\+\_\+solutions.\+compute\+L1\+Error}} (x\+Sim, y\+Sim, x\+Sol, y\+Sol)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a39cafde6a2fe9a6cafe188215ead093e}{compare\+\_\+solutions.\+plot\+Radial\+Profile}} (props, x\+Sim, y\+Sim, x\+Sol, y\+Sol)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_ac3678ff71eb43d33b89ce711631e45e7}{compare\+\_\+solutions.\+create\+Density\+Plot}} (h5\+File, solution, radii, time, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a0a849b6feb2639d7ae7ff62bf9239c97}{compare\+\_\+solutions.\+create\+Pressure\+Plot}} (h5\+File, solution, radii, time, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_ae36f0c3fac64a17490713bce3505126b}{compare\+\_\+solutions.\+create\+Velocity\+Plot}} (h5\+File, solution, radii, time, step)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_aaa674c7b4d40ea358b43f7885e5a4478}{compare\+\_\+solutions.\+parser}} = Argument\+Parser(description=\textquotesingle{}Plot analytical solutions against S\+PH simulations\textquotesingle{})
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a9080d9429fc80d60afe5c00891a789e5}{compare\+\_\+solutions.\+help}}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a10f260ee6120d40fa1a0eee1754b0290}{compare\+\_\+solutions.\+group}} = parser.\+add\+\_\+mutually\+\_\+exclusive\+\_\+group()
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a90f6d241dd840b9ca87fadfda12072a8}{compare\+\_\+solutions.\+type}}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a73d633d24717b7bdfb5ba69fd060eabc}{compare\+\_\+solutions.\+int}}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_ac24064a7b0bd52f0450ec16df2afa3ff}{compare\+\_\+solutions.\+dest}}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a0f2391abad6d329f3af95b8628d8fc43}{compare\+\_\+solutions.\+float}}
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_afdf0a0885cc9bdea3b4b206990ab35a3}{compare\+\_\+solutions.\+args}} = parser.\+parse\+\_\+args()
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a9aff00b9f52225aceb635bcc6230e32c}{compare\+\_\+solutions.\+h5\+File}} = h5py.\+File(args.\+sim\+File, \char`\"{}r\char`\"{})
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a9e016da601f62bd2e5d85bce6a22bfb6}{compare\+\_\+solutions.\+step}} = args.\+step
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a0c934f0f38e7ab253392939e3068c05e}{compare\+\_\+solutions.\+timesteps}} = load\+Timesteps(h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a2a151e40a9edaf958d726ac3999ac374}{compare\+\_\+solutions.\+step\+Numbers}} = load\+Step\+Numbers(h5\+File)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_ac1e662b0bd5c6fffe31397dd114f1a9a}{compare\+\_\+solutions.\+step\+Index}} = determine\+Timestep(args.\+time, timesteps)
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a61c96294f04326c4cd2cd3edaf20b9dc}{compare\+\_\+solutions.\+hdf5\+\_\+step}} = np.\+searchsorted(step\+Numbers, step)
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a83a9f408c6948f95c816240ca5e5bf65}{compare\+\_\+solutions.\+time}} = timesteps\mbox{[}hdf5\+\_\+step\mbox{]}
+\item 
+string \mbox{\hyperlink{namespacecompare__solutions_a574fdc0a536d960cd99228d27a397110}{compare\+\_\+solutions.\+sol\+File}} = \char`\"{}analytical\+\_\+sedov/sedov\+\_\+solution.\+dat\char`\"{}
+\item 
+def \mbox{\hyperlink{namespacecompare__solutions_a2550d71d0847020456f71310fbe7a3c3}{compare\+\_\+solutions.\+solution}} = parse\+Solution(sol\+File)
+\item 
+\mbox{\hyperlink{namespacecompare__solutions_a508c82664e34bc1a18ed0b2366a40698}{compare\+\_\+solutions.\+radii}} = None
+\end{DoxyCompactItemize}

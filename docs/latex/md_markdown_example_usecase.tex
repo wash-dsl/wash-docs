@@ -6,23 +6,23 @@ This page describes how one can use Wa\+SH to create a basic water simulation. A
 
 Some constants are defined before starting the simulation for easy parameter tweaking. Here\textquotesingle{}s what constants should be defined at the top\+: 
 \begin{DoxyCode}
-constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} spawnCentre \{ 3.35, 0.51 \};
-constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} initialVelocity \{ 0.0, 0.0 \};
-constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} spawnSize \{ 7.0, 7.0 \};
-constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} boundsSize \{ 17.1, 9.3 \};
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a57d93ce8b44133ed956acc10a45e6223}{spawnCentre}} \{ 3.35, 0.51 \};
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab15a76f258cadefcad1f4b39a8e76618}{initialVelocity}} \{ 0.0, 0.0 \};
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab17b2a069e81c771262e861e014202d0}{spawnSize}} \{ 7.0, 7.0 \};
+constexpr \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_ae3c8d23dc2c71306f6366b252c3ffb18}{boundsSize}} \{ 17.1, 9.3 \};
 
-constexpr \textcolor{keywordtype}{double} jitterStr = 0.025;
-constexpr \textcolor{keywordtype}{double} numParticles = 4032;
-constexpr \textcolor{keywordtype}{double} gravity = -12.0;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a39140666db6cb0c2fa813506654e739b}{jitterStr}} = 0.025;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_adfee095e4b276ab10960391284f14410}{numParticles}} = 4032;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_af81f980bddb2471a968025ae3a738fa9}{gravity}} = -12.0;
 
-constexpr \textcolor{keywordtype}{double} deltaTime = TIME\_DELTA(1, 3);
-constexpr \textcolor{keywordtype}{double} collisionDamping = 0.95;
-constexpr \textcolor{keywordtype}{double} smoothingRadius = 0.35;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{deltaTime}} = \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a7ae2a6045aeb799eb72e4ee4d6015ac1}{TIME\_DELTA}}(1, 3);
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}{collisionDamping}} = 0.95;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}} = 0.35;
 
-constexpr \textcolor{keywordtype}{double} targetDensity = 55.0;
-constexpr \textcolor{keywordtype}{double} pressureMultiplier = 500.0;
-constexpr \textcolor{keywordtype}{double} nearPressureMultiplier = 18.0;
-constexpr \textcolor{keywordtype}{double} viscosityStrength = 0.06;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a8df34bc56a46bc3a73024f988bac3271}{targetDensity}} = 55.0;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a4a61cd5f68fcbc416bd3904622ab80fc}{pressureMultiplier}} = 500.0;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a7e14d37dda2b744892950a0a7a3c913a}{nearPressureMultiplier}} = 18.0;
+constexpr \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}{viscosityStrength}} = 0.06;
 \end{DoxyCode}
 
 
@@ -32,9 +32,9 @@ The first step is to set some parameters for your simulation.
 
 
 \begin{DoxyCode}
-\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+\textcolor{keywordtype}{int} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
     wash::set\_precision(\textcolor{stringliteral}{"double"});
-    wash::set\_influence\_radius(smoothingRadius);
+    wash::set\_influence\_radius(\mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}});
     \mbox{\hyperlink{namespacewash_aeb7b287406244c8ab192d0524ad4da5b}{wash::set\_max\_iterations}}(1000);
 \}
 \end{DoxyCode}
@@ -44,7 +44,7 @@ The first step is to set some parameters for your simulation.
 
 The simulation results must be written {\itshape somewhere}. Wa\+SH provides A\+PI calls for specifying what file to output to\+: 
 \begin{DoxyCode}
-\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+\textcolor{keywordtype}{int} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
     ...
     \textcolor{keywordflow}{if} (argc > 1) \{
         \textcolor{comment}{// argv[1] = simulation name}
@@ -66,7 +66,7 @@ The simulation results must be written {\itshape somewhere}. Wa\+SH provides A\+
 
 A \textquotesingle{}Force\textquotesingle{} in this case is not necessarily a force, but could be a particle\textquotesingle{}s {\itshape property} for example temperature, that some other simulations may want to use for their calculations. 
 \begin{DoxyCode}
-\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+\textcolor{keywordtype}{int} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
     ...
     wash::add\_force(\textcolor{stringliteral}{"nearDensity"}, 1);
 
@@ -84,14 +84,14 @@ The kernels that describe the specific computations to take place in the simulat
 
 Your simulation must have a starting state for your particles. This is done like so\+: 
 \begin{DoxyCode}
-wash::add\_init\_kernel(&init);
+wash::add\_init\_kernel(&\mbox{\hyperlink{init_8cpp_a9961f7ff0de6fe6ea7838db3950e534f}{init}});
 \end{DoxyCode}
  When the simulation starts, it will use whatever is defined in the {\ttfamily init} function. The contents of the {\ttfamily init} function may look like this if your goal is to spawn uniformly distributed particles\+: 
 \begin{DoxyCode}
-\textcolor{keywordtype}{void} init() \{
-    std::cout << \textcolor{stringliteral}{"Calculated Time Step: "} << deltaTime << std::endl;
+\textcolor{keywordtype}{void} \mbox{\hyperlink{init_8cpp_a9961f7ff0de6fe6ea7838db3950e534f}{init}}() \{
+    std::cout << \textcolor{stringliteral}{"Calculated Time Step: "} << \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{deltaTime}} << std::endl;
 
-    SpawnParticles(spawnSize, numParticles);
+    SpawnParticles(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab17b2a069e81c771262e861e014202d0}{spawnSize}}, \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_adfee095e4b276ab10960391284f14410}{numParticles}});
 \}
 \end{DoxyCode}
 
@@ -99,17 +99,17 @@ wash::add\_init\_kernel(&init);
 
 \begin{DoxyCode}
 \textcolor{keywordtype}{void} SpawnParticles(\textcolor{keyword}{const} \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} spawnSizeVec, \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} particleCount) \{
-    std::uniform\_real\_distribution<double> unif(0.0, 1.0);
-    std::default\_random\_engine re(42);
+    std::uniform\_real\_distribution<double> \mbox{\hyperlink{vector__test_8cpp_a3757a8b93144971a314801d61dccfdcb}{unif}}(0.0, 1.0);
+    std::default\_random\_engine \mbox{\hyperlink{vector__test_8cpp_a2ee18289ce89962484f3b5227d11faf6}{re}}(42);
 
-    \textcolor{keywordtype}{double} s\_x = spawnSizeVec.at(0);
-    \textcolor{keywordtype}{double} s\_y = spawnSizeVec.at(1);
+    \textcolor{keywordtype}{double} s\_x = spawnSizeVec.\mbox{\hyperlink{classwash_1_1Vec_a1be26013b6d4f898b8504fc258043400}{at}}(0);
+    \textcolor{keywordtype}{double} s\_y = spawnSizeVec.\mbox{\hyperlink{classwash_1_1Vec_a1be26013b6d4f898b8504fc258043400}{at}}(1);
 
-    \textcolor{keywordtype}{int} numX = (int)std::ceil( std::sqrt(
+    \textcolor{keywordtype}{int} numX = (\mbox{\hyperlink{namespacecompare__solutions_a73d633d24717b7bdfb5ba69fd060eabc}{int}})std::ceil( \mbox{\hyperlink{namespacewash_aa7c01695ae3be583edc0ed8c4bd756f5}{std::sqrt}}(
         s\_x / s\_y * particleCount + (s\_x - s\_y) * (s\_x - s\_y) / (4 * s\_y * s\_y)
     ) - (s\_x - s\_y) / (2 * s\_y));
 
-    \textcolor{keywordtype}{int} numY = (int)std::ceil( (\textcolor{keywordtype}{double})particleCount / (double)numX );
+    \textcolor{keywordtype}{int} numY = (\mbox{\hyperlink{namespacecompare__solutions_a73d633d24717b7bdfb5ba69fd060eabc}{int}})std::ceil( (\textcolor{keywordtype}{double})particleCount / (double)numX );
     \textcolor{keywordtype}{int} i = 0;
 
     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} y = 0; y < numY; y++) \{
@@ -119,18 +119,20 @@ wash::add\_init\_kernel(&init);
             \textcolor{keywordtype}{double} tx = numX <= 1 ? 0.5 : x / (numX - 1.0);
             \textcolor{keywordtype}{double} ty = numY <= 1 ? 0.5 : y / (numY - 1.0);
 
-            \textcolor{keywordtype}{double} angle = unif(re) * PI * 2.0;
-            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} dir = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{ std::cos(angle), std::sin(angle) \});
-            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} jitter = dir * jitterStr * (unif(re) - 0.5);
-            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{ (tx - 0.5) * s\_x, (ty - 0.5) * s\_y \}) + 
-      jitter + spawnCentre;
+            \textcolor{keywordtype}{double} angle = \mbox{\hyperlink{vector__test_8cpp_a3757a8b93144971a314801d61dccfdcb}{unif}}(\mbox{\hyperlink{vector__test_8cpp_a2ee18289ce89962484f3b5227d11faf6}{re}}) * \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} * 2.0;
+            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} dir = \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash::Vec2D}}(\{ std::cos(angle), std::sin(angle) \});
+            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} jitter = dir * \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a39140666db6cb0c2fa813506654e739b}{jitterStr}} * (\mbox{\hyperlink{vector__test_8cpp_a3757a8b93144971a314801d61dccfdcb}{unif}}(
+      \mbox{\hyperlink{vector__test_8cpp_a2ee18289ce89962484f3b5227d11faf6}{re}}) - 0.5);
+            \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash::Vec2D}}(\{ (tx - 0.5) * s\_x, (ty - 0.5) * s\_y \}) + 
+      jitter + \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a57d93ce8b44133ed956acc10a45e6223}{spawnCentre}};
 
             \textcolor{comment}{// wash::Particle newp = wash::Particle();}
             \textcolor{comment}{// newp.set\_force\_vector("position", newp.get\_pos());}
             \textcolor{comment}{// newp.set\_vel(initialVelocity);}
             \textcolor{comment}{// // VelocityUpdate(newp); // call here as the first initial call before density kernel}
             \textcolor{comment}{// wash::add\_par(newp);}
-            \textcolor{keyword}{auto}& p = wash::create\_particle(0.0, 1.0, smoothingRadius, pos, initialVelocity);
+            \textcolor{keyword}{auto}& p = wash::create\_particle(0.0, 1.0, \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}}, pos, 
+      \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab15a76f258cadefcad1f4b39a8e76618}{initialVelocity}});
             p.set\_force\_vector(\textcolor{stringliteral}{"position"}, pos);
 
             \textcolor{keywordflow}{if} (i < 5) \{
@@ -148,7 +150,7 @@ wash::add\_init\_kernel(&init);
 
 These kernels define how particles change. The registration order of these kernels is order-\/sensitive, meaning they are run (at each iteration) in the order specified. Here\textquotesingle{}s how we will order our force kernels\+: 
 \begin{DoxyCode}
-\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
+\textcolor{keywordtype}{int} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv) \{
     ...
     \mbox{\hyperlink{namespacewash_abc27c958fb1156da77a1346c3559abc1}{wash::add\_update\_kernel}}(&VelocityUpdate);
     \mbox{\hyperlink{namespacewash_a2ffa21a9e32d3ca6ce87def3e7db4837}{wash::add\_force\_kernel}}(&CalculateDensity);
@@ -169,13 +171,14 @@ Notice that the kernels are to be specified for {\itshape one} particle. Wa\+SH 
 This kernel function helps us predict where the particle will be in the next timestep. 
 \begin{DoxyCode}
 \textcolor{keywordtype}{void} VelocityUpdate(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle) \{
-    particle.set\_vel(particle.get\_vel() + ExternelForces(particle.get\_pos(), particle.get\_vel()) * 
-      deltaTime);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a4755365883cfd62117ebe74fe44d35e0}{set\_vel}}(particle.\mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}() + \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a96532193226b3cbb236e6465defeb469}{ExternelForces}}(particle.
+      \mbox{\hyperlink{classwash_1_1Particle_a9d222d453d640cf629ee8dfbee6b43c2}{get\_pos}}(), particle.\mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}()) * \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{deltaTime}});
     \textcolor{comment}{// std::cout << "Particle velocity: " << particle.get\_vel() << std::endl;}
 
     \textcolor{keyword}{const} \textcolor{keywordtype}{double} predictionFactor = 1 / 120.0;
     \textcolor{comment}{// set predicted pos to the real position + some timestep of current vel}
-    particle.set\_pos(particle.get\_force\_vector(\textcolor{stringliteral}{"position"}) + particle.get\_vel() * predictionFactor);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_af06835533935c04e594c258a7dcdd1ef}{set\_pos}}(particle.\mbox{\hyperlink{classwash_1_1Particle_a9c6ec5d5a7407897ecca00549bd05c01}{get\_force\_vector}}(\textcolor{stringliteral}{"position"}) + particle.
+      \mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}() * predictionFactor);
     \textcolor{comment}{// std::cout << "Particle pred pos: " << particle.get\_pos() << std::endl;}
 \}
 \end{DoxyCode}
@@ -190,19 +193,19 @@ Calculating density of particles is common across most, if not all, S\+PH simula
 \textcolor{keywordtype}{void} CalculateDensity(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle, \textcolor{keyword}{const} std::vector<wash::Particle>& neighbours
       ) \{
     \textcolor{comment}{// std::cout << "Running Custom Density Func" << std::endl;}
-    \textcolor{keywordtype}{double} density = 1.0;
+    \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}} = 1.0;
     \textcolor{keywordtype}{double} nearDensity = 1.0;
 
     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& neighbour : neighbours) \{
-        \textcolor{keyword}{auto} offset = neighbour.get\_pos() - particle.get\_pos();
-        \textcolor{keywordtype}{double} dst = offset.magnitude();
+        \textcolor{keyword}{auto} offset = neighbour.get\_pos() - particle.\mbox{\hyperlink{classwash_1_1Particle_a9d222d453d640cf629ee8dfbee6b43c2}{get\_pos}}();
+        \textcolor{keywordtype}{double} dst = offset.\mbox{\hyperlink{classwash_1_1Vec_a41de499daf12160b2cf515ce0c9da70f}{magnitude}}();
 
-        density += DensityKernel(dst, smoothingRadius);
-        nearDensity += NearDensityKernel(dst, smoothingRadius);
+        \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}} += \mbox{\hyperlink{flsim__kernels_8hpp_aa2b224ec4324bc9df6dc05231b0fb1f4}{DensityKernel}}(dst, \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}});
+        nearDensity += \mbox{\hyperlink{flsim__kernels_8hpp_a24021cba59575fe555fcd996328dfad9}{NearDensityKernel}}(dst, \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}});
     \}
 
-    particle.set\_density(density);
-    particle.set\_force\_scalar(\textcolor{stringliteral}{"nearDensity"}, nearDensity);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a6416678dd509c16c2933d315b6ae6156}{set\_density}}(\mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}});
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a2c3038c8eac34e371922bcf1ab79b8ca}{set\_force\_scalar}}(\textcolor{stringliteral}{"nearDensity"}, nearDensity);
 \}
 \end{DoxyCode}
 
@@ -222,44 +225,46 @@ Here, forces are applied to particles to simulate incompressible fluid with some
 \begin{DoxyCode}
 \textcolor{keywordtype}{void} CalculatePressureForce(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle, \textcolor{keyword}{const} std::vector<wash::Particle>& 
       neighbours) \{
-    \textcolor{keywordtype}{double} density = particle.get\_density();
-    \textcolor{keywordtype}{double} nearDensity = particle.get\_force\_scalar(\textcolor{stringliteral}{"nearDensity"});
-    \textcolor{keywordtype}{double} pressure = PressureFromDensity(density);
-    \textcolor{keywordtype}{double} nearPressure = NearPressureFromDensity(nearDensity);
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pressureForce = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{0.0, 0.0\});
+    \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}} = particle.\mbox{\hyperlink{classwash_1_1Particle_a8c0ce3f48b189fd8550c3bfab17eec68}{get\_density}}();
+    \textcolor{keywordtype}{double} nearDensity = particle.\mbox{\hyperlink{classwash_1_1Particle_ab42a162b41a4e8cf6212bd9c43f3a0cf}{get\_force\_scalar}}(\textcolor{stringliteral}{"nearDensity"});
+    \textcolor{keywordtype}{double} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a35ac7259c74fa75da5dc982febe230c0}{pressure}} = \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ae242b1d4df1d0d56aea2c284de9c52d5}{PressureFromDensity}}(\mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}});
+    \textcolor{keywordtype}{double} nearPressure = \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a2d6d90830304d956a1b7880aafc425a3}{NearPressureFromDensity}}(nearDensity);
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pressureForce = \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash::Vec2D}}(\{0.0, 0.0\});
 
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.get\_pos();
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.\mbox{\hyperlink{classwash_1_1Particle_a9d222d453d640cf629ee8dfbee6b43c2}{get\_pos}}();
 
     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& neighbour : neighbours) \{
         \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} neighbourPos = neighbour.get\_pos();
         \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} offsetToNeighbour = neighbourPos - pos;
-        \textcolor{keywordtype}{double} dst = offsetToNeighbour.magnitude();
+        \textcolor{keywordtype}{double} dst = offsetToNeighbour.\mbox{\hyperlink{classwash_1_1Vec_a41de499daf12160b2cf515ce0c9da70f}{magnitude}}();
 
         \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} dirToNeighbour = dst > 0.0 ? offsetToNeighbour / dst : 
-      \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}}(\{0.0, 1.0\});
+      \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash::Vec2D}}(\{0.0, 1.0\});
 
         \textcolor{keywordtype}{double} neighbourDensity = neighbour.get\_density();
         \textcolor{keywordtype}{double} neighbourNearDensity = neighbour.get\_force\_scalar(\textcolor{stringliteral}{"nearDensity"});
-        \textcolor{keywordtype}{double} neighbourPressure = PressureFromDensity(neighbourDensity);
-        \textcolor{keywordtype}{double} neighbourNearPressure = NearPressureFromDensity(neighbourNearDensity);
+        \textcolor{keywordtype}{double} neighbourPressure = \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ae242b1d4df1d0d56aea2c284de9c52d5}{PressureFromDensity}}(neighbourDensity);
+        \textcolor{keywordtype}{double} neighbourNearPressure = \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a2d6d90830304d956a1b7880aafc425a3}{NearPressureFromDensity}}(neighbourNearDensity)
+      ;
 
-        \textcolor{keywordtype}{double} sharedPressure = (pressure + neighbourPressure) * 0.5;
+        \textcolor{keywordtype}{double} sharedPressure = (\mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a35ac7259c74fa75da5dc982febe230c0}{pressure}} + neighbourPressure) * 0.5;
         \textcolor{keywordtype}{double} sharedNearPressure = (nearPressure + neighbourNearPressure) * 0.5;
 
-        pressureForce += dirToNeighbour * DensityDerivative(dst, smoothingRadius) * sharedPressure / 
-      neighbourDensity;
+        pressureForce += dirToNeighbour * \mbox{\hyperlink{flsim__kernels_8hpp_a086696bc83d3db97c23fe6b4fbb6581c}{DensityDerivative}}(dst, 
+      \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}}) * sharedPressure / neighbourDensity;
         \textcolor{comment}{// std::cout << "w density p " << pressureForce << std::endl;}
         pressureForce +=
-            dirToNeighbour * NearDensityDerivative(dst, smoothingRadius) * sharedNearPressure / 
-      neighbourNearDensity;
+            dirToNeighbour * \mbox{\hyperlink{flsim__kernels_8hpp_a2bf1a9071d088d903f6d511bb13c4e3e}{NearDensityDerivative}}(dst, 
+      \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}}) * sharedNearPressure / neighbourNearDensity;
         \textcolor{comment}{// std::cout << "w near density p " << pressureForce << std::endl;}
     \}
 
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} acceleration = pressureForce / density;
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} acceleration = pressureForce / \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}};
     \textcolor{comment}{// std::cout << "PRESSURE FORCE p" << pressureForce << std::endl;}
 
-    particle.set\_force\_vector(\textcolor{stringliteral}{"pressure"}, pressureForce / density);
-    particle.set\_vel(particle.get\_vel() + acceleration * deltaTime);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a6960cdd169d1829a52e49cf835a8bfeb}{set\_force\_vector}}(\textcolor{stringliteral}{"pressure"}, pressureForce / 
+      \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}});
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a4755365883cfd62117ebe74fe44d35e0}{set\_vel}}(particle.\mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}() + acceleration * \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{deltaTime}});
 \}
 \end{DoxyCode}
 
@@ -268,22 +273,25 @@ Here, forces are applied to particles to simulate incompressible fluid with some
 \begin{DoxyCode}
 \textcolor{keywordtype}{void} CalculateViscosity(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle, \textcolor{keyword}{const} std::vector<wash::Particle>& 
       neighbours) \{
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.get\_pos();
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.\mbox{\hyperlink{classwash_1_1Particle_a9d222d453d640cf629ee8dfbee6b43c2}{get\_pos}}();
 
     \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} viscosityForce = \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} \{ 0.0, 0.0 \};
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} velocity = particle.get\_vel();
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} velocity = particle.\mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}();
 
     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}& neighbour : neighbours) \{
         \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} neighbourPos = neighbour.get\_pos();
         \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} offsetToNeighbour = neighbourPos - pos;
-        \textcolor{keywordtype}{double} dst = offsetToNeighbour.magnitude();
+        \textcolor{keywordtype}{double} dst = offsetToNeighbour.\mbox{\hyperlink{classwash_1_1Vec_a41de499daf12160b2cf515ce0c9da70f}{magnitude}}();
 
         \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} neighbourVelocity = neighbour.get\_vel();
-        viscosityForce += (neighbourVelocity - velocity) * ViscosityKernel(dst, smoothingRadius);
+        viscosityForce += (neighbourVelocity - velocity) * \mbox{\hyperlink{flsim__kernels_8hpp_a5561095f423361bec442d282a4f8a47b}{ViscosityKernel}}(dst, 
+      \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothingRadius}});
     \}
 
-    particle.set\_force\_vector(\textcolor{stringliteral}{"viscosity"}, viscosityForce * viscosityStrength);
-    particle.set\_vel(particle.get\_vel() + viscosityForce * viscosityStrength * deltaTime);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a6960cdd169d1829a52e49cf835a8bfeb}{set\_force\_vector}}(\textcolor{stringliteral}{"viscosity"}, viscosityForce * 
+      \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}{viscosityStrength}});
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a4755365883cfd62117ebe74fe44d35e0}{set\_vel}}(particle.\mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}() + viscosityForce * 
+      \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}{viscosityStrength}} * \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{deltaTime}});
 \}
 \end{DoxyCode}
 
@@ -294,8 +302,9 @@ This one\textquotesingle{}s pretty self-\/explanatory. Using basic S\+U\+V\+AT t
 \begin{DoxyCode}
 \textcolor{keywordtype}{void} UpdatePositions(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle) \{
     \textcolor{comment}{// particle.set\_pos(particle.get\_pos() + particle.get\_vel() * deltaTime);}
-    particle.set\_force\_vector(\textcolor{stringliteral}{"position"}, particle.get\_force\_vector(\textcolor{stringliteral}{"position"}) + particle.get\_vel() * 
-      deltaTime);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a6960cdd169d1829a52e49cf835a8bfeb}{set\_force\_vector}}(\textcolor{stringliteral}{"position"}, particle.
+      \mbox{\hyperlink{classwash_1_1Particle_a9c6ec5d5a7407897ecca00549bd05c01}{get\_force\_vector}}(\textcolor{stringliteral}{"position"}) + particle.\mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}() * 
+      \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{deltaTime}});
 \}
 \end{DoxyCode}
 
@@ -305,25 +314,25 @@ This one\textquotesingle{}s pretty self-\/explanatory. Using basic S\+U\+V\+AT t
 The Handle\+Collisions kernel ensures particles do not exit the bounds of the simulation, and instead bounce back against a \textquotesingle{}wall\textquotesingle{} (with a little damping) 
 \begin{DoxyCode}
 \textcolor{keywordtype}{void} HandleCollisions(\mbox{\hyperlink{classwash_1_1Particle}{wash::Particle}}& particle) \{
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.get\_force\_vector(\textcolor{stringliteral}{"position"});
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} vel = particle.get\_vel();
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} pos = particle.\mbox{\hyperlink{classwash_1_1Particle_a9c6ec5d5a7407897ecca00549bd05c01}{get\_force\_vector}}(\textcolor{stringliteral}{"position"});
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} vel = particle.\mbox{\hyperlink{classwash_1_1Particle_a890d0f1467225393e385872b0c98b974}{get\_vel}}();
 
-    \textcolor{keyword}{const} \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} halfSize = boundsSize * 0.5;
-    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} edgeDst = halfSize - pos.abs();
+    \textcolor{keyword}{const} \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} halfSize = \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_ae3c8d23dc2c71306f6366b252c3ffb18}{boundsSize}} * 0.5;
+    \mbox{\hyperlink{classwash_1_1Vec}{wash::Vec2D}} edgeDst = halfSize - pos.\mbox{\hyperlink{classwash_1_1Vec_aae15a1a2cea7e883e53c2e7f6164710a}{abs}}();
 
     \textcolor{keywordflow}{if} (*(edgeDst[0]) <= 0) \{
-        *(pos[0]) = halfSize.at(0) * \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{wash::sgn}}(pos.at(0));
-        *(vel[0]) *= -1 * collisionDamping;
+        *(pos[0]) = halfSize.\mbox{\hyperlink{classwash_1_1Vec_a1be26013b6d4f898b8504fc258043400}{at}}(0) * \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{wash::sgn}}(pos.\mbox{\hyperlink{classwash_1_1Vec_a1be26013b6d4f898b8504fc258043400}{at}}(0));
+        *(vel[0]) *= -1 * \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}{collisionDamping}};
     \}
 
     \textcolor{keywordflow}{if} (*(edgeDst[1]) <= 0) \{
-        *(pos[1]) = halfSize.at(1) * \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{wash::sgn}}(pos.at(1));
-        *(vel[1]) *= -1 * collisionDamping;
+        *(pos[1]) = halfSize.\mbox{\hyperlink{classwash_1_1Vec_a1be26013b6d4f898b8504fc258043400}{at}}(1) * \mbox{\hyperlink{namespacewash_a706d6d30508a81b6b9f25494cd759dff}{wash::sgn}}(pos.\mbox{\hyperlink{classwash_1_1Vec_a1be26013b6d4f898b8504fc258043400}{at}}(1));
+        *(vel[1]) *= -1 * \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}{collisionDamping}};
     \}
     \textcolor{comment}{// do any obstacle collision here}
 
-    particle.set\_force\_vector(\textcolor{stringliteral}{"position"}, pos);
-    particle.set\_vel(vel);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a6960cdd169d1829a52e49cf835a8bfeb}{set\_force\_vector}}(\textcolor{stringliteral}{"position"}, pos);
+    particle.\mbox{\hyperlink{classwash_1_1Particle_a4755365883cfd62117ebe74fe44d35e0}{set\_vel}}(vel);
 \}
 \end{DoxyCode}
  

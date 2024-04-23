@@ -1,0 +1,156 @@
+\hypertarget{forces_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/forces/forces.hpp File Reference}
+\label{forces_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/forces/forces.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/forces/forces.\+hpp}}
+{\ttfamily \#include \char`\"{}../common.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor}{ws2st\+::refactor}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces}{ws2st\+::refactor\+::forces}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028}{ws2st\+::refactor\+::forces\+::\+Property\+List}} \{ \newline
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028afea4e0fe069dc6f6171dd6044abb2365}{ws2st\+::refactor\+::forces\+::\+Property\+List\+::\+Pos}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aec930ca2dec8aa0b05a106add08d538e}{ws2st\+::refactor\+::forces\+::\+Property\+List\+::\+Vel}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a2e02ea7283618d93898c1342e8361dfa}{ws2st\+::refactor\+::forces\+::\+Property\+List\+::\+Acc}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a7e6d11dd9dbeef53c1cb3cb896bce476}{ws2st\+::refactor\+::forces\+::\+Property\+List\+::\+Density}}, 
+\newline
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aff2864d6f652ee0ac254814f1ae4f4a8}{ws2st\+::refactor\+::forces\+::\+Property\+List\+::\+Mass}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a209c4a2539e3220aadbf61e605f9bfdc}{ws2st\+::refactor\+::forces\+::\+Property\+List\+::\+Smoothing\+Length}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a490aa6e856ccf208a054389e47ce0d06}{ws2st\+::refactor\+::forces\+::\+Property\+List\+::\+Id}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0f39ed859d2d9c4b59894fddd60b1f12}{ws2st\+::refactor\+::forces\+::property\+Name}} (Property\+List property)
+\item 
+{\footnotesize template$<$Force\+Type type$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}{ws2st\+::refactor\+::forces\+::\+Handle\+Register\+Forces}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a9e5d0fb548d813962dbb3647969f4351}{ws2st\+::refactor\+::forces\+::get\+Force\+Declaration\+Source}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ac7eb52bdfe754cdbdc6328e288668663}{ws2st\+::refactor\+::forces\+::get\+Force\+Initialisation\+Source}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ae81768a1d37b813bb81da88227ebe095}{ws2st\+::refactor\+::forces\+::get\+Force\+Declaration\+Source\+With\+Cornerstone}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ac9a46a9f1508ae2a2ecad5f20212642d}{ws2st\+::refactor\+::forces\+::get\+Force\+Initialisation\+Source\+With\+Cornerstone}} ()
+\item 
+{\footnotesize template$<$Force\+Type type$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0b3b9fb2cd46a777f3b9ce95c9a45376}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Force\+Type type$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a61a15494c227c4aa117339e0d33a05de}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a664ea291bdcb81f90151e9ce2a8ed12d}{ws2st\+::refactor\+::forces\+::\+Handle\+Insert\+Forces\+Definition}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0854faeb74d0977f0a889bef65ecc70b}{ws2st\+::refactor\+::forces\+::\+Handle\+Insert\+Forces\+Definition\+With\+Cornerstone}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Force\+Type type, Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a60299eb940e8c3ed4898b7ef21f0ddce}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5cb2d362d93b5e8229522853274dd8e1}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Property\+With\+Cornerstone}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Force\+Type type, Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a7fb2a369d9d5b0650f1eaecf057051d9}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_abf74b00f35cde6816132dbefb3210684}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Property\+With\+Cornerstone}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afa3a7a5edfc5f3c897623b54beec66f3}{ws2st\+::refactor\+::forces\+::\+Property\+Get\+Matcher}} (const char $\ast$property\+Name)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a9df1170dc128f151ed5b5fedabbd15d1}{ws2st\+::refactor\+::forces\+::\+Property\+Set\+Matcher}} (const char $\ast$property\+Name)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a7dfd24ab66dba074524ca3dfe669020b}{ws2st\+::refactor\+::forces\+::\+Add\+Force\+Vector\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aaedf098bb1dc4e4f48b9b71383366033}{ws2st\+::refactor\+::forces\+::\+Add\+Force\+Scalar\+Matcher}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a22d1fdacd9a2da1b94796e4dffd83cd4}{ws2st\+::refactor\+::forces\+::\+Handle\+Register\+Forces\+Scalar}} = \&Handle\+Register\+Forces$<$Force\+Type\+::\+S\+C\+A\+L\+AR$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a4f8af8cb0d6a0af0f29e1d887486c612}{ws2st\+::refactor\+::forces\+::\+Handle\+Register\+Forces\+Vector}} = \&Handle\+Register\+Forces$<$Force\+Type\+::\+V\+E\+C\+T\+OR$>$
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a8197f8ce5cb41ce80b4ef4109e5c251e}{ws2st\+::refactor\+::forces\+::\+Get\+Force\+Scalar\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a669322efcc73b348dc9111af688a97a3}{ws2st\+::refactor\+::forces\+::\+Get\+Force\+Vector\+Matcher}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a1170c01783843b6d549e6a5cd93ec856}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force\+Scalar}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ae4344f795df36c8dcff1ac7690147f7d}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force\+Vector}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a8d3f58b44208a7d72280ec2da12a1e1c}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force\+Vector\+With\+Cornerstone}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a9c5d51c1590ca8676aef6334240f1905}{ws2st\+::refactor\+::forces\+::\+Set\+Force\+Scalar\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5448f17e7447d1916e92a643729467cb}{ws2st\+::refactor\+::forces\+::\+Set\+Force\+Vector\+Matcher}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a63b303b615f68b738bd347582f3c5819}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force\+Scalar}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afcc24d121d0d46682e7e62f46f120843}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force\+Vector}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a70e17f351ce695564866b57533b391bd}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force\+Vector\+With\+Cornerstone}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aaaeb388856aaaa572c942dc283398796}{ws2st\+::refactor\+::forces\+::\+Get\+Pos\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ac04dbb8d118a9abf10a6caddf80d27db}{ws2st\+::refactor\+::forces\+::\+Get\+Vel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a2ba89815da3ec4b90de9e0eae901a156}{ws2st\+::refactor\+::forces\+::\+Get\+Acc\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a121159b5b664cf08979f380bfee9315f}{ws2st\+::refactor\+::forces\+::\+Get\+Density\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a322ae768bfaca37c335327edf032bdd1}{ws2st\+::refactor\+::forces\+::\+Get\+Mass\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ab0f4c93b9571ec62da5ebd98091d7b5f}{ws2st\+::refactor\+::forces\+::\+Get\+Smoothing\+Length\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ab20fa5472780bed0df716c1d4acb3f99}{ws2st\+::refactor\+::forces\+::\+Get\+Id\+Matcher}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aec5227182499f251808fad379e171dc9}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Pos}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a70b145611ab770c410f13a2d5e2ed274}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Vel}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa273eb05dee50c3e1666727007ab6d0c}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Acc}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a1d3d1487f9d3f37f0a4e865c5e345911}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Pos\+With\+Cornerstone}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a09be37fd0486dbc72f2aa46329e9cd0f}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Vel\+With\+Cornerstone}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a2b2d25e98ff8a890d84c0e2b397a5756}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Acc\+With\+Cornerstone}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a1f84572017145f028dbd010d0c0f95ed}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Density}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a2f791e3898c17e8b4e3034663949a656}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Mass}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a6971fd7441dad1a1d4dd1ba8fd7b29f5}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Smoothing\+Length}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ad782ea3f7d021d27bc5e65b8170c445b}{ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Id}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a505fd1d7688a82383f89f9fc829a1c22}{ws2st\+::refactor\+::forces\+::\+Set\+Pos\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ae4f5b720f29011583bcc21d18fad0853}{ws2st\+::refactor\+::forces\+::\+Set\+Vel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5a46fef8e676edadd79ef4ff2ca16956}{ws2st\+::refactor\+::forces\+::\+Set\+Acc\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afa5b98b9546988398a87b6437fd18f0e}{ws2st\+::refactor\+::forces\+::\+Set\+Density\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a448bc6dee79dc678d66ed32cda898bee}{ws2st\+::refactor\+::forces\+::\+Set\+Mass\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afeff1cc5170c1646c79cc15253654fc8}{ws2st\+::refactor\+::forces\+::\+Set\+Smoothing\+Length\+Matcher}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a98d52c6123f3e0afe59a2e20e1071433}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Pos}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_adc3822625b91b4094517de19c8a0ee2c}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Vel}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aac8387c5a35d43be7a798e5b8cc9890b}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Acc}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a7bf8fc16b8a95fb4b226d09b0db6755a}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Pos\+With\+Cornerstone}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ab48513ad240b7e4bc56c0d60f6c55faa}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Vel\+With\+Cornerstone}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5084019f947ff58607868cc352b898e0}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Acc\+With\+Cornerstone}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a077b7e7f20c9fe7915643e0eeab9669c}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Density}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af54b981d6a8b8492f6182661addf9144}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Mass}}
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5a98d16b73d023d22729401f6233dccd}{ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Smoothing\+Length}}
+\end{DoxyCompactItemize}

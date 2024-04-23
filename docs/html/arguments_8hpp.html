@@ -66,6 +66,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">arguments.hpp File Reference</div>  </div>
@@ -75,38 +76,43 @@ $(function() {
 <p>Contains methods to do with command line arugments and running on the command line.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;argparse/argparse.hpp&quot;</code><br />
-<code>#include &quot;common.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="common_8hpp_source.html">common.hpp</a>&quot;</code><br />
 </div>
 <p><a href="arguments_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacews2st"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st.html">ws2st</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacews2st_1_1args"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html">ws2st::args</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa88c38554aaf9729dfb17f863bdf4ada"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::getHDF5CompileFlags</b> ()</td></tr>
-<tr class="memdesc:aa88c38554aaf9729dfb17f863bdf4ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the compile flags needed to compile with HDF5 Does not include MPI flags - these need to be added separately.  <a href="arguments_8cpp.html#aa88c38554aaf9729dfb17f863bdf4ada">More...</a><br /></td></tr>
+<tr class="memitem:aa88c38554aaf9729dfb17f863bdf4ada"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#aa88c38554aaf9729dfb17f863bdf4ada">ws2st::args::getHDF5CompileFlags</a> ()</td></tr>
+<tr class="memdesc:aa88c38554aaf9729dfb17f863bdf4ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the compile flags needed to compile with HDF5 Does not include MPI flags - these need to be added separately.  <a href="namespacews2st_1_1args.html#aa88c38554aaf9729dfb17f863bdf4ada">More...</a><br /></td></tr>
 <tr class="separator:aa88c38554aaf9729dfb17f863bdf4ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5eb1ca46c05701cc52a44210093c2eaa"><td class="memItemLeft" align="right" valign="top"><a id="a5eb1ca46c05701cc52a44210093c2eaa"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::getHDF5LinkingFlags</b> ()</td></tr>
+<tr class="memitem:a5eb1ca46c05701cc52a44210093c2eaa"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#a5eb1ca46c05701cc52a44210093c2eaa">ws2st::args::getHDF5LinkingFlags</a> ()</td></tr>
 <tr class="separator:a5eb1ca46c05701cc52a44210093c2eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7909fb732055598b38d44b7e2f77aa89"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::getImplCompileFlag</b> (Implementations impl)</td></tr>
-<tr class="memdesc:a7909fb732055598b38d44b7e2f77aa89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the implementation specific compile flag This controls some optional features in the public API headers.  <a href="arguments_8cpp.html#a7909fb732055598b38d44b7e2f77aa89">More...</a><br /></td></tr>
+<tr class="memitem:a7909fb732055598b38d44b7e2f77aa89"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#a7909fb732055598b38d44b7e2f77aa89">ws2st::args::getImplCompileFlag</a> (<a class="el" href="common_8hpp.html#aad9d1428f17c06ff77ef15dea22624dc">Implementations</a> impl)</td></tr>
+<tr class="memdesc:a7909fb732055598b38d44b7e2f77aa89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the implementation specific compile flag This controls some optional features in the public API headers.  <a href="namespacews2st_1_1args.html#a7909fb732055598b38d44b7e2f77aa89">More...</a><br /></td></tr>
 <tr class="separator:a7909fb732055598b38d44b7e2f77aa89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c8edb18aef401f79d0a80ad4f42764"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="arguments_8hpp.html#a66c8edb18aef401f79d0a80ad4f42764">ws2st::args::executeCommandLine</a> (const std::string cmd)</td></tr>
-<tr class="memdesc:a66c8edb18aef401f79d0a80ad4f42764"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes on the command line the command and returns the output This is probably slightly hack-y but also probably the best way to get the flags used by e.g. the MPICXX compiler wrapper to be used in the compilation stage for analysis by our tool.  <a href="arguments_8hpp.html#a66c8edb18aef401f79d0a80ad4f42764">More...</a><br /></td></tr>
+<tr class="memitem:a66c8edb18aef401f79d0a80ad4f42764"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#a66c8edb18aef401f79d0a80ad4f42764">ws2st::args::executeCommandLine</a> (const std::string cmd)</td></tr>
+<tr class="memdesc:a66c8edb18aef401f79d0a80ad4f42764"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes on the command line the command and returns the output This is probably slightly hack-y but also probably the best way to get the flags used by e.g. the MPICXX compiler wrapper to be used in the compilation stage for analysis by our tool.  <a href="namespacews2st_1_1args.html#a66c8edb18aef401f79d0a80ad4f42764">More...</a><br /></td></tr>
 <tr class="separator:a66c8edb18aef401f79d0a80ad4f42764"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae17df12fe1f69d9bb38d427398bc5ce8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::getMPICompileFlags</b> ()</td></tr>
-<tr class="memdesc:ae17df12fe1f69d9bb38d427398bc5ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes <code>mpicxx --showme:compile</code> to get the compile flags for the MPI implementation.  <a href="arguments_8cpp.html#ae17df12fe1f69d9bb38d427398bc5ce8">More...</a><br /></td></tr>
+<tr class="memitem:ae17df12fe1f69d9bb38d427398bc5ce8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#ae17df12fe1f69d9bb38d427398bc5ce8">ws2st::args::getMPICompileFlags</a> ()</td></tr>
+<tr class="memdesc:ae17df12fe1f69d9bb38d427398bc5ce8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes <code>mpicxx --showme:compile</code> to get the compile flags for the MPI implementation.  <a href="namespacews2st_1_1args.html#ae17df12fe1f69d9bb38d427398bc5ce8">More...</a><br /></td></tr>
 <tr class="separator:ae17df12fe1f69d9bb38d427398bc5ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af89364224123958495fbf930ea918e7e"><td class="memItemLeft" align="right" valign="top"><a id="af89364224123958495fbf930ea918e7e"></a>
-std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::getMPILinkingFlags</b> ()</td></tr>
+<tr class="memitem:af89364224123958495fbf930ea918e7e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#af89364224123958495fbf930ea918e7e">ws2st::args::getMPILinkingFlags</a> ()</td></tr>
 <tr class="separator:af89364224123958495fbf930ea918e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a798dece39be1264d2e1fa55447b8ed2b"><td class="memItemLeft" align="right" valign="top">std::optional&lt; Implementations &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::getImplFromString</b> (const std::string istr)</td></tr>
-<tr class="memdesc:a798dece39be1264d2e1fa55447b8ed2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the API implementation enum represented by this string (if exists)  <a href="arguments_8cpp.html#a798dece39be1264d2e1fa55447b8ed2b">More...</a><br /></td></tr>
+<tr class="memitem:a798dece39be1264d2e1fa55447b8ed2b"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="common_8hpp.html#aad9d1428f17c06ff77ef15dea22624dc">Implementations</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#a798dece39be1264d2e1fa55447b8ed2b">ws2st::args::getImplFromString</a> (const std::string istr)</td></tr>
+<tr class="memdesc:a798dece39be1264d2e1fa55447b8ed2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the API implementation enum represented by this string (if exists)  <a href="namespacews2st_1_1args.html#a798dece39be1264d2e1fa55447b8ed2b">More...</a><br /></td></tr>
 <tr class="separator:a798dece39be1264d2e1fa55447b8ed2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdfeac88d594e9f636a020e576e99505"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::areMPIFlagsRequired</b> (Implementations impl, const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
-<tr class="memdesc:afdfeac88d594e9f636a020e576e99505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the MPI flags will be needed to compile this program.  <a href="arguments_8cpp.html#afdfeac88d594e9f636a020e576e99505">More...</a><br /></td></tr>
+<tr class="memitem:afdfeac88d594e9f636a020e576e99505"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#afdfeac88d594e9f636a020e576e99505">ws2st::args::areMPIFlagsRequired</a> (<a class="el" href="common_8hpp.html#aad9d1428f17c06ff77ef15dea22624dc">Implementations</a> impl, const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;opts)</td></tr>
+<tr class="memdesc:afdfeac88d594e9f636a020e576e99505"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the MPI flags will be needed to compile this program.  <a href="namespacews2st_1_1args.html#afdfeac88d594e9f636a020e576e99505">More...</a><br /></td></tr>
 <tr class="separator:afdfeac88d594e9f636a020e576e99505"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31feaff450a079474a31a11a8f45862e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structWashOptions.html">WashOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ws2st::args::parseCommandLine</b> (int argc, const char **argv)</td></tr>
-<tr class="memdesc:a31feaff450a079474a31a11a8f45862e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the program command line into the options struct.  <a href="arguments_8cpp.html#a31feaff450a079474a31a11a8f45862e">More...</a><br /></td></tr>
+<tr class="memitem:a31feaff450a079474a31a11a8f45862e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structWashOptions.html">WashOptions</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacews2st_1_1args.html#a31feaff450a079474a31a11a8f45862e">ws2st::args::parseCommandLine</a> (int argc, const char **argv)</td></tr>
+<tr class="memdesc:a31feaff450a079474a31a11a8f45862e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the program command line into the options struct.  <a href="namespacews2st_1_1args.html#a31feaff450a079474a31a11a8f45862e">More...</a><br /></td></tr>
 <tr class="separator:a31feaff450a079474a31a11a8f45862e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -115,205 +121,7 @@ std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bott
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024-01-25</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="file_afdfeac88d594e9f636a020e576e99505"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_afdfeac88d594e9f636a020e576e99505">&#9670;&nbsp;</a></span>areMPIFlagsRequired()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ws2st::args::areMPIFlagsRequired </td>
-          <td>(</td>
-          <td class="paramtype">Implementations&#160;</td>
-          <td class="paramname"><em>impl</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structWashOptions.html">WashOptions</a> &amp;&#160;</td>
-          <td class="paramname"><em>opts</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns whether the MPI flags will be needed to compile this program. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">impl</td><td>The implementation chosen </td></tr>
-    <tr><td class="paramname">opt</td><td>Program options </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if needed, false otherwise </dd></dl>
-
-</div>
-</div>
-<a id="file_a66c8edb18aef401f79d0a80ad4f42764"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a66c8edb18aef401f79d0a80ad4f42764">&#9670;&nbsp;</a></span>executeCommandLine()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string ws2st::args::executeCommandLine </td>
-          <td>(</td>
-          <td class="paramtype">const std::string&#160;</td>
-          <td class="paramname"><em>cmd</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Executes on the command line the command and returns the output This is probably slightly hack-y but also probably the best way to get the flags used by e.g. the MPICXX compiler wrapper to be used in the compilation stage for analysis by our tool. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cmd</td><td>The command to execute </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>stdout of the command </dd></dl>
-
-</div>
-</div>
-<a id="file_aa88c38554aaf9729dfb17f863bdf4ada"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_aa88c38554aaf9729dfb17f863bdf4ada">&#9670;&nbsp;</a></span>getHDF5CompileFlags()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::string &gt; ws2st::args::getHDF5CompileFlags </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the compile flags needed to compile with HDF5 Does not include MPI flags - these need to be added separately. </p>
-<dl class="section return"><dt>Returns</dt><dd>list of arguments to use </dd></dl>
-
-</div>
-</div>
-<a id="file_a7909fb732055598b38d44b7e2f77aa89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a7909fb732055598b38d44b7e2f77aa89">&#9670;&nbsp;</a></span>getImplCompileFlag()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::string &gt; ws2st::args::getImplCompileFlag </td>
-          <td>(</td>
-          <td class="paramtype">Implementations&#160;</td>
-          <td class="paramname"><em>impl</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Return the implementation specific compile flag This controls some optional features in the public API headers. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">impl</td><td>The implementation being used </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>list of compiler arguments to add </dd></dl>
-
-</div>
-</div>
-<a id="file_a798dece39be1264d2e1fa55447b8ed2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a798dece39be1264d2e1fa55447b8ed2b">&#9670;&nbsp;</a></span>getImplFromString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::optional&lt; Implementations &gt; ws2st::args::getImplFromString </td>
-          <td>(</td>
-          <td class="paramtype">const std::string&#160;</td>
-          <td class="paramname"><em>istr</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the API implementation enum represented by this string (if exists) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">istr</td><td>String to match </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Implementation enum if exists, else nullopt. </dd></dl>
-
-</div>
-</div>
-<a id="file_ae17df12fe1f69d9bb38d427398bc5ce8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_ae17df12fe1f69d9bb38d427398bc5ce8">&#9670;&nbsp;</a></span>getMPICompileFlags()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt; std::string &gt; ws2st::args::getMPICompileFlags </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Executes <code>mpicxx --showme:compile</code> to get the compile flags for the MPI implementation. </p>
-<dl class="section return"><dt>Returns</dt><dd>vector of string compile flags </dd></dl>
-
-</div>
-</div>
-<a id="file_a31feaff450a079474a31a11a8f45862e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a31feaff450a079474a31a11a8f45862e">&#9670;&nbsp;</a></span>parseCommandLine()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structWashOptions.html">WashOptions</a> ws2st::args::parseCommandLine </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>argc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char **&#160;</td>
-          <td class="paramname"><em>argv</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Parses the program command line into the options struct. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">argc</td><td></td></tr>
-    <tr><td class="paramname">argv</td><td>Standard meaning of these arguments </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structWashOptions.html" title="Options about how the Wash analysis will behave. ">WashOptions</a> struct representing the options chosen </dd></dl>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

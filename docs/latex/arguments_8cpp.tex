@@ -1,0 +1,35 @@
+\hypertarget{arguments_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/arguments.cpp File Reference}
+\label{arguments_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/arguments.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/arguments.\+cpp}}
+{\ttfamily \#include \char`\"{}arguments.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1args}{ws2st\+::args}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_aa88c38554aaf9729dfb17f863bdf4ada}{ws2st\+::args\+::get\+H\+D\+F5\+Compile\+Flags}} ()
+\begin{DoxyCompactList}\small\item\em Get the compile flags needed to compile with H\+D\+F5 Does not include M\+PI flags -\/ these need to be added separately. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_a5eb1ca46c05701cc52a44210093c2eaa}{ws2st\+::args\+::get\+H\+D\+F5\+Linking\+Flags}} ()
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_a7909fb732055598b38d44b7e2f77aa89}{ws2st\+::args\+::get\+Impl\+Compile\+Flag}} (\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} impl)
+\begin{DoxyCompactList}\small\item\em Return the implementation specific compile flag This controls some optional features in the public A\+PI headers. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1args_a759526679dc8b6662355746dfd34e586}{ws2st\+::args\+::execute\+Command\+Line}} (const std\+::string cmd, int $\ast$exit\+\_\+status)
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_ae17df12fe1f69d9bb38d427398bc5ce8}{ws2st\+::args\+::get\+M\+P\+I\+Compile\+Flags}} ()
+\begin{DoxyCompactList}\small\item\em Executes {\ttfamily mpicxx -\/-\/showme\+:compile} to get the compile flags for the M\+PI implementation. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_af89364224123958495fbf930ea918e7e}{ws2st\+::args\+::get\+M\+P\+I\+Linking\+Flags}} ()
+\item 
+bool \mbox{\hyperlink{namespacews2st_1_1args_a21b8252775215103849faa587d687845}{ws2st\+::args\+::test\+M\+P\+I\+Availability}} ()
+\item 
+bool \mbox{\hyperlink{namespacews2st_1_1args_a533a5aab05c3bf24aee0255a7d7a4c91}{ws2st\+::args\+::test\+H\+D\+F5\+Availability}} ()
+\item 
+std\+::optional$<$ \mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} $>$ \mbox{\hyperlink{namespacews2st_1_1args_a798dece39be1264d2e1fa55447b8ed2b}{ws2st\+::args\+::get\+Impl\+From\+String}} (const std\+::string istr)
+\begin{DoxyCompactList}\small\item\em Returns the A\+PI implementation enum represented by this string (if exists) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacews2st_1_1args_afdfeac88d594e9f636a020e576e99505}{ws2st\+::args\+::are\+M\+P\+I\+Flags\+Required}} (\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} impl, const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\begin{DoxyCompactList}\small\item\em Returns whether the M\+PI flags will be needed to compile this program. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structWashOptions}{Wash\+Options}} \mbox{\hyperlink{namespacews2st_1_1args_a31feaff450a079474a31a11a8f45862e}{ws2st\+::args\+::parse\+Command\+Line}} (int argc, const char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Parses the program command line into the options struct. \end{DoxyCompactList}\end{DoxyCompactItemize}

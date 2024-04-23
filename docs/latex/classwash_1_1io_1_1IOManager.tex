@@ -12,34 +12,27 @@ Manages the IO options for the simulation.
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}\label{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}} 
-using {\bfseries Writer\+FuncT} = std\+::function$<$ int(const \mbox{\hyperlink{classwash_1_1io_1_1IOManager}{io\+::\+I\+O\+Manager}} \&, const \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} \&, const size\+\_\+t)$>$
+using \mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{Writer\+FuncT}} = std\+::function$<$ int(const \mbox{\hyperlink{classwash_1_1io_1_1IOManager}{io\+::\+I\+O\+Manager}} \&, const \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} \&, const size\+\_\+t)$>$
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_acea5f3f8a7f3e8eb1bfda9bc551b8435}\label{classwash_1_1io_1_1IOManager_acea5f3f8a7f3e8eb1bfda9bc551b8435}} 
-{\bfseries I\+O\+Manager} (const std\+::string format, Writer\+FuncT writer, const size\+\_\+t nth, const size\+\_\+t rank=0, const size\+\_\+t size=1, const bool timings=true)
+\mbox{\hyperlink{classwash_1_1io_1_1IOManager_acea5f3f8a7f3e8eb1bfda9bc551b8435}{I\+O\+Manager}} (const std\+::string format, \mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{Writer\+FuncT}} writer, const size\+\_\+t nth, const size\+\_\+t rank=0, const size\+\_\+t size=1, const bool \mbox{\hyperlink{namespacewash_a40aed5edcd0e0403841e3f83eaa41965}{timings}}=true)
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_a736c595ca08833f2a4df8f0db90ceb28}\label{classwash_1_1io_1_1IOManager_a736c595ca08833f2a4df8f0db90ceb28}} 
-{\bfseries I\+O\+Manager} (const std\+::string format, Writer\+FuncT writer)
+\mbox{\hyperlink{classwash_1_1io_1_1IOManager_a736c595ca08833f2a4df8f0db90ceb28}{I\+O\+Manager}} (const std\+::string format, \mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{Writer\+FuncT}} writer)
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_af011701d8fed420a51bafe7fcf035774}\label{classwash_1_1io_1_1IOManager_af011701d8fed420a51bafe7fcf035774}} 
-{\bfseries I\+O\+Manager} (const std\+::string format, Writer\+FuncT writer, const size\+\_\+t rank, const size\+\_\+t size)
+\mbox{\hyperlink{classwash_1_1io_1_1IOManager_af011701d8fed420a51bafe7fcf035774}{I\+O\+Manager}} (const std\+::string format, \mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{Writer\+FuncT}} writer, const size\+\_\+t rank, const size\+\_\+t size)
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_aded7d1dbc7a4c2fc21e3a914ea0ea3b0}\label{classwash_1_1io_1_1IOManager_aded7d1dbc7a4c2fc21e3a914ea0ea3b0}} 
-const std\+::string {\bfseries get\+\_\+path} () const
+\mbox{\hyperlink{classwash_1_1io_1_1IOManager_a2abea2ab5058a02b4bcf0876c0e179f7}{I\+O\+Manager}} ()
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ad290bc39e3c9ccafb070bf6ba75597b6}\label{classwash_1_1io_1_1IOManager_ad290bc39e3c9ccafb070bf6ba75597b6}} 
-size\+\_\+t {\bfseries get\+\_\+rank} () const
+const std\+::string \mbox{\hyperlink{classwash_1_1io_1_1IOManager_aded7d1dbc7a4c2fc21e3a914ea0ea3b0}{get\+\_\+path}} () const
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_a01f3e40f12375f3128ad9b19f3ecda12}\label{classwash_1_1io_1_1IOManager_a01f3e40f12375f3128ad9b19f3ecda12}} 
-size\+\_\+t {\bfseries get\+\_\+size} () const
+size\+\_\+t \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ad290bc39e3c9ccafb070bf6ba75597b6}{get\+\_\+rank}} () const
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ab599141d728a1d6c09ce273a9e556eff}\label{classwash_1_1io_1_1IOManager_ab599141d728a1d6c09ce273a9e556eff}} 
-void {\bfseries set\+\_\+gather} (bool value=true)
+size\+\_\+t \mbox{\hyperlink{classwash_1_1io_1_1IOManager_a01f3e40f12375f3128ad9b19f3ecda12}{get\+\_\+size}} () const
 \item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}\label{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}} 
+void \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ab599141d728a1d6c09ce273a9e556eff}{set\+\_\+gather}} (bool value=true)
+\item 
 const std\+::string \& \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}{expand\+\_\+label}} (const std\+::string \&label) const
 \begin{DoxyCompactList}\small\item\em Helper function to expand a label if an expansion exists. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} \mbox{\hyperlink{classwash_1_1io_1_1IOManager_acd4d5358ca4bb964926dfc080a72475c}{get\+\_\+simulation\+\_\+data}} ()
@@ -48,20 +41,77 @@ void \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ab4670696bfb277a364f6112fc6f0
 \begin{DoxyCompactList}\small\item\em Dispatches an iteration call to the writer based on the iteration number. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ab2397361f7dc4f7b54b559d332bafb11}{write\+\_\+timings}} (const std\+::string \&event\+\_\+name, const int tag, const int64\+\_\+t time\+\_\+taken) const
 \begin{DoxyCompactList}\small\item\em Write a timing even out to a file. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}\label{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}} 
 void \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}{new\+\_\+timings}} ()
 \begin{DoxyCompactList}\small\item\em Clear the timings output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static const std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ {\bfseries label\+\_\+map}
+static const std\+::unordered\+\_\+map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classwash_1_1io_1_1IOManager_ae2918fb006b6571b0eeceed90d2685b4}{label\+\_\+map}}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Manages the IO options for the simulation. 
 
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}\label{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!Writer\+FuncT@{Writer\+FuncT}}
+\index{Writer\+FuncT@{Writer\+FuncT}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{Writer\+FuncT}{WriterFuncT}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{wash\+::io\+::\+I\+O\+Manager\+::\+Writer\+FuncT}} =  std\+::function$<$int(const \mbox{\hyperlink{classwash_1_1io_1_1IOManager}{io\+::\+I\+O\+Manager}}\&, const \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}}\&, const size\+\_\+t)$>$}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_acea5f3f8a7f3e8eb1bfda9bc551b8435}\label{classwash_1_1io_1_1IOManager_acea5f3f8a7f3e8eb1bfda9bc551b8435}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!I\+O\+Manager@{I\+O\+Manager}}
+\index{I\+O\+Manager@{I\+O\+Manager}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{I\+O\+Manager()}{IOManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily wash\+::io\+::\+I\+O\+Manager\+::\+I\+O\+Manager (\begin{DoxyParamCaption}\item[{const std\+::string}]{format,  }\item[{\mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{Writer\+FuncT}}}]{writer,  }\item[{const size\+\_\+t}]{nth,  }\item[{const size\+\_\+t}]{rank = {\ttfamily 0},  }\item[{const size\+\_\+t}]{size = {\ttfamily 1},  }\item[{const bool}]{timings = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_a736c595ca08833f2a4df8f0db90ceb28}\label{classwash_1_1io_1_1IOManager_a736c595ca08833f2a4df8f0db90ceb28}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!I\+O\+Manager@{I\+O\+Manager}}
+\index{I\+O\+Manager@{I\+O\+Manager}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{I\+O\+Manager()}{IOManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily wash\+::io\+::\+I\+O\+Manager\+::\+I\+O\+Manager (\begin{DoxyParamCaption}\item[{const std\+::string}]{format,  }\item[{\mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{Writer\+FuncT}}}]{writer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_af011701d8fed420a51bafe7fcf035774}\label{classwash_1_1io_1_1IOManager_af011701d8fed420a51bafe7fcf035774}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!I\+O\+Manager@{I\+O\+Manager}}
+\index{I\+O\+Manager@{I\+O\+Manager}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{I\+O\+Manager()}{IOManager()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily wash\+::io\+::\+I\+O\+Manager\+::\+I\+O\+Manager (\begin{DoxyParamCaption}\item[{const std\+::string}]{format,  }\item[{\mbox{\hyperlink{classwash_1_1io_1_1IOManager_aeda8c39a8e3c748efd1b3e0f8ae823ee}{Writer\+FuncT}}}]{writer,  }\item[{const size\+\_\+t}]{rank,  }\item[{const size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_a2abea2ab5058a02b4bcf0876c0e179f7}\label{classwash_1_1io_1_1IOManager_a2abea2ab5058a02b4bcf0876c0e179f7}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!I\+O\+Manager@{I\+O\+Manager}}
+\index{I\+O\+Manager@{I\+O\+Manager}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{I\+O\+Manager()}{IOManager()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily wash\+::io\+::\+I\+O\+Manager\+::\+I\+O\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}\label{classwash_1_1io_1_1IOManager_ac0942e50fcd001ef853c8eb6b107e92d}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!expand\+\_\+label@{expand\+\_\+label}}
+\index{expand\+\_\+label@{expand\+\_\+label}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{expand\+\_\+label()}{expand\_label()}}
+{\footnotesize\ttfamily const std\+::string\& wash\+::io\+::\+I\+O\+Manager\+::expand\+\_\+label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{label }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Helper function to expand a label if an expansion exists. 
+
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_aded7d1dbc7a4c2fc21e3a914ea0ea3b0}\label{classwash_1_1io_1_1IOManager_aded7d1dbc7a4c2fc21e3a914ea0ea3b0}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!get\+\_\+path@{get\+\_\+path}}
+\index{get\+\_\+path@{get\+\_\+path}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{get\+\_\+path()}{get\_path()}}
+{\footnotesize\ttfamily const std\+::string wash\+::io\+::\+I\+O\+Manager\+::get\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ad290bc39e3c9ccafb070bf6ba75597b6}\label{classwash_1_1io_1_1IOManager_ad290bc39e3c9ccafb070bf6ba75597b6}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!get\+\_\+rank@{get\+\_\+rank}}
+\index{get\+\_\+rank@{get\+\_\+rank}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{get\+\_\+rank()}{get\_rank()}}
+{\footnotesize\ttfamily size\+\_\+t wash\+::io\+::\+I\+O\+Manager\+::get\+\_\+rank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{classwash_1_1io_1_1IOManager_acd4d5358ca4bb964926dfc080a72475c}\label{classwash_1_1io_1_1IOManager_acd4d5358ca4bb964926dfc080a72475c}} 
 \index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!get\+\_\+simulation\+\_\+data@{get\+\_\+simulation\+\_\+data}}
 \index{get\+\_\+simulation\+\_\+data@{get\+\_\+simulation\+\_\+data}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
@@ -77,6 +127,28 @@ If set to use a gather this will use M\+PI to gather from all processes
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{structwash_1_1io_1_1SimulationData}{Simulation\+Data}} The simulation data 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_a01f3e40f12375f3128ad9b19f3ecda12}\label{classwash_1_1io_1_1IOManager_a01f3e40f12375f3128ad9b19f3ecda12}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!get\+\_\+size@{get\+\_\+size}}
+\index{get\+\_\+size@{get\+\_\+size}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{get\+\_\+size()}{get\_size()}}
+{\footnotesize\ttfamily size\+\_\+t wash\+::io\+::\+I\+O\+Manager\+::get\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}\label{classwash_1_1io_1_1IOManager_ae23d3d68354b0ba5b410992c60fe6762}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!new\+\_\+timings@{new\+\_\+timings}}
+\index{new\+\_\+timings@{new\+\_\+timings}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{new\+\_\+timings()}{new\_timings()}}
+{\footnotesize\ttfamily void wash\+::io\+::\+I\+O\+Manager\+::new\+\_\+timings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Clear the timings output file. 
+
+\mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ab599141d728a1d6c09ce273a9e556eff}\label{classwash_1_1io_1_1IOManager_ab599141d728a1d6c09ce273a9e556eff}} 
+\index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!set\+\_\+gather@{set\+\_\+gather}}
+\index{set\+\_\+gather@{set\+\_\+gather}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
+\subsubsection{\texorpdfstring{set\+\_\+gather()}{set\_gather()}}
+{\footnotesize\ttfamily void wash\+::io\+::\+I\+O\+Manager\+::set\+\_\+gather (\begin{DoxyParamCaption}\item[{bool}]{value = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{classwash_1_1io_1_1IOManager_ab4670696bfb277a364f6112fc6f0d051}\label{classwash_1_1io_1_1IOManager_ab4670696bfb277a364f6112fc6f0d051}} 
 \index{wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}!write\+\_\+iteration@{write\+\_\+iteration}}
 \index{write\+\_\+iteration@{write\+\_\+iteration}!wash\+::io\+::\+I\+O\+Manager@{wash\+::io\+::\+I\+O\+Manager}}
@@ -137,5 +209,5 @@ Write a timing even out to a file.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/dcs/20/u2002000/4th\+Year\+Project/wash/include/io.\+hpp\item 
-/dcs/20/u2002000/4th\+Year\+Project/wash/src/io/io.\+cpp\end{DoxyCompactItemize}
+/dcs/20/u2002000/4th\+Year\+Project/wash/include/\mbox{\hyperlink{io_8hpp}{io.\+hpp}}\item 
+/dcs/20/u2002000/4th\+Year\+Project/wash/src/io/\mbox{\hyperlink{io_2io_8cpp}{io.\+cpp}}\end{DoxyCompactItemize}

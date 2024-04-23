@@ -1,0 +1,87 @@
+\hypertarget{force_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/force.cpp File Reference}
+\label{force_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/force.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/force.\+cpp}}
+{\ttfamily \#include \char`\"{}force.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{force_8cpp_a0b8ab8e5d1ac2efe97ec3552fb443fdb}{get\+\_\+exp}} (const double val)
+\item 
+double \mbox{\hyperlink{force_8cpp_ab9a08307451c6425af02cbbe3e4a53c5}{artificial\+\_\+viscosity}} (const double alpha\+\_\+i, const double alpha\+\_\+j, const double c\+\_\+i, const double c\+\_\+j, const double w\+\_\+ij)
+\item 
+double \mbox{\hyperlink{force_8cpp_a5419de221c687a04ea834d98895b51e4}{ts\+\_\+k\+\_\+courant}} (const double maxvsignal, const double h, const double c)
+\item 
+void \mbox{\hyperlink{force_8cpp_a7614b963385350424e20493fde0fa4fb}{compute\+\_\+density}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&begin, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&end)
+\item 
+void \mbox{\hyperlink{force_8cpp_adc1bbdbf5bee532e68a9dc798baab1b6}{compute\+\_\+eos\+\_\+hydro\+\_\+std}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i)
+\item 
+void \mbox{\hyperlink{force_8cpp_a2f2f1ce78073d8d45d6845b9e55709c1}{compute\+\_\+iad}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&begin, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&end)
+\item 
+void \mbox{\hyperlink{force_8cpp_a52a5e4b61178613343b0882b432a50cf}{compute\+\_\+momentum\+\_\+energy\+\_\+std}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&begin, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&end)
+\item 
+double \mbox{\hyperlink{force_8cpp_ade640438f2ee7fd5f229cd950eb14dd8}{get\+\_\+dt}} (const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr double \mbox{\hyperlink{force_8cpp_aaaf3903cb1d82adabe925453295cea73}{k\+\_\+cour}} = 0.\+2
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{force_8cpp_ab9a08307451c6425af02cbbe3e4a53c5}\label{force_8cpp_ab9a08307451c6425af02cbbe3e4a53c5}} 
+\index{force.\+cpp@{force.\+cpp}!artificial\+\_\+viscosity@{artificial\+\_\+viscosity}}
+\index{artificial\+\_\+viscosity@{artificial\+\_\+viscosity}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{artificial\+\_\+viscosity()}{artificial\_viscosity()}}
+{\footnotesize\ttfamily double artificial\+\_\+viscosity (\begin{DoxyParamCaption}\item[{const double}]{alpha\+\_\+i,  }\item[{const double}]{alpha\+\_\+j,  }\item[{const double}]{c\+\_\+i,  }\item[{const double}]{c\+\_\+j,  }\item[{const double}]{w\+\_\+ij }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8cpp_a7614b963385350424e20493fde0fa4fb}\label{force_8cpp_a7614b963385350424e20493fde0fa4fb}} 
+\index{force.\+cpp@{force.\+cpp}!compute\+\_\+density@{compute\+\_\+density}}
+\index{compute\+\_\+density@{compute\+\_\+density}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+density()}{compute\_density()}}
+{\footnotesize\ttfamily void compute\+\_\+density (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{begin,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8cpp_adc1bbdbf5bee532e68a9dc798baab1b6}\label{force_8cpp_adc1bbdbf5bee532e68a9dc798baab1b6}} 
+\index{force.\+cpp@{force.\+cpp}!compute\+\_\+eos\+\_\+hydro\+\_\+std@{compute\+\_\+eos\+\_\+hydro\+\_\+std}}
+\index{compute\+\_\+eos\+\_\+hydro\+\_\+std@{compute\+\_\+eos\+\_\+hydro\+\_\+std}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+eos\+\_\+hydro\+\_\+std()}{compute\_eos\_hydro\_std()}}
+{\footnotesize\ttfamily void compute\+\_\+eos\+\_\+hydro\+\_\+std (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8cpp_a2f2f1ce78073d8d45d6845b9e55709c1}\label{force_8cpp_a2f2f1ce78073d8d45d6845b9e55709c1}} 
+\index{force.\+cpp@{force.\+cpp}!compute\+\_\+iad@{compute\+\_\+iad}}
+\index{compute\+\_\+iad@{compute\+\_\+iad}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+iad()}{compute\_iad()}}
+{\footnotesize\ttfamily void compute\+\_\+iad (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{begin,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8cpp_a52a5e4b61178613343b0882b432a50cf}\label{force_8cpp_a52a5e4b61178613343b0882b432a50cf}} 
+\index{force.\+cpp@{force.\+cpp}!compute\+\_\+momentum\+\_\+energy\+\_\+std@{compute\+\_\+momentum\+\_\+energy\+\_\+std}}
+\index{compute\+\_\+momentum\+\_\+energy\+\_\+std@{compute\+\_\+momentum\+\_\+energy\+\_\+std}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+momentum\+\_\+energy\+\_\+std()}{compute\_momentum\_energy\_std()}}
+{\footnotesize\ttfamily void compute\+\_\+momentum\+\_\+energy\+\_\+std (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{begin,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8cpp_ade640438f2ee7fd5f229cd950eb14dd8}\label{force_8cpp_ade640438f2ee7fd5f229cd950eb14dd8}} 
+\index{force.\+cpp@{force.\+cpp}!get\+\_\+dt@{get\+\_\+dt}}
+\index{get\+\_\+dt@{get\+\_\+dt}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{get\+\_\+dt()}{get\_dt()}}
+{\footnotesize\ttfamily double get\+\_\+dt (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8cpp_a0b8ab8e5d1ac2efe97ec3552fb443fdb}\label{force_8cpp_a0b8ab8e5d1ac2efe97ec3552fb443fdb}} 
+\index{force.\+cpp@{force.\+cpp}!get\+\_\+exp@{get\+\_\+exp}}
+\index{get\+\_\+exp@{get\+\_\+exp}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{get\+\_\+exp()}{get\_exp()}}
+{\footnotesize\ttfamily int get\+\_\+exp (\begin{DoxyParamCaption}\item[{const double}]{val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8cpp_a5419de221c687a04ea834d98895b51e4}\label{force_8cpp_a5419de221c687a04ea834d98895b51e4}} 
+\index{force.\+cpp@{force.\+cpp}!ts\+\_\+k\+\_\+courant@{ts\+\_\+k\+\_\+courant}}
+\index{ts\+\_\+k\+\_\+courant@{ts\+\_\+k\+\_\+courant}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{ts\+\_\+k\+\_\+courant()}{ts\_k\_courant()}}
+{\footnotesize\ttfamily double ts\+\_\+k\+\_\+courant (\begin{DoxyParamCaption}\item[{const double}]{maxvsignal,  }\item[{const double}]{h,  }\item[{const double}]{c }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{force_8cpp_aaaf3903cb1d82adabe925453295cea73}\label{force_8cpp_aaaf3903cb1d82adabe925453295cea73}} 
+\index{force.\+cpp@{force.\+cpp}!k\+\_\+cour@{k\+\_\+cour}}
+\index{k\+\_\+cour@{k\+\_\+cour}!force.\+cpp@{force.\+cpp}}
+\subsubsection{\texorpdfstring{k\+\_\+cour}{k\_cour}}
+{\footnotesize\ttfamily constexpr double k\+\_\+cour = 0.\+2}
+

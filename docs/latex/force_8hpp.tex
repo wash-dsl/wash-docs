@@ -1,0 +1,51 @@
+\hypertarget{force_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/force.hpp File Reference}
+\label{force_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/force.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/force.\+hpp}}
+{\ttfamily \#include \char`\"{}wash.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}box.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}consts.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{force_8hpp_a7614b963385350424e20493fde0fa4fb}{compute\+\_\+density}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&begin, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&end)
+\item 
+void \mbox{\hyperlink{force_8hpp_adc1bbdbf5bee532e68a9dc798baab1b6}{compute\+\_\+eos\+\_\+hydro\+\_\+std}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i)
+\item 
+void \mbox{\hyperlink{force_8hpp_a2f2f1ce78073d8d45d6845b9e55709c1}{compute\+\_\+iad}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&begin, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&end)
+\item 
+void \mbox{\hyperlink{force_8hpp_a52a5e4b61178613343b0882b432a50cf}{compute\+\_\+momentum\+\_\+energy\+\_\+std}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&begin, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&end)
+\item 
+double \mbox{\hyperlink{force_8hpp_ade640438f2ee7fd5f229cd950eb14dd8}{get\+\_\+dt}} (const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{force_8hpp_a7614b963385350424e20493fde0fa4fb}\label{force_8hpp_a7614b963385350424e20493fde0fa4fb}} 
+\index{force.\+hpp@{force.\+hpp}!compute\+\_\+density@{compute\+\_\+density}}
+\index{compute\+\_\+density@{compute\+\_\+density}!force.\+hpp@{force.\+hpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+density()}{compute\_density()}}
+{\footnotesize\ttfamily void compute\+\_\+density (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{begin,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8hpp_adc1bbdbf5bee532e68a9dc798baab1b6}\label{force_8hpp_adc1bbdbf5bee532e68a9dc798baab1b6}} 
+\index{force.\+hpp@{force.\+hpp}!compute\+\_\+eos\+\_\+hydro\+\_\+std@{compute\+\_\+eos\+\_\+hydro\+\_\+std}}
+\index{compute\+\_\+eos\+\_\+hydro\+\_\+std@{compute\+\_\+eos\+\_\+hydro\+\_\+std}!force.\+hpp@{force.\+hpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+eos\+\_\+hydro\+\_\+std()}{compute\_eos\_hydro\_std()}}
+{\footnotesize\ttfamily void compute\+\_\+eos\+\_\+hydro\+\_\+std (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8hpp_a2f2f1ce78073d8d45d6845b9e55709c1}\label{force_8hpp_a2f2f1ce78073d8d45d6845b9e55709c1}} 
+\index{force.\+hpp@{force.\+hpp}!compute\+\_\+iad@{compute\+\_\+iad}}
+\index{compute\+\_\+iad@{compute\+\_\+iad}!force.\+hpp@{force.\+hpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+iad()}{compute\_iad()}}
+{\footnotesize\ttfamily void compute\+\_\+iad (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{begin,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8hpp_a52a5e4b61178613343b0882b432a50cf}\label{force_8hpp_a52a5e4b61178613343b0882b432a50cf}} 
+\index{force.\+hpp@{force.\+hpp}!compute\+\_\+momentum\+\_\+energy\+\_\+std@{compute\+\_\+momentum\+\_\+energy\+\_\+std}}
+\index{compute\+\_\+momentum\+\_\+energy\+\_\+std@{compute\+\_\+momentum\+\_\+energy\+\_\+std}!force.\+hpp@{force.\+hpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+momentum\+\_\+energy\+\_\+std()}{compute\_momentum\_energy\_std()}}
+{\footnotesize\ttfamily void compute\+\_\+momentum\+\_\+energy\+\_\+std (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{begin,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$\+::const\+\_\+iterator \&}]{end }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{force_8hpp_ade640438f2ee7fd5f229cd950eb14dd8}\label{force_8hpp_ade640438f2ee7fd5f229cd950eb14dd8}} 
+\index{force.\+hpp@{force.\+hpp}!get\+\_\+dt@{get\+\_\+dt}}
+\index{get\+\_\+dt@{get\+\_\+dt}!force.\+hpp@{force.\+hpp}}
+\subsubsection{\texorpdfstring{get\+\_\+dt()}{get\_dt()}}
+{\footnotesize\ttfamily double get\+\_\+dt (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i }\end{DoxyParamCaption})}
+

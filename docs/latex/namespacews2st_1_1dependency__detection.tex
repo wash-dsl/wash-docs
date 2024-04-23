@@ -1,0 +1,722 @@
+\hypertarget{namespacews2st_1_1dependency__detection}{}\section{ws2st\+:\+:dependency\+\_\+detection Namespace Reference}
+\label{namespacews2st_1_1dependency__detection}\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7}{Property\+List}} \{ \newline
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}, 
+\newline
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9bcbdab5f532436efdc9e10c42d24eaa}{get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables}} ()
+\begin{DoxyCompactList}\small\item\em Get all variables that are read by force kernels. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a46a6c80d29092ee17d43942908165ebc}{get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos}} ()
+\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ad1cd2b8bb6701a935a701247e3a9513a}{compute\+\_\+domain\+\_\+syncs}} ()
+\begin{DoxyCompactList}\small\item\em Compute whether or not we should run a domain sync after each kernel. \end{DoxyCompactList}\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a28f5ee92a11488823ff4d4400e5aa9db}{compute\+\_\+domain\+\_\+syncs\+\_\+clever}} ()
+\begin{DoxyCompactList}\small\item\em Compute whether or not we should run a domain sync after each kernel, as per Scott\textquotesingle{}s algorithm in the report. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a2b9570e91f83523fedfd436f165b8295}{compute\+\_\+halo\+\_\+exchanges}} ()
+\begin{DoxyCompactList}\small\item\em Compute which variables need to be exchanged after the execution of each kernel. exchanges\mbox{[}i\mbox{]} contains v if v needs to be exchanged after kernel i executes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7e279bcb7d4659203bc4055d7c783c1}{Handle\+Domain\+Sync}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\begin{DoxyCompactList}\small\item\em Rewriter callback for inserting domain syncs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a2fb1055539651e10f0186e060fbf74ea}{Handle\+Halo\+Exchange}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\begin{DoxyCompactList}\small\item\em Rewriter callback for inserting domain syncs. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a3d9867901e8b37524b810b5d95a6cc25}{Run\+Halo\+Exchange}} (std\+::vector$<$ std\+::string $>$ exchanges)
+\begin{DoxyCompactList}\small\item\em Generate code for a single halo exchange on a list of variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a8b77ddddfc773081dd720230552c93c2}{Unroll\+Kernel\+Dependency\+Loop}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\begin{DoxyCompactList}\small\item\em Rewriter callback for unrolling the kernel loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ac413a69373ef6abece419cac50b0a1bc}{Insert\+Initial\+Halo\+Exchange}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+bool \mbox{\hyperlink{namespacews2st_1_1dependency__detection_afa94b48529c6c085e21d3025069d8085}{Record\+Assignment}} (std\+::string function\+\_\+name, std\+::string force\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Record a force that is assigned to in a function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ab3cedd87fe75ce246104ca77531d29b2}{Record\+Read}} (std\+::string function\+\_\+name, std\+::string force\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Record a force that is read from in function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a4db008944a7455244b81941a7b0efc2b}{Register\+Force\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae32a6dbe890421b635bdb1a91728a7fb}{Register\+Init\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a248d3b13235071779b21013154238667}{Register\+Neighbour\+Search\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_af3f0299c83e5f9608d8086fe50abf81c}{Default\+Neighbour\+Search\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a38357d8dfb24ccbc3e38b73868bcdaec}{Handle\+Function\+Call\+In\+Function}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}} (const std\+::string property\+Name)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}} (const std\+::string property\+Name)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ac7eb92a60458dc08ec4dc7267637cf78}{Register\+Force\+Assignment}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9c04a597c5b86be1c0b3c98b61ef3f8d}{Register\+Force\+Read}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+const std\+::string \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}} (\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7}{Property\+List}} property)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae64f771d376afa52054c5d9563d242f2}{Insert\+Domain\+Syncs\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+domain\+\_\+syncs class. \end{DoxyCompactList}\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa3946ed2a34fd136544f447954b530e1}{Insert\+Halo\+Exchange\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+halo\+\_\+exchange class. \end{DoxyCompactList}\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a6d11e3426c8b2c1d088996d1f2c847f0}{Loop\+Rewrite\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+wash\+\_\+loop\+\_\+rewriter class. \end{DoxyCompactList}\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a4f1b7b6a99e43f2c522554396c0b3a09}{Initial\+Halo\+Exchange\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+wash\+\_\+initial\+\_\+halo\+\_\+exchange class. \end{DoxyCompactList}\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a243f082eabf51fdabcc2a5e92659c242}{Add\+Init\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a2e41b3265e8d011f4c0834b0b6d924ee}{Add\+Force\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a345d52aca3e8d90256860c4159a402a3}{Set\+Neighbour\+Search\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ab7b05dd1b14cdddcb47ffa1149c2f0d9}{Set\+Default\+Neighbour\+Search\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae821707e6bb54817ce26e569ae3b30da}{Generic\+Function\+Call\+In\+Function}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ab94bf8df1aeef0b1f73e23c616fb56aa}{Force\+Assignment\+In\+Function}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae0981b485fc9d9a27c5d5e1385a08919}{Force\+Read\+In\+Function}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a46b2c632f3a98853a44bb908d77843ef}{Pos\+Read\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_afd7c33aadfb9dad623a578243d3b1e4d}{Vel\+Read\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a5f0f79f9e76ed7202ab5feaafe5217d5}{Acc\+Read\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9759d661026736d642390aab7cc10523}{Density\+Read\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a7adcb594b2dcd56ca1d726b9e128de6f}{Mass\+Read\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aeaa222ced9f9c42eb5d582b4da3656a4}{Smoothing\+Length\+Read\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}))
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a4a262f1e91bcf841fc88097d8d1ca173}{Register\+Pos\+Read}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aed25baa7764a0238de47cd7472b75442}{Register\+Vel\+Read}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ad7bc023e5478978651dfa4acd9926607}{Register\+Acc\+Read}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a236348fc5df344bed4a3e9069c6f494a}{Register\+Density\+Read}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a81a42e0cdbe0843eafa8fd4d5b94a498}{Register\+Mass\+Read}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a1046fa281e214668b09fd387ac2e34a1}{Register\+Smoothing\+Length\+Read}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}$>$
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a532280f150bab284a742fc374d6260d1}{Pos\+Write\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a13ceaf43f331b3380b0cfa95693df70c}{Vel\+Write\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a8481caef43197e143ad78cc3f8116ceb}{Acc\+Write\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aca0a180837e6887100d67e6badb54524}{Density\+Write\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a13b2dcf4451d4e563a11771c45fe12c5}{Mass\+Write\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9fd262ba400c93f1801d2d57b50e0d9d}{Smoothing\+Length\+Write\+In\+Function}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}))
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a549784855e6f59f96e544d779d0118cb}{Register\+Pos\+Write}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a3ffb67860163115d27fe818c7507a0cd}{Register\+Vel\+Write}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aacce93ec7d1f29be592d92b73c315501}{Register\+Acc\+Write}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a3ff293b1fc9e4271829c558587c2d1d4}{Register\+Density\+Write}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aebfe4d8af9a8016c15adb62289ed4518}{Register\+Mass\+Write}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a6b775eaf310a3fca0aa612461af98e5d}{Register\+Smoothing\+Length\+Write}} = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}$>$
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7}\label{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Property\+List@{Property\+List}}
+\index{Property\+List@{Property\+List}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Property\+List}{PropertyList}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos@{Pos}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Pos@{Pos}}}\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}\label{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}} 
+Pos&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Vel@{Vel}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Vel@{Vel}}}\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}\label{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}} 
+Vel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Acc@{Acc}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Acc@{Acc}}}\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}\label{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}} 
+Acc&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Density@{Density}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Density@{Density}}}\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}\label{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}} 
+Density&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mass@{Mass}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Mass@{Mass}}}\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}\label{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}} 
+Mass&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Smoothing\+Length@{Smoothing\+Length}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Smoothing\+Length@{Smoothing\+Length}}}\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}\label{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}} 
+Smoothing\+Length&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ad1cd2b8bb6701a935a701247e3a9513a}\label{namespacews2st_1_1dependency__detection_ad1cd2b8bb6701a935a701247e3a9513a}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!compute\+\_\+domain\+\_\+syncs@{compute\+\_\+domain\+\_\+syncs}}
+\index{compute\+\_\+domain\+\_\+syncs@{compute\+\_\+domain\+\_\+syncs}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{compute\+\_\+domain\+\_\+syncs()}{compute\_domain\_syncs()}}
+{\footnotesize\ttfamily std\+::vector$<$ bool $>$ ws2st\+::dependency\+\_\+detection\+::compute\+\_\+domain\+\_\+syncs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Compute whether or not we should run a domain sync after each kernel. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a28f5ee92a11488823ff4d4400e5aa9db}\label{namespacews2st_1_1dependency__detection_a28f5ee92a11488823ff4d4400e5aa9db}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!compute\+\_\+domain\+\_\+syncs\+\_\+clever@{compute\+\_\+domain\+\_\+syncs\+\_\+clever}}
+\index{compute\+\_\+domain\+\_\+syncs\+\_\+clever@{compute\+\_\+domain\+\_\+syncs\+\_\+clever}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{compute\+\_\+domain\+\_\+syncs\+\_\+clever()}{compute\_domain\_syncs\_clever()}}
+{\footnotesize\ttfamily std\+::vector$<$bool$>$ ws2st\+::dependency\+\_\+detection\+::compute\+\_\+domain\+\_\+syncs\+\_\+clever (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Compute whether or not we should run a domain sync after each kernel, as per Scott\textquotesingle{}s algorithm in the report. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a2b9570e91f83523fedfd436f165b8295}\label{namespacews2st_1_1dependency__detection_a2b9570e91f83523fedfd436f165b8295}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!compute\+\_\+halo\+\_\+exchanges@{compute\+\_\+halo\+\_\+exchanges}}
+\index{compute\+\_\+halo\+\_\+exchanges@{compute\+\_\+halo\+\_\+exchanges}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{compute\+\_\+halo\+\_\+exchanges()}{compute\_halo\_exchanges()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ ws2st\+::dependency\+\_\+detection\+::compute\+\_\+halo\+\_\+exchanges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Compute which variables need to be exchanged after the execution of each kernel. exchanges\mbox{[}i\mbox{]} contains v if v needs to be exchanged after kernel i executes. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_af3f0299c83e5f9608d8086fe50abf81c}\label{namespacews2st_1_1dependency__detection_af3f0299c83e5f9608d8086fe50abf81c}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Default\+Neighbour\+Search\+Kernel@{Default\+Neighbour\+Search\+Kernel}}
+\index{Default\+Neighbour\+Search\+Kernel@{Default\+Neighbour\+Search\+Kernel}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Default\+Neighbour\+Search\+Kernel()}{DefaultNeighbourSearchKernel()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Default\+Neighbour\+Search\+Kernel (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a46a6c80d29092ee17d43942908165ebc}\label{namespacews2st_1_1dependency__detection_a46a6c80d29092ee17d43942908165ebc}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos@{get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos}}
+\index{get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos@{get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos()}{get\_domain\_sync\_invalidated\_halos()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ws2st\+::dependency\+\_\+detection\+::get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a9bcbdab5f532436efdc9e10c42d24eaa}\label{namespacews2st_1_1dependency__detection_a9bcbdab5f532436efdc9e10c42d24eaa}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables@{get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables}}
+\index{get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables@{get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables()}{get\_force\_kernel\_read\_variables()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ws2st\+::dependency\+\_\+detection\+::get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get all variables that are read by force kernels. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}\label{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!get\+Property\+Name@{get\+Property\+Name}}
+\index{get\+Property\+Name@{get\+Property\+Name}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{get\+Property\+Name()}{getPropertyName()}}
+{\footnotesize\ttfamily const std\+::string ws2st\+::dependency\+\_\+detection\+::get\+Property\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7}{Property\+List}}}]{property }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aa7e279bcb7d4659203bc4055d7c783c1}\label{namespacews2st_1_1dependency__detection_aa7e279bcb7d4659203bc4055d7c783c1}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Handle\+Domain\+Sync@{Handle\+Domain\+Sync}}
+\index{Handle\+Domain\+Sync@{Handle\+Domain\+Sync}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Handle\+Domain\+Sync()}{HandleDomainSync()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Handle\+Domain\+Sync (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+
+
+Rewriter callback for inserting domain syncs. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a38357d8dfb24ccbc3e38b73868bcdaec}\label{namespacews2st_1_1dependency__detection_a38357d8dfb24ccbc3e38b73868bcdaec}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Handle\+Function\+Call\+In\+Function@{Handle\+Function\+Call\+In\+Function}}
+\index{Handle\+Function\+Call\+In\+Function@{Handle\+Function\+Call\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Handle\+Function\+Call\+In\+Function()}{HandleFunctionCallInFunction()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Handle\+Function\+Call\+In\+Function (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a2fb1055539651e10f0186e060fbf74ea}\label{namespacews2st_1_1dependency__detection_a2fb1055539651e10f0186e060fbf74ea}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Handle\+Halo\+Exchange@{Handle\+Halo\+Exchange}}
+\index{Handle\+Halo\+Exchange@{Handle\+Halo\+Exchange}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Handle\+Halo\+Exchange()}{HandleHaloExchange()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Handle\+Halo\+Exchange (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+
+
+Rewriter callback for inserting domain syncs. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ac413a69373ef6abece419cac50b0a1bc}\label{namespacews2st_1_1dependency__detection_ac413a69373ef6abece419cac50b0a1bc}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Insert\+Initial\+Halo\+Exchange@{Insert\+Initial\+Halo\+Exchange}}
+\index{Insert\+Initial\+Halo\+Exchange@{Insert\+Initial\+Halo\+Exchange}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Insert\+Initial\+Halo\+Exchange()}{InsertInitialHaloExchange()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Insert\+Initial\+Halo\+Exchange (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}\label{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Read\+Property\+Matcher@{Read\+Property\+Matcher}}
+\index{Read\+Property\+Matcher@{Read\+Property\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Read\+Property\+Matcher()}{ReadPropertyMatcher()}}
+{\footnotesize\ttfamily const Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Read\+Property\+Matcher (\begin{DoxyParamCaption}\item[{const std\+::string}]{property\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_afa94b48529c6c085e21d3025069d8085}\label{namespacews2st_1_1dependency__detection_afa94b48529c6c085e21d3025069d8085}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Record\+Assignment@{Record\+Assignment}}
+\index{Record\+Assignment@{Record\+Assignment}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Record\+Assignment()}{RecordAssignment()}}
+{\footnotesize\ttfamily bool ws2st\+::dependency\+\_\+detection\+::\+Record\+Assignment (\begin{DoxyParamCaption}\item[{std\+::string}]{function\+\_\+name,  }\item[{std\+::string}]{force\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Record a force that is assigned to in a function. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ab3cedd87fe75ce246104ca77531d29b2}\label{namespacews2st_1_1dependency__detection_ab3cedd87fe75ce246104ca77531d29b2}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Record\+Read@{Record\+Read}}
+\index{Record\+Read@{Record\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Record\+Read()}{RecordRead()}}
+{\footnotesize\ttfamily bool ws2st\+::dependency\+\_\+detection\+::\+Record\+Read (\begin{DoxyParamCaption}\item[{std\+::string}]{function\+\_\+name,  }\item[{std\+::string}]{force\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Record a force that is read from in function. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ac7eb92a60458dc08ec4dc7267637cf78}\label{namespacews2st_1_1dependency__detection_ac7eb92a60458dc08ec4dc7267637cf78}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Force\+Assignment@{Register\+Force\+Assignment}}
+\index{Register\+Force\+Assignment@{Register\+Force\+Assignment}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Force\+Assignment()}{RegisterForceAssignment()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Assignment (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a4db008944a7455244b81941a7b0efc2b}\label{namespacews2st_1_1dependency__detection_a4db008944a7455244b81941a7b0efc2b}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Force\+Kernel@{Register\+Force\+Kernel}}
+\index{Register\+Force\+Kernel@{Register\+Force\+Kernel}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Force\+Kernel()}{RegisterForceKernel()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Kernel (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a9c04a597c5b86be1c0b3c98b61ef3f8d}\label{namespacews2st_1_1dependency__detection_a9c04a597c5b86be1c0b3c98b61ef3f8d}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Force\+Read@{Register\+Force\+Read}}
+\index{Register\+Force\+Read@{Register\+Force\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Force\+Read()}{RegisterForceRead()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Read (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ae32a6dbe890421b635bdb1a91728a7fb}\label{namespacews2st_1_1dependency__detection_ae32a6dbe890421b635bdb1a91728a7fb}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Init\+Kernel@{Register\+Init\+Kernel}}
+\index{Register\+Init\+Kernel@{Register\+Init\+Kernel}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Init\+Kernel()}{RegisterInitKernel()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Register\+Init\+Kernel (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a248d3b13235071779b21013154238667}\label{namespacews2st_1_1dependency__detection_a248d3b13235071779b21013154238667}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Neighbour\+Search\+Kernel@{Register\+Neighbour\+Search\+Kernel}}
+\index{Register\+Neighbour\+Search\+Kernel@{Register\+Neighbour\+Search\+Kernel}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Neighbour\+Search\+Kernel()}{RegisterNeighbourSearchKernel()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Register\+Neighbour\+Search\+Kernel (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}\label{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Read\+Property@{Register\+Read\+Property}}
+\index{Register\+Read\+Property@{Register\+Read\+Property}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Read\+Property()}{RegisterReadProperty()}}
+{\footnotesize\ttfamily template$<$Property\+List property$>$ \\
+void ws2st\+::dependency\+\_\+detection\+::\+Register\+Read\+Property (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}\label{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Write\+Property@{Register\+Write\+Property}}
+\index{Register\+Write\+Property@{Register\+Write\+Property}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Write\+Property()}{RegisterWriteProperty()}}
+{\footnotesize\ttfamily template$<$Property\+List property$>$ \\
+void ws2st\+::dependency\+\_\+detection\+::\+Register\+Write\+Property (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a3d9867901e8b37524b810b5d95a6cc25}\label{namespacews2st_1_1dependency__detection_a3d9867901e8b37524b810b5d95a6cc25}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Run\+Halo\+Exchange@{Run\+Halo\+Exchange}}
+\index{Run\+Halo\+Exchange@{Run\+Halo\+Exchange}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Run\+Halo\+Exchange()}{RunHaloExchange()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::dependency\+\_\+detection\+::\+Run\+Halo\+Exchange (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{exchanges }\end{DoxyParamCaption})}
+
+
+
+Generate code for a single halo exchange on a list of variables. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a8b77ddddfc773081dd720230552c93c2}\label{namespacews2st_1_1dependency__detection_a8b77ddddfc773081dd720230552c93c2}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Unroll\+Kernel\+Dependency\+Loop@{Unroll\+Kernel\+Dependency\+Loop}}
+\index{Unroll\+Kernel\+Dependency\+Loop@{Unroll\+Kernel\+Dependency\+Loop}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Unroll\+Kernel\+Dependency\+Loop()}{UnrollKernelDependencyLoop()}}
+{\footnotesize\ttfamily void ws2st\+::dependency\+\_\+detection\+::\+Unroll\+Kernel\+Dependency\+Loop (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+
+
+Rewriter callback for unrolling the kernel loop. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}\label{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Write\+Property\+Matcher@{Write\+Property\+Matcher}}
+\index{Write\+Property\+Matcher@{Write\+Property\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Write\+Property\+Matcher()}{WritePropertyMatcher()}}
+{\footnotesize\ttfamily const Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Write\+Property\+Matcher (\begin{DoxyParamCaption}\item[{const std\+::string}]{property\+Name }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a5f0f79f9e76ed7202ab5feaafe5217d5}\label{namespacews2st_1_1dependency__detection_a5f0f79f9e76ed7202ab5feaafe5217d5}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Acc\+Read\+In\+Function@{Acc\+Read\+In\+Function}}
+\index{Acc\+Read\+In\+Function@{Acc\+Read\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Acc\+Read\+In\+Function}{AccReadInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Acc\+Read\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a8481caef43197e143ad78cc3f8116ceb}\label{namespacews2st_1_1dependency__detection_a8481caef43197e143ad78cc3f8116ceb}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Acc\+Write\+In\+Function@{Acc\+Write\+In\+Function}}
+\index{Acc\+Write\+In\+Function@{Acc\+Write\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Acc\+Write\+In\+Function}{AccWriteInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Acc\+Write\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a2e41b3265e8d011f4c0834b0b6d924ee}\label{namespacews2st_1_1dependency__detection_a2e41b3265e8d011f4c0834b0b6d924ee}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Add\+Force\+Kernel\+Matcher@{Add\+Force\+Kernel\+Matcher}}
+\index{Add\+Force\+Kernel\+Matcher@{Add\+Force\+Kernel\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Add\+Force\+Kernel\+Matcher}{AddForceKernelMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Add\+Force\+Kernel\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+        hasAncestor(functionDecl(hasName(\textcolor{stringliteral}{"main"}))),
+        hasDescendant(
+            declRefExpr(
+                to(functionDecl(anyOf(
+                    hasName(\textcolor{stringliteral}{"wash::add\_force\_kernel"}),
+                    hasName(\textcolor{stringliteral}{"wash::add\_update\_kernel"}),
+                    hasName(\textcolor{stringliteral}{"wash::add\_reduction\_kernel"}),
+                    hasName(\textcolor{stringliteral}{"wash::add\_void\_kernel"})
+                )))
+            ).bind(\textcolor{stringliteral}{"kernelType"})
+        ),
+        
+        hasArgument(0, ignoringImplicit(unaryOperator(
+            hasOperatorName(\textcolor{stringliteral}{"&"}),
+            hasDescendant(
+                declRefExpr().bind(\textcolor{stringliteral}{"kernel"})
+            )
+        ).bind(\textcolor{stringliteral}{"kernelPtr"}) ))
+    ).bind(\textcolor{stringliteral}{"callExpr"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a243f082eabf51fdabcc2a5e92659c242}\label{namespacews2st_1_1dependency__detection_a243f082eabf51fdabcc2a5e92659c242}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Add\+Init\+Kernel\+Matcher@{Add\+Init\+Kernel\+Matcher}}
+\index{Add\+Init\+Kernel\+Matcher@{Add\+Init\+Kernel\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Add\+Init\+Kernel\+Matcher}{AddInitKernelMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Add\+Init\+Kernel\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+    hasAncestor(functionDecl(hasName(\textcolor{stringliteral}{"main"}))),
+    hasDescendant(declRefExpr(to(functionDecl(anyOf(
+        hasName(\textcolor{stringliteral}{"wash::add\_init\_update\_kernel"}),
+        hasName(\textcolor{stringliteral}{"wash::add\_init\_void\_kernel"})
+    ))))),
+        hasArgument(0, ignoringImplicit(unaryOperator(
+        hasOperatorName(\textcolor{stringliteral}{"&"}),
+        hasDescendant(
+            declRefExpr().bind(\textcolor{stringliteral}{"kernel"})
+        )
+    ).bind(\textcolor{stringliteral}{"kernelPtr"}) ))
+).bind(\textcolor{stringliteral}{"callExpr"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a9759d661026736d642390aab7cc10523}\label{namespacews2st_1_1dependency__detection_a9759d661026736d642390aab7cc10523}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Density\+Read\+In\+Function@{Density\+Read\+In\+Function}}
+\index{Density\+Read\+In\+Function@{Density\+Read\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Density\+Read\+In\+Function}{DensityReadInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Density\+Read\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aca0a180837e6887100d67e6badb54524}\label{namespacews2st_1_1dependency__detection_aca0a180837e6887100d67e6badb54524}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Density\+Write\+In\+Function@{Density\+Write\+In\+Function}}
+\index{Density\+Write\+In\+Function@{Density\+Write\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Density\+Write\+In\+Function}{DensityWriteInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Density\+Write\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ab94bf8df1aeef0b1f73e23c616fb56aa}\label{namespacews2st_1_1dependency__detection_ab94bf8df1aeef0b1f73e23c616fb56aa}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Force\+Assignment\+In\+Function@{Force\+Assignment\+In\+Function}}
+\index{Force\+Assignment\+In\+Function@{Force\+Assignment\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Force\+Assignment\+In\+Function}{ForceAssignmentInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Force\+Assignment\+In\+Function}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, cxxMemberCallExpr(
+        hasAncestor(functionDecl().bind(\textcolor{stringliteral}{"caller"})),
+
+        anyOf(
+            callee(cxxMethodDecl(hasName(\textcolor{stringliteral}{"set\_force\_vector"}))),
+            callee(cxxMethodDecl(hasName(\textcolor{stringliteral}{"set\_force\_scalar"})))
+        ),
+
+        hasArgument(0, ignoringImplicit( stringLiteral().bind(\textcolor{stringliteral}{"assignVariableName"}) ))
+    ).bind(\textcolor{stringliteral}{"assignExpr"})
+)
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ae0981b485fc9d9a27c5d5e1385a08919}\label{namespacews2st_1_1dependency__detection_ae0981b485fc9d9a27c5d5e1385a08919}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Force\+Read\+In\+Function@{Force\+Read\+In\+Function}}
+\index{Force\+Read\+In\+Function@{Force\+Read\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Force\+Read\+In\+Function}{ForceReadInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Force\+Read\+In\+Function}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, cxxMemberCallExpr(
+        hasAncestor(functionDecl().bind(\textcolor{stringliteral}{"caller"})),
+
+        anyOf(
+            callee(cxxMethodDecl(hasName(\textcolor{stringliteral}{"get\_force\_vector"}))),
+            callee(cxxMethodDecl(hasName(\textcolor{stringliteral}{"get\_force\_scalar"})))
+        ),
+
+        hasArgument(0, ignoringImplicit( stringLiteral().bind(\textcolor{stringliteral}{"readVariableName"}) ))
+    ).bind(\textcolor{stringliteral}{"readExpr"})
+)
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ae821707e6bb54817ce26e569ae3b30da}\label{namespacews2st_1_1dependency__detection_ae821707e6bb54817ce26e569ae3b30da}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Generic\+Function\+Call\+In\+Function@{Generic\+Function\+Call\+In\+Function}}
+\index{Generic\+Function\+Call\+In\+Function@{Generic\+Function\+Call\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Generic\+Function\+Call\+In\+Function}{GenericFunctionCallInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Generic\+Function\+Call\+In\+Function}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+    hasAncestor(functionDecl().bind(\textcolor{stringliteral}{"caller"}))
+).bind(\textcolor{stringliteral}{"callee"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a4f1b7b6a99e43f2c522554396c0b3a09}\label{namespacews2st_1_1dependency__detection_a4f1b7b6a99e43f2c522554396c0b3a09}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Initial\+Halo\+Exchange\+Matcher@{Initial\+Halo\+Exchange\+Matcher}}
+\index{Initial\+Halo\+Exchange\+Matcher@{Initial\+Halo\+Exchange\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Initial\+Halo\+Exchange\+Matcher}{InitialHaloExchangeMatcher}}
+{\footnotesize\ttfamily Declaration\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Initial\+Halo\+Exchange\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, 
+        cxxRecordDecl(hasName(\textcolor{stringliteral}{"\_wash\_initial\_halo\_exchange"})).bind(\textcolor{stringliteral}{"decl"})
+    )
+\end{DoxyCode}
+
+
+A\+ST matcher for the empty \+\_\+wash\+\_\+initial\+\_\+halo\+\_\+exchange class. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ae64f771d376afa52054c5d9563d242f2}\label{namespacews2st_1_1dependency__detection_ae64f771d376afa52054c5d9563d242f2}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Insert\+Domain\+Syncs\+Matcher@{Insert\+Domain\+Syncs\+Matcher}}
+\index{Insert\+Domain\+Syncs\+Matcher@{Insert\+Domain\+Syncs\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Insert\+Domain\+Syncs\+Matcher}{InsertDomainSyncsMatcher}}
+{\footnotesize\ttfamily Declaration\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Insert\+Domain\+Syncs\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, 
+        cxxRecordDecl(hasName(\textcolor{stringliteral}{"\_domain\_syncs"})).bind(\textcolor{stringliteral}{"decl"})
+    )
+\end{DoxyCode}
+
+
+A\+ST matcher for the empty \+\_\+domain\+\_\+syncs class. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aa3946ed2a34fd136544f447954b530e1}\label{namespacews2st_1_1dependency__detection_aa3946ed2a34fd136544f447954b530e1}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Insert\+Halo\+Exchange\+Matcher@{Insert\+Halo\+Exchange\+Matcher}}
+\index{Insert\+Halo\+Exchange\+Matcher@{Insert\+Halo\+Exchange\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Insert\+Halo\+Exchange\+Matcher}{InsertHaloExchangeMatcher}}
+{\footnotesize\ttfamily Declaration\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Insert\+Halo\+Exchange\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, 
+        cxxRecordDecl(hasName(\textcolor{stringliteral}{"\_halo\_exchanges"})).bind(\textcolor{stringliteral}{"decl"})
+    )
+\end{DoxyCode}
+
+
+A\+ST matcher for the empty \+\_\+halo\+\_\+exchange class. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a6d11e3426c8b2c1d088996d1f2c847f0}\label{namespacews2st_1_1dependency__detection_a6d11e3426c8b2c1d088996d1f2c847f0}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Loop\+Rewrite\+Matcher@{Loop\+Rewrite\+Matcher}}
+\index{Loop\+Rewrite\+Matcher@{Loop\+Rewrite\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Loop\+Rewrite\+Matcher}{LoopRewriteMatcher}}
+{\footnotesize\ttfamily Declaration\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Loop\+Rewrite\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, 
+        cxxRecordDecl(hasName(\textcolor{stringliteral}{"\_wash\_loop\_rewriter"})).bind(\textcolor{stringliteral}{"decl"})
+    )
+\end{DoxyCode}
+
+
+A\+ST matcher for the empty \+\_\+wash\+\_\+loop\+\_\+rewriter class. 
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a7adcb594b2dcd56ca1d726b9e128de6f}\label{namespacews2st_1_1dependency__detection_a7adcb594b2dcd56ca1d726b9e128de6f}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Mass\+Read\+In\+Function@{Mass\+Read\+In\+Function}}
+\index{Mass\+Read\+In\+Function@{Mass\+Read\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Mass\+Read\+In\+Function}{MassReadInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Mass\+Read\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a13b2dcf4451d4e563a11771c45fe12c5}\label{namespacews2st_1_1dependency__detection_a13b2dcf4451d4e563a11771c45fe12c5}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Mass\+Write\+In\+Function@{Mass\+Write\+In\+Function}}
+\index{Mass\+Write\+In\+Function@{Mass\+Write\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Mass\+Write\+In\+Function}{MassWriteInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Mass\+Write\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a46b2c632f3a98853a44bb908d77843ef}\label{namespacews2st_1_1dependency__detection_a46b2c632f3a98853a44bb908d77843ef}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Pos\+Read\+In\+Function@{Pos\+Read\+In\+Function}}
+\index{Pos\+Read\+In\+Function@{Pos\+Read\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Pos\+Read\+In\+Function}{PosReadInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Pos\+Read\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a532280f150bab284a742fc374d6260d1}\label{namespacews2st_1_1dependency__detection_a532280f150bab284a742fc374d6260d1}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Pos\+Write\+In\+Function@{Pos\+Write\+In\+Function}}
+\index{Pos\+Write\+In\+Function@{Pos\+Write\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Pos\+Write\+In\+Function}{PosWriteInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Pos\+Write\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ad7bc023e5478978651dfa4acd9926607}\label{namespacews2st_1_1dependency__detection_ad7bc023e5478978651dfa4acd9926607}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Acc\+Read@{Register\+Acc\+Read}}
+\index{Register\+Acc\+Read@{Register\+Acc\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Acc\+Read}{RegisterAccRead}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Acc\+Read = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aacce93ec7d1f29be592d92b73c315501}\label{namespacews2st_1_1dependency__detection_aacce93ec7d1f29be592d92b73c315501}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Acc\+Write@{Register\+Acc\+Write}}
+\index{Register\+Acc\+Write@{Register\+Acc\+Write}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Acc\+Write}{RegisterAccWrite}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Acc\+Write = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a236348fc5df344bed4a3e9069c6f494a}\label{namespacews2st_1_1dependency__detection_a236348fc5df344bed4a3e9069c6f494a}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Density\+Read@{Register\+Density\+Read}}
+\index{Register\+Density\+Read@{Register\+Density\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Density\+Read}{RegisterDensityRead}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Density\+Read = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a3ff293b1fc9e4271829c558587c2d1d4}\label{namespacews2st_1_1dependency__detection_a3ff293b1fc9e4271829c558587c2d1d4}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Density\+Write@{Register\+Density\+Write}}
+\index{Register\+Density\+Write@{Register\+Density\+Write}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Density\+Write}{RegisterDensityWrite}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Density\+Write = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a81a42e0cdbe0843eafa8fd4d5b94a498}\label{namespacews2st_1_1dependency__detection_a81a42e0cdbe0843eafa8fd4d5b94a498}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Mass\+Read@{Register\+Mass\+Read}}
+\index{Register\+Mass\+Read@{Register\+Mass\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Mass\+Read}{RegisterMassRead}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Mass\+Read = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aebfe4d8af9a8016c15adb62289ed4518}\label{namespacews2st_1_1dependency__detection_aebfe4d8af9a8016c15adb62289ed4518}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Mass\+Write@{Register\+Mass\+Write}}
+\index{Register\+Mass\+Write@{Register\+Mass\+Write}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Mass\+Write}{RegisterMassWrite}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Mass\+Write = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a4a262f1e91bcf841fc88097d8d1ca173}\label{namespacews2st_1_1dependency__detection_a4a262f1e91bcf841fc88097d8d1ca173}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Pos\+Read@{Register\+Pos\+Read}}
+\index{Register\+Pos\+Read@{Register\+Pos\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Pos\+Read}{RegisterPosRead}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Pos\+Read = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a549784855e6f59f96e544d779d0118cb}\label{namespacews2st_1_1dependency__detection_a549784855e6f59f96e544d779d0118cb}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Pos\+Write@{Register\+Pos\+Write}}
+\index{Register\+Pos\+Write@{Register\+Pos\+Write}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Pos\+Write}{RegisterPosWrite}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Pos\+Write = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a1046fa281e214668b09fd387ac2e34a1}\label{namespacews2st_1_1dependency__detection_a1046fa281e214668b09fd387ac2e34a1}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Smoothing\+Length\+Read@{Register\+Smoothing\+Length\+Read}}
+\index{Register\+Smoothing\+Length\+Read@{Register\+Smoothing\+Length\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Smoothing\+Length\+Read}{RegisterSmoothingLengthRead}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Smoothing\+Length\+Read = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a6b775eaf310a3fca0aa612461af98e5d}\label{namespacews2st_1_1dependency__detection_a6b775eaf310a3fca0aa612461af98e5d}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Smoothing\+Length\+Write@{Register\+Smoothing\+Length\+Write}}
+\index{Register\+Smoothing\+Length\+Write@{Register\+Smoothing\+Length\+Write}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Smoothing\+Length\+Write}{RegisterSmoothingLengthWrite}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Smoothing\+Length\+Write = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aed25baa7764a0238de47cd7472b75442}\label{namespacews2st_1_1dependency__detection_aed25baa7764a0238de47cd7472b75442}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Vel\+Read@{Register\+Vel\+Read}}
+\index{Register\+Vel\+Read@{Register\+Vel\+Read}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Vel\+Read}{RegisterVelRead}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Vel\+Read = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{Register\+Read\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a3ffb67860163115d27fe818c7507a0cd}\label{namespacews2st_1_1dependency__detection_a3ffb67860163115d27fe818c7507a0cd}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Register\+Vel\+Write@{Register\+Vel\+Write}}
+\index{Register\+Vel\+Write@{Register\+Vel\+Write}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Register\+Vel\+Write}{RegisterVelWrite}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::dependency\+\_\+detection\+::\+Register\+Vel\+Write = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{Register\+Write\+Property}}$<$\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_ab7b05dd1b14cdddcb47ffa1149c2f0d9}\label{namespacews2st_1_1dependency__detection_ab7b05dd1b14cdddcb47ffa1149c2f0d9}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Set\+Default\+Neighbour\+Search\+Kernel\+Matcher@{Set\+Default\+Neighbour\+Search\+Kernel\+Matcher}}
+\index{Set\+Default\+Neighbour\+Search\+Kernel\+Matcher@{Set\+Default\+Neighbour\+Search\+Kernel\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Set\+Default\+Neighbour\+Search\+Kernel\+Matcher}{SetDefaultNeighbourSearchKernelMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Set\+Default\+Neighbour\+Search\+Kernel\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+    hasAncestor(functionDecl(hasName(\textcolor{stringliteral}{"main"}))),
+    hasDescendant(
+        declRefExpr(
+            to(functionDecl(
+                hasName(\textcolor{stringliteral}{"wash::set\_default\_neighbor\_search"})
+            ))
+        )
+    )
+))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a345d52aca3e8d90256860c4159a402a3}\label{namespacews2st_1_1dependency__detection_a345d52aca3e8d90256860c4159a402a3}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Set\+Neighbour\+Search\+Kernel\+Matcher@{Set\+Neighbour\+Search\+Kernel\+Matcher}}
+\index{Set\+Neighbour\+Search\+Kernel\+Matcher@{Set\+Neighbour\+Search\+Kernel\+Matcher}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Set\+Neighbour\+Search\+Kernel\+Matcher}{SetNeighbourSearchKernelMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Set\+Neighbour\+Search\+Kernel\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+        hasAncestor(functionDecl(hasName(\textcolor{stringliteral}{"main"}))),
+        hasDescendant(
+            declRefExpr(
+                to(functionDecl(
+                    hasName(\textcolor{stringliteral}{"wash::set\_neighbor\_search\_kernel"})
+                ))
+            )
+        ),
+        
+        hasArgument(0, ignoringImplicit(unaryOperator(
+            hasOperatorName(\textcolor{stringliteral}{"&"}),
+            hasDescendant(
+                declRefExpr().bind(\textcolor{stringliteral}{"kernel"})
+            )
+        ).bind(\textcolor{stringliteral}{"kernelPtr"}) ))
+    ).bind(\textcolor{stringliteral}{"callExpr"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_aeaa222ced9f9c42eb5d582b4da3656a4}\label{namespacews2st_1_1dependency__detection_aeaa222ced9f9c42eb5d582b4da3656a4}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Smoothing\+Length\+Read\+In\+Function@{Smoothing\+Length\+Read\+In\+Function}}
+\index{Smoothing\+Length\+Read\+In\+Function@{Smoothing\+Length\+Read\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Smoothing\+Length\+Read\+In\+Function}{SmoothingLengthReadInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Smoothing\+Length\+Read\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a9fd262ba400c93f1801d2d57b50e0d9d}\label{namespacews2st_1_1dependency__detection_a9fd262ba400c93f1801d2d57b50e0d9d}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Smoothing\+Length\+Write\+In\+Function@{Smoothing\+Length\+Write\+In\+Function}}
+\index{Smoothing\+Length\+Write\+In\+Function@{Smoothing\+Length\+Write\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Smoothing\+Length\+Write\+In\+Function}{SmoothingLengthWriteInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Smoothing\+Length\+Write\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_afd7c33aadfb9dad623a578243d3b1e4d}\label{namespacews2st_1_1dependency__detection_afd7c33aadfb9dad623a578243d3b1e4d}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Vel\+Read\+In\+Function@{Vel\+Read\+In\+Function}}
+\index{Vel\+Read\+In\+Function@{Vel\+Read\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Vel\+Read\+In\+Function}{VelReadInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Vel\+Read\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{Read\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}))}
+
+\mbox{\Hypertarget{namespacews2st_1_1dependency__detection_a13ceaf43f331b3380b0cfa95693df70c}\label{namespacews2st_1_1dependency__detection_a13ceaf43f331b3380b0cfa95693df70c}} 
+\index{ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}!Vel\+Write\+In\+Function@{Vel\+Write\+In\+Function}}
+\index{Vel\+Write\+In\+Function@{Vel\+Write\+In\+Function}!ws2st\+::dependency\+\_\+detection@{ws2st\+::dependency\+\_\+detection}}
+\subsubsection{\texorpdfstring{Vel\+Write\+In\+Function}{VelWriteInFunction}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::dependency\+\_\+detection\+::\+Vel\+Write\+In\+Function = \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{Write\+Property\+Matcher}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{get\+Property\+Name}}(\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}))}
+

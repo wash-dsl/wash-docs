@@ -1,0 +1,59 @@
+\hypertarget{namespacews2st_1_1refactor}{}\section{ws2st\+:\+:refactor Namespace Reference}
+\label{namespacews2st_1_1refactor}\index{ws2st\+::refactor@{ws2st\+::refactor}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1config}{config}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1cornerstone}{cornerstone}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces}{forces}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1meta}{meta}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1variables}{variables}}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1RefactoringToolConfiguration}{Refactoring\+Tool\+Configuration}}
+\begin{DoxyCompactList}\small\item\em We configure the whole tool by a series of refactoring passes. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1RefactorPass}{Refactor\+Pass}}
+\begin{DoxyCompactList}\small\item\em A pass of a refactoring tool over the source files running a series of actions defined. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1WashComputationAction}{Wash\+Computation\+Action}}
+\begin{DoxyCompactList}\small\item\em Define a function to be run at the end of the refactor pass. Computation Actions will be run in the order they\textquotesingle{}re defined, but will be run after all refactoring actions in the pass have completed. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1WashMatchCallback}{Wash\+Match\+Callback}}
+\begin{DoxyCompactList}\small\item\em A specialised refactoring callback type for Wash using custom function pointers instead of subclassing tooling\+::\+Refactoring\+Callback and implementing ...\+::run a million times. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classws2st_1_1refactor_1_1WashRefactoringAction}{Wash\+Refactoring\+Action}}
+\begin{DoxyCompactList}\small\item\em Developer defined registration of a refactoring action -\/ a ($<$\+T$>$Matcher, Callback\+Fn) pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1refactor_ad2aa623558e939afddc247c8f8192c26}{prepare\+Arguments}} (const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts, const std\+::vector$<$ std\+::string $>$ \&files)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_a06d0c091199ff73aac3a1131cc04842b}{run\+Refactoring}} (const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\begin{DoxyCompactList}\small\item\em Runs the wash refactoring application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_ad2aa623558e939afddc247c8f8192c26}\label{namespacews2st_1_1refactor_ad2aa623558e939afddc247c8f8192c26}} 
+\index{ws2st\+::refactor@{ws2st\+::refactor}!prepare\+Arguments@{prepare\+Arguments}}
+\index{prepare\+Arguments@{prepare\+Arguments}!ws2st\+::refactor@{ws2st\+::refactor}}
+\subsubsection{\texorpdfstring{prepare\+Arguments()}{prepareArguments()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ws2st\+::refactor\+::prepare\+Arguments (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&}]{opts,  }\item[{const std\+::vector$<$ std\+::string $>$ \&}]{files }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_a06d0c091199ff73aac3a1131cc04842b}\label{namespacews2st_1_1refactor_a06d0c091199ff73aac3a1131cc04842b}} 
+\index{ws2st\+::refactor@{ws2st\+::refactor}!run\+Refactoring@{run\+Refactoring}}
+\index{run\+Refactoring@{run\+Refactoring}!ws2st\+::refactor@{ws2st\+::refactor}}
+\subsubsection{\texorpdfstring{run\+Refactoring()}{runRefactoring()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::run\+Refactoring (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&}]{opts }\end{DoxyParamCaption})}
+
+
+
+Runs the wash refactoring application. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em opts} & Application options \\
+\hline
+\end{DoxyParams}

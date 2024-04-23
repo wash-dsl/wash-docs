@@ -1,0 +1,66 @@
+\hypertarget{vector_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/include/vector.hpp File Reference}
+\label{vector_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/include/vector.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/include/vector.\+hpp}}
+{\ttfamily \#include $<$array$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$initializer\+\_\+list$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec$<$ T, dim $>$}}
+\begin{DoxyCompactList}\small\item\em Custom vector class for Wa\+SH simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacewash}{wash}}
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vector_8hpp_ac25189db92959bff3c6c2adf4c34b50a}{D\+IM}}~2
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacewash_ab2cbbc37941b733095c9225b49b4cad9}{wash\+::\+Simulation\+VecT}} = Vec$<$ double, \mbox{\hyperlink{wser_8hpp_ac25189db92959bff3c6c2adf4c34b50a}{D\+IM}} $>$
+\item 
+typedef Vec$<$ double, 2 $>$ \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}}
+\item 
+typedef Vec$<$ double, 3 $>$ \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T , int dim$>$ }\\std\+::ostream \& \mbox{\hyperlink{vector_8hpp_a8bced4432b0e68147f4c553a6048403f}{operator$<$$<$}} (std\+::ostream \&s, const \mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec}}$<$ T, dim $>$ \&vec)
+\item 
+{\footnotesize template$<$typename T , int dim$>$ }\\\mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec}}$<$ T, dim $>$ \mbox{\hyperlink{vector_8hpp_a198b42cef6a2df308a7e17e832b2003c}{operator$\ast$}} (const \mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec}}$<$ T, dim $>$ vec, const double d)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{vector_8hpp_ac25189db92959bff3c6c2adf4c34b50a}\label{vector_8hpp_ac25189db92959bff3c6c2adf4c34b50a}} 
+\index{vector.\+hpp@{vector.\+hpp}!D\+IM@{D\+IM}}
+\index{D\+IM@{D\+IM}!vector.\+hpp@{vector.\+hpp}}
+\subsubsection{\texorpdfstring{D\+IM}{DIM}}
+{\footnotesize\ttfamily \#define D\+IM~2}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{vector_8hpp_a198b42cef6a2df308a7e17e832b2003c}\label{vector_8hpp_a198b42cef6a2df308a7e17e832b2003c}} 
+\index{vector.\+hpp@{vector.\+hpp}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!vector.\+hpp@{vector.\+hpp}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}}
+{\footnotesize\ttfamily template$<$typename T , int dim$>$ \\
+\mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec}}$<$T, dim$>$ operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec}}$<$ T, dim $>$}]{vec,  }\item[{const double}]{d }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{vector_8hpp_a8bced4432b0e68147f4c553a6048403f}\label{vector_8hpp_a8bced4432b0e68147f4c553a6048403f}} 
+\index{vector.\+hpp@{vector.\+hpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!vector.\+hpp@{vector.\+hpp}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$typename T , int dim$>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{s,  }\item[{const \mbox{\hyperlink{classwash_1_1Vec}{wash\+::\+Vec}}$<$ T, dim $>$ \&}]{vec }\end{DoxyParamCaption})}
+

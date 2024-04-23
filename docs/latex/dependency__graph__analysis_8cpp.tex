@@ -1,0 +1,45 @@
+\hypertarget{dependency__graph__analysis_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/dependency\+\_\+graph\+\_\+analysis.cpp File Reference}
+\label{dependency__graph__analysis_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/dependency\+\_\+graph\+\_\+analysis.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/dependency\+\_\+graph\+\_\+analysis.\+cpp}}
+{\ttfamily \#include \char`\"{}kernel\+\_\+dependency\+\_\+detector.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1dependency__detection}{ws2st\+::dependency\+\_\+detection}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9bcbdab5f532436efdc9e10c42d24eaa}{ws2st\+::dependency\+\_\+detection\+::get\+\_\+force\+\_\+kernel\+\_\+read\+\_\+variables}} ()
+\begin{DoxyCompactList}\small\item\em Get all variables that are read by force kernels. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a46a6c80d29092ee17d43942908165ebc}{ws2st\+::dependency\+\_\+detection\+::get\+\_\+domain\+\_\+sync\+\_\+invalidated\+\_\+halos}} ()
+\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ad1cd2b8bb6701a935a701247e3a9513a}{ws2st\+::dependency\+\_\+detection\+::compute\+\_\+domain\+\_\+syncs}} ()
+\begin{DoxyCompactList}\small\item\em Compute whether or not we should run a domain sync after each kernel. \end{DoxyCompactList}\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a28f5ee92a11488823ff4d4400e5aa9db}{ws2st\+::dependency\+\_\+detection\+::compute\+\_\+domain\+\_\+syncs\+\_\+clever}} ()
+\begin{DoxyCompactList}\small\item\em Compute whether or not we should run a domain sync after each kernel, as per Scott\textquotesingle{}s algorithm in the report. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a2b9570e91f83523fedfd436f165b8295}{ws2st\+::dependency\+\_\+detection\+::compute\+\_\+halo\+\_\+exchanges}} ()
+\begin{DoxyCompactList}\small\item\em Compute which variables need to be exchanged after the execution of each kernel. exchanges\mbox{[}i\mbox{]} contains v if v needs to be exchanged after kernel i executes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7e279bcb7d4659203bc4055d7c783c1}{ws2st\+::dependency\+\_\+detection\+::\+Handle\+Domain\+Sync}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\begin{DoxyCompactList}\small\item\em Rewriter callback for inserting domain syncs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a2fb1055539651e10f0186e060fbf74ea}{ws2st\+::dependency\+\_\+detection\+::\+Handle\+Halo\+Exchange}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\begin{DoxyCompactList}\small\item\em Rewriter callback for inserting domain syncs. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a3d9867901e8b37524b810b5d95a6cc25}{ws2st\+::dependency\+\_\+detection\+::\+Run\+Halo\+Exchange}} (std\+::vector$<$ std\+::string $>$ exchanges)
+\begin{DoxyCompactList}\small\item\em Generate code for a single halo exchange on a list of variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a8b77ddddfc773081dd720230552c93c2}{ws2st\+::dependency\+\_\+detection\+::\+Unroll\+Kernel\+Dependency\+Loop}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\begin{DoxyCompactList}\small\item\em Rewriter callback for unrolling the kernel loop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ac413a69373ef6abece419cac50b0a1bc}{ws2st\+::dependency\+\_\+detection\+::\+Insert\+Initial\+Halo\+Exchange}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae64f771d376afa52054c5d9563d242f2}{ws2st\+::dependency\+\_\+detection\+::\+Insert\+Domain\+Syncs\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+domain\+\_\+syncs class. \end{DoxyCompactList}\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa3946ed2a34fd136544f447954b530e1}{ws2st\+::dependency\+\_\+detection\+::\+Insert\+Halo\+Exchange\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+halo\+\_\+exchange class. \end{DoxyCompactList}\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a6d11e3426c8b2c1d088996d1f2c847f0}{ws2st\+::dependency\+\_\+detection\+::\+Loop\+Rewrite\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+wash\+\_\+loop\+\_\+rewriter class. \end{DoxyCompactList}\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a4f1b7b6a99e43f2c522554396c0b3a09}{ws2st\+::dependency\+\_\+detection\+::\+Initial\+Halo\+Exchange\+Matcher}}
+\begin{DoxyCompactList}\small\item\em A\+ST matcher for the empty \+\_\+wash\+\_\+initial\+\_\+halo\+\_\+exchange class. \end{DoxyCompactList}\end{DoxyCompactItemize}

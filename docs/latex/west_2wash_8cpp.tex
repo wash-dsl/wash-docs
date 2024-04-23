@@ -1,0 +1,78 @@
+\hypertarget{west_2wash_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/impl/west/wash.cpp File Reference}
+\label{west_2wash_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/impl/west/wash.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/impl/west/wash.\+cpp}}
+{\ttfamily \#include \char`\"{}west.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacewash}{wash}}
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Consider having this as a private header in W\+I\+S\+B/\+W\+S2\+S\+T/etc implementations. \end{DoxyCompactList}\item 
+ \mbox{\hyperlink{namespacewash_1_1io}{wash\+::io}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacewash_a24bef1df5fe5c24cd518f12885a51055}{wash\+::set\+\_\+bounding\+\_\+box}} (const double min, const double max, const bool periodic)
+\begin{DoxyCompactList}\small\item\em Set the bounding box dimensions and periodicity type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a70aeb215881f159a7efb6da02e5e452b}{wash\+::set\+\_\+bounding\+\_\+box}} (const double xmin, const double xmax, const double ymin, const double ymax, const double zmin, const double zmax, const bool x\+\_\+periodic, const bool y\+\_\+periodic, const bool z\+\_\+periodic)
+\begin{DoxyCompactList}\small\item\em Set the bounding box dimensions and periodicity type in 3 dimensions. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{namespacewash_ab59a4fff607c38a8cded277413cdafec}{wash\+::get\+\_\+max\+\_\+iterations}} ()
+\begin{DoxyCompactList}\small\item\em Get the max iterations of the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_aeb7b287406244c8ab192d0524ad4da5b}{wash\+::set\+\_\+max\+\_\+iterations}} (const uint64\+\_\+t iterations)
+\begin{DoxyCompactList}\small\item\em Set the max number of iterations. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a4aa9c050821f26f11d51e72a861a1102}{wash\+::add\+\_\+init\+\_\+void\+\_\+kernel}} (const Void\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add an initialization void kernel to the simulation -\/ run once. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a2bed8ccfb6599a8edd0eb88037d8c8af}{wash\+::add\+\_\+init\+\_\+update\+\_\+kernel}} (const Update\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add an initialisation update kernel (will be executed for each particle) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a2ffa21a9e32d3ca6ce87def3e7db4837}{wash\+::add\+\_\+force\+\_\+kernel}} (const Force\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add a force kernel to the simulation which will loop over the particles and their neighbourhood. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_abc27c958fb1156da77a1346c3559abc1}{wash\+::add\+\_\+update\+\_\+kernel}} (const Update\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add an update kernel to the simulation which will loop over the particles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a730e8352e9361e6ef88fd4b4c21e7f8c}{wash\+::add\+\_\+reduction\+\_\+kernel}} (const Map\+FuncT map\+\_\+func, const Reduce\+Op reduce\+\_\+op, double $\ast$variable)
+\begin{DoxyCompactList}\small\item\em Add a reduction kernel to the simulation which will loop over the particles. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_ab49fcc701f7afced2186465ba5cce978}{wash\+::add\+\_\+void\+\_\+kernel}} (const Void\+FuncT func)
+\begin{DoxyCompactList}\small\item\em Add a void kernel to the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_abc2e79908c969eabb61a865c8f279d02}{wash\+::set\+\_\+default\+\_\+neighbor\+\_\+search}} (const unsigned max\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Set the neighborhood search to use the provided default which uses the smoothing length of the particle and returns at most max\+\_\+count neighbours. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a49d266f2bd4daa1a1de50dab5a4250df}{wash\+::set\+\_\+neighbor\+\_\+search\+\_\+kernel}} (const Neighbors\+FuncT func, const unsigned max\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Sets the neighbourhood search to use a custom function. \end{DoxyCompactList}\item 
+std\+::vector$<$ Particle $>$ \& \mbox{\hyperlink{namespacewash_a79e2901674acaec9da9603ba4fdb12bf}{wash\+::get\+\_\+particles}} ()
+\item 
+void \mbox{\hyperlink{namespacewash_aaa0505290c83069eeb4f67744d4b8f1e}{wash\+::reset\+\_\+neighbour\+\_\+data}} ()
+\item 
+void \mbox{\hyperlink{namespacewash_a0bc7b17c64c2b0f7bdd6c7c2d30f2398}{wash\+::initialise\+\_\+particles}} (size\+\_\+t particle\+\_\+count)
+\item 
+void \mbox{\hyperlink{namespacewash_a4c8a9913a535b341da9e72826916544b}{wash\+::start}} ()
+\begin{DoxyCompactList}\small\item\em Get the vector of all particles in the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_aaa75af8f4a35ef4b222eace2714ee9f8}{wash\+::set\+\_\+io}} (const std\+::string format, size\+\_\+t output\+\_\+nth, bool timings=true)
+\begin{DoxyCompactList}\small\item\em Set the IO parameters used for the simulation. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a4ddbab848bef96e0fc69bf8e280d4775}{wash\+::set\+\_\+simulation\+\_\+name}} (const std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the name of the simulation, used in IO. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_ad6de17b9a27f58f6245a68ede303e84b}{wash\+::set\+\_\+output\+\_\+file\+\_\+name}} (const std\+::string name)
+\begin{DoxyCompactList}\small\item\em Set the output file name of the simulation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacewash_aecf1c6d565098a830dfeb491a4638093}{wash\+::eucdist}} (const Particle \&p, const Particle \&q)
+\begin{DoxyCompactList}\small\item\em T\+O\+DO\+: Move eucdist calculation to the paticle header? \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacewash_a20a6940ce5a881482fe472ed704f177e}{wash\+::set\+\_\+particle\+\_\+count}} (const size\+\_\+t count)
+\begin{DoxyCompactList}\small\item\em Set the number of particles to be used in the simulation. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{namespacewash_a3b281fefe2419e7bc1450029b0324ab8}{wash\+::get\+\_\+particle\+\_\+count}} ()
+\begin{DoxyCompactList}\small\item\em Get the number of particles used in the simulation. \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{namespacewash_1_1io_a8976ca6dfe3e6332440f2627928db7f9}{wash\+::io\+::get\+\_\+simulation\+\_\+name}} ()
+\item 
+const std\+::string \mbox{\hyperlink{namespacewash_1_1io_af034a23a15be4666c01bc18c86a45e3e}{wash\+::io\+::get\+\_\+output\+\_\+name}} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespacewash_a7845fa82d1b536c12c2d9495ede361ca}{wash\+::particle\+\_\+count}}
+\item 
+size\+\_\+t \mbox{\hyperlink{namespacewash_aa9f79200cc65dc6e48b4ef9af5d0c389}{wash\+::out\+\_\+nth}}
+\item 
+bool \mbox{\hyperlink{namespacewash_a6e885743f18d66ca373fb6c4c0146d1d}{wash\+::out\+\_\+timing}}
+\item 
+Neighbors\+FuncT \mbox{\hyperlink{namespacewash_a0d969973e893cc2316bad2597bf0ad17}{wash\+::neighbours\+\_\+kernel}}
+\item 
+unsigned \mbox{\hyperlink{namespacewash_a17d27449eff38aaca1e4206070bbb868}{wash\+::max\+\_\+neighbours}}
+\item 
+std\+::vector$<$ unsigned $>$ \mbox{\hyperlink{namespacewash_a15b300d4e8a12c38c1e54650db4476f1}{wash\+::neighbour\+\_\+counts}}
+\item 
+std\+::vector$<$ std\+::vector$<$ Particle $>$ $>$ \mbox{\hyperlink{namespacewash_aa6580757775fdbcb82b9a6b6f75332a1}{wash\+::neighbour\+\_\+data}}
+\end{DoxyCompactItemize}

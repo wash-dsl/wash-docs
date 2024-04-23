@@ -1,0 +1,51 @@
+\hypertarget{kernel__dependency__detector_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/kernel\+\_\+dependency\+\_\+detector.hpp File Reference}
+\label{kernel__dependency__detector_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/kernel\+\_\+dependency\+\_\+detector.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/kernel\+\_\+dependency\+\_\+detector.\+hpp}}
+{\ttfamily \#include \char`\"{}../common.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../variables/variables.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1dependency__detection}{ws2st\+::dependency\+\_\+detection}}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List}} \{ \newline
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7afea4e0fe069dc6f6171dd6044abb2365}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List\+::\+Pos}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aec930ca2dec8aa0b05a106add08d538e}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List\+::\+Vel}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a2e02ea7283618d93898c1342e8361dfa}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List\+::\+Acc}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a7e6d11dd9dbeef53c1cb3cb896bce476}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List\+::\+Density}}, 
+\newline
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7aff2864d6f652ee0ac254814f1ae4f4a8}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List\+::\+Mass}}, 
+\mbox{\hyperlink{namespacews2st_1_1dependency__detection_abcddd986f080a9e5c494edfad3c3faf7a209c4a2539e3220aadbf61e605f9bfdc}{ws2st\+::dependency\+\_\+detection\+::\+Property\+List\+::\+Smoothing\+Length}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a4db008944a7455244b81941a7b0efc2b}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae32a6dbe890421b635bdb1a91728a7fb}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Init\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a248d3b13235071779b21013154238667}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Neighbour\+Search\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_af3f0299c83e5f9608d8086fe50abf81c}{ws2st\+::dependency\+\_\+detection\+::\+Default\+Neighbour\+Search\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a38357d8dfb24ccbc3e38b73868bcdaec}{ws2st\+::dependency\+\_\+detection\+::\+Handle\+Function\+Call\+In\+Function}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ac7eb92a60458dc08ec4dc7267637cf78}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Assignment}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9c04a597c5b86be1c0b3c98b61ef3f8d}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Read}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+const std\+::string \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{ws2st\+::dependency\+\_\+detection\+::get\+Property\+Name}} (Property\+List property)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{ws2st\+::dependency\+\_\+detection\+::\+Read\+Property\+Matcher}} (const std\+::string property\+Name)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{ws2st\+::dependency\+\_\+detection\+::\+Write\+Property\+Matcher}} (const std\+::string property\+Name)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Read\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Write\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\end{DoxyCompactItemize}

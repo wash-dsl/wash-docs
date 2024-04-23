@@ -1,0 +1,55 @@
+\hypertarget{neighbors_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/neighbors.cpp File Reference}
+\label{neighbors_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/neighbors.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/neighbors.\+cpp}}
+{\ttfamily \#include \char`\"{}neighbors.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{neighbors_8cpp_a4e88b081eed9ade5b78d574c14f4c798}{update\+\_\+h}} (const double nc, const double h)
+\item 
+void \mbox{\hyperlink{neighbors_8cpp_a73b403770d19a21ff09226ac10974b87}{compute\+\_\+smoothing\+\_\+length\+\_\+neighbors}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&p)
+\item 
+void \mbox{\hyperlink{neighbors_8cpp_af1f5147d7243668b8702ef487e5b7bad}{update\+\_\+smoothing\+\_\+length}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&p)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr size\+\_\+t \mbox{\hyperlink{neighbors_8cpp_aee5b49e937a3b6f2f9181c6a4775caad}{ngmin}} = \mbox{\hyperlink{consts_8hpp_aa205531387df27b26dfbe155bdb58fe8}{ng0}} / 4
+\item 
+constexpr size\+\_\+t \mbox{\hyperlink{neighbors_8cpp_af9a6a2c2cebbf1413aaba143d4bde55e}{max\+\_\+iter}} = 10
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{neighbors_8cpp_a73b403770d19a21ff09226ac10974b87}\label{neighbors_8cpp_a73b403770d19a21ff09226ac10974b87}} 
+\index{neighbors.\+cpp@{neighbors.\+cpp}!compute\+\_\+smoothing\+\_\+length\+\_\+neighbors@{compute\+\_\+smoothing\+\_\+length\+\_\+neighbors}}
+\index{compute\+\_\+smoothing\+\_\+length\+\_\+neighbors@{compute\+\_\+smoothing\+\_\+length\+\_\+neighbors}!neighbors.\+cpp@{neighbors.\+cpp}}
+\subsubsection{\texorpdfstring{compute\+\_\+smoothing\+\_\+length\+\_\+neighbors()}{compute\_smoothing\_length\_neighbors()}}
+{\footnotesize\ttfamily void compute\+\_\+smoothing\+\_\+length\+\_\+neighbors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{neighbors_8cpp_a4e88b081eed9ade5b78d574c14f4c798}\label{neighbors_8cpp_a4e88b081eed9ade5b78d574c14f4c798}} 
+\index{neighbors.\+cpp@{neighbors.\+cpp}!update\+\_\+h@{update\+\_\+h}}
+\index{update\+\_\+h@{update\+\_\+h}!neighbors.\+cpp@{neighbors.\+cpp}}
+\subsubsection{\texorpdfstring{update\+\_\+h()}{update\_h()}}
+{\footnotesize\ttfamily double update\+\_\+h (\begin{DoxyParamCaption}\item[{const double}]{nc,  }\item[{const double}]{h }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{neighbors_8cpp_af1f5147d7243668b8702ef487e5b7bad}\label{neighbors_8cpp_af1f5147d7243668b8702ef487e5b7bad}} 
+\index{neighbors.\+cpp@{neighbors.\+cpp}!update\+\_\+smoothing\+\_\+length@{update\+\_\+smoothing\+\_\+length}}
+\index{update\+\_\+smoothing\+\_\+length@{update\+\_\+smoothing\+\_\+length}!neighbors.\+cpp@{neighbors.\+cpp}}
+\subsubsection{\texorpdfstring{update\+\_\+smoothing\+\_\+length()}{update\_smoothing\_length()}}
+{\footnotesize\ttfamily void update\+\_\+smoothing\+\_\+length (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{p }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{neighbors_8cpp_af9a6a2c2cebbf1413aaba143d4bde55e}\label{neighbors_8cpp_af9a6a2c2cebbf1413aaba143d4bde55e}} 
+\index{neighbors.\+cpp@{neighbors.\+cpp}!max\+\_\+iter@{max\+\_\+iter}}
+\index{max\+\_\+iter@{max\+\_\+iter}!neighbors.\+cpp@{neighbors.\+cpp}}
+\subsubsection{\texorpdfstring{max\+\_\+iter}{max\_iter}}
+{\footnotesize\ttfamily constexpr size\+\_\+t max\+\_\+iter = 10}
+
+\mbox{\Hypertarget{neighbors_8cpp_aee5b49e937a3b6f2f9181c6a4775caad}\label{neighbors_8cpp_aee5b49e937a3b6f2f9181c6a4775caad}} 
+\index{neighbors.\+cpp@{neighbors.\+cpp}!ngmin@{ngmin}}
+\index{ngmin@{ngmin}!neighbors.\+cpp@{neighbors.\+cpp}}
+\subsubsection{\texorpdfstring{ngmin}{ngmin}}
+{\footnotesize\ttfamily constexpr size\+\_\+t ngmin = \mbox{\hyperlink{consts_8hpp_aa205531387df27b26dfbe155bdb58fe8}{ng0}} / 4}
+

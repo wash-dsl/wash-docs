@@ -1,0 +1,636 @@
+\hypertarget{namespacews2st_1_1refactor_1_1forces}{}\section{ws2st\+:\+:refactor\+:\+:forces Namespace Reference}
+\label{namespacews2st_1_1refactor_1_1forces}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028}{Property\+List}} \{ \newline
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028afea4e0fe069dc6f6171dd6044abb2365}{Property\+List\+::\+Pos}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aec930ca2dec8aa0b05a106add08d538e}{Property\+List\+::\+Vel}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a2e02ea7283618d93898c1342e8361dfa}{Property\+List\+::\+Acc}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a7e6d11dd9dbeef53c1cb3cb896bce476}{Property\+List\+::\+Density}}, 
+\newline
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aff2864d6f652ee0ac254814f1ae4f4a8}{Property\+List\+::\+Mass}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a209c4a2539e3220aadbf61e605f9bfdc}{Property\+List\+::\+Smoothing\+Length}}, 
+\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a490aa6e856ccf208a054389e47ce0d06}{Property\+List\+::\+Id}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a664ea291bdcb81f90151e9ce2a8ed12d}{Handle\+Insert\+Forces\+Definition}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0854faeb74d0977f0a889bef65ecc70b}{Handle\+Insert\+Forces\+Definition\+With\+Cornerstone}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a9e5d0fb548d813962dbb3647969f4351}{get\+Force\+Declaration\+Source}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ac7eb52bdfe754cdbdc6328e288668663}{get\+Force\+Initialisation\+Source}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ae81768a1d37b813bb81da88227ebe095}{get\+Force\+Declaration\+Source\+With\+Cornerstone}} ()
+\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ac9a46a9f1508ae2a2ecad5f20212642d}{get\+Force\+Initialisation\+Source\+With\+Cornerstone}} ()
+\item 
+const std\+::string \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0f39ed859d2d9c4b59894fddd60b1f12}{property\+Name}} (\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028}{Property\+List}} property)
+\item 
+{\footnotesize template$<$Force\+Type type$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}{Handle\+Register\+Forces}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Force\+Type type$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0b3b9fb2cd46a777f3b9ce95c9a45376}{Handle\+Get\+Force}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Force\+Type type$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a61a15494c227c4aa117339e0d33a05de}{Handle\+Set\+Force}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Force\+Type type, Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a60299eb940e8c3ed4898b7ef21f0ddce}{Handle\+Get\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5cb2d362d93b5e8229522853274dd8e1}{Handle\+Get\+Property\+With\+Cornerstone}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Force\+Type type, Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a7fb2a369d9d5b0650f1eaecf057051d9}{Handle\+Set\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_abf74b00f35cde6816132dbefb3210684}{Handle\+Set\+Property\+With\+Cornerstone}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afa3a7a5edfc5f3c897623b54beec66f3}{Property\+Get\+Matcher}} (const char $\ast$\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0f39ed859d2d9c4b59894fddd60b1f12}{property\+Name}})
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a9df1170dc128f151ed5b5fedabbd15d1}{Property\+Set\+Matcher}} (const char $\ast$\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a0f39ed859d2d9c4b59894fddd60b1f12}{property\+Name}})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Declaration\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ae2be9616466b3c2ef371a455b08dc2bc}{Insert\+Forces\+Definition\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a7dfd24ab66dba074524ca3dfe669020b}{Add\+Force\+Vector\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aaedf098bb1dc4e4f48b9b71383366033}{Add\+Force\+Scalar\+Matcher}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a22d1fdacd9a2da1b94796e4dffd83cd4}{Handle\+Register\+Forces\+Scalar}} = \&\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}{Handle\+Register\+Forces}}$<$\mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a8f3d9a4b6a7b7f2c7afa61ca113d0db9}{Force\+Type\+::\+S\+C\+A\+L\+AR}}$>$
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a4f8af8cb0d6a0af0f29e1d887486c612}{Handle\+Register\+Forces\+Vector}} = \&\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}{Handle\+Register\+Forces}}$<$\mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a87752381b583740610f1dfeb07fdad7e}{Force\+Type\+::\+V\+E\+C\+T\+OR}}$>$
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a8197f8ce5cb41ce80b4ef4109e5c251e}{Get\+Force\+Scalar\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a669322efcc73b348dc9111af688a97a3}{Get\+Force\+Vector\+Matcher}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a1170c01783843b6d549e6a5cd93ec856}{Handle\+Get\+Force\+Scalar}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ae4344f795df36c8dcff1ac7690147f7d}{Handle\+Get\+Force\+Vector}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a8d3f58b44208a7d72280ec2da12a1e1c}{Handle\+Get\+Force\+Vector\+With\+Cornerstone}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a9c5d51c1590ca8676aef6334240f1905}{Set\+Force\+Scalar\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5448f17e7447d1916e92a643729467cb}{Set\+Force\+Vector\+Matcher}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a63b303b615f68b738bd347582f3c5819}{Handle\+Set\+Force\+Scalar}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afcc24d121d0d46682e7e62f46f120843}{Handle\+Set\+Force\+Vector}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a70e17f351ce695564866b57533b391bd}{Handle\+Set\+Force\+Vector\+With\+Cornerstone}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aaaeb388856aaaa572c942dc283398796}{Get\+Pos\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ac04dbb8d118a9abf10a6caddf80d27db}{Get\+Vel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a2ba89815da3ec4b90de9e0eae901a156}{Get\+Acc\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a121159b5b664cf08979f380bfee9315f}{Get\+Density\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a322ae768bfaca37c335327edf032bdd1}{Get\+Mass\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ab0f4c93b9571ec62da5ebd98091d7b5f}{Get\+Smoothing\+Length\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ab20fa5472780bed0df716c1d4acb3f99}{Get\+Id\+Matcher}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aec5227182499f251808fad379e171dc9}{Handle\+Get\+Pos}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a70b145611ab770c410f13a2d5e2ed274}{Handle\+Get\+Vel}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa273eb05dee50c3e1666727007ab6d0c}{Handle\+Get\+Acc}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a1d3d1487f9d3f37f0a4e865c5e345911}{Handle\+Get\+Pos\+With\+Cornerstone}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a09be37fd0486dbc72f2aa46329e9cd0f}{Handle\+Get\+Vel\+With\+Cornerstone}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a2b2d25e98ff8a890d84c0e2b397a5756}{Handle\+Get\+Acc\+With\+Cornerstone}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a1f84572017145f028dbd010d0c0f95ed}{Handle\+Get\+Density}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a2f791e3898c17e8b4e3034663949a656}{Handle\+Get\+Mass}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a6971fd7441dad1a1d4dd1ba8fd7b29f5}{Handle\+Get\+Smoothing\+Length}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ad782ea3f7d021d27bc5e65b8170c445b}{Handle\+Get\+Id}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a505fd1d7688a82383f89f9fc829a1c22}{Set\+Pos\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ae4f5b720f29011583bcc21d18fad0853}{Set\+Vel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5a46fef8e676edadd79ef4ff2ca16956}{Set\+Acc\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afa5b98b9546988398a87b6437fd18f0e}{Set\+Density\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a448bc6dee79dc678d66ed32cda898bee}{Set\+Mass\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_afeff1cc5170c1646c79cc15253654fc8}{Set\+Smoothing\+Length\+Matcher}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a98d52c6123f3e0afe59a2e20e1071433}{Handle\+Set\+Pos}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_adc3822625b91b4094517de19c8a0ee2c}{Handle\+Set\+Vel}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aac8387c5a35d43be7a798e5b8cc9890b}{Handle\+Set\+Acc}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a7bf8fc16b8a95fb4b226d09b0db6755a}{Handle\+Set\+Pos\+With\+Cornerstone}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_ab48513ad240b7e4bc56c0d60f6c55faa}{Handle\+Set\+Vel\+With\+Cornerstone}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5084019f947ff58607868cc352b898e0}{Handle\+Set\+Acc\+With\+Cornerstone}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a077b7e7f20c9fe7915643e0eeab9669c}{Handle\+Set\+Density}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af54b981d6a8b8492f6182661addf9144}{Handle\+Set\+Mass}}
+\item 
+\mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a5a98d16b73d023d22729401f6233dccd}{Handle\+Set\+Smoothing\+Length}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a72e48f86201c44aef10b6dab331928fa}{scalar\+\_\+force\+\_\+list}} = \{\}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aeca6bb9c0c85026cbbc964cc3a6c237b}{vector\+\_\+force\+\_\+list}} = \{\}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, Full\+Source\+Loc $>$ \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_a917d202a64bef4322ddadba831b71aa6}{force\+\_\+meta}} = \{\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Property\+List@{Property\+List}}
+\index{Property\+List@{Property\+List}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Property\+List}{PropertyList}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028}{ws2st\+::refactor\+::forces\+::\+Property\+List}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pos@{Pos}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Pos@{Pos}}}\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028afea4e0fe069dc6f6171dd6044abb2365}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028afea4e0fe069dc6f6171dd6044abb2365}} 
+Pos&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Vel@{Vel}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Vel@{Vel}}}\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aec930ca2dec8aa0b05a106add08d538e}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aec930ca2dec8aa0b05a106add08d538e}} 
+Vel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Acc@{Acc}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Acc@{Acc}}}\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a2e02ea7283618d93898c1342e8361dfa}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a2e02ea7283618d93898c1342e8361dfa}} 
+Acc&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Density@{Density}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Density@{Density}}}\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a7e6d11dd9dbeef53c1cb3cb896bce476}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a7e6d11dd9dbeef53c1cb3cb896bce476}} 
+Density&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Mass@{Mass}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Mass@{Mass}}}\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aff2864d6f652ee0ac254814f1ae4f4a8}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028aff2864d6f652ee0ac254814f1ae4f4a8}} 
+Mass&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Smoothing\+Length@{Smoothing\+Length}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Smoothing\+Length@{Smoothing\+Length}}}\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a209c4a2539e3220aadbf61e605f9bfdc}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a209c4a2539e3220aadbf61e605f9bfdc}} 
+Smoothing\+Length&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Id@{Id}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Id@{Id}}}\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a490aa6e856ccf208a054389e47ce0d06}\label{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028a490aa6e856ccf208a054389e47ce0d06}} 
+Id&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a9e5d0fb548d813962dbb3647969f4351}\label{namespacews2st_1_1refactor_1_1forces_a9e5d0fb548d813962dbb3647969f4351}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!get\+Force\+Declaration\+Source@{get\+Force\+Declaration\+Source}}
+\index{get\+Force\+Declaration\+Source@{get\+Force\+Declaration\+Source}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{get\+Force\+Declaration\+Source()}{getForceDeclarationSource()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::refactor\+::forces\+::get\+Force\+Declaration\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ae81768a1d37b813bb81da88227ebe095}\label{namespacews2st_1_1refactor_1_1forces_ae81768a1d37b813bb81da88227ebe095}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!get\+Force\+Declaration\+Source\+With\+Cornerstone@{get\+Force\+Declaration\+Source\+With\+Cornerstone}}
+\index{get\+Force\+Declaration\+Source\+With\+Cornerstone@{get\+Force\+Declaration\+Source\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{get\+Force\+Declaration\+Source\+With\+Cornerstone()}{getForceDeclarationSourceWithCornerstone()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::refactor\+::forces\+::get\+Force\+Declaration\+Source\+With\+Cornerstone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ac7eb52bdfe754cdbdc6328e288668663}\label{namespacews2st_1_1refactor_1_1forces_ac7eb52bdfe754cdbdc6328e288668663}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!get\+Force\+Initialisation\+Source@{get\+Force\+Initialisation\+Source}}
+\index{get\+Force\+Initialisation\+Source@{get\+Force\+Initialisation\+Source}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{get\+Force\+Initialisation\+Source()}{getForceInitialisationSource()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::refactor\+::forces\+::get\+Force\+Initialisation\+Source (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ac9a46a9f1508ae2a2ecad5f20212642d}\label{namespacews2st_1_1refactor_1_1forces_ac9a46a9f1508ae2a2ecad5f20212642d}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!get\+Force\+Initialisation\+Source\+With\+Cornerstone@{get\+Force\+Initialisation\+Source\+With\+Cornerstone}}
+\index{get\+Force\+Initialisation\+Source\+With\+Cornerstone@{get\+Force\+Initialisation\+Source\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{get\+Force\+Initialisation\+Source\+With\+Cornerstone()}{getForceInitialisationSourceWithCornerstone()}}
+{\footnotesize\ttfamily std\+::string ws2st\+::refactor\+::forces\+::get\+Force\+Initialisation\+Source\+With\+Cornerstone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a0b3b9fb2cd46a777f3b9ce95c9a45376}\label{namespacews2st_1_1refactor_1_1forces_a0b3b9fb2cd46a777f3b9ce95c9a45376}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Force@{Handle\+Get\+Force}}
+\index{Handle\+Get\+Force@{Handle\+Get\+Force}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Force()}{HandleGetForce()}}
+{\footnotesize\ttfamily template$<$Force\+Type type$>$ \\
+void ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a60299eb940e8c3ed4898b7ef21f0ddce}\label{namespacews2st_1_1refactor_1_1forces_a60299eb940e8c3ed4898b7ef21f0ddce}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Property@{Handle\+Get\+Property}}
+\index{Handle\+Get\+Property@{Handle\+Get\+Property}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Property()}{HandleGetProperty()}}
+{\footnotesize\ttfamily template$<$Force\+Type type, Property\+List property$>$ \\
+void ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Property (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a5cb2d362d93b5e8229522853274dd8e1}\label{namespacews2st_1_1refactor_1_1forces_a5cb2d362d93b5e8229522853274dd8e1}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Property\+With\+Cornerstone@{Handle\+Get\+Property\+With\+Cornerstone}}
+\index{Handle\+Get\+Property\+With\+Cornerstone@{Handle\+Get\+Property\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Property\+With\+Cornerstone()}{HandleGetPropertyWithCornerstone()}}
+{\footnotesize\ttfamily template$<$Property\+List property$>$ \\
+void ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Property\+With\+Cornerstone (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a664ea291bdcb81f90151e9ce2a8ed12d}\label{namespacews2st_1_1refactor_1_1forces_a664ea291bdcb81f90151e9ce2a8ed12d}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Insert\+Forces\+Definition@{Handle\+Insert\+Forces\+Definition}}
+\index{Handle\+Insert\+Forces\+Definition@{Handle\+Insert\+Forces\+Definition}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Insert\+Forces\+Definition()}{HandleInsertForcesDefinition()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::forces\+::\+Handle\+Insert\+Forces\+Definition (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a0854faeb74d0977f0a889bef65ecc70b}\label{namespacews2st_1_1refactor_1_1forces_a0854faeb74d0977f0a889bef65ecc70b}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Insert\+Forces\+Definition\+With\+Cornerstone@{Handle\+Insert\+Forces\+Definition\+With\+Cornerstone}}
+\index{Handle\+Insert\+Forces\+Definition\+With\+Cornerstone@{Handle\+Insert\+Forces\+Definition\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Insert\+Forces\+Definition\+With\+Cornerstone()}{HandleInsertForcesDefinitionWithCornerstone()}}
+{\footnotesize\ttfamily void ws2st\+::refactor\+::forces\+::\+Handle\+Insert\+Forces\+Definition\+With\+Cornerstone (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}\label{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Register\+Forces@{Handle\+Register\+Forces}}
+\index{Handle\+Register\+Forces@{Handle\+Register\+Forces}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Register\+Forces()}{HandleRegisterForces()}}
+{\footnotesize\ttfamily template$<$Force\+Type type$>$ \\
+void ws2st\+::refactor\+::forces\+::\+Handle\+Register\+Forces (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a61a15494c227c4aa117339e0d33a05de}\label{namespacews2st_1_1refactor_1_1forces_a61a15494c227c4aa117339e0d33a05de}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Force@{Handle\+Set\+Force}}
+\index{Handle\+Set\+Force@{Handle\+Set\+Force}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Force()}{HandleSetForce()}}
+{\footnotesize\ttfamily template$<$Force\+Type type$>$ \\
+void ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a7fb2a369d9d5b0650f1eaecf057051d9}\label{namespacews2st_1_1refactor_1_1forces_a7fb2a369d9d5b0650f1eaecf057051d9}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Property@{Handle\+Set\+Property}}
+\index{Handle\+Set\+Property@{Handle\+Set\+Property}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Property()}{HandleSetProperty()}}
+{\footnotesize\ttfamily template$<$Force\+Type type, Property\+List property$>$ \\
+void ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Property (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_abf74b00f35cde6816132dbefb3210684}\label{namespacews2st_1_1refactor_1_1forces_abf74b00f35cde6816132dbefb3210684}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Property\+With\+Cornerstone@{Handle\+Set\+Property\+With\+Cornerstone}}
+\index{Handle\+Set\+Property\+With\+Cornerstone@{Handle\+Set\+Property\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Property\+With\+Cornerstone()}{HandleSetPropertyWithCornerstone()}}
+{\footnotesize\ttfamily template$<$Property\+List property$>$ \\
+void ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Property\+With\+Cornerstone (\begin{DoxyParamCaption}\item[{const Match\+Finder\+::\+Match\+Result \&}]{Result,  }\item[{Replacements \&}]{Replace }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_afa3a7a5edfc5f3c897623b54beec66f3}\label{namespacews2st_1_1refactor_1_1forces_afa3a7a5edfc5f3c897623b54beec66f3}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Property\+Get\+Matcher@{Property\+Get\+Matcher}}
+\index{Property\+Get\+Matcher@{Property\+Get\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Property\+Get\+Matcher()}{PropertyGetMatcher()}}
+{\footnotesize\ttfamily const Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Property\+Get\+Matcher (\begin{DoxyParamCaption}\item[{const char $\ast$}]{property\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a0f39ed859d2d9c4b59894fddd60b1f12}\label{namespacews2st_1_1refactor_1_1forces_a0f39ed859d2d9c4b59894fddd60b1f12}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!property\+Name@{property\+Name}}
+\index{property\+Name@{property\+Name}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{property\+Name()}{propertyName()}}
+{\footnotesize\ttfamily const std\+::string ws2st\+::refactor\+::forces\+::property\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_aa7768922c14228c573972bab0cea0028}{Property\+List}}}]{property }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a9df1170dc128f151ed5b5fedabbd15d1}\label{namespacews2st_1_1refactor_1_1forces_a9df1170dc128f151ed5b5fedabbd15d1}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Property\+Set\+Matcher@{Property\+Set\+Matcher}}
+\index{Property\+Set\+Matcher@{Property\+Set\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Property\+Set\+Matcher()}{PropertySetMatcher()}}
+{\footnotesize\ttfamily const Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Property\+Set\+Matcher (\begin{DoxyParamCaption}\item[{const char $\ast$}]{property\+Name }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aaedf098bb1dc4e4f48b9b71383366033}\label{namespacews2st_1_1refactor_1_1forces_aaedf098bb1dc4e4f48b9b71383366033}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Add\+Force\+Scalar\+Matcher@{Add\+Force\+Scalar\+Matcher}}
+\index{Add\+Force\+Scalar\+Matcher@{Add\+Force\+Scalar\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Add\+Force\+Scalar\+Matcher}{AddForceScalarMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Add\+Force\+Scalar\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+        hasAncestor(functionDecl(hasName(\textcolor{stringliteral}{"main"}))),
+        hasDescendant(
+            declRefExpr(
+                to(functionDecl(
+                    hasName(\textcolor{stringliteral}{"wash::add\_force\_scalar"})
+                ))
+            )
+        ),
+        hasArgument(0, ignoringImplicit( stringLiteral().bind(\textcolor{stringliteral}{"forceName"}) ))
+    ).bind(\textcolor{stringliteral}{"callExpr"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a7dfd24ab66dba074524ca3dfe669020b}\label{namespacews2st_1_1refactor_1_1forces_a7dfd24ab66dba074524ca3dfe669020b}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Add\+Force\+Vector\+Matcher@{Add\+Force\+Vector\+Matcher}}
+\index{Add\+Force\+Vector\+Matcher@{Add\+Force\+Vector\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Add\+Force\+Vector\+Matcher}{AddForceVectorMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Add\+Force\+Vector\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, callExpr(
+        hasAncestor(functionDecl(hasName(\textcolor{stringliteral}{"main"}))),
+        hasDescendant(
+            declRefExpr(
+                to(functionDecl(
+                    hasName(\textcolor{stringliteral}{"wash::add\_force\_vector"})
+                ))
+            )
+        ),
+        hasArgument(0, ignoringImplicit( stringLiteral().bind(\textcolor{stringliteral}{"forceName"}) ))
+    ).bind(\textcolor{stringliteral}{"callExpr"}))
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a917d202a64bef4322ddadba831b71aa6}\label{namespacews2st_1_1refactor_1_1forces_a917d202a64bef4322ddadba831b71aa6}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!force\+\_\+meta@{force\+\_\+meta}}
+\index{force\+\_\+meta@{force\+\_\+meta}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{force\+\_\+meta}{force\_meta}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, Full\+Source\+Loc$>$ ws2st\+::refactor\+::forces\+::force\+\_\+meta = \{\}}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a2ba89815da3ec4b90de9e0eae901a156}\label{namespacews2st_1_1refactor_1_1forces_a2ba89815da3ec4b90de9e0eae901a156}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Acc\+Matcher@{Get\+Acc\+Matcher}}
+\index{Get\+Acc\+Matcher@{Get\+Acc\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Acc\+Matcher}{GetAccMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Acc\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a121159b5b664cf08979f380bfee9315f}\label{namespacews2st_1_1refactor_1_1forces_a121159b5b664cf08979f380bfee9315f}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Density\+Matcher@{Get\+Density\+Matcher}}
+\index{Get\+Density\+Matcher@{Get\+Density\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Density\+Matcher}{GetDensityMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Density\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a8197f8ce5cb41ce80b4ef4109e5c251e}\label{namespacews2st_1_1refactor_1_1forces_a8197f8ce5cb41ce80b4ef4109e5c251e}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Force\+Scalar\+Matcher@{Get\+Force\+Scalar\+Matcher}}
+\index{Get\+Force\+Scalar\+Matcher@{Get\+Force\+Scalar\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Force\+Scalar\+Matcher}{GetForceScalarMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Force\+Scalar\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a669322efcc73b348dc9111af688a97a3}\label{namespacews2st_1_1refactor_1_1forces_a669322efcc73b348dc9111af688a97a3}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Force\+Vector\+Matcher@{Get\+Force\+Vector\+Matcher}}
+\index{Get\+Force\+Vector\+Matcher@{Get\+Force\+Vector\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Force\+Vector\+Matcher}{GetForceVectorMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Force\+Vector\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ab20fa5472780bed0df716c1d4acb3f99}\label{namespacews2st_1_1refactor_1_1forces_ab20fa5472780bed0df716c1d4acb3f99}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Id\+Matcher@{Get\+Id\+Matcher}}
+\index{Get\+Id\+Matcher@{Get\+Id\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Id\+Matcher}{GetIdMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Id\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a322ae768bfaca37c335327edf032bdd1}\label{namespacews2st_1_1refactor_1_1forces_a322ae768bfaca37c335327edf032bdd1}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Mass\+Matcher@{Get\+Mass\+Matcher}}
+\index{Get\+Mass\+Matcher@{Get\+Mass\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Mass\+Matcher}{GetMassMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Mass\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aaaeb388856aaaa572c942dc283398796}\label{namespacews2st_1_1refactor_1_1forces_aaaeb388856aaaa572c942dc283398796}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Pos\+Matcher@{Get\+Pos\+Matcher}}
+\index{Get\+Pos\+Matcher@{Get\+Pos\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Pos\+Matcher}{GetPosMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Pos\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ab0f4c93b9571ec62da5ebd98091d7b5f}\label{namespacews2st_1_1refactor_1_1forces_ab0f4c93b9571ec62da5ebd98091d7b5f}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Smoothing\+Length\+Matcher@{Get\+Smoothing\+Length\+Matcher}}
+\index{Get\+Smoothing\+Length\+Matcher@{Get\+Smoothing\+Length\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Smoothing\+Length\+Matcher}{GetSmoothingLengthMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Smoothing\+Length\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ac04dbb8d118a9abf10a6caddf80d27db}\label{namespacews2st_1_1refactor_1_1forces_ac04dbb8d118a9abf10a6caddf80d27db}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Get\+Vel\+Matcher@{Get\+Vel\+Matcher}}
+\index{Get\+Vel\+Matcher@{Get\+Vel\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Get\+Vel\+Matcher}{GetVelMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Get\+Vel\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aa273eb05dee50c3e1666727007ab6d0c}\label{namespacews2st_1_1refactor_1_1forces_aa273eb05dee50c3e1666727007ab6d0c}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Acc@{Handle\+Get\+Acc}}
+\index{Handle\+Get\+Acc@{Handle\+Get\+Acc}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Acc}{HandleGetAcc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Acc}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a2b2d25e98ff8a890d84c0e2b397a5756}\label{namespacews2st_1_1refactor_1_1forces_a2b2d25e98ff8a890d84c0e2b397a5756}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Acc\+With\+Cornerstone@{Handle\+Get\+Acc\+With\+Cornerstone}}
+\index{Handle\+Get\+Acc\+With\+Cornerstone@{Handle\+Get\+Acc\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Acc\+With\+Cornerstone}{HandleGetAccWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Acc\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a1f84572017145f028dbd010d0c0f95ed}\label{namespacews2st_1_1refactor_1_1forces_a1f84572017145f028dbd010d0c0f95ed}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Density@{Handle\+Get\+Density}}
+\index{Handle\+Get\+Density@{Handle\+Get\+Density}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Density}{HandleGetDensity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Density}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a1170c01783843b6d549e6a5cd93ec856}\label{namespacews2st_1_1refactor_1_1forces_a1170c01783843b6d549e6a5cd93ec856}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Force\+Scalar@{Handle\+Get\+Force\+Scalar}}
+\index{Handle\+Get\+Force\+Scalar@{Handle\+Get\+Force\+Scalar}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Force\+Scalar}{HandleGetForceScalar}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force\+Scalar}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ae4344f795df36c8dcff1ac7690147f7d}\label{namespacews2st_1_1refactor_1_1forces_ae4344f795df36c8dcff1ac7690147f7d}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Force\+Vector@{Handle\+Get\+Force\+Vector}}
+\index{Handle\+Get\+Force\+Vector@{Handle\+Get\+Force\+Vector}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Force\+Vector}{HandleGetForceVector}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force\+Vector}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a8d3f58b44208a7d72280ec2da12a1e1c}\label{namespacews2st_1_1refactor_1_1forces_a8d3f58b44208a7d72280ec2da12a1e1c}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Force\+Vector\+With\+Cornerstone@{Handle\+Get\+Force\+Vector\+With\+Cornerstone}}
+\index{Handle\+Get\+Force\+Vector\+With\+Cornerstone@{Handle\+Get\+Force\+Vector\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Force\+Vector\+With\+Cornerstone}{HandleGetForceVectorWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Force\+Vector\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ad782ea3f7d021d27bc5e65b8170c445b}\label{namespacews2st_1_1refactor_1_1forces_ad782ea3f7d021d27bc5e65b8170c445b}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Id@{Handle\+Get\+Id}}
+\index{Handle\+Get\+Id@{Handle\+Get\+Id}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Id}{HandleGetId}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Id}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a2f791e3898c17e8b4e3034663949a656}\label{namespacews2st_1_1refactor_1_1forces_a2f791e3898c17e8b4e3034663949a656}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Mass@{Handle\+Get\+Mass}}
+\index{Handle\+Get\+Mass@{Handle\+Get\+Mass}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Mass}{HandleGetMass}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Mass}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aec5227182499f251808fad379e171dc9}\label{namespacews2st_1_1refactor_1_1forces_aec5227182499f251808fad379e171dc9}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Pos@{Handle\+Get\+Pos}}
+\index{Handle\+Get\+Pos@{Handle\+Get\+Pos}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Pos}{HandleGetPos}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Pos}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a1d3d1487f9d3f37f0a4e865c5e345911}\label{namespacews2st_1_1refactor_1_1forces_a1d3d1487f9d3f37f0a4e865c5e345911}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Pos\+With\+Cornerstone@{Handle\+Get\+Pos\+With\+Cornerstone}}
+\index{Handle\+Get\+Pos\+With\+Cornerstone@{Handle\+Get\+Pos\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Pos\+With\+Cornerstone}{HandleGetPosWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Pos\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a6971fd7441dad1a1d4dd1ba8fd7b29f5}\label{namespacews2st_1_1refactor_1_1forces_a6971fd7441dad1a1d4dd1ba8fd7b29f5}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Smoothing\+Length@{Handle\+Get\+Smoothing\+Length}}
+\index{Handle\+Get\+Smoothing\+Length@{Handle\+Get\+Smoothing\+Length}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Smoothing\+Length}{HandleGetSmoothingLength}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Smoothing\+Length}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a70b145611ab770c410f13a2d5e2ed274}\label{namespacews2st_1_1refactor_1_1forces_a70b145611ab770c410f13a2d5e2ed274}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Vel@{Handle\+Get\+Vel}}
+\index{Handle\+Get\+Vel@{Handle\+Get\+Vel}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Vel}{HandleGetVel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Vel}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a09be37fd0486dbc72f2aa46329e9cd0f}\label{namespacews2st_1_1refactor_1_1forces_a09be37fd0486dbc72f2aa46329e9cd0f}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Get\+Vel\+With\+Cornerstone@{Handle\+Get\+Vel\+With\+Cornerstone}}
+\index{Handle\+Get\+Vel\+With\+Cornerstone@{Handle\+Get\+Vel\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Get\+Vel\+With\+Cornerstone}{HandleGetVelWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Get\+Vel\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a22d1fdacd9a2da1b94796e4dffd83cd4}\label{namespacews2st_1_1refactor_1_1forces_a22d1fdacd9a2da1b94796e4dffd83cd4}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Register\+Forces\+Scalar@{Handle\+Register\+Forces\+Scalar}}
+\index{Handle\+Register\+Forces\+Scalar@{Handle\+Register\+Forces\+Scalar}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Register\+Forces\+Scalar}{HandleRegisterForcesScalar}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Register\+Forces\+Scalar = \&\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}{Handle\+Register\+Forces}}$<$\mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a8f3d9a4b6a7b7f2c7afa61ca113d0db9}{Force\+Type\+::\+S\+C\+A\+L\+AR}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a4f8af8cb0d6a0af0f29e1d887486c612}\label{namespacews2st_1_1refactor_1_1forces_a4f8af8cb0d6a0af0f29e1d887486c612}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Register\+Forces\+Vector@{Handle\+Register\+Forces\+Vector}}
+\index{Handle\+Register\+Forces\+Vector@{Handle\+Register\+Forces\+Vector}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Register\+Forces\+Vector}{HandleRegisterForcesVector}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Register\+Forces\+Vector = \&\mbox{\hyperlink{namespacews2st_1_1refactor_1_1forces_af8c67c569ff62996a8e4f0d62b29c6a3}{Handle\+Register\+Forces}}$<$\mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a87752381b583740610f1dfeb07fdad7e}{Force\+Type\+::\+V\+E\+C\+T\+OR}}$>$}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aac8387c5a35d43be7a798e5b8cc9890b}\label{namespacews2st_1_1refactor_1_1forces_aac8387c5a35d43be7a798e5b8cc9890b}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Acc@{Handle\+Set\+Acc}}
+\index{Handle\+Set\+Acc@{Handle\+Set\+Acc}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Acc}{HandleSetAcc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Acc}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a5084019f947ff58607868cc352b898e0}\label{namespacews2st_1_1refactor_1_1forces_a5084019f947ff58607868cc352b898e0}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Acc\+With\+Cornerstone@{Handle\+Set\+Acc\+With\+Cornerstone}}
+\index{Handle\+Set\+Acc\+With\+Cornerstone@{Handle\+Set\+Acc\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Acc\+With\+Cornerstone}{HandleSetAccWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Acc\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a077b7e7f20c9fe7915643e0eeab9669c}\label{namespacews2st_1_1refactor_1_1forces_a077b7e7f20c9fe7915643e0eeab9669c}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Density@{Handle\+Set\+Density}}
+\index{Handle\+Set\+Density@{Handle\+Set\+Density}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Density}{HandleSetDensity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Density}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a63b303b615f68b738bd347582f3c5819}\label{namespacews2st_1_1refactor_1_1forces_a63b303b615f68b738bd347582f3c5819}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Force\+Scalar@{Handle\+Set\+Force\+Scalar}}
+\index{Handle\+Set\+Force\+Scalar@{Handle\+Set\+Force\+Scalar}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Force\+Scalar}{HandleSetForceScalar}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force\+Scalar}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_afcc24d121d0d46682e7e62f46f120843}\label{namespacews2st_1_1refactor_1_1forces_afcc24d121d0d46682e7e62f46f120843}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Force\+Vector@{Handle\+Set\+Force\+Vector}}
+\index{Handle\+Set\+Force\+Vector@{Handle\+Set\+Force\+Vector}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Force\+Vector}{HandleSetForceVector}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force\+Vector}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a70e17f351ce695564866b57533b391bd}\label{namespacews2st_1_1refactor_1_1forces_a70e17f351ce695564866b57533b391bd}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Force\+Vector\+With\+Cornerstone@{Handle\+Set\+Force\+Vector\+With\+Cornerstone}}
+\index{Handle\+Set\+Force\+Vector\+With\+Cornerstone@{Handle\+Set\+Force\+Vector\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Force\+Vector\+With\+Cornerstone}{HandleSetForceVectorWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Force\+Vector\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_af54b981d6a8b8492f6182661addf9144}\label{namespacews2st_1_1refactor_1_1forces_af54b981d6a8b8492f6182661addf9144}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Mass@{Handle\+Set\+Mass}}
+\index{Handle\+Set\+Mass@{Handle\+Set\+Mass}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Mass}{HandleSetMass}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Mass}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a98d52c6123f3e0afe59a2e20e1071433}\label{namespacews2st_1_1refactor_1_1forces_a98d52c6123f3e0afe59a2e20e1071433}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Pos@{Handle\+Set\+Pos}}
+\index{Handle\+Set\+Pos@{Handle\+Set\+Pos}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Pos}{HandleSetPos}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Pos}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a7bf8fc16b8a95fb4b226d09b0db6755a}\label{namespacews2st_1_1refactor_1_1forces_a7bf8fc16b8a95fb4b226d09b0db6755a}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Pos\+With\+Cornerstone@{Handle\+Set\+Pos\+With\+Cornerstone}}
+\index{Handle\+Set\+Pos\+With\+Cornerstone@{Handle\+Set\+Pos\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Pos\+With\+Cornerstone}{HandleSetPosWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Pos\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a5a98d16b73d023d22729401f6233dccd}\label{namespacews2st_1_1refactor_1_1forces_a5a98d16b73d023d22729401f6233dccd}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Smoothing\+Length@{Handle\+Set\+Smoothing\+Length}}
+\index{Handle\+Set\+Smoothing\+Length@{Handle\+Set\+Smoothing\+Length}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Smoothing\+Length}{HandleSetSmoothingLength}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Smoothing\+Length}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_adc3822625b91b4094517de19c8a0ee2c}\label{namespacews2st_1_1refactor_1_1forces_adc3822625b91b4094517de19c8a0ee2c}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Vel@{Handle\+Set\+Vel}}
+\index{Handle\+Set\+Vel@{Handle\+Set\+Vel}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Vel}{HandleSetVel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Vel}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ab48513ad240b7e4bc56c0d60f6c55faa}\label{namespacews2st_1_1refactor_1_1forces_ab48513ad240b7e4bc56c0d60f6c55faa}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Handle\+Set\+Vel\+With\+Cornerstone@{Handle\+Set\+Vel\+With\+Cornerstone}}
+\index{Handle\+Set\+Vel\+With\+Cornerstone@{Handle\+Set\+Vel\+With\+Cornerstone}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Handle\+Set\+Vel\+With\+Cornerstone}{HandleSetVelWithCornerstone}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}} ws2st\+::refactor\+::forces\+::\+Handle\+Set\+Vel\+With\+Cornerstone}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ae2be9616466b3c2ef371a455b08dc2bc}\label{namespacews2st_1_1refactor_1_1forces_ae2be9616466b3c2ef371a455b08dc2bc}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Insert\+Forces\+Definition\+Matcher@{Insert\+Forces\+Definition\+Matcher}}
+\index{Insert\+Forces\+Definition\+Matcher@{Insert\+Forces\+Definition\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Insert\+Forces\+Definition\+Matcher}{InsertForcesDefinitionMatcher}}
+{\footnotesize\ttfamily Declaration\+Matcher ws2st\+::refactor\+::forces\+::\+Insert\+Forces\+Definition\+Matcher}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= traverse(TK\_IgnoreUnlessSpelledInSource, 
+        cxxRecordDecl(hasName(\textcolor{stringliteral}{"\_force\_vectors"})).bind(\textcolor{stringliteral}{"decl"})
+    )
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a72e48f86201c44aef10b6dab331928fa}\label{namespacews2st_1_1refactor_1_1forces_a72e48f86201c44aef10b6dab331928fa}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!scalar\+\_\+force\+\_\+list@{scalar\+\_\+force\+\_\+list}}
+\index{scalar\+\_\+force\+\_\+list@{scalar\+\_\+force\+\_\+list}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{scalar\+\_\+force\+\_\+list}{scalar\_force\_list}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ws2st\+::refactor\+::forces\+::scalar\+\_\+force\+\_\+list = \{\}}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a5a46fef8e676edadd79ef4ff2ca16956}\label{namespacews2st_1_1refactor_1_1forces_a5a46fef8e676edadd79ef4ff2ca16956}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Acc\+Matcher@{Set\+Acc\+Matcher}}
+\index{Set\+Acc\+Matcher@{Set\+Acc\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Acc\+Matcher}{SetAccMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Acc\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_afa5b98b9546988398a87b6437fd18f0e}\label{namespacews2st_1_1refactor_1_1forces_afa5b98b9546988398a87b6437fd18f0e}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Density\+Matcher@{Set\+Density\+Matcher}}
+\index{Set\+Density\+Matcher@{Set\+Density\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Density\+Matcher}{SetDensityMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Density\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a9c5d51c1590ca8676aef6334240f1905}\label{namespacews2st_1_1refactor_1_1forces_a9c5d51c1590ca8676aef6334240f1905}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Force\+Scalar\+Matcher@{Set\+Force\+Scalar\+Matcher}}
+\index{Set\+Force\+Scalar\+Matcher@{Set\+Force\+Scalar\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Force\+Scalar\+Matcher}{SetForceScalarMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Force\+Scalar\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a5448f17e7447d1916e92a643729467cb}\label{namespacews2st_1_1refactor_1_1forces_a5448f17e7447d1916e92a643729467cb}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Force\+Vector\+Matcher@{Set\+Force\+Vector\+Matcher}}
+\index{Set\+Force\+Vector\+Matcher@{Set\+Force\+Vector\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Force\+Vector\+Matcher}{SetForceVectorMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Force\+Vector\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a448bc6dee79dc678d66ed32cda898bee}\label{namespacews2st_1_1refactor_1_1forces_a448bc6dee79dc678d66ed32cda898bee}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Mass\+Matcher@{Set\+Mass\+Matcher}}
+\index{Set\+Mass\+Matcher@{Set\+Mass\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Mass\+Matcher}{SetMassMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Mass\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_a505fd1d7688a82383f89f9fc829a1c22}\label{namespacews2st_1_1refactor_1_1forces_a505fd1d7688a82383f89f9fc829a1c22}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Pos\+Matcher@{Set\+Pos\+Matcher}}
+\index{Set\+Pos\+Matcher@{Set\+Pos\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Pos\+Matcher}{SetPosMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Pos\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_afeff1cc5170c1646c79cc15253654fc8}\label{namespacews2st_1_1refactor_1_1forces_afeff1cc5170c1646c79cc15253654fc8}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Smoothing\+Length\+Matcher@{Set\+Smoothing\+Length\+Matcher}}
+\index{Set\+Smoothing\+Length\+Matcher@{Set\+Smoothing\+Length\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Smoothing\+Length\+Matcher}{SetSmoothingLengthMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Smoothing\+Length\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_ae4f5b720f29011583bcc21d18fad0853}\label{namespacews2st_1_1refactor_1_1forces_ae4f5b720f29011583bcc21d18fad0853}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!Set\+Vel\+Matcher@{Set\+Vel\+Matcher}}
+\index{Set\+Vel\+Matcher@{Set\+Vel\+Matcher}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{Set\+Vel\+Matcher}{SetVelMatcher}}
+{\footnotesize\ttfamily Statement\+Matcher ws2st\+::refactor\+::forces\+::\+Set\+Vel\+Matcher}
+
+\mbox{\Hypertarget{namespacews2st_1_1refactor_1_1forces_aeca6bb9c0c85026cbbc964cc3a6c237b}\label{namespacews2st_1_1refactor_1_1forces_aeca6bb9c0c85026cbbc964cc3a6c237b}} 
+\index{ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}!vector\+\_\+force\+\_\+list@{vector\+\_\+force\+\_\+list}}
+\index{vector\+\_\+force\+\_\+list@{vector\+\_\+force\+\_\+list}!ws2st\+::refactor\+::forces@{ws2st\+::refactor\+::forces}}
+\subsubsection{\texorpdfstring{vector\+\_\+force\+\_\+list}{vector\_force\_list}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ws2st\+::refactor\+::forces\+::vector\+\_\+force\+\_\+list = \{\}}
+

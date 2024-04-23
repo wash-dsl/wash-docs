@@ -1,0 +1,150 @@
+\hypertarget{consts_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/consts.hpp File Reference}
+\label{consts_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/consts.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/consts.\+hpp}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include \char`\"{}constexpr\+\_\+math.\+hpp\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{consts_8hpp_a525335710b53cb064ca56b936120431e}{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{consts_8hpp_a8d7a882d14c5fd637c1853f07833b37b}{init\+\_\+wh}} ()
+\item 
+double \mbox{\hyperlink{consts_8hpp_a2e4277393a111656958ef7c3296073cb}{lookup\+\_\+wh}} (const double v)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}} = 0.\+5
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a5483a5bb1c4b5eed8b88986336f51741}{gas\+\_\+gamma}} = 5.\+0 / 3.\+0
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a649c58054558b89a30d9883409fb2737}{mui}} = 10.\+0
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a5b57d6d058159a94fbd68e5d58becabb}{gas\+\_\+r}} = 8.\+317e7
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a1316e4c602ffdc9af6806cac0f604f65}{ideal\+\_\+gas\+\_\+cv}} = \mbox{\hyperlink{consts_8hpp_a5b57d6d058159a94fbd68e5d58becabb}{gas\+\_\+r}} / \mbox{\hyperlink{consts_8hpp_a649c58054558b89a30d9883409fb2737}{mui}} / (\mbox{\hyperlink{consts_8hpp_a5483a5bb1c4b5eed8b88986336f51741}{gas\+\_\+gamma}} -\/ 1.\+0)
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}} = 6.\+0
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_ae2dfa771a202126eca8f021e1f0939ad}{b0}} = 2.\+7012593e-\/2
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a4d9f924608e885dc313f49a5dff80ad4}{b1}} = 2.\+0410827e-\/2
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a0200557154705724489e9c870495cb1f}{b2}} = 3.\+7451957e-\/3
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a98c757a24992b48b0209a8025d43d37f}{b3}} = 4.\+7013839e-\/2
+\item 
+constexpr double \mbox{\hyperlink{consts_8hpp_a4296bff78b7d66c47eded91c7cb9edac}{k}} = \mbox{\hyperlink{consts_8hpp_ae2dfa771a202126eca8f021e1f0939ad}{b0}} + \mbox{\hyperlink{consts_8hpp_a4d9f924608e885dc313f49a5dff80ad4}{b1}} $\ast$ \mbox{\hyperlink{namespacewash_aa7c01695ae3be583edc0ed8c4bd756f5}{wash\+::sqrt}}(\mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}}) + \mbox{\hyperlink{consts_8hpp_a0200557154705724489e9c870495cb1f}{b2}} $\ast$ \mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}} + \mbox{\hyperlink{consts_8hpp_a98c757a24992b48b0209a8025d43d37f}{b3}} $\ast$ \mbox{\hyperlink{namespacewash_aa7c01695ae3be583edc0ed8c4bd756f5}{wash\+::sqrt}}(\mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}} $\ast$ \mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}} $\ast$ \mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}})
+\item 
+constexpr size\+\_\+t \mbox{\hyperlink{consts_8hpp_aa205531387df27b26dfbe155bdb58fe8}{ng0}} = 100
+\item 
+constexpr size\+\_\+t \mbox{\hyperlink{consts_8hpp_aee81e702d8a6c9ea252d45386283bce4}{ngmax}} = 150
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{consts_8hpp_a525335710b53cb064ca56b936120431e}\label{consts_8hpp_a525335710b53cb064ca56b936120431e}} 
+\index{consts.\+hpp@{consts.\+hpp}!\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}}
+\index{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}{\_USE\_MATH\_DEFINES}}
+{\footnotesize\ttfamily \#define \+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+ES}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{consts_8hpp_a8d7a882d14c5fd637c1853f07833b37b}\label{consts_8hpp_a8d7a882d14c5fd637c1853f07833b37b}} 
+\index{consts.\+hpp@{consts.\+hpp}!init\+\_\+wh@{init\+\_\+wh}}
+\index{init\+\_\+wh@{init\+\_\+wh}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{init\+\_\+wh()}{init\_wh()}}
+{\footnotesize\ttfamily void init\+\_\+wh (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{consts_8hpp_a2e4277393a111656958ef7c3296073cb}\label{consts_8hpp_a2e4277393a111656958ef7c3296073cb}} 
+\index{consts.\+hpp@{consts.\+hpp}!lookup\+\_\+wh@{lookup\+\_\+wh}}
+\index{lookup\+\_\+wh@{lookup\+\_\+wh}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{lookup\+\_\+wh()}{lookup\_wh()}}
+{\footnotesize\ttfamily double lookup\+\_\+wh (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{consts_8hpp_ae2dfa771a202126eca8f021e1f0939ad}\label{consts_8hpp_ae2dfa771a202126eca8f021e1f0939ad}} 
+\index{consts.\+hpp@{consts.\+hpp}!b0@{b0}}
+\index{b0@{b0}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{b0}{b0}}
+{\footnotesize\ttfamily constexpr double b0 = 2.\+7012593e-\/2}
+
+\mbox{\Hypertarget{consts_8hpp_a4d9f924608e885dc313f49a5dff80ad4}\label{consts_8hpp_a4d9f924608e885dc313f49a5dff80ad4}} 
+\index{consts.\+hpp@{consts.\+hpp}!b1@{b1}}
+\index{b1@{b1}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{b1}{b1}}
+{\footnotesize\ttfamily constexpr double b1 = 2.\+0410827e-\/2}
+
+\mbox{\Hypertarget{consts_8hpp_a0200557154705724489e9c870495cb1f}\label{consts_8hpp_a0200557154705724489e9c870495cb1f}} 
+\index{consts.\+hpp@{consts.\+hpp}!b2@{b2}}
+\index{b2@{b2}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{b2}{b2}}
+{\footnotesize\ttfamily constexpr double b2 = 3.\+7451957e-\/3}
+
+\mbox{\Hypertarget{consts_8hpp_a98c757a24992b48b0209a8025d43d37f}\label{consts_8hpp_a98c757a24992b48b0209a8025d43d37f}} 
+\index{consts.\+hpp@{consts.\+hpp}!b3@{b3}}
+\index{b3@{b3}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{b3}{b3}}
+{\footnotesize\ttfamily constexpr double b3 = 4.\+7013839e-\/2}
+
+\mbox{\Hypertarget{consts_8hpp_a5483a5bb1c4b5eed8b88986336f51741}\label{consts_8hpp_a5483a5bb1c4b5eed8b88986336f51741}} 
+\index{consts.\+hpp@{consts.\+hpp}!gas\+\_\+gamma@{gas\+\_\+gamma}}
+\index{gas\+\_\+gamma@{gas\+\_\+gamma}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{gas\+\_\+gamma}{gas\_gamma}}
+{\footnotesize\ttfamily constexpr double gas\+\_\+gamma = 5.\+0 / 3.\+0}
+
+\mbox{\Hypertarget{consts_8hpp_a5b57d6d058159a94fbd68e5d58becabb}\label{consts_8hpp_a5b57d6d058159a94fbd68e5d58becabb}} 
+\index{consts.\+hpp@{consts.\+hpp}!gas\+\_\+r@{gas\+\_\+r}}
+\index{gas\+\_\+r@{gas\+\_\+r}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{gas\+\_\+r}{gas\_r}}
+{\footnotesize\ttfamily constexpr double gas\+\_\+r = 8.\+317e7}
+
+\mbox{\Hypertarget{consts_8hpp_a1316e4c602ffdc9af6806cac0f604f65}\label{consts_8hpp_a1316e4c602ffdc9af6806cac0f604f65}} 
+\index{consts.\+hpp@{consts.\+hpp}!ideal\+\_\+gas\+\_\+cv@{ideal\+\_\+gas\+\_\+cv}}
+\index{ideal\+\_\+gas\+\_\+cv@{ideal\+\_\+gas\+\_\+cv}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{ideal\+\_\+gas\+\_\+cv}{ideal\_gas\_cv}}
+{\footnotesize\ttfamily constexpr double ideal\+\_\+gas\+\_\+cv = \mbox{\hyperlink{consts_8hpp_a5b57d6d058159a94fbd68e5d58becabb}{gas\+\_\+r}} / \mbox{\hyperlink{consts_8hpp_a649c58054558b89a30d9883409fb2737}{mui}} / (\mbox{\hyperlink{consts_8hpp_a5483a5bb1c4b5eed8b88986336f51741}{gas\+\_\+gamma}} -\/ 1.\+0)}
+
+\mbox{\Hypertarget{consts_8hpp_a4296bff78b7d66c47eded91c7cb9edac}\label{consts_8hpp_a4296bff78b7d66c47eded91c7cb9edac}} 
+\index{consts.\+hpp@{consts.\+hpp}!k@{k}}
+\index{k@{k}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{k}{k}}
+{\footnotesize\ttfamily constexpr double k = \mbox{\hyperlink{consts_8hpp_ae2dfa771a202126eca8f021e1f0939ad}{b0}} + \mbox{\hyperlink{consts_8hpp_a4d9f924608e885dc313f49a5dff80ad4}{b1}} $\ast$ \mbox{\hyperlink{namespacewash_aa7c01695ae3be583edc0ed8c4bd756f5}{wash\+::sqrt}}(\mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}}) + \mbox{\hyperlink{consts_8hpp_a0200557154705724489e9c870495cb1f}{b2}} $\ast$ \mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}} + \mbox{\hyperlink{consts_8hpp_a98c757a24992b48b0209a8025d43d37f}{b3}} $\ast$ \mbox{\hyperlink{namespacewash_aa7c01695ae3be583edc0ed8c4bd756f5}{wash\+::sqrt}}(\mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}} $\ast$ \mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}} $\ast$ \mbox{\hyperlink{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}{n}})}
+
+\mbox{\Hypertarget{consts_8hpp_a649c58054558b89a30d9883409fb2737}\label{consts_8hpp_a649c58054558b89a30d9883409fb2737}} 
+\index{consts.\+hpp@{consts.\+hpp}!mui@{mui}}
+\index{mui@{mui}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{mui}{mui}}
+{\footnotesize\ttfamily constexpr double mui = 10.\+0}
+
+\mbox{\Hypertarget{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}\label{consts_8hpp_a00a0a7b78dca8f98e0094c79c130c4b0}} 
+\index{consts.\+hpp@{consts.\+hpp}!n@{n}}
+\index{n@{n}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily constexpr double n = 6.\+0}
+
+\mbox{\Hypertarget{consts_8hpp_aa205531387df27b26dfbe155bdb58fe8}\label{consts_8hpp_aa205531387df27b26dfbe155bdb58fe8}} 
+\index{consts.\+hpp@{consts.\+hpp}!ng0@{ng0}}
+\index{ng0@{ng0}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{ng0}{ng0}}
+{\footnotesize\ttfamily constexpr size\+\_\+t ng0 = 100}
+
+\mbox{\Hypertarget{consts_8hpp_aee81e702d8a6c9ea252d45386283bce4}\label{consts_8hpp_aee81e702d8a6c9ea252d45386283bce4}} 
+\index{consts.\+hpp@{consts.\+hpp}!ngmax@{ngmax}}
+\index{ngmax@{ngmax}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{ngmax}{ngmax}}
+{\footnotesize\ttfamily constexpr size\+\_\+t ngmax = 150}
+
+\mbox{\Hypertarget{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}\label{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}} 
+\index{consts.\+hpp@{consts.\+hpp}!r1@{r1}}
+\index{r1@{r1}!consts.\+hpp@{consts.\+hpp}}
+\subsubsection{\texorpdfstring{r1}{r1}}
+{\footnotesize\ttfamily constexpr double r1 = 0.\+5}
+

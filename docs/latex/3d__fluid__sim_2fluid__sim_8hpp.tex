@@ -1,0 +1,80 @@
+\hypertarget{3d__fluid__sim_2fluid__sim_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.hpp File Reference}
+\label{3d__fluid__sim_2fluid__sim_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include \char`\"{}wash.\+hpp\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_ac25189db92959bff3c6c2adf4c34b50a}{D\+IM}}~3
+\item 
+\#define \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}}~3.\+1415926
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_ae57a0a361e503cfce3176af83dbe92f2}{random\+Sphere\+Point}} ()
+\item 
+double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_a8e0483f6886d0161066c8c4b5b961dde}{density\+\_\+kernel}} (double dst, double radius)
+\item 
+double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_a0b03143cfaddc9f976fe63084978f6ed}{near\+\_\+density\+\_\+kernel}} (double dst, double radius)
+\item 
+double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_a064128d80044884a548b68bc1a501e5d}{density\+\_\+derivative}} (double dst, double radius)
+\item 
+double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_aae04ec4213cd8878504d7139b13b8b62}{near\+\_\+density\+\_\+derivative}} (double dst, double radius)
+\item 
+double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8hpp_ae2e1fda7989f4d5a3d1880003b8e8334}{smoothing\+\_\+kernel\+\_\+poly6}} (double dst, double radius)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_ac25189db92959bff3c6c2adf4c34b50a}\label{3d__fluid__sim_2fluid__sim_8hpp_ac25189db92959bff3c6c2adf4c34b50a}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!D\+IM@{D\+IM}}
+\index{D\+IM@{D\+IM}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{D\+IM}{DIM}}
+{\footnotesize\ttfamily \#define D\+IM~3}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_a598a3330b3c21701223ee0ca14316eca}\label{3d__fluid__sim_2fluid__sim_8hpp_a598a3330b3c21701223ee0ca14316eca}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!PI@{PI}}
+\index{PI@{PI}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily \#define PI~3.\+1415926}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_a064128d80044884a548b68bc1a501e5d}\label{3d__fluid__sim_2fluid__sim_8hpp_a064128d80044884a548b68bc1a501e5d}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!density\+\_\+derivative@{density\+\_\+derivative}}
+\index{density\+\_\+derivative@{density\+\_\+derivative}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{density\+\_\+derivative()}{density\_derivative()}}
+{\footnotesize\ttfamily double density\+\_\+derivative (\begin{DoxyParamCaption}\item[{double}]{dst,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_a8e0483f6886d0161066c8c4b5b961dde}\label{3d__fluid__sim_2fluid__sim_8hpp_a8e0483f6886d0161066c8c4b5b961dde}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!density\+\_\+kernel@{density\+\_\+kernel}}
+\index{density\+\_\+kernel@{density\+\_\+kernel}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{density\+\_\+kernel()}{density\_kernel()}}
+{\footnotesize\ttfamily double density\+\_\+kernel (\begin{DoxyParamCaption}\item[{double}]{dst,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_aae04ec4213cd8878504d7139b13b8b62}\label{3d__fluid__sim_2fluid__sim_8hpp_aae04ec4213cd8878504d7139b13b8b62}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!near\+\_\+density\+\_\+derivative@{near\+\_\+density\+\_\+derivative}}
+\index{near\+\_\+density\+\_\+derivative@{near\+\_\+density\+\_\+derivative}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{near\+\_\+density\+\_\+derivative()}{near\_density\_derivative()}}
+{\footnotesize\ttfamily double near\+\_\+density\+\_\+derivative (\begin{DoxyParamCaption}\item[{double}]{dst,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_a0b03143cfaddc9f976fe63084978f6ed}\label{3d__fluid__sim_2fluid__sim_8hpp_a0b03143cfaddc9f976fe63084978f6ed}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!near\+\_\+density\+\_\+kernel@{near\+\_\+density\+\_\+kernel}}
+\index{near\+\_\+density\+\_\+kernel@{near\+\_\+density\+\_\+kernel}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{near\+\_\+density\+\_\+kernel()}{near\_density\_kernel()}}
+{\footnotesize\ttfamily double near\+\_\+density\+\_\+kernel (\begin{DoxyParamCaption}\item[{double}]{dst,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_ae57a0a361e503cfce3176af83dbe92f2}\label{3d__fluid__sim_2fluid__sim_8hpp_ae57a0a361e503cfce3176af83dbe92f2}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!random\+Sphere\+Point@{random\+Sphere\+Point}}
+\index{random\+Sphere\+Point@{random\+Sphere\+Point}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{random\+Sphere\+Point()}{randomSpherePoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} random\+Sphere\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8hpp_ae2e1fda7989f4d5a3d1880003b8e8334}\label{3d__fluid__sim_2fluid__sim_8hpp_ae2e1fda7989f4d5a3d1880003b8e8334}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}!smoothing\+\_\+kernel\+\_\+poly6@{smoothing\+\_\+kernel\+\_\+poly6}}
+\index{smoothing\+\_\+kernel\+\_\+poly6@{smoothing\+\_\+kernel\+\_\+poly6}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+hpp}}
+\subsubsection{\texorpdfstring{smoothing\+\_\+kernel\+\_\+poly6()}{smoothing\_kernel\_poly6()}}
+{\footnotesize\ttfamily double smoothing\+\_\+kernel\+\_\+poly6 (\begin{DoxyParamCaption}\item[{double}]{dst,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+

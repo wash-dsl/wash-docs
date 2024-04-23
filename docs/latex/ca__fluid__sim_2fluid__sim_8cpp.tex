@@ -1,0 +1,299 @@
+\hypertarget{ca__fluid__sim_2fluid__sim_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.cpp File Reference}
+\label{ca__fluid__sim_2fluid__sim_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+{\ttfamily \#include \char`\"{}fluid\+\_\+sim.\+hpp\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a94042e6ee6cdae77c9aae4c4670c162c}{frame\+Time}}~1.\+0/60.\+0
+\item 
+\#define \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a7ae2a6045aeb799eb72e4ee4d6015ac1}{T\+I\+M\+E\+\_\+\+D\+E\+L\+TA}}(time\+Scale,  iterations\+Per\+Frame)~\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a94042e6ee6cdae77c9aae4c4670c162c}{frame\+Time}} / iterations\+Per\+Frame $\ast$ time\+Scale
+\item 
+\#define \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab946e2e7f7679350627acfded8e2658b}{T\+E\+ST}}~\textquotesingle{}A\textquotesingle{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ae242b1d4df1d0d56aea2c284de9c52d5}{Pressure\+From\+Density}} (const double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}})
+\item 
+double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a2d6d90830304d956a1b7880aafc425a3}{Near\+Pressure\+From\+Density}} (const double near\+Density)
+\item 
+\mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a96532193226b3cbb236e6465defeb469}{Externel\+Forces}} (const \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} pos, const \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} velocity)
+\begin{DoxyCompactList}\small\item\em Return external force vector acting on the particle. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a759a2c8e0d8be136aa2e47094164e28c}{define\+Wash\+Force\+Kernel}} (Calculate\+Density, particle)
+\item 
+\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a99c385c2963aedecd61a3c60ed9c0a02}{define\+Wash\+Update\+Kernel}} (Handle\+Collisions, particle)
+\item 
+\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ac3eda96a51acfb3827d6ca19c140ffd7}{define\+Wash\+Update\+Kernel}} (Velocity\+Update, particle)
+\begin{DoxyCompactList}\small\item\em Update the velocities based on external forces (gravity, etc) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ad98c555805f253ca0ff5f264186ef3c6}{define\+Wash\+Force\+Kernel}} (Calculate\+Pressure\+Force, particle)
+\begin{DoxyCompactList}\small\item\em Apply a pressure force on the particles based on their densities. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_abeeabca9e114bb237d20d9b69974debb}{define\+Wash\+Force\+Kernel}} (Calculate\+Viscosity, particle)
+\begin{DoxyCompactList}\small\item\em Apply a viscosity force on the particles based on the difference in velocities. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a849a8ff5c18c146030116e10d7f1b4a1}{define\+Wash\+Update\+Kernel}} (Update\+Positions, particle)
+\begin{DoxyCompactList}\small\item\em Update particle position based on velocity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aed6224fe480d55ad4890456f007b84b5}{define\+Wash\+Update\+Kernel}} (\mbox{\hyperlink{init_8hpp_a9961f7ff0de6fe6ea7838db3950e534f}{init}}, p)
+\item 
+int \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a57d93ce8b44133ed956acc10a45e6223}{spawn\+Centre}} \{ 3.\+35, 0.\+51 \}
+\item 
+constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab15a76f258cadefcad1f4b39a8e76618}{initial\+Velocity}} \{ 0.\+0, 0.\+0 \}
+\item 
+constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab17b2a069e81c771262e861e014202d0}{spawn\+Size}} \{ 7.\+0, 7.\+0 \}
+\item 
+constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ace3ed3b7a7b09d3b46cc03b0385c73c1}{bounds\+Size}} \{ 17.\+1, 9.\+3 \}
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a39140666db6cb0c2fa813506654e739b}{jitter\+Str}} = 0.\+025
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a2b29628caeabe11281929b39300e5110}{num\+Particles}} = 4032
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_af81f980bddb2471a968025ae3a738fa9}{gravity}} = -\/12.\+0
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{delta\+Time}} = \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a7ae2a6045aeb799eb72e4ee4d6015ac1}{T\+I\+M\+E\+\_\+\+D\+E\+L\+TA}}(1, 3)
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}{collision\+Damping}} = 0.\+95
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}} = 0.\+35
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a8df34bc56a46bc3a73024f988bac3271}{target\+Density}} = 55.\+0
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a4a61cd5f68fcbc416bd3904622ab80fc}{pressure\+Multiplier}} = 500.\+0
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a7e14d37dda2b744892950a0a7a3c913a}{near\+Pressure\+Multiplier}} = 18.\+0
+\item 
+constexpr double \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}{viscosity\+Strength}} = 0.\+06
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a94042e6ee6cdae77c9aae4c4670c162c}\label{ca__fluid__sim_2fluid__sim_8cpp_a94042e6ee6cdae77c9aae4c4670c162c}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!frame\+Time@{frame\+Time}}
+\index{frame\+Time@{frame\+Time}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{frame\+Time}{frameTime}}
+{\footnotesize\ttfamily \#define frame\+Time~1.\+0/60.\+0}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ab946e2e7f7679350627acfded8e2658b}\label{ca__fluid__sim_2fluid__sim_8cpp_ab946e2e7f7679350627acfded8e2658b}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!T\+E\+ST@{T\+E\+ST}}
+\index{T\+E\+ST@{T\+E\+ST}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{T\+E\+ST}{TEST}}
+{\footnotesize\ttfamily \#define T\+E\+ST~\textquotesingle{}A\textquotesingle{}}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a7ae2a6045aeb799eb72e4ee4d6015ac1}\label{ca__fluid__sim_2fluid__sim_8cpp_a7ae2a6045aeb799eb72e4ee4d6015ac1}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!T\+I\+M\+E\+\_\+\+D\+E\+L\+TA@{T\+I\+M\+E\+\_\+\+D\+E\+L\+TA}}
+\index{T\+I\+M\+E\+\_\+\+D\+E\+L\+TA@{T\+I\+M\+E\+\_\+\+D\+E\+L\+TA}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+\_\+\+D\+E\+L\+TA}{TIME\_DELTA}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+\_\+\+D\+E\+L\+TA(\begin{DoxyParamCaption}\item[{}]{time\+Scale,  }\item[{}]{iterations\+Per\+Frame }\end{DoxyParamCaption})~\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a94042e6ee6cdae77c9aae4c4670c162c}{frame\+Time}} / iterations\+Per\+Frame $\ast$ time\+Scale}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a759a2c8e0d8be136aa2e47094164e28c}\label{ca__fluid__sim_2fluid__sim_8cpp_a759a2c8e0d8be136aa2e47094164e28c}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}}
+\index{define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Force\+Kernel()}{defineWashForceKernel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily define\+Wash\+Force\+Kernel (\begin{DoxyParamCaption}\item[{Calculate\+Density}]{,  }\item[{particle}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ad98c555805f253ca0ff5f264186ef3c6}\label{ca__fluid__sim_2fluid__sim_8cpp_ad98c555805f253ca0ff5f264186ef3c6}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}}
+\index{define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Force\+Kernel()}{defineWashForceKernel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily define\+Wash\+Force\+Kernel (\begin{DoxyParamCaption}\item[{Calculate\+Pressure\+Force}]{,  }\item[{particle}]{ }\end{DoxyParamCaption})}
+
+
+
+Apply a pressure force on the particles based on their densities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em particle} & \\
+\hline
+{\em neighbours} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_abeeabca9e114bb237d20d9b69974debb}\label{ca__fluid__sim_2fluid__sim_8cpp_abeeabca9e114bb237d20d9b69974debb}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}}
+\index{define\+Wash\+Force\+Kernel@{define\+Wash\+Force\+Kernel}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Force\+Kernel()}{defineWashForceKernel()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily define\+Wash\+Force\+Kernel (\begin{DoxyParamCaption}\item[{Calculate\+Viscosity}]{,  }\item[{particle}]{ }\end{DoxyParamCaption})}
+
+
+
+Apply a viscosity force on the particles based on the difference in velocities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em particle} & particle being updates \\
+\hline
+{\em neighbours} & neighbours within radius which act on this particle \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a99c385c2963aedecd61a3c60ed9c0a02}\label{ca__fluid__sim_2fluid__sim_8cpp_a99c385c2963aedecd61a3c60ed9c0a02}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}}
+\index{define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Update\+Kernel()}{defineWashUpdateKernel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily define\+Wash\+Update\+Kernel (\begin{DoxyParamCaption}\item[{Handle\+Collisions}]{,  }\item[{particle}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ac3eda96a51acfb3827d6ca19c140ffd7}\label{ca__fluid__sim_2fluid__sim_8cpp_ac3eda96a51acfb3827d6ca19c140ffd7}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}}
+\index{define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Update\+Kernel()}{defineWashUpdateKernel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily define\+Wash\+Update\+Kernel (\begin{DoxyParamCaption}\item[{Velocity\+Update}]{,  }\item[{particle}]{ }\end{DoxyParamCaption})}
+
+
+
+Update the velocities based on external forces (gravity, etc) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em particle} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a849a8ff5c18c146030116e10d7f1b4a1}\label{ca__fluid__sim_2fluid__sim_8cpp_a849a8ff5c18c146030116e10d7f1b4a1}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}}
+\index{define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Update\+Kernel()}{defineWashUpdateKernel()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily define\+Wash\+Update\+Kernel (\begin{DoxyParamCaption}\item[{Update\+Positions}]{,  }\item[{particle}]{ }\end{DoxyParamCaption})}
+
+
+
+Update particle position based on velocity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em particle} & particle to update \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_aed6224fe480d55ad4890456f007b84b5}\label{ca__fluid__sim_2fluid__sim_8cpp_aed6224fe480d55ad4890456f007b84b5}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}}
+\index{define\+Wash\+Update\+Kernel@{define\+Wash\+Update\+Kernel}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{define\+Wash\+Update\+Kernel()}{defineWashUpdateKernel()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily define\+Wash\+Update\+Kernel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{init_8hpp_a9961f7ff0de6fe6ea7838db3950e534f}{init}}}]{,  }\item[{p}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a96532193226b3cbb236e6465defeb469}\label{ca__fluid__sim_2fluid__sim_8cpp_a96532193226b3cbb236e6465defeb469}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!Externel\+Forces@{Externel\+Forces}}
+\index{Externel\+Forces@{Externel\+Forces}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{Externel\+Forces()}{ExternelForces()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} Externel\+Forces (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}}}]{pos,  }\item[{const \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}}}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Return external force vector acting on the particle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & \\
+\hline
+{\em velocity} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{ca__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!main@{main}}
+\index{main@{main}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a2d6d90830304d956a1b7880aafc425a3}\label{ca__fluid__sim_2fluid__sim_8cpp_a2d6d90830304d956a1b7880aafc425a3}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!Near\+Pressure\+From\+Density@{Near\+Pressure\+From\+Density}}
+\index{Near\+Pressure\+From\+Density@{Near\+Pressure\+From\+Density}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{Near\+Pressure\+From\+Density()}{NearPressureFromDensity()}}
+{\footnotesize\ttfamily double Near\+Pressure\+From\+Density (\begin{DoxyParamCaption}\item[{const double}]{near\+Density }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ae242b1d4df1d0d56aea2c284de9c52d5}\label{ca__fluid__sim_2fluid__sim_8cpp_ae242b1d4df1d0d56aea2c284de9c52d5}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!Pressure\+From\+Density@{Pressure\+From\+Density}}
+\index{Pressure\+From\+Density@{Pressure\+From\+Density}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{Pressure\+From\+Density()}{PressureFromDensity()}}
+{\footnotesize\ttfamily double Pressure\+From\+Density (\begin{DoxyParamCaption}\item[{const double}]{density }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ace3ed3b7a7b09d3b46cc03b0385c73c1}\label{ca__fluid__sim_2fluid__sim_8cpp_ace3ed3b7a7b09d3b46cc03b0385c73c1}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!bounds\+Size@{bounds\+Size}}
+\index{bounds\+Size@{bounds\+Size}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{bounds\+Size}{boundsSize}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} bounds\+Size \{ 17.\+1, 9.\+3 \}}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}\label{ca__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!collision\+Damping@{collision\+Damping}}
+\index{collision\+Damping@{collision\+Damping}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{collision\+Damping}{collisionDamping}}
+{\footnotesize\ttfamily constexpr double collision\+Damping = 0.\+95}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}\label{ca__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!delta\+Time@{delta\+Time}}
+\index{delta\+Time@{delta\+Time}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{delta\+Time}{deltaTime}}
+{\footnotesize\ttfamily constexpr double delta\+Time = \mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_a7ae2a6045aeb799eb72e4ee4d6015ac1}{T\+I\+M\+E\+\_\+\+D\+E\+L\+TA}}(1, 3)}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_af81f980bddb2471a968025ae3a738fa9}\label{ca__fluid__sim_2fluid__sim_8cpp_af81f980bddb2471a968025ae3a738fa9}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!gravity@{gravity}}
+\index{gravity@{gravity}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{gravity}{gravity}}
+{\footnotesize\ttfamily constexpr double gravity = -\/12.\+0}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ab15a76f258cadefcad1f4b39a8e76618}\label{ca__fluid__sim_2fluid__sim_8cpp_ab15a76f258cadefcad1f4b39a8e76618}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!initial\+Velocity@{initial\+Velocity}}
+\index{initial\+Velocity@{initial\+Velocity}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{initial\+Velocity}{initialVelocity}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} initial\+Velocity \{ 0.\+0, 0.\+0 \}}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a39140666db6cb0c2fa813506654e739b}\label{ca__fluid__sim_2fluid__sim_8cpp_a39140666db6cb0c2fa813506654e739b}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!jitter\+Str@{jitter\+Str}}
+\index{jitter\+Str@{jitter\+Str}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{jitter\+Str}{jitterStr}}
+{\footnotesize\ttfamily constexpr double jitter\+Str = 0.\+025}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a7e14d37dda2b744892950a0a7a3c913a}\label{ca__fluid__sim_2fluid__sim_8cpp_a7e14d37dda2b744892950a0a7a3c913a}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!near\+Pressure\+Multiplier@{near\+Pressure\+Multiplier}}
+\index{near\+Pressure\+Multiplier@{near\+Pressure\+Multiplier}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{near\+Pressure\+Multiplier}{nearPressureMultiplier}}
+{\footnotesize\ttfamily constexpr double near\+Pressure\+Multiplier = 18.\+0}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a2b29628caeabe11281929b39300e5110}\label{ca__fluid__sim_2fluid__sim_8cpp_a2b29628caeabe11281929b39300e5110}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!num\+Particles@{num\+Particles}}
+\index{num\+Particles@{num\+Particles}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{num\+Particles}{numParticles}}
+{\footnotesize\ttfamily constexpr double num\+Particles = 4032}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a4a61cd5f68fcbc416bd3904622ab80fc}\label{ca__fluid__sim_2fluid__sim_8cpp_a4a61cd5f68fcbc416bd3904622ab80fc}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!pressure\+Multiplier@{pressure\+Multiplier}}
+\index{pressure\+Multiplier@{pressure\+Multiplier}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{pressure\+Multiplier}{pressureMultiplier}}
+{\footnotesize\ttfamily constexpr double pressure\+Multiplier = 500.\+0}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}\label{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!smoothing\+Radius@{smoothing\+Radius}}
+\index{smoothing\+Radius@{smoothing\+Radius}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{smoothing\+Radius}{smoothingRadius}}
+{\footnotesize\ttfamily constexpr double smoothing\+Radius = 0.\+35}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a57d93ce8b44133ed956acc10a45e6223}\label{ca__fluid__sim_2fluid__sim_8cpp_a57d93ce8b44133ed956acc10a45e6223}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!spawn\+Centre@{spawn\+Centre}}
+\index{spawn\+Centre@{spawn\+Centre}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{spawn\+Centre}{spawnCentre}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} spawn\+Centre \{ 3.\+35, 0.\+51 \}}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_ab17b2a069e81c771262e861e014202d0}\label{ca__fluid__sim_2fluid__sim_8cpp_ab17b2a069e81c771262e861e014202d0}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!spawn\+Size@{spawn\+Size}}
+\index{spawn\+Size@{spawn\+Size}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{spawn\+Size}{spawnSize}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespacewash_a905f2d902fc7aaab0e8a58b6ee25baf1}{wash\+::\+Vec2D}} spawn\+Size \{ 7.\+0, 7.\+0 \}}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a8df34bc56a46bc3a73024f988bac3271}\label{ca__fluid__sim_2fluid__sim_8cpp_a8df34bc56a46bc3a73024f988bac3271}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!target\+Density@{target\+Density}}
+\index{target\+Density@{target\+Density}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{target\+Density}{targetDensity}}
+{\footnotesize\ttfamily constexpr double target\+Density = 55.\+0}
+
+\mbox{\Hypertarget{ca__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}\label{ca__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}} 
+\index{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!viscosity\+Strength@{viscosity\+Strength}}
+\index{viscosity\+Strength@{viscosity\+Strength}!ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{ca\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{viscosity\+Strength}{viscosityStrength}}
+{\footnotesize\ttfamily constexpr double viscosity\+Strength = 0.\+06}
+

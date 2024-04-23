@@ -1,0 +1,143 @@
+\hypertarget{box_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/box.cpp File Reference}
+\label{box_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/box.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/sedov\+\_\+blast\+\_\+wave/box.\+cpp}}
+{\ttfamily \#include \char`\"{}box.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \mbox{\hyperlink{box_8cpp_a72e62298474567309aa1fbd7941e28bb}{put\+\_\+in\+\_\+box}} (const \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} pos)
+\item 
+void \mbox{\hyperlink{box_8cpp_a141ebf0fc54e6f154dc6dde84b7ac2a6}{apply\+\_\+pbc}} (const double h, double \&xx, double \&yy, double \&zz)
+\item 
+double \mbox{\hyperlink{box_8cpp_a20b9e8914e40ab4e28fe9343a5d005c8}{distance\+\_\+pbc}} (const double h, const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&j)
+\item 
+double \mbox{\hyperlink{box_8cpp_a522603d813216b1c6b0a4f96c47aa1bd}{eucdist\+\_\+pbc}} (const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&i, const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&j)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a851b1971a1dac43c463bfaf410c4de44}{box\+\_\+xmin}} = -\/\mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a49af0fe7f46faa1467f6f7811ead1365}{box\+\_\+ymin}} = -\/\mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a40b4cb0e3a97071655be0de25add26f5}{box\+\_\+zmin}} = -\/\mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a04ee8fffeead1b570d4d701fac7a5133}{box\+\_\+xmax}} = \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a259c5262d5b4b6c53ff84e4a8b7e445b}{box\+\_\+ymax}} = \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a18ee131d6d2072eb9fad0bb9324c9708}{box\+\_\+zmax}} = \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_afebae1bcbdb5724f4d40b9cfa270c146}{box\+\_\+lx}} = 2.\+0 $\ast$ \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a9c79e9ba6bab572d7e6dc651a0b9007d}{box\+\_\+ly}} = 2.\+0 $\ast$ \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_a125272315822f4921ed83f6cce3f950f}{box\+\_\+lz}} = 2.\+0 $\ast$ \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_ab7d21bf711ff433b8ee61b6eeea8e262}{box\+\_\+ilx}} = 1.\+0 / \mbox{\hyperlink{box_8cpp_afebae1bcbdb5724f4d40b9cfa270c146}{box\+\_\+lx}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_afe0c079204f90f773be3165f8c4a3849}{box\+\_\+ily}} = 1.\+0 / \mbox{\hyperlink{box_8cpp_a9c79e9ba6bab572d7e6dc651a0b9007d}{box\+\_\+ly}}
+\item 
+constexpr double \mbox{\hyperlink{box_8cpp_ab61c63b852f5858395c80143ebe1b90a}{box\+\_\+ilz}} = 1.\+0 / \mbox{\hyperlink{box_8cpp_a125272315822f4921ed83f6cce3f950f}{box\+\_\+lz}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{box_8cpp_a141ebf0fc54e6f154dc6dde84b7ac2a6}\label{box_8cpp_a141ebf0fc54e6f154dc6dde84b7ac2a6}} 
+\index{box.\+cpp@{box.\+cpp}!apply\+\_\+pbc@{apply\+\_\+pbc}}
+\index{apply\+\_\+pbc@{apply\+\_\+pbc}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{apply\+\_\+pbc()}{apply\_pbc()}}
+{\footnotesize\ttfamily void apply\+\_\+pbc (\begin{DoxyParamCaption}\item[{const double}]{h,  }\item[{double \&}]{xx,  }\item[{double \&}]{yy,  }\item[{double \&}]{zz }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{box_8cpp_a20b9e8914e40ab4e28fe9343a5d005c8}\label{box_8cpp_a20b9e8914e40ab4e28fe9343a5d005c8}} 
+\index{box.\+cpp@{box.\+cpp}!distance\+\_\+pbc@{distance\+\_\+pbc}}
+\index{distance\+\_\+pbc@{distance\+\_\+pbc}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{distance\+\_\+pbc()}{distance\_pbc()}}
+{\footnotesize\ttfamily double distance\+\_\+pbc (\begin{DoxyParamCaption}\item[{const double}]{h,  }\item[{const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{j }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{box_8cpp_a522603d813216b1c6b0a4f96c47aa1bd}\label{box_8cpp_a522603d813216b1c6b0a4f96c47aa1bd}} 
+\index{box.\+cpp@{box.\+cpp}!eucdist\+\_\+pbc@{eucdist\+\_\+pbc}}
+\index{eucdist\+\_\+pbc@{eucdist\+\_\+pbc}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{eucdist\+\_\+pbc()}{eucdist\_pbc()}}
+{\footnotesize\ttfamily double eucdist\+\_\+pbc (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{i,  }\item[{const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{j }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{box_8cpp_a72e62298474567309aa1fbd7941e28bb}\label{box_8cpp_a72e62298474567309aa1fbd7941e28bb}} 
+\index{box.\+cpp@{box.\+cpp}!put\+\_\+in\+\_\+box@{put\+\_\+in\+\_\+box}}
+\index{put\+\_\+in\+\_\+box@{put\+\_\+in\+\_\+box}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{put\+\_\+in\+\_\+box()}{put\_in\_box()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} put\+\_\+in\+\_\+box (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}}}]{pos }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{box_8cpp_ab7d21bf711ff433b8ee61b6eeea8e262}\label{box_8cpp_ab7d21bf711ff433b8ee61b6eeea8e262}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+ilx@{box\+\_\+ilx}}
+\index{box\+\_\+ilx@{box\+\_\+ilx}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+ilx}{box\_ilx}}
+{\footnotesize\ttfamily constexpr double box\+\_\+ilx = 1.\+0 / \mbox{\hyperlink{box_8cpp_afebae1bcbdb5724f4d40b9cfa270c146}{box\+\_\+lx}}}
+
+\mbox{\Hypertarget{box_8cpp_afe0c079204f90f773be3165f8c4a3849}\label{box_8cpp_afe0c079204f90f773be3165f8c4a3849}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+ily@{box\+\_\+ily}}
+\index{box\+\_\+ily@{box\+\_\+ily}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+ily}{box\_ily}}
+{\footnotesize\ttfamily constexpr double box\+\_\+ily = 1.\+0 / \mbox{\hyperlink{box_8cpp_a9c79e9ba6bab572d7e6dc651a0b9007d}{box\+\_\+ly}}}
+
+\mbox{\Hypertarget{box_8cpp_ab61c63b852f5858395c80143ebe1b90a}\label{box_8cpp_ab61c63b852f5858395c80143ebe1b90a}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+ilz@{box\+\_\+ilz}}
+\index{box\+\_\+ilz@{box\+\_\+ilz}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+ilz}{box\_ilz}}
+{\footnotesize\ttfamily constexpr double box\+\_\+ilz = 1.\+0 / \mbox{\hyperlink{box_8cpp_a125272315822f4921ed83f6cce3f950f}{box\+\_\+lz}}}
+
+\mbox{\Hypertarget{box_8cpp_afebae1bcbdb5724f4d40b9cfa270c146}\label{box_8cpp_afebae1bcbdb5724f4d40b9cfa270c146}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+lx@{box\+\_\+lx}}
+\index{box\+\_\+lx@{box\+\_\+lx}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+lx}{box\_lx}}
+{\footnotesize\ttfamily constexpr double box\+\_\+lx = 2.\+0 $\ast$ \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a9c79e9ba6bab572d7e6dc651a0b9007d}\label{box_8cpp_a9c79e9ba6bab572d7e6dc651a0b9007d}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+ly@{box\+\_\+ly}}
+\index{box\+\_\+ly@{box\+\_\+ly}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+ly}{box\_ly}}
+{\footnotesize\ttfamily constexpr double box\+\_\+ly = 2.\+0 $\ast$ \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a125272315822f4921ed83f6cce3f950f}\label{box_8cpp_a125272315822f4921ed83f6cce3f950f}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+lz@{box\+\_\+lz}}
+\index{box\+\_\+lz@{box\+\_\+lz}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+lz}{box\_lz}}
+{\footnotesize\ttfamily constexpr double box\+\_\+lz = 2.\+0 $\ast$ \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a04ee8fffeead1b570d4d701fac7a5133}\label{box_8cpp_a04ee8fffeead1b570d4d701fac7a5133}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+xmax@{box\+\_\+xmax}}
+\index{box\+\_\+xmax@{box\+\_\+xmax}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+xmax}{box\_xmax}}
+{\footnotesize\ttfamily constexpr double box\+\_\+xmax = \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a851b1971a1dac43c463bfaf410c4de44}\label{box_8cpp_a851b1971a1dac43c463bfaf410c4de44}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+xmin@{box\+\_\+xmin}}
+\index{box\+\_\+xmin@{box\+\_\+xmin}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+xmin}{box\_xmin}}
+{\footnotesize\ttfamily constexpr double box\+\_\+xmin = -\/\mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a259c5262d5b4b6c53ff84e4a8b7e445b}\label{box_8cpp_a259c5262d5b4b6c53ff84e4a8b7e445b}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+ymax@{box\+\_\+ymax}}
+\index{box\+\_\+ymax@{box\+\_\+ymax}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+ymax}{box\_ymax}}
+{\footnotesize\ttfamily constexpr double box\+\_\+ymax = \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a49af0fe7f46faa1467f6f7811ead1365}\label{box_8cpp_a49af0fe7f46faa1467f6f7811ead1365}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+ymin@{box\+\_\+ymin}}
+\index{box\+\_\+ymin@{box\+\_\+ymin}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+ymin}{box\_ymin}}
+{\footnotesize\ttfamily constexpr double box\+\_\+ymin = -\/\mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a18ee131d6d2072eb9fad0bb9324c9708}\label{box_8cpp_a18ee131d6d2072eb9fad0bb9324c9708}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+zmax@{box\+\_\+zmax}}
+\index{box\+\_\+zmax@{box\+\_\+zmax}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+zmax}{box\_zmax}}
+{\footnotesize\ttfamily constexpr double box\+\_\+zmax = \mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+
+\mbox{\Hypertarget{box_8cpp_a40b4cb0e3a97071655be0de25add26f5}\label{box_8cpp_a40b4cb0e3a97071655be0de25add26f5}} 
+\index{box.\+cpp@{box.\+cpp}!box\+\_\+zmin@{box\+\_\+zmin}}
+\index{box\+\_\+zmin@{box\+\_\+zmin}!box.\+cpp@{box.\+cpp}}
+\subsubsection{\texorpdfstring{box\+\_\+zmin}{box\_zmin}}
+{\footnotesize\ttfamily constexpr double box\+\_\+zmin = -\/\mbox{\hyperlink{consts_8hpp_a7030d1ec911bab2cb423ae6863ebe887}{r1}}}
+

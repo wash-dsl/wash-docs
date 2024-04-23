@@ -1,0 +1,88 @@
+\hypertarget{namespacews2st}{}\section{ws2st Namespace Reference}
+\label{namespacews2st}\index{ws2st@{ws2st}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1args}{args}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1compile}{compile}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1dependency__detection}{dependency\+\_\+detection}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1files}{files}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1refactor}{refactor}}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structws2st_1_1KernelDependencies}{Kernel\+Dependencies}}
+\begin{DoxyCompactList}\small\item\em Struct to hold two vectors of dependencies (appropriately named) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structws2st_1_1WashProgramMeta}{Wash\+Program\+Meta}}
+\begin{DoxyCompactList}\small\item\em Meta information about the simulation which is defined globally and can be read/written to by the callback functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}{Wash\+Callback\+Fn}}) (const Match\+Finder\+::\+Match\+Result \&, Replacements \&)
+\begin{DoxyCompactList}\small\item\em Defines the type of the callback function which takes a Match\+Result containing A\+ST information about the match and a mutable reference to the Replacements list which can be added to by the callback function. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{namespacews2st_a77544d74f310dc9ec5c11bffa3ea77b6}{Wash\+Compute\+Fn}}) (const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05}{Force\+Type}} \{ \mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a8f3d9a4b6a7b7f2c7afa61ca113d0db9}{Force\+Type\+::\+S\+C\+A\+L\+AR}}, 
+\mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a87752381b583740610f1dfeb07fdad7e}{Force\+Type\+::\+V\+E\+C\+T\+OR}}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structws2st_1_1WashProgramMeta}{Wash\+Program\+Meta}} $>$ \mbox{\hyperlink{namespacews2st_ab3effe8d87dc3f3df0533a3cdcf136e4}{program\+\_\+meta}} = std\+::make\+\_\+shared$<$\mbox{\hyperlink{structws2st_1_1WashProgramMeta}{Wash\+Program\+Meta}}$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}\label{namespacews2st_a682dfda40d8282c7e579a7b826a7d861}} 
+\index{ws2st@{ws2st}!Wash\+Callback\+Fn@{Wash\+Callback\+Fn}}
+\index{Wash\+Callback\+Fn@{Wash\+Callback\+Fn}!ws2st@{ws2st}}
+\subsubsection{\texorpdfstring{Wash\+Callback\+Fn}{WashCallbackFn}}
+{\footnotesize\ttfamily typedef void($\ast$  ws2st\+::\+Wash\+Callback\+Fn) (const Match\+Finder\+::\+Match\+Result \&, Replacements \&)}
+
+
+
+Defines the type of the callback function which takes a Match\+Result containing A\+ST information about the match and a mutable reference to the Replacements list which can be added to by the callback function. 
+
+\mbox{\Hypertarget{namespacews2st_a77544d74f310dc9ec5c11bffa3ea77b6}\label{namespacews2st_a77544d74f310dc9ec5c11bffa3ea77b6}} 
+\index{ws2st@{ws2st}!Wash\+Compute\+Fn@{Wash\+Compute\+Fn}}
+\index{Wash\+Compute\+Fn@{Wash\+Compute\+Fn}!ws2st@{ws2st}}
+\subsubsection{\texorpdfstring{Wash\+Compute\+Fn}{WashComputeFn}}
+{\footnotesize\ttfamily typedef void($\ast$  ws2st\+::\+Wash\+Compute\+Fn) (const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05}\label{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05}} 
+\index{ws2st@{ws2st}!Force\+Type@{Force\+Type}}
+\index{Force\+Type@{Force\+Type}!ws2st@{ws2st}}
+\subsubsection{\texorpdfstring{Force\+Type}{ForceType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05}{ws2st\+::\+Force\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+C\+A\+L\+AR@{S\+C\+A\+L\+AR}!ws2st@{ws2st}}\index{ws2st@{ws2st}!S\+C\+A\+L\+AR@{S\+C\+A\+L\+AR}}}\mbox{\Hypertarget{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a8f3d9a4b6a7b7f2c7afa61ca113d0db9}\label{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a8f3d9a4b6a7b7f2c7afa61ca113d0db9}} 
+S\+C\+A\+L\+AR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{V\+E\+C\+T\+OR@{V\+E\+C\+T\+OR}!ws2st@{ws2st}}\index{ws2st@{ws2st}!V\+E\+C\+T\+OR@{V\+E\+C\+T\+OR}}}\mbox{\Hypertarget{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a87752381b583740610f1dfeb07fdad7e}\label{namespacews2st_a6f0a66f31a77eae4630693b8d4d27a05a87752381b583740610f1dfeb07fdad7e}} 
+V\+E\+C\+T\+OR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacews2st_ab3effe8d87dc3f3df0533a3cdcf136e4}\label{namespacews2st_ab3effe8d87dc3f3df0533a3cdcf136e4}} 
+\index{ws2st@{ws2st}!program\+\_\+meta@{program\+\_\+meta}}
+\index{program\+\_\+meta@{program\+\_\+meta}!ws2st@{ws2st}}
+\subsubsection{\texorpdfstring{program\+\_\+meta}{program\_meta}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{structws2st_1_1WashProgramMeta}{Wash\+Program\+Meta}} $>$ ws2st\+::program\+\_\+meta = std\+::make\+\_\+shared$<$\mbox{\hyperlink{structws2st_1_1WashProgramMeta}{Wash\+Program\+Meta}}$>$()}
+

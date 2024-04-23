@@ -1,0 +1,24 @@
+\hypertarget{dependency__graph__analysis_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/dependency\+\_\+graph\+\_\+analysis.hpp File Reference}
+\label{dependency__graph__analysis_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/dependency\+\_\+graph\+\_\+analysis.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/dependency\+\_\+graph\+\_\+analysis.\+hpp}}
+{\ttfamily \#include \char`\"{}../common.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../variables/variables.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1dependency__detection}{ws2st\+::dependency\+\_\+detection}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ bool $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ad1cd2b8bb6701a935a701247e3a9513a}{ws2st\+::dependency\+\_\+detection\+::compute\+\_\+domain\+\_\+syncs}} ()
+\begin{DoxyCompactList}\small\item\em Compute whether or not we should run a domain sync after each kernel. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a2b9570e91f83523fedfd436f165b8295}{ws2st\+::dependency\+\_\+detection\+::compute\+\_\+halo\+\_\+exchanges}} ()
+\begin{DoxyCompactList}\small\item\em Compute which variables need to be exchanged after the execution of each kernel. exchanges\mbox{[}i\mbox{]} contains v if v needs to be exchanged after kernel i executes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a8b77ddddfc773081dd720230552c93c2}{ws2st\+::dependency\+\_\+detection\+::\+Unroll\+Kernel\+Dependency\+Loop}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\begin{DoxyCompactList}\small\item\em Rewriter callback for unrolling the kernel loop. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a3d9867901e8b37524b810b5d95a6cc25}{ws2st\+::dependency\+\_\+detection\+::\+Run\+Halo\+Exchange}} (std\+::vector$<$ std\+::string $>$ exchanges)
+\begin{DoxyCompactList}\small\item\em Generate code for a single halo exchange on a list of variables. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ac413a69373ef6abece419cac50b0a1bc}{ws2st\+::dependency\+\_\+detection\+::\+Insert\+Initial\+Halo\+Exchange}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\end{DoxyCompactItemize}

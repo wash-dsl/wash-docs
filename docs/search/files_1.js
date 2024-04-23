@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['cstone_2ehpp',['cstone.hpp',['../cstone_8hpp.html',1,'']]]
+  ['box_2ecpp',['box.cpp',['../box_8cpp.html',1,'']]],
+  ['box_2ehpp',['box.hpp',['../box_8hpp.html',1,'']]]
 ];

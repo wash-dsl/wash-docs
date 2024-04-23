@@ -1,0 +1,182 @@
+\hypertarget{namespacews2st_1_1args}{}\section{ws2st\+:\+:args Namespace Reference}
+\label{namespacews2st_1_1args}\index{ws2st\+::args@{ws2st\+::args}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_aa88c38554aaf9729dfb17f863bdf4ada}{get\+H\+D\+F5\+Compile\+Flags}} ()
+\begin{DoxyCompactList}\small\item\em Get the compile flags needed to compile with H\+D\+F5 Does not include M\+PI flags -\/ these need to be added separately. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_a5eb1ca46c05701cc52a44210093c2eaa}{get\+H\+D\+F5\+Linking\+Flags}} ()
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_a7909fb732055598b38d44b7e2f77aa89}{get\+Impl\+Compile\+Flag}} (\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} impl)
+\begin{DoxyCompactList}\small\item\em Return the implementation specific compile flag This controls some optional features in the public A\+PI headers. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1args_a759526679dc8b6662355746dfd34e586}{execute\+Command\+Line}} (const std\+::string cmd, int $\ast$exit\+\_\+status)
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_ae17df12fe1f69d9bb38d427398bc5ce8}{get\+M\+P\+I\+Compile\+Flags}} ()
+\begin{DoxyCompactList}\small\item\em Executes {\ttfamily mpicxx -\/-\/showme\+:compile} to get the compile flags for the M\+PI implementation. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacews2st_1_1args_af89364224123958495fbf930ea918e7e}{get\+M\+P\+I\+Linking\+Flags}} ()
+\item 
+bool \mbox{\hyperlink{namespacews2st_1_1args_a21b8252775215103849faa587d687845}{test\+M\+P\+I\+Availability}} ()
+\item 
+bool \mbox{\hyperlink{namespacews2st_1_1args_a533a5aab05c3bf24aee0255a7d7a4c91}{test\+H\+D\+F5\+Availability}} ()
+\item 
+std\+::optional$<$ \mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} $>$ \mbox{\hyperlink{namespacews2st_1_1args_a798dece39be1264d2e1fa55447b8ed2b}{get\+Impl\+From\+String}} (const std\+::string istr)
+\begin{DoxyCompactList}\small\item\em Returns the A\+PI implementation enum represented by this string (if exists) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacews2st_1_1args_afdfeac88d594e9f636a020e576e99505}{are\+M\+P\+I\+Flags\+Required}} (\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} impl, const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&opts)
+\begin{DoxyCompactList}\small\item\em Returns whether the M\+PI flags will be needed to compile this program. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structWashOptions}{Wash\+Options}} \mbox{\hyperlink{namespacews2st_1_1args_a31feaff450a079474a31a11a8f45862e}{parse\+Command\+Line}} (int argc, const char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Parses the program command line into the options struct. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{namespacews2st_1_1args_a66c8edb18aef401f79d0a80ad4f42764}{execute\+Command\+Line}} (const std\+::string cmd)
+\begin{DoxyCompactList}\small\item\em Executes on the command line the command and returns the output This is probably slightly hack-\/y but also probably the best way to get the flags used by e.\+g. the M\+P\+I\+C\+XX compiler wrapper to be used in the compilation stage for analysis by our tool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacews2st_1_1args_afdfeac88d594e9f636a020e576e99505}\label{namespacews2st_1_1args_afdfeac88d594e9f636a020e576e99505}} 
+\index{ws2st\+::args@{ws2st\+::args}!are\+M\+P\+I\+Flags\+Required@{are\+M\+P\+I\+Flags\+Required}}
+\index{are\+M\+P\+I\+Flags\+Required@{are\+M\+P\+I\+Flags\+Required}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{are\+M\+P\+I\+Flags\+Required()}{areMPIFlagsRequired()}}
+{\footnotesize\ttfamily bool ws2st\+::args\+::are\+M\+P\+I\+Flags\+Required (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}}}]{impl,  }\item[{const \mbox{\hyperlink{structWashOptions}{Wash\+Options}} \&}]{opts }\end{DoxyParamCaption})}
+
+
+
+Returns whether the M\+PI flags will be needed to compile this program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impl} & The implementation chosen \\
+\hline
+{\em opt} & Program options \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if needed, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacews2st_1_1args_a759526679dc8b6662355746dfd34e586}\label{namespacews2st_1_1args_a759526679dc8b6662355746dfd34e586}} 
+\index{ws2st\+::args@{ws2st\+::args}!execute\+Command\+Line@{execute\+Command\+Line}}
+\index{execute\+Command\+Line@{execute\+Command\+Line}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{execute\+Command\+Line()}{executeCommandLine()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string ws2st\+::args\+::execute\+Command\+Line (\begin{DoxyParamCaption}\item[{const std\+::string}]{cmd,  }\item[{int $\ast$}]{exit\+\_\+status }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1args_a66c8edb18aef401f79d0a80ad4f42764}\label{namespacews2st_1_1args_a66c8edb18aef401f79d0a80ad4f42764}} 
+\index{ws2st\+::args@{ws2st\+::args}!execute\+Command\+Line@{execute\+Command\+Line}}
+\index{execute\+Command\+Line@{execute\+Command\+Line}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{execute\+Command\+Line()}{executeCommandLine()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string ws2st\+::args\+::execute\+Command\+Line (\begin{DoxyParamCaption}\item[{const std\+::string}]{cmd }\end{DoxyParamCaption})}
+
+
+
+Executes on the command line the command and returns the output This is probably slightly hack-\/y but also probably the best way to get the flags used by e.\+g. the M\+P\+I\+C\+XX compiler wrapper to be used in the compilation stage for analysis by our tool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & The command to execute \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stdout of the command 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacews2st_1_1args_aa88c38554aaf9729dfb17f863bdf4ada}\label{namespacews2st_1_1args_aa88c38554aaf9729dfb17f863bdf4ada}} 
+\index{ws2st\+::args@{ws2st\+::args}!get\+H\+D\+F5\+Compile\+Flags@{get\+H\+D\+F5\+Compile\+Flags}}
+\index{get\+H\+D\+F5\+Compile\+Flags@{get\+H\+D\+F5\+Compile\+Flags}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{get\+H\+D\+F5\+Compile\+Flags()}{getHDF5CompileFlags()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ws2st\+::args\+::get\+H\+D\+F5\+Compile\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the compile flags needed to compile with H\+D\+F5 Does not include M\+PI flags -\/ these need to be added separately. 
+
+\begin{DoxyReturn}{Returns}
+list of arguments to use 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacews2st_1_1args_a5eb1ca46c05701cc52a44210093c2eaa}\label{namespacews2st_1_1args_a5eb1ca46c05701cc52a44210093c2eaa}} 
+\index{ws2st\+::args@{ws2st\+::args}!get\+H\+D\+F5\+Linking\+Flags@{get\+H\+D\+F5\+Linking\+Flags}}
+\index{get\+H\+D\+F5\+Linking\+Flags@{get\+H\+D\+F5\+Linking\+Flags}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{get\+H\+D\+F5\+Linking\+Flags()}{getHDF5LinkingFlags()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ws2st\+::args\+::get\+H\+D\+F5\+Linking\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1args_a7909fb732055598b38d44b7e2f77aa89}\label{namespacews2st_1_1args_a7909fb732055598b38d44b7e2f77aa89}} 
+\index{ws2st\+::args@{ws2st\+::args}!get\+Impl\+Compile\+Flag@{get\+Impl\+Compile\+Flag}}
+\index{get\+Impl\+Compile\+Flag@{get\+Impl\+Compile\+Flag}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{get\+Impl\+Compile\+Flag()}{getImplCompileFlag()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ws2st\+::args\+::get\+Impl\+Compile\+Flag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}}}]{impl }\end{DoxyParamCaption})}
+
+
+
+Return the implementation specific compile flag This controls some optional features in the public A\+PI headers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em impl} & The implementation being used \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of compiler arguments to add 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacews2st_1_1args_a798dece39be1264d2e1fa55447b8ed2b}\label{namespacews2st_1_1args_a798dece39be1264d2e1fa55447b8ed2b}} 
+\index{ws2st\+::args@{ws2st\+::args}!get\+Impl\+From\+String@{get\+Impl\+From\+String}}
+\index{get\+Impl\+From\+String@{get\+Impl\+From\+String}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{get\+Impl\+From\+String()}{getImplFromString()}}
+{\footnotesize\ttfamily std\+::optional$<$ \mbox{\hyperlink{common_8hpp_aad9d1428f17c06ff77ef15dea22624dc}{Implementations}} $>$ ws2st\+::args\+::get\+Impl\+From\+String (\begin{DoxyParamCaption}\item[{const std\+::string}]{istr }\end{DoxyParamCaption})}
+
+
+
+Returns the A\+PI implementation enum represented by this string (if exists) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em istr} & String to match \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Implementation enum if exists, else nullopt. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacews2st_1_1args_ae17df12fe1f69d9bb38d427398bc5ce8}\label{namespacews2st_1_1args_ae17df12fe1f69d9bb38d427398bc5ce8}} 
+\index{ws2st\+::args@{ws2st\+::args}!get\+M\+P\+I\+Compile\+Flags@{get\+M\+P\+I\+Compile\+Flags}}
+\index{get\+M\+P\+I\+Compile\+Flags@{get\+M\+P\+I\+Compile\+Flags}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{get\+M\+P\+I\+Compile\+Flags()}{getMPICompileFlags()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ws2st\+::args\+::get\+M\+P\+I\+Compile\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Executes {\ttfamily mpicxx -\/-\/showme\+:compile} to get the compile flags for the M\+PI implementation. 
+
+\begin{DoxyReturn}{Returns}
+vector of string compile flags 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacews2st_1_1args_af89364224123958495fbf930ea918e7e}\label{namespacews2st_1_1args_af89364224123958495fbf930ea918e7e}} 
+\index{ws2st\+::args@{ws2st\+::args}!get\+M\+P\+I\+Linking\+Flags@{get\+M\+P\+I\+Linking\+Flags}}
+\index{get\+M\+P\+I\+Linking\+Flags@{get\+M\+P\+I\+Linking\+Flags}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{get\+M\+P\+I\+Linking\+Flags()}{getMPILinkingFlags()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ ws2st\+::args\+::get\+M\+P\+I\+Linking\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1args_a31feaff450a079474a31a11a8f45862e}\label{namespacews2st_1_1args_a31feaff450a079474a31a11a8f45862e}} 
+\index{ws2st\+::args@{ws2st\+::args}!parse\+Command\+Line@{parse\+Command\+Line}}
+\index{parse\+Command\+Line@{parse\+Command\+Line}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{parse\+Command\+Line()}{parseCommandLine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structWashOptions}{Wash\+Options}} ws2st\+::args\+::parse\+Command\+Line (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{const char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Parses the program command line into the options struct. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & \\
+\hline
+{\em argv} & Standard meaning of these arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structWashOptions}{Wash\+Options}} struct representing the options chosen 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacews2st_1_1args_a533a5aab05c3bf24aee0255a7d7a4c91}\label{namespacews2st_1_1args_a533a5aab05c3bf24aee0255a7d7a4c91}} 
+\index{ws2st\+::args@{ws2st\+::args}!test\+H\+D\+F5\+Availability@{test\+H\+D\+F5\+Availability}}
+\index{test\+H\+D\+F5\+Availability@{test\+H\+D\+F5\+Availability}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{test\+H\+D\+F5\+Availability()}{testHDF5Availability()}}
+{\footnotesize\ttfamily bool ws2st\+::args\+::test\+H\+D\+F5\+Availability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacews2st_1_1args_a21b8252775215103849faa587d687845}\label{namespacews2st_1_1args_a21b8252775215103849faa587d687845}} 
+\index{ws2st\+::args@{ws2st\+::args}!test\+M\+P\+I\+Availability@{test\+M\+P\+I\+Availability}}
+\index{test\+M\+P\+I\+Availability@{test\+M\+P\+I\+Availability}!ws2st\+::args@{ws2st\+::args}}
+\subsubsection{\texorpdfstring{test\+M\+P\+I\+Availability()}{testMPIAvailability()}}
+{\footnotesize\ttfamily bool ws2st\+::args\+::test\+M\+P\+I\+Availability (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+

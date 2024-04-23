@@ -1,0 +1,106 @@
+\hypertarget{kernel__dependency__detector_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/kernel\+\_\+dependency\+\_\+detector.cpp File Reference}
+\label{kernel__dependency__detector_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/kernel\+\_\+dependency\+\_\+detector.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/ws2st/halo\+\_\+exchange/kernel\+\_\+dependency\+\_\+detector.\+cpp}}
+{\ttfamily \#include \char`\"{}kernel\+\_\+dependency\+\_\+detector.\+hpp\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacews2st}{ws2st}}
+\item 
+ \mbox{\hyperlink{namespacews2st_1_1dependency__detection}{ws2st\+::dependency\+\_\+detection}}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespacews2st_1_1dependency__detection_afa94b48529c6c085e21d3025069d8085}{ws2st\+::dependency\+\_\+detection\+::\+Record\+Assignment}} (std\+::string function\+\_\+name, std\+::string force\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Record a force that is assigned to in a function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ab3cedd87fe75ce246104ca77531d29b2}{ws2st\+::dependency\+\_\+detection\+::\+Record\+Read}} (std\+::string function\+\_\+name, std\+::string force\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Record a force that is read from in function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a4db008944a7455244b81941a7b0efc2b}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae32a6dbe890421b635bdb1a91728a7fb}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Init\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a248d3b13235071779b21013154238667}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Neighbour\+Search\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_af3f0299c83e5f9608d8086fe50abf81c}{ws2st\+::dependency\+\_\+detection\+::\+Default\+Neighbour\+Search\+Kernel}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a38357d8dfb24ccbc3e38b73868bcdaec}{ws2st\+::dependency\+\_\+detection\+::\+Handle\+Function\+Call\+In\+Function}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a0d8350273a214bbd4586dedadf37ab83}{ws2st\+::dependency\+\_\+detection\+::\+Write\+Property\+Matcher}} (const std\+::string property\+Name)
+\item 
+const Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa8821ec3e79b7058ff4ac29b7b5a8374}{ws2st\+::dependency\+\_\+detection\+::\+Read\+Property\+Matcher}} (const std\+::string property\+Name)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ac7eb92a60458dc08ec4dc7267637cf78}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Assignment}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9c04a597c5b86be1c0b3c98b61ef3f8d}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Force\+Read}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa071e67a31629c2fff6e3d16a9eed42d}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Read\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+{\footnotesize template$<$Property\+List property$>$ }\\void \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a37100c3e1b7e8038aff533d343905484}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Write\+Property}} (const Match\+Finder\+::\+Match\+Result \&Result, Replacements \&Replace)
+\item 
+const std\+::string \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aa7715a6e777bd59ab78718644a58b1fa}{ws2st\+::dependency\+\_\+detection\+::get\+Property\+Name}} (Property\+List property)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a243f082eabf51fdabcc2a5e92659c242}{ws2st\+::dependency\+\_\+detection\+::\+Add\+Init\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a2e41b3265e8d011f4c0834b0b6d924ee}{ws2st\+::dependency\+\_\+detection\+::\+Add\+Force\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a345d52aca3e8d90256860c4159a402a3}{ws2st\+::dependency\+\_\+detection\+::\+Set\+Neighbour\+Search\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ab7b05dd1b14cdddcb47ffa1149c2f0d9}{ws2st\+::dependency\+\_\+detection\+::\+Set\+Default\+Neighbour\+Search\+Kernel\+Matcher}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae821707e6bb54817ce26e569ae3b30da}{ws2st\+::dependency\+\_\+detection\+::\+Generic\+Function\+Call\+In\+Function}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ab94bf8df1aeef0b1f73e23c616fb56aa}{ws2st\+::dependency\+\_\+detection\+::\+Force\+Assignment\+In\+Function}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ae0981b485fc9d9a27c5d5e1385a08919}{ws2st\+::dependency\+\_\+detection\+::\+Force\+Read\+In\+Function}}
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a46b2c632f3a98853a44bb908d77843ef}{ws2st\+::dependency\+\_\+detection\+::\+Pos\+Read\+In\+Function}} = Read\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Pos))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_afd7c33aadfb9dad623a578243d3b1e4d}{ws2st\+::dependency\+\_\+detection\+::\+Vel\+Read\+In\+Function}} = Read\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Vel))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a5f0f79f9e76ed7202ab5feaafe5217d5}{ws2st\+::dependency\+\_\+detection\+::\+Acc\+Read\+In\+Function}} = Read\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Acc))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9759d661026736d642390aab7cc10523}{ws2st\+::dependency\+\_\+detection\+::\+Density\+Read\+In\+Function}} = Read\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Density))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a7adcb594b2dcd56ca1d726b9e128de6f}{ws2st\+::dependency\+\_\+detection\+::\+Mass\+Read\+In\+Function}} = Read\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Mass))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aeaa222ced9f9c42eb5d582b4da3656a4}{ws2st\+::dependency\+\_\+detection\+::\+Smoothing\+Length\+Read\+In\+Function}} = Read\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Smoothing\+Length))
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a4a262f1e91bcf841fc88097d8d1ca173}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Pos\+Read}} = Register\+Read\+Property$<$Property\+List\+::\+Pos$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aed25baa7764a0238de47cd7472b75442}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Vel\+Read}} = Register\+Read\+Property$<$Property\+List\+::\+Vel$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_ad7bc023e5478978651dfa4acd9926607}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Acc\+Read}} = Register\+Read\+Property$<$Property\+List\+::\+Acc$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a236348fc5df344bed4a3e9069c6f494a}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Density\+Read}} = Register\+Read\+Property$<$Property\+List\+::\+Density$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a81a42e0cdbe0843eafa8fd4d5b94a498}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Mass\+Read}} = Register\+Read\+Property$<$Property\+List\+::\+Mass$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a1046fa281e214668b09fd387ac2e34a1}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Smoothing\+Length\+Read}} = Register\+Read\+Property$<$Property\+List\+::\+Smoothing\+Length$>$
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a532280f150bab284a742fc374d6260d1}{ws2st\+::dependency\+\_\+detection\+::\+Pos\+Write\+In\+Function}} = Write\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Pos))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a13ceaf43f331b3380b0cfa95693df70c}{ws2st\+::dependency\+\_\+detection\+::\+Vel\+Write\+In\+Function}} = Write\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Vel))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a8481caef43197e143ad78cc3f8116ceb}{ws2st\+::dependency\+\_\+detection\+::\+Acc\+Write\+In\+Function}} = Write\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Acc))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aca0a180837e6887100d67e6badb54524}{ws2st\+::dependency\+\_\+detection\+::\+Density\+Write\+In\+Function}} = Write\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Density))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a13b2dcf4451d4e563a11771c45fe12c5}{ws2st\+::dependency\+\_\+detection\+::\+Mass\+Write\+In\+Function}} = Write\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Mass))
+\item 
+Statement\+Matcher \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a9fd262ba400c93f1801d2d57b50e0d9d}{ws2st\+::dependency\+\_\+detection\+::\+Smoothing\+Length\+Write\+In\+Function}} = Write\+Property\+Matcher(get\+Property\+Name(Property\+List\+::\+Smoothing\+Length))
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a549784855e6f59f96e544d779d0118cb}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Pos\+Write}} = Register\+Write\+Property$<$Property\+List\+::\+Pos$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a3ffb67860163115d27fe818c7507a0cd}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Vel\+Write}} = Register\+Write\+Property$<$Property\+List\+::\+Vel$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aacce93ec7d1f29be592d92b73c315501}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Acc\+Write}} = Register\+Write\+Property$<$Property\+List\+::\+Acc$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a3ff293b1fc9e4271829c558587c2d1d4}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Density\+Write}} = Register\+Write\+Property$<$Property\+List\+::\+Density$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_aebfe4d8af9a8016c15adb62289ed4518}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Mass\+Write}} = Register\+Write\+Property$<$Property\+List\+::\+Mass$>$
+\item 
+Wash\+Callback\+Fn \mbox{\hyperlink{namespacews2st_1_1dependency__detection_a6b775eaf310a3fca0aa612461af98e5d}{ws2st\+::dependency\+\_\+detection\+::\+Register\+Smoothing\+Length\+Write}} = Register\+Write\+Property$<$Property\+List\+::\+Smoothing\+Length$>$
+\end{DoxyCompactItemize}

@@ -1,0 +1,143 @@
+\hypertarget{flsim__kernels_8hpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/ca\+\_\+fluid\+\_\+sim/flsim\+\_\+kernels.hpp File Reference}
+\label{flsim__kernels_8hpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/ca\+\_\+fluid\+\_\+sim/flsim\+\_\+kernels.\+hpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/ca\+\_\+fluid\+\_\+sim/flsim\+\_\+kernels.\+hpp}}
+{\ttfamily \#include $<$cmath$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}}~3.\+14159
+\item 
+\#define \mbox{\hyperlink{flsim__kernels_8hpp_ab08172fcf0e68004209b86540c4f6771}{Spiky\+Pow2\+Scaling\+Factor}}(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}})~6.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 4.\+0))
+\item 
+\#define \mbox{\hyperlink{flsim__kernels_8hpp_a34973d116a632dcdc00af1624e9a31b5}{Spiky\+Pow3\+Scaling\+Factor}}(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}})~10.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 5.\+0))
+\item 
+\#define \mbox{\hyperlink{flsim__kernels_8hpp_a94d21235a770d2a3eb01ba6e194ab112}{Spiky\+Pow3\+Derivative\+Scaling\+Factor}}(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}})~30.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 5.\+0))
+\item 
+\#define \mbox{\hyperlink{flsim__kernels_8hpp_ab315f38113d5e55bc1ae64c5f35b09f4}{Spiky\+Pow2\+Derivative\+Scaling\+Factor}}(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}})~12.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 4.\+0))
+\item 
+\#define \mbox{\hyperlink{flsim__kernels_8hpp_a1cc4169428c46beb3e520eef0590388d}{Poly6\+Scaling\+Factor}}(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}})~4.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 8.\+0))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_ad1badba9a0fbaabb57207dfb4d58bad8}{Spiky\+Kernel\+Pow2}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_a5764240c84df231fb08c366686febbe9}{Spiky\+Kernel\+Pow3}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_af7128191d1afdeca7d32dea6ca855837}{Derivative\+Spiky\+Kernel\+Pow2}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_a09e56119b0747b5d061951f73984682c}{Derivative\+Spiky\+Pow3}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_a6166435c019bf17c66f8fc4b9f90d69a}{Smoothing\+Kernel\+Poly6}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_aa2b224ec4324bc9df6dc05231b0fb1f4}{Density\+Kernel}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_a24021cba59575fe555fcd996328dfad9}{Near\+Density\+Kernel}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_a086696bc83d3db97c23fe6b4fbb6581c}{Density\+Derivative}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_a2bf1a9071d088d903f6d511bb13c4e3e}{Near\+Density\+Derivative}} (const double dst, const double radius)
+\item 
+double \mbox{\hyperlink{flsim__kernels_8hpp_a5561095f423361bec442d282a4f8a47b}{Viscosity\+Kernel}} (const double dst, const double radius)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}\label{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!PI@{PI}}
+\index{PI@{PI}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{PI}{PI}}
+{\footnotesize\ttfamily \#define PI~3.\+14159}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a1cc4169428c46beb3e520eef0590388d}\label{flsim__kernels_8hpp_a1cc4169428c46beb3e520eef0590388d}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Poly6\+Scaling\+Factor@{Poly6\+Scaling\+Factor}}
+\index{Poly6\+Scaling\+Factor@{Poly6\+Scaling\+Factor}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Poly6\+Scaling\+Factor}{Poly6ScalingFactor}}
+{\footnotesize\ttfamily \#define Poly6\+Scaling\+Factor(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}} }\end{DoxyParamCaption})~4.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 8.\+0))}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_ab315f38113d5e55bc1ae64c5f35b09f4}\label{flsim__kernels_8hpp_ab315f38113d5e55bc1ae64c5f35b09f4}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Spiky\+Pow2\+Derivative\+Scaling\+Factor@{Spiky\+Pow2\+Derivative\+Scaling\+Factor}}
+\index{Spiky\+Pow2\+Derivative\+Scaling\+Factor@{Spiky\+Pow2\+Derivative\+Scaling\+Factor}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Spiky\+Pow2\+Derivative\+Scaling\+Factor}{SpikyPow2DerivativeScalingFactor}}
+{\footnotesize\ttfamily \#define Spiky\+Pow2\+Derivative\+Scaling\+Factor(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}} }\end{DoxyParamCaption})~12.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 4.\+0))}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_ab08172fcf0e68004209b86540c4f6771}\label{flsim__kernels_8hpp_ab08172fcf0e68004209b86540c4f6771}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Spiky\+Pow2\+Scaling\+Factor@{Spiky\+Pow2\+Scaling\+Factor}}
+\index{Spiky\+Pow2\+Scaling\+Factor@{Spiky\+Pow2\+Scaling\+Factor}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Spiky\+Pow2\+Scaling\+Factor}{SpikyPow2ScalingFactor}}
+{\footnotesize\ttfamily \#define Spiky\+Pow2\+Scaling\+Factor(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}} }\end{DoxyParamCaption})~6.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 4.\+0))}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a94d21235a770d2a3eb01ba6e194ab112}\label{flsim__kernels_8hpp_a94d21235a770d2a3eb01ba6e194ab112}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Spiky\+Pow3\+Derivative\+Scaling\+Factor@{Spiky\+Pow3\+Derivative\+Scaling\+Factor}}
+\index{Spiky\+Pow3\+Derivative\+Scaling\+Factor@{Spiky\+Pow3\+Derivative\+Scaling\+Factor}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Spiky\+Pow3\+Derivative\+Scaling\+Factor}{SpikyPow3DerivativeScalingFactor}}
+{\footnotesize\ttfamily \#define Spiky\+Pow3\+Derivative\+Scaling\+Factor(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}} }\end{DoxyParamCaption})~30.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 5.\+0))}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a34973d116a632dcdc00af1624e9a31b5}\label{flsim__kernels_8hpp_a34973d116a632dcdc00af1624e9a31b5}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Spiky\+Pow3\+Scaling\+Factor@{Spiky\+Pow3\+Scaling\+Factor}}
+\index{Spiky\+Pow3\+Scaling\+Factor@{Spiky\+Pow3\+Scaling\+Factor}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Spiky\+Pow3\+Scaling\+Factor}{SpikyPow3ScalingFactor}}
+{\footnotesize\ttfamily \#define Spiky\+Pow3\+Scaling\+Factor(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}} }\end{DoxyParamCaption})~10.\+0 / (\mbox{\hyperlink{flsim__kernels_8hpp_a598a3330b3c21701223ee0ca14316eca}{PI}} $\ast$ std\+::pow(\mbox{\hyperlink{ca__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}}, 5.\+0))}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{flsim__kernels_8hpp_a086696bc83d3db97c23fe6b4fbb6581c}\label{flsim__kernels_8hpp_a086696bc83d3db97c23fe6b4fbb6581c}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Density\+Derivative@{Density\+Derivative}}
+\index{Density\+Derivative@{Density\+Derivative}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Density\+Derivative()}{DensityDerivative()}}
+{\footnotesize\ttfamily double Density\+Derivative (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_aa2b224ec4324bc9df6dc05231b0fb1f4}\label{flsim__kernels_8hpp_aa2b224ec4324bc9df6dc05231b0fb1f4}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Density\+Kernel@{Density\+Kernel}}
+\index{Density\+Kernel@{Density\+Kernel}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Density\+Kernel()}{DensityKernel()}}
+{\footnotesize\ttfamily double Density\+Kernel (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_af7128191d1afdeca7d32dea6ca855837}\label{flsim__kernels_8hpp_af7128191d1afdeca7d32dea6ca855837}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Derivative\+Spiky\+Kernel\+Pow2@{Derivative\+Spiky\+Kernel\+Pow2}}
+\index{Derivative\+Spiky\+Kernel\+Pow2@{Derivative\+Spiky\+Kernel\+Pow2}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Derivative\+Spiky\+Kernel\+Pow2()}{DerivativeSpikyKernelPow2()}}
+{\footnotesize\ttfamily double Derivative\+Spiky\+Kernel\+Pow2 (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a09e56119b0747b5d061951f73984682c}\label{flsim__kernels_8hpp_a09e56119b0747b5d061951f73984682c}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Derivative\+Spiky\+Pow3@{Derivative\+Spiky\+Pow3}}
+\index{Derivative\+Spiky\+Pow3@{Derivative\+Spiky\+Pow3}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Derivative\+Spiky\+Pow3()}{DerivativeSpikyPow3()}}
+{\footnotesize\ttfamily double Derivative\+Spiky\+Pow3 (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a2bf1a9071d088d903f6d511bb13c4e3e}\label{flsim__kernels_8hpp_a2bf1a9071d088d903f6d511bb13c4e3e}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Near\+Density\+Derivative@{Near\+Density\+Derivative}}
+\index{Near\+Density\+Derivative@{Near\+Density\+Derivative}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Near\+Density\+Derivative()}{NearDensityDerivative()}}
+{\footnotesize\ttfamily double Near\+Density\+Derivative (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a24021cba59575fe555fcd996328dfad9}\label{flsim__kernels_8hpp_a24021cba59575fe555fcd996328dfad9}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Near\+Density\+Kernel@{Near\+Density\+Kernel}}
+\index{Near\+Density\+Kernel@{Near\+Density\+Kernel}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Near\+Density\+Kernel()}{NearDensityKernel()}}
+{\footnotesize\ttfamily double Near\+Density\+Kernel (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a6166435c019bf17c66f8fc4b9f90d69a}\label{flsim__kernels_8hpp_a6166435c019bf17c66f8fc4b9f90d69a}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Smoothing\+Kernel\+Poly6@{Smoothing\+Kernel\+Poly6}}
+\index{Smoothing\+Kernel\+Poly6@{Smoothing\+Kernel\+Poly6}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Smoothing\+Kernel\+Poly6()}{SmoothingKernelPoly6()}}
+{\footnotesize\ttfamily double Smoothing\+Kernel\+Poly6 (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_ad1badba9a0fbaabb57207dfb4d58bad8}\label{flsim__kernels_8hpp_ad1badba9a0fbaabb57207dfb4d58bad8}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Spiky\+Kernel\+Pow2@{Spiky\+Kernel\+Pow2}}
+\index{Spiky\+Kernel\+Pow2@{Spiky\+Kernel\+Pow2}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Spiky\+Kernel\+Pow2()}{SpikyKernelPow2()}}
+{\footnotesize\ttfamily double Spiky\+Kernel\+Pow2 (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a5764240c84df231fb08c366686febbe9}\label{flsim__kernels_8hpp_a5764240c84df231fb08c366686febbe9}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Spiky\+Kernel\+Pow3@{Spiky\+Kernel\+Pow3}}
+\index{Spiky\+Kernel\+Pow3@{Spiky\+Kernel\+Pow3}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Spiky\+Kernel\+Pow3()}{SpikyKernelPow3()}}
+{\footnotesize\ttfamily double Spiky\+Kernel\+Pow3 (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{flsim__kernels_8hpp_a5561095f423361bec442d282a4f8a47b}\label{flsim__kernels_8hpp_a5561095f423361bec442d282a4f8a47b}} 
+\index{flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}!Viscosity\+Kernel@{Viscosity\+Kernel}}
+\index{Viscosity\+Kernel@{Viscosity\+Kernel}!flsim\+\_\+kernels.\+hpp@{flsim\+\_\+kernels.\+hpp}}
+\subsubsection{\texorpdfstring{Viscosity\+Kernel()}{ViscosityKernel()}}
+{\footnotesize\ttfamily double Viscosity\+Kernel (\begin{DoxyParamCaption}\item[{const double}]{dst,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+

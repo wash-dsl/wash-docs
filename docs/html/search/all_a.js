@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['operator_21_3d',['operator!=',['../classwash_1_1Particle.html#a32f1334a8a0b273a57355956d7e9fe63',1,'wash::Particle']]],
-  ['operator_3d_3d',['operator==',['../classwash_1_1Particle.html#a32369e6edba4277ebc71917a37c2503d',1,'wash::Particle']]]
+  ['jitterstr',['jitterStr',['../ca__fluid__sim_2fluid__sim_8cpp.html#a39140666db6cb0c2fa813506654e739b',1,'fluid_sim.cpp']]],
+  ['jitterstrength',['jitterStrength',['../3d__fluid__sim_2fluid__sim_8cpp.html#a982167ee26ad31c5ab88a53719ac4df9',1,'fluid_sim.cpp']]]
 ];

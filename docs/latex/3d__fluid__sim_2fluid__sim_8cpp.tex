@@ -1,0 +1,231 @@
+\hypertarget{3d__fluid__sim_2fluid__sim_8cpp}{}\section{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.cpp File Reference}
+\label{3d__fluid__sim_2fluid__sim_8cpp}\index{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{/dcs/20/u2002000/4th\+Year\+Project/wash/src/examples/3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+{\ttfamily \#include \char`\"{}fluid\+\_\+sim.\+hpp\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_abdb9a83f9c7967ee96d31ca7eae79248}{pressure\+\_\+from\+\_\+density}} (double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}})
+\item 
+double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a563182711d5ea010b96c39df6dc6fbcc}{near\+\_\+pressure\+\_\+from\+\_\+density}} (double near\+\_\+density)
+\item 
+void \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_adbcdd7970ab455356e829e937a38f3b2}{init\+\_\+particle}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&p)
+\item 
+void \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a6212dc6841f9863495997cbcb6acdeb2}{external\+\_\+forces}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&particle)
+\item 
+void \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}{density}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&particle, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&neighbours)
+\item 
+void \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a35ac7259c74fa75da5dc982febe230c0}{pressure}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&particle, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&neighbours)
+\item 
+void \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a402d9d609862f869a2d4944043c4b458}{viscosity}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&particle, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&neighbours)
+\item 
+void \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a6f4c42714a3737dd4367a65ef9abb128}{forces}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&particle, const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&neighbours)
+\item 
+void \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a9d81c873252d1c727b0f2db72b5cffe7}{update\+\_\+positions}} (\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&particle)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a22f0c219fc54c6a0e5627a7be7e24855}{search}} (const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&particle)
+\item 
+int \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr uint32\+\_\+t \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a3b9b29e29d9890cf85d020b460feca30}{sim\+Iterations}} = 100
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}{delta\+Time}} = (1.\+0/60.\+0) / 3.\+0 $\ast$ 0.\+9
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_af81f980bddb2471a968025ae3a738fa9}{gravity}} = -\/10.\+0
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}{collision\+Damping}} = 0.\+95
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}{smoothing\+Radius}} = 0.\+2
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a8df34bc56a46bc3a73024f988bac3271}{target\+Density}} = 630.\+0
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a4a61cd5f68fcbc416bd3904622ab80fc}{pressure\+Multiplier}} = 288.\+0
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a7e14d37dda2b744892950a0a7a3c913a}{near\+Pressure\+Multiplier}} = 2.\+25
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}{viscosity\+Strength}} = 0.\+08
+\item 
+constexpr size\+\_\+t \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_adfee095e4b276ab10960391284f14410}{num\+Particles}} = 42875
+\item 
+constexpr size\+\_\+t \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a3be48095112dd8007ebbaee823932412}{num\+Particles\+Per\+Axis}} = 32
+\item 
+constexpr \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_ae3c8d23dc2c71306f6366b252c3ffb18}{bounds\+Size}} = \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \{9.\+1, 9.\+3, 9.\+1\}
+\item 
+constexpr \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a096ac8861ffdba402859cb82be6529e6}{centre}} = \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \{0.\+0, -\/0.\+47, 0.\+0\}
+\item 
+constexpr \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a08a28bcb369aa0910b54fed105a76eaf}{initial\+Vel}} = \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \{0.\+0, 0.\+0, 0.\+0\}
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a2c29121b56a3bd16add5f11f8d656ba5}{size}} = 3.\+7
+\item 
+constexpr double \mbox{\hyperlink{3d__fluid__sim_2fluid__sim_8cpp_a982167ee26ad31c5ab88a53719ac4df9}{jitter\+Strength}} = 0.\+035
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}\label{3d__fluid__sim_2fluid__sim_8cpp_a140d94d7edb97c062961056d1926a2db}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!density@{density}}
+\index{density@{density}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{density()}{density()}}
+{\footnotesize\ttfamily void density (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{particle,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&}]{neighbours }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a6212dc6841f9863495997cbcb6acdeb2}\label{3d__fluid__sim_2fluid__sim_8cpp_a6212dc6841f9863495997cbcb6acdeb2}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!external\+\_\+forces@{external\+\_\+forces}}
+\index{external\+\_\+forces@{external\+\_\+forces}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{external\+\_\+forces()}{external\_forces()}}
+{\footnotesize\ttfamily void external\+\_\+forces (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{particle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a6f4c42714a3737dd4367a65ef9abb128}\label{3d__fluid__sim_2fluid__sim_8cpp_a6f4c42714a3737dd4367a65ef9abb128}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!forces@{forces}}
+\index{forces@{forces}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{forces()}{forces()}}
+{\footnotesize\ttfamily void forces (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{particle,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&}]{neighbours }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_adbcdd7970ab455356e829e937a38f3b2}\label{3d__fluid__sim_2fluid__sim_8cpp_adbcdd7970ab455356e829e937a38f3b2}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!init\+\_\+particle@{init\+\_\+particle}}
+\index{init\+\_\+particle@{init\+\_\+particle}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{init\+\_\+particle()}{init\_particle()}}
+{\footnotesize\ttfamily void init\+\_\+particle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{3d__fluid__sim_2fluid__sim_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!main@{main}}
+\index{main@{main}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a563182711d5ea010b96c39df6dc6fbcc}\label{3d__fluid__sim_2fluid__sim_8cpp_a563182711d5ea010b96c39df6dc6fbcc}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!near\+\_\+pressure\+\_\+from\+\_\+density@{near\+\_\+pressure\+\_\+from\+\_\+density}}
+\index{near\+\_\+pressure\+\_\+from\+\_\+density@{near\+\_\+pressure\+\_\+from\+\_\+density}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{near\+\_\+pressure\+\_\+from\+\_\+density()}{near\_pressure\_from\_density()}}
+{\footnotesize\ttfamily double near\+\_\+pressure\+\_\+from\+\_\+density (\begin{DoxyParamCaption}\item[{double}]{near\+\_\+density }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a35ac7259c74fa75da5dc982febe230c0}\label{3d__fluid__sim_2fluid__sim_8cpp_a35ac7259c74fa75da5dc982febe230c0}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!pressure@{pressure}}
+\index{pressure@{pressure}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{pressure()}{pressure()}}
+{\footnotesize\ttfamily void pressure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{particle,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&}]{neighbours }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_abdb9a83f9c7967ee96d31ca7eae79248}\label{3d__fluid__sim_2fluid__sim_8cpp_abdb9a83f9c7967ee96d31ca7eae79248}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!pressure\+\_\+from\+\_\+density@{pressure\+\_\+from\+\_\+density}}
+\index{pressure\+\_\+from\+\_\+density@{pressure\+\_\+from\+\_\+density}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{pressure\+\_\+from\+\_\+density()}{pressure\_from\_density()}}
+{\footnotesize\ttfamily double pressure\+\_\+from\+\_\+density (\begin{DoxyParamCaption}\item[{double}]{density }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a22f0c219fc54c6a0e5627a7be7e24855}\label{3d__fluid__sim_2fluid__sim_8cpp_a22f0c219fc54c6a0e5627a7be7e24855}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!search@{search}}
+\index{search@{search}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}}$>$ search (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{particle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a9d81c873252d1c727b0f2db72b5cffe7}\label{3d__fluid__sim_2fluid__sim_8cpp_a9d81c873252d1c727b0f2db72b5cffe7}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!update\+\_\+positions@{update\+\_\+positions}}
+\index{update\+\_\+positions@{update\+\_\+positions}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{update\+\_\+positions()}{update\_positions()}}
+{\footnotesize\ttfamily void update\+\_\+positions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{particle }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a402d9d609862f869a2d4944043c4b458}\label{3d__fluid__sim_2fluid__sim_8cpp_a402d9d609862f869a2d4944043c4b458}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!viscosity@{viscosity}}
+\index{viscosity@{viscosity}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{viscosity()}{viscosity()}}
+{\footnotesize\ttfamily void viscosity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} \&}]{particle,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classwash_1_1Particle}{wash\+::\+Particle}} $>$ \&}]{neighbours }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_ae3c8d23dc2c71306f6366b252c3ffb18}\label{3d__fluid__sim_2fluid__sim_8cpp_ae3c8d23dc2c71306f6366b252c3ffb18}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!bounds\+Size@{bounds\+Size}}
+\index{bounds\+Size@{bounds\+Size}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{bounds\+Size}{boundsSize}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} bounds\+Size = \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \{9.\+1, 9.\+3, 9.\+1\}}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a096ac8861ffdba402859cb82be6529e6}\label{3d__fluid__sim_2fluid__sim_8cpp_a096ac8861ffdba402859cb82be6529e6}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!centre@{centre}}
+\index{centre@{centre}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{centre}{centre}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} centre = \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \{0.\+0, -\/0.\+47, 0.\+0\}}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}\label{3d__fluid__sim_2fluid__sim_8cpp_ab103ceb8127270461e6653cc3a770182}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!collision\+Damping@{collision\+Damping}}
+\index{collision\+Damping@{collision\+Damping}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{collision\+Damping}{collisionDamping}}
+{\footnotesize\ttfamily constexpr double collision\+Damping = 0.\+95}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}\label{3d__fluid__sim_2fluid__sim_8cpp_a78e0adba8d27825f587ec87ed578015f}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!delta\+Time@{delta\+Time}}
+\index{delta\+Time@{delta\+Time}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{delta\+Time}{deltaTime}}
+{\footnotesize\ttfamily constexpr double delta\+Time = (1.\+0/60.\+0) / 3.\+0 $\ast$ 0.\+9}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_af81f980bddb2471a968025ae3a738fa9}\label{3d__fluid__sim_2fluid__sim_8cpp_af81f980bddb2471a968025ae3a738fa9}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!gravity@{gravity}}
+\index{gravity@{gravity}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{gravity}{gravity}}
+{\footnotesize\ttfamily constexpr double gravity = -\/10.\+0}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a08a28bcb369aa0910b54fed105a76eaf}\label{3d__fluid__sim_2fluid__sim_8cpp_a08a28bcb369aa0910b54fed105a76eaf}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!initial\+Vel@{initial\+Vel}}
+\index{initial\+Vel@{initial\+Vel}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{initial\+Vel}{initialVel}}
+{\footnotesize\ttfamily constexpr \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} initial\+Vel = \mbox{\hyperlink{namespacewash_a57da016a0635e7d25a96165adb48c7e3}{wash\+::\+Vec3D}} \{0.\+0, 0.\+0, 0.\+0\}}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a982167ee26ad31c5ab88a53719ac4df9}\label{3d__fluid__sim_2fluid__sim_8cpp_a982167ee26ad31c5ab88a53719ac4df9}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!jitter\+Strength@{jitter\+Strength}}
+\index{jitter\+Strength@{jitter\+Strength}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{jitter\+Strength}{jitterStrength}}
+{\footnotesize\ttfamily constexpr double jitter\+Strength = 0.\+035}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a7e14d37dda2b744892950a0a7a3c913a}\label{3d__fluid__sim_2fluid__sim_8cpp_a7e14d37dda2b744892950a0a7a3c913a}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!near\+Pressure\+Multiplier@{near\+Pressure\+Multiplier}}
+\index{near\+Pressure\+Multiplier@{near\+Pressure\+Multiplier}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{near\+Pressure\+Multiplier}{nearPressureMultiplier}}
+{\footnotesize\ttfamily constexpr double near\+Pressure\+Multiplier = 2.\+25}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_adfee095e4b276ab10960391284f14410}\label{3d__fluid__sim_2fluid__sim_8cpp_adfee095e4b276ab10960391284f14410}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!num\+Particles@{num\+Particles}}
+\index{num\+Particles@{num\+Particles}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{num\+Particles}{numParticles}}
+{\footnotesize\ttfamily constexpr size\+\_\+t num\+Particles = 42875}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a3be48095112dd8007ebbaee823932412}\label{3d__fluid__sim_2fluid__sim_8cpp_a3be48095112dd8007ebbaee823932412}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!num\+Particles\+Per\+Axis@{num\+Particles\+Per\+Axis}}
+\index{num\+Particles\+Per\+Axis@{num\+Particles\+Per\+Axis}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{num\+Particles\+Per\+Axis}{numParticlesPerAxis}}
+{\footnotesize\ttfamily constexpr size\+\_\+t num\+Particles\+Per\+Axis = 32}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a4a61cd5f68fcbc416bd3904622ab80fc}\label{3d__fluid__sim_2fluid__sim_8cpp_a4a61cd5f68fcbc416bd3904622ab80fc}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!pressure\+Multiplier@{pressure\+Multiplier}}
+\index{pressure\+Multiplier@{pressure\+Multiplier}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{pressure\+Multiplier}{pressureMultiplier}}
+{\footnotesize\ttfamily constexpr double pressure\+Multiplier = 288.\+0}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a3b9b29e29d9890cf85d020b460feca30}\label{3d__fluid__sim_2fluid__sim_8cpp_a3b9b29e29d9890cf85d020b460feca30}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!sim\+Iterations@{sim\+Iterations}}
+\index{sim\+Iterations@{sim\+Iterations}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{sim\+Iterations}{simIterations}}
+{\footnotesize\ttfamily constexpr uint32\+\_\+t sim\+Iterations = 100}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a2c29121b56a3bd16add5f11f8d656ba5}\label{3d__fluid__sim_2fluid__sim_8cpp_a2c29121b56a3bd16add5f11f8d656ba5}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!size@{size}}
+\index{size@{size}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily constexpr double size = 3.\+7}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}\label{3d__fluid__sim_2fluid__sim_8cpp_aeb9760a781fb6ccf134ed4353c9888e5}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!smoothing\+Radius@{smoothing\+Radius}}
+\index{smoothing\+Radius@{smoothing\+Radius}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{smoothing\+Radius}{smoothingRadius}}
+{\footnotesize\ttfamily constexpr double smoothing\+Radius = 0.\+2}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a8df34bc56a46bc3a73024f988bac3271}\label{3d__fluid__sim_2fluid__sim_8cpp_a8df34bc56a46bc3a73024f988bac3271}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!target\+Density@{target\+Density}}
+\index{target\+Density@{target\+Density}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{target\+Density}{targetDensity}}
+{\footnotesize\ttfamily constexpr double target\+Density = 630.\+0}
+
+\mbox{\Hypertarget{3d__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}\label{3d__fluid__sim_2fluid__sim_8cpp_a0f2e430964cc73edbaf77b1e4eeb2136}} 
+\index{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}!viscosity\+Strength@{viscosity\+Strength}}
+\index{viscosity\+Strength@{viscosity\+Strength}!3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp@{3d\+\_\+fluid\+\_\+sim/fluid\+\_\+sim.\+cpp}}
+\subsubsection{\texorpdfstring{viscosity\+Strength}{viscosityStrength}}
+{\footnotesize\ttfamily constexpr double viscosity\+Strength = 0.\+08}
+
