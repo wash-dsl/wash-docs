@@ -8,11 +8,6 @@ This documentation has an <a href="md_markdown_example_usecase.html"><b>Introduc
 
 Before that, you must make sure all the required libraries and dependencies are installed. Just follow the <a href="md_markdown_installation.html"><b>Installation Steps</b></a> here.
 
-<<<<<<< HEAD
-=======
-\subsection step1 Step 1: 
 
-[The link text](@ref Particle)
->>>>>>> d9b2d93 (new website)
 
 
